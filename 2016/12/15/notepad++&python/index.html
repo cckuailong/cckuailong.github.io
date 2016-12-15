@@ -3,38 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Ubuntu Python 默认使用版本改变 | Blog for You</title>
+  <title>Notepad++配置python环境 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：ubuntu 14系统的初始默认python版本为python 2.7.6，也就是说，当我们输入
-python 运行程序
-ubuntu默认使用python 2.7.6而当我们想用python3运行程序时，必须用
-python3 运行程序
-怎么使python命令自动使用python3以上的版本运行程序呢？
-二、解决方案：只需要打开终端，输入
-echo alias python=python">
+  <meta name="description" content="一、前言：python是比较轻量级的，但是一些IDE为python集成了许多插件，造成其很大（如python xy），今天我们可以在文本编辑器中（本文使用notepad++）连接python,还原轻巧的python。
+二、前期准备：1.python下载（最好是python 2.7版本）：python的msi也就十几M，下载很快，下载完双击安装即可（注意，记住自己的python安装目录）    下载">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu Python 默认使用版本改变">
-<meta property="og:url" content="http://lovebear.top/2016/12/11/Ubuntu-Python_Version/index.html">
+<meta property="og:title" content="Notepad++配置python环境">
+<meta property="og:url" content="http://lovebear.top/2016/12/15/notepad++&python/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：ubuntu 14系统的初始默认python版本为python 2.7.6，也就是说，当我们输入
-python 运行程序
-ubuntu默认使用python 2.7.6而当我们想用python3运行程序时，必须用
-python3 运行程序
-怎么使python命令自动使用python3以上的版本运行程序呢？
-二、解决方案：只需要打开终端，输入
-echo alias python=python">
+<meta property="og:description" content="一、前言：python是比较轻量级的，但是一些IDE为python集成了许多插件，造成其很大（如python xy），今天我们可以在文本编辑器中（本文使用notepad++）连接python,还原轻巧的python。
+二、前期准备：1.python下载（最好是python 2.7版本）：python的msi也就十几M，下载很快，下载完双击安装即可（注意，记住自己的python安装目录）    下载">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
-<meta property="og:updated_time" content="2016-12-11T02:28:50.802Z">
+<meta property="og:updated_time" content="2016-12-15T01:03:00.829Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu Python 默认使用版本改变">
-<meta name="twitter:description" content="一、前言：ubuntu 14系统的初始默认python版本为python 2.7.6，也就是说，当我们输入
-python 运行程序
-ubuntu默认使用python 2.7.6而当我们想用python3运行程序时，必须用
-python3 运行程序
-怎么使python命令自动使用python3以上的版本运行程序呢？
-二、解决方案：只需要打开终端，输入
-echo alias python=python">
+<meta name="twitter:title" content="Notepad++配置python环境">
+<meta name="twitter:description" content="一、前言：python是比较轻量级的，但是一些IDE为python集成了许多插件，造成其很大（如python xy），今天我们可以在文本编辑器中（本文使用notepad++）连接python,还原轻巧的python。
+二、前期准备：1.python下载（最好是python 2.7版本）：python的msi也就十几M，下载很快，下载完双击安装即可（注意，记住自己的python安装目录）    下载">
 <meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Blog for You" type="application/atom+xml">
@@ -86,10 +71,10 @@ echo alias python=python">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Ubuntu-Python_Version" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-notepad++&amp;python" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/11/Ubuntu-Python_Version/" class="article-date">
-  <time datetime="2016-12-11T01:29:35.966Z" itemprop="datePublished">2016-12-11</time>
+    <a href="/2016/12/15/notepad++&python/" class="article-date">
+  <time datetime="2016-12-15T00:27:34.350Z" itemprop="datePublished">2016-12-15</time>
 </a>
     
   </div>
@@ -98,11 +83,11 @@ echo alias python=python">
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg" rel="gallery_ciwo93o6e0003rgosduc3qlb2">
+      <a class="article-gallery-img fancybox" href="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg" rel="gallery_ciwpnsf040000i0osw7g3bl02">
         <img src="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg" itemprop="image">
       </a>
     
-      <a class="article-gallery-img fancybox" href="http://oeqaghyw9.bkt.clouddn.com/flag.jpg" rel="gallery_ciwo93o6e0003rgosduc3qlb2">
+      <a class="article-gallery-img fancybox" href="http://oeqaghyw9.bkt.clouddn.com/flag.jpg" rel="gallery_ciwpnsf040000i0osw7g3bl02">
         <img src="http://oeqaghyw9.bkt.clouddn.com/flag.jpg" itemprop="image">
       </a>
     
@@ -114,7 +99,7 @@ echo alias python=python">
         
   
     <h1 class="article-title" itemprop="name">
-      Ubuntu Python 默认使用版本改变
+      Notepad++配置python环境
     </h1>
   
 
@@ -122,27 +107,28 @@ echo alias python=python">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>ubuntu 14系统的初始默认python版本为python 2.7.6，也就是说，当我们输入</p>
-<pre><code>python 运行程序
-</code></pre><p>ubuntu默认使用python 2.7.6<br>而当我们想用python3运行程序时，必须用</p>
-<pre><code>python3 运行程序
-</code></pre><p>怎么使python命令自动使用python3以上的版本运行程序呢？</p>
-<h2 id="二、解决方案："><a href="#二、解决方案：" class="headerlink" title="二、解决方案："></a>二、解决方案：</h2><p>只需要打开终端，输入</p>
-<pre><code>echo alias python=python3 &gt;&gt; ~/.bashrc
-source ~/.bashrc
-</code></pre><p>就可以完成改变</p>
-<h2 id="三、测试"><a href="#三、测试" class="headerlink" title="三、测试"></a>三、测试</h2><p>这时，输入</p>
-<pre><code>python 运行程序
-</code></pre><p>就可以以python3的版本运行程序啦</p>
-<h2 id="四、注意"><a href="#四、注意" class="headerlink" title="四、注意"></a>四、注意</h2><p>笔者不是很建议这样做，可能会引起不必要的麻烦，但是特殊情况需要用到这种方式。</p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>python是比较轻量级的，但是一些IDE为python集成了许多插件，造成其很大（如python xy），<br>今天我们可以在文本编辑器中（本文使用notepad++）连接python,还原轻巧的python。</p>
+<h2 id="二、前期准备："><a href="#二、前期准备：" class="headerlink" title="二、前期准备："></a>二、前期准备：</h2><h3 id="1-python下载（最好是python-2-7版本）："><a href="#1-python下载（最好是python-2-7版本）：" class="headerlink" title="1.python下载（最好是python 2.7版本）："></a>1.python下载（最好是python 2.7版本）：</h3><p>python的msi也就十几M，下载很快，下载完双击安装即可（注意，记住自己的python安装目录）<br>    <a href="https://www.python.org/getit/" target="_blank" rel="external">下载传送门</a></p>
+<h3 id="2-环境变量配置"><a href="#2-环境变量配置" class="headerlink" title="2.环境变量配置:"></a>2.环境变量配置:</h3><p>环境变量的配置是为了让大家在任何位置输入python时，操作系统都会自动寻找到python的<br>位置，并运行它。<br>把刚才安装的python目录加入到系统环境变量中。</p>
+<h3 id="3-任意一款文本编辑器"><a href="#3-任意一款文本编辑器" class="headerlink" title="3.任意一款文本编辑器"></a>3.任意一款文本编辑器</h3><p>这里推荐两款：</p>
+<ol>
+<li>Notepad++: <a href="http://notepad-plus.en.softonic.com/" target="_blank" rel="external">下载传送门</a></li>
+<li>Sublime: <a href="http://www.sublimetext.com/" target="_blank" rel="external">下载传送门</a><br>PS. 此处给出的下载版本都是官网版本，sublime Text 3正版会收费，大家可以自行在网<br>上找破解版。<br>PS. 本文使用notepad++</li>
+</ol>
+<h2 id="三、配置notepad-："><a href="#三、配置notepad-：" class="headerlink" title="三、配置notepad++："></a>三、配置notepad++：</h2><ol>
+<li>点击notepad++上部菜单栏的run–&gt;run，出现弹窗（或直接按F5）</li>
+<li>输入 cmd /k 你的python安装目录\python “$(FULL_CURRENT_PATH)” &amp; PAUSE &amp; EXIT<br> 比如我的安装目录为E：\python27</li>
+<li>点击save，为python运行设置快捷键（注意，不能与notepad++内部热键冲突，我的是ctrl+F5）</li>
+</ol>
+<h2 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h2><p>notepad++中新建一个文档，输入print 1，保存，ctrl+F5运行，是不是就运行出结果了呢！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://lovebear.top/2016/12/11/Ubuntu-Python_Version/" data-id="ciwo93o6e0003rgosduc3qlb2" class="article-share-link">Share</a>
+      <a data-url="http://lovebear.top/2016/12/15/notepad++&python/" data-id="ciwpnsf040000i0osw7g3bl02" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 
     </footer>
   </div>
@@ -150,19 +136,10 @@ source ~/.bashrc
     
 <nav id="article-nav">
   
-    <a href="/2016/12/13/Pacman_project1_code/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Pacman_project1代码及解析
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/10/08/Hexo-Your-Blog/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/12/13/Pacman_project1_code/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hexo Your Blog</div>
+      <div class="article-nav-title">Pacman_project1代码及解析</div>
     </a>
   
 </nav>
