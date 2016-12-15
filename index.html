@@ -3,24 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Pacman_project1代码及解析 | Blog for You</title>
+  <title>Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：初学人工智能，感到非常好玩，老师留了一个Pacman Project，经查阅，伯克利大学的人工智能课程也用这个Project作为实验教材。为了方便同学们，我写了Project 1——search的代码，并对每行代码进行详细的注释解析。（网上有别人写好的代码，但是很乱，而且没有注释。。。）
-二、进入正题：1.问题1：应用深度优先算法找到一个特定的位置的豆你的code应该能顺利解决以下问题：">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Pacman_project1代码及解析">
-<meta property="og:url" content="http://lovebear.top/2016/12/13/Pacman_project1_code/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Blog for You">
+<meta property="og:url" content="http://lovebear.top/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：初学人工智能，感到非常好玩，老师留了一个Pacman Project，经查阅，伯克利大学的人工智能课程也用这个Project作为实验教材。为了方便同学们，我写了Project 1——search的代码，并对每行代码进行详细的注释解析。（网上有别人写好的代码，但是很乱，而且没有注释。。。）
-二、进入正题：1.问题1：应用深度优先算法找到一个特定的位置的豆你的code应该能顺利解决以下问题：">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
-<meta property="og:updated_time" content="2016-12-15T01:03:22.407Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pacman_project1代码及解析">
-<meta name="twitter:description" content="一、前言：初学人工智能，感到非常好玩，老师留了一个Pacman Project，经查阅，伯克利大学的人工智能课程也用这个Project作为实验教材。为了方便同学们，我写了Project 1——search的代码，并对每行代码进行详细的注释解析。（网上有别人写好的代码，但是很乱，而且没有注释。。。）
-二、进入正题：1.问题1：应用深度优先算法找到一个特定的位置的豆你的code应该能顺利解决以下问题：">
-<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
+<meta name="twitter:title" content="Blog for You">
   
     <link rel="alternate" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -71,10 +61,12 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Pacman_project1_code" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-notepad++&amp;python" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/12/13/Pacman_project1_code/" class="article-date">
-  <time datetime="2016-12-13T13:37:20.392Z" itemprop="datePublished">2016-12-13</time>
+    <a href="/2016/12/15/notepad++&python/" class="article-date">
+  <time datetime="2016-12-15T00:27:34.350Z" itemprop="datePublished">2016-12-15</time>
 </a>
     
   </div>
@@ -83,11 +75,11 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg" rel="gallery_ciwpnsf2a0002i0osx5ij7xwv">
+      <a class="article-gallery-img fancybox" href="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg" rel="gallery_ciwpo1ka100064gosny2jcmy8">
         <img src="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg" itemprop="image">
       </a>
     
-      <a class="article-gallery-img fancybox" href="http://oeqaghyw9.bkt.clouddn.com/flag.jpg" rel="gallery_ciwpnsf2a0002i0osx5ij7xwv">
+      <a class="article-gallery-img fancybox" href="http://oeqaghyw9.bkt.clouddn.com/flag.jpg" rel="gallery_ciwpo1ka100064gosny2jcmy8">
         <img src="http://oeqaghyw9.bkt.clouddn.com/flag.jpg" itemprop="image">
       </a>
     
@@ -98,8 +90,8 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      Pacman_project1代码及解析
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/15/notepad++&python/">Notepad++配置python环境</a>
     </h1>
   
 
@@ -107,324 +99,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>初学人工智能，感到非常好玩，老师留了一个Pacman Project，经查阅，伯克利大学的人工智能<br>课程也用这个Project作为实验教材。为了方便同学们，我写了Project 1——search的代码，并对每行<br>代码进行详细的注释解析。（网上有别人写好的代码，但是很乱，而且没有注释。。。）</p>
-<h2 id="二、进入正题："><a href="#二、进入正题：" class="headerlink" title="二、进入正题："></a>二、进入正题：</h2><h3 id="1-问题1：应用深度优先算法找到一个特定的位置的豆"><a href="#1-问题1：应用深度优先算法找到一个特定的位置的豆" class="headerlink" title="1.问题1：应用深度优先算法找到一个特定的位置的豆"></a>1.问题1：应用深度优先算法找到一个特定的位置的豆</h3><p>你的code应该能顺利解决以下问题：<br>python pacman.py -l tinyMaze -p SearchAgent<br>python pacman.py -l mediumMaze -p SearchAgent<br>python pacman.py -l bigMaze -z .5 -p SearchAgent</p>
-<p>废话不多说，直接上代码加注释</p>
-<pre><code>def graphSearch(problem, fringe):
-    pgss=problem.getStartState()     #获取problem的初始状态
-    print &quot;Start:&quot;, pgss       #打印problem的初始状态
-      print &quot;Is the start a goal?&quot;, problem.isGoalState(pgss)  #判断初始状态是目标状态吗
-      print &quot;Start&#39;s successors:&quot;, problem.getSuccessors(pgss) #打印初始状态的子状态（与这一状态连接的可达状态）
-
-      visited = []       #记录这个状态是否访问过，访问过的状态都被添加到visited列表里
-      fringe.push([(pgss, &quot;Stop&quot; , 0)])    #向数据及结构（依fringe定义的数据结构而定）压入初始状态三元组构成
-                                        #的访问路径，三元组元素分别为状态，方向，访问步数
-
-      while not fringe.isEmpty():   #数据结构不为空一直循环
-          path = fringe.pop()     #将数据弹出一个（栈顶，队首...）路径
-          s = path[len(path)-1]    #取得路径末的三元组（及访问路径中最后一个状态所在的三元组）
-          s = s[0]                #取得本路径的最后状态
-          if problem.isGoalState(s):    #如果取得的这最后一个状态就是我们的目标状态，则搜索结束
-              return [x[1] for x in path][1:]   #返回路径中所有的方向（除去初始状态的方向）
-
-          if s not in visited:          #如果这个状态还没被访问过
-              visited.append(s)         #访问这个状态，并将这个状态添加到访问记录列表visited[]中
-
-              for successor in problem.getSuccessors(s):    #遍历现状态的子状态
-                  if successor[0] not in visited:            #子状态没有被访问过
-                      successorPath = path[:]            #创建新的子状态路径（复制当前状态的路径），此处的[:]
-                                                    #为了防止python的引用处理，这样可以真正创建新的路径
-                      successorPath.append(successor)#在原状态路径后面添加上当前访问的子状态，得到新的状态路径
-                      fringe.push(successorPath)       #将新的状态路径压入数据结构中
-    return []  
-
-def depthFirstSearch(problem):
-    &quot;&quot;&quot;
-    Search the deepest nodes in the search tree first.
-
-    Your search algorithm needs to return a list of actions that reaches the
-    goal. Make sure to implement a graph search algorithm.
-
-    To get started, you might want to try some of these simple commands to
-    understand the search problem that is being passed in:
-
-    print &quot;Start:&quot;, problem.getStartState()
-    print &quot;Is the start a goal?&quot;, problem.isGoalState(problem.getStartState())
-    print &quot;Start&#39;s successors:&quot;, problem.getSuccessors(problem.getStartState())
-    &quot;&quot;&quot;
-    &quot;*** YOUR CODE HERE ***&quot;
-    fringe = util.Stack()    #fringe数据结构为栈，进行dfs
-    return graphSearch(problem, fringe)
-</code></pre><h3 id="2-问题2：宽度优先算法"><a href="#2-问题2：宽度优先算法" class="headerlink" title="2.问题2：宽度优先算法"></a>2.问题2：宽度优先算法</h3><p>python pacman.py -l mediumMaze -p SearchAgent -a fn=bfs<br>python pacman.py -l bigMaze -p SearchAgent -a fn=bfs -z .5</p>
-<pre><code>def breadthFirstSearch(problem):
-    &quot;&quot;&quot;Search the shallowest nodes in the search tree first.&quot;&quot;&quot;
-    &quot;*** YOUR CODE HERE ***&quot;
-    fringe = util.Queue()    #fringe数据结构为队列，进行bfs
-    return graphSearch(problem, fringe)
-</code></pre><h3 id="3-问题3：宽度优先算法（代价一致算法）"><a href="#3-问题3：宽度优先算法（代价一致算法）" class="headerlink" title="3.问题3：宽度优先算法（代价一致算法）"></a>3.问题3：宽度优先算法（代价一致算法）</h3><p>python pacman.py -l mediumMaze -p SearchAgent -a fn=ucs<br>python pacman.py -l mediumDottedMaze -p StayEastSearchAgent<br>python pacman.py -l mediumScaryMaze -p StayWestSearchAgent</p>
-<pre><code>def uniformCostSearch(problem):
-    &quot;&quot;&quot;Search the node of least total cost first.&quot;&quot;&quot;
-    &quot;*** YOUR CODE HERE ***&quot;
-    cost = lambda aPath: problem.getCostOfActions([x[1] for x in aPath])    #计算出每条路径的总代价，通过总代价
-                                                                          #作为优先级进行搜索
-    fringe = util.PriorityQueueWithFunction(cost)        #fringe数据结构为优先队列
-    return graphSearch(problem, fringe)
-</code></pre><h3 id="4-问题4：A-算法"><a href="#4-问题4：A-算法" class="headerlink" title="4.问题4：A* 算法"></a>4.问题4：A* 算法</h3><p>python pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic</p>
-<pre><code>def nullHeuristic(state, problem=None):
-    &quot;&quot;&quot;
-    A heuristic function estimates the cost from the current state to the nearest
-    goal in the provided SearchProblem.  This heuristic is trivial.
-    &quot;&quot;&quot;
-    return 0
-
-def aStarSearch(problem, heuristic=nullHeuristic):
-    &quot;&quot;&quot;Search the node that has the lowest combined cost and heuristic first.&quot;&quot;&quot;
-    &quot;*** YOUR CODE HERE ***&quot;
-    cost = lambda aPath: problem.getCostOfActions([x[1] for x in aPath]) + heuristic(aPath[len(aPath)-1][0], problem)
-    fringe = util.PriorityQueueWithFunction(cost)  #A*是对代价一致搜索算法的改进，加入了一个估计代价h
-    return graphSearch(problem, fringe)
-</code></pre><h3 id="5-问题5：找到所有的角落"><a href="#5-问题5：找到所有的角落" class="headerlink" title="5.问题5：找到所有的角落"></a>5.问题5：找到所有的角落</h3><p>python pacman.py -l tinyCorners -p SearchAgent -a fn=bfs,prob=CornersProblem<br>python pacman.py -l mediumCorners -p SearchAgent -a fn=bfs,prob=CornersProblem</p>
-<pre><code>def getStartState(self):
-        &quot;&quot;&quot;
-        Returns the start state (in your state space, not the full Pacman state
-        space)
-        &quot;&quot;&quot;
-        &quot;*** YOUR CODE HERE ***&quot;
-        return (self.startingPosition, [self.corners[0], self.corners[1], self.corners[2], self.corners[3]]) 
-                                                   #agent初始状态的位置，和四个角落的豆的位置
-
-    def isGoalState(self, state):
-        &quot;&quot;&quot;
-        Returns whether this search state is a goal state of the problem.
-        &quot;&quot;&quot;
-        &quot;*** YOUR CODE HERE ***&quot;
-        return len(state[1]) == 0           #state[0]为当前agent位置， state[1]为还没吃到的点的位置，state[1]为
-                                           #空时，结束为终止位置
-
-
-    def getSuccessors(self, state):
-        &quot;&quot;&quot;
-        Returns successor states, the actions they require, and a cost of 1.
-
-         As noted in search.py:
-            For a given state, this should return a list of triples, (successor,
-            action, stepCost), where &#39;successor&#39; is a successor to the current
-            state, &#39;action&#39; is the action required to get there, and &#39;stepCost&#39;
-            is the incremental cost of expanding to that successor
-        &quot;&quot;&quot;
-
-        successors = []
-        for action in [Directions.NORTH, Directions.SOUTH, Directions.EAST, Directions.WEST]:
-            # Add a successor state to the successor list if the action is legal
-            # Here&#39;s a code snippet for figuring out whether a new position hits a wall:
-            #   x,y = currentPosition
-            #   dx, dy = Actions.directionToVector(action)
-            #   nextx, nexty = int(x + dx), int(y + dy)
-            #   hitsWall = self.walls[nextx][nexty]
-
-            &quot;*** YOUR CODE HERE ***&quot;
-            x,y = state[0]         #获取agent当前位置
-            dx, dy = Actions.directionToVector(action)   
-            nextx, nexty = int(x + dx), int(y + dy)   #下一个位置坐标
-            hitsWall = self.walls[nextx][nexty]      #判断是否撞到墙
-            if not hitsWall:                  #判断，没撞到墙
-                nextPosition = (nextx, nexty)      #下个位置坐标
-                cornersLeft = state[1][:]          #复制当前剩余没吃到的点
-                if nextPosition in cornersLeft:       #如果下个坐标在剩余没吃到的点中
-                    cornersLeft.remove(nextPosition)         #因为下一个就能把它吃掉，所以把这个点从剩余
-                                                           #没吃到点的列表中删除
-                nextState = (nextPosition, cornersLeft)      #计算下一个点的坐标
-                cost = 1                                    #代价为1，（步数为1）
-                successors.append( ( nextState, action, cost) )     #属于可达的子状态，加入到子状态列表
-
-        self._expanded += 1 # DO NOT CHANGE
-        return successors
-</code></pre><h3 id="6-问题6：角落问题（启发式）"><a href="#6-问题6：角落问题（启发式）" class="headerlink" title="6.问题6：角落问题（启发式）"></a>6.问题6：角落问题（启发式）</h3><p>python pacman.py -l mediumCorners -p AStarCornersAgent -z 0.5</p>
-<pre><code>def cornersHeuristic(state, problem):
-    &quot;&quot;&quot;
-    A heuristic for the CornersProblem that you defined.
-
-      state:   The current search state
-               (a data structure you chose in your search problem)
-
-      problem: The CornersProblem instance for this layout.
-
-    This function should always return a number that is a lower bound on the
-    shortest path from the state to a goal of the problem; i.e.  it should be
-    admissible (as well as consistent).
-    &quot;&quot;&quot;
-    corners = problem.corners # These are the corner coordinates
-    walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
-
-    &quot;*** YOUR CODE HERE ***&quot;
-    heuristic = 0
-    cornersLeft = state[1][:]      #剩余点的坐标
-    referencePoint = state[0]      #当前点的坐标
-
-    while len(cornersLeft) &gt; 0:        #当有点剩余（未吃完所有点）
-        closestCorner = closestPoint(referencePoint, cornersLeft)   #当前点坐标和未吃到点中的哪一个离得最近
-        heuristic += euclidieanDistance(referencePoint, closestCorner) #估计值h加上当前点到最近未吃点的距离
-        referencePoint = closestCorner               #当前点变为最近未吃点，因为已经走到了那个点
-        cornersLeft.remove(closestCorner)           #从未吃点列表中将刚才吃掉的点删除
-
-    return heuristic
-    #return 0 # Default to trivial solution
-def closestPoint (fromPoint, candidatesList):
-  if len(candidatesList) == 0:                    #如果未吃点列表为空，证明所有点都被吃了，返回none
-      return None
-
-  closestCorner = candidatesList[0]             #获取未吃点列表中的第一个点
-  closestCost = euclidieanDistance(fromPoint, closestCorner)    #计算当前点到第一个点距离
-  for candidate in candidatesList[1:]:
-      thisCost = euclidieanDistance(fromPoint, candidate)
-      if closestCost &gt; thisCost:                     #循环遍历列表，返回距当前点最近的一个未吃点的坐标
-          closestCost = thisCost
-          closestCorner = candidate
-
-  return closestCorner
-
-def euclidieanDistance (pointA, pointB):  
-    return abs(pointA[0] - pointB[0]) + abs(pointA[1] - pointB[1])#因为坐标为表格化，不能斜着走，所以最短距离为|x|+|y|
-</code></pre><h3 id="7-问题7：吃掉所有的豆子（这个程序有点卡，稍等一会）"><a href="#7-问题7：吃掉所有的豆子（这个程序有点卡，稍等一会）" class="headerlink" title="7.问题7：吃掉所有的豆子（这个程序有点卡，稍等一会）"></a>7.问题7：吃掉所有的豆子（这个程序有点卡，稍等一会）</h3><p>python pacman.py -l testSearch -p AStarFoodSearchAgent<br>python pacman.py -l trickySearch -p AStarFoodSearchAgent</p>
-<pre><code>def foodHeuristic(state, problem):
-    &quot;&quot;&quot;
-    Your heuristic for the FoodSearchProblem goes here.
-
-    This heuristic must be consistent to ensure correctness.  First, try to come
-    up with an admissible heuristic; almost all admissible heuristics will be
-    consistent as well.
-
-    If using A* ever finds a solution that is worse uniform cost search finds,
-    your heuristic is *not* consistent, and probably not admissible!  On the
-    other hand, inadmissible or inconsistent heuristics may find optimal
-    solutions, so be careful.
-
-    The state is a tuple ( pacmanPosition, foodGrid ) where foodGrid is a Grid
-    (see game.py) of either True or False. You can call foodGrid.asList() to get
-    a list of food coordinates instead.
-
-    If you want access to info like walls, capsules, etc., you can query the
-    problem.  For example, problem.walls gives you a Grid of where the walls
-    are.
-
-    If you want to *store* information to be reused in other calls to the
-    heuristic, there is a dictionary called problem.heuristicInfo that you can
-    use. For example, if you only want to count the walls once and store that
-    value, try: problem.heuristicInfo[&#39;wallCount&#39;] = problem.walls.count()
-    Subsequent calls to this heuristic can access
-    problem.heuristicInfo[&#39;wallCount&#39;]
-    &quot;&quot;&quot;
-    position, foodGrid = state
-    &quot;*** YOUR CODE HERE ***&quot;
-    foodList = foodGrid.asList()      #得到要吃的点的列表（未吃点列表）
-    if len(foodList) == 0:            #当未吃点列表为空时，停止
-         return 0
-
-    closestFood = closestPoint(position, foodList)     #得到离当前点最近的未吃食物
-    return euclidieanDistance(position, closestFood) + len(foodList)
-</code></pre><h3 id="8-问题8：次最优搜索"><a href="#8-问题8：次最优搜索" class="headerlink" title="8.问题8：次最优搜索"></a>8.问题8：次最优搜索</h3><p>python pacman.py -l bigSearch -p ClosestDotSearchAgent -z .5</p>
-<pre><code>class ClosestDotSearchAgent(SearchAgent):
-    &quot;Search for all food using a sequence of searches&quot;
-    def registerInitialState(self, state):
-        self.actions = []
-        currentState = state
-        while(currentState.getFood().count() &gt; 0):
-            nextPathSegment = self.findPathToClosestDot(currentState) # The missing piece
-            self.actions += nextPathSegment
-            for action in nextPathSegment:
-                legal = currentState.getLegalActions()
-                if action not in legal:
-                    t = (str(action), str(currentState))
-                    raise Exception, &#39;findPathToClosestDot returned an illegal move: %s!\n%s&#39; % t
-                currentState = currentState.generateSuccessor(0, action)
-        self.actionIndex = 0
-        print &#39;Path found with cost %d.&#39; % len(self.actions)
-
-    def findPathToClosestDot(self, gameState):
-        &quot;&quot;&quot;
-        Returns a path (a list of actions) to the closest dot, starting from
-        gameState.
-        &quot;&quot;&quot;
-        # Here are some useful elements of the startState
-        startPosition = gameState.getPacmanPosition()
-        food = gameState.getFood()
-        walls = gameState.getWalls()
-        problem = AnyFoodSearchProblem(gameState)
-
-        &quot;*** YOUR CODE HERE ***&quot;
-        return search.aStarSearch(problem,search.nullHeuristic)     #A*搜索
-
-class AnyFoodSearchProblem(PositionSearchProblem):
-    &quot;&quot;&quot;
-    A search problem for finding a path to any food.
-
-    This search problem is just like the PositionSearchProblem, but has a
-    different goal test, which you need to fill in below.  The state space and
-    successor function do not need to be changed.
-
-    The class definition above, AnyFoodSearchProblem(PositionSearchProblem),
-    inherits the methods of the PositionSearchProblem.
-
-    You can use this search problem to help you fill in the findPathToClosestDot
-    method.
-    &quot;&quot;&quot;
-
-    def __init__(self, gameState):
-        &quot;Stores information from the gameState.  You don&#39;t need to change this.&quot;
-        # Store the food for later reference
-        self.food = gameState.getFood()
-
-        # Store info for the PositionSearchProblem (no need to change this)
-        self.walls = gameState.getWalls()
-        self.startState = gameState.getPacmanPosition()
-        self.costFn = lambda x: 1
-        self._visited, self._visitedlist, self._expanded = {}, [], 0 # DO NOT CHANGE
-
-    def isGoalState(self, state):
-        &quot;&quot;&quot;
-        The state is Pacman&#39;s position. Fill this in with a goal test that will
-        complete the problem definition.
-        &quot;&quot;&quot;
-        x,y = state
-
-        &quot;*** YOUR CODE HERE ***&quot;
-        return self.food[x][y]            #state为终点坐标
-</code></pre><h2 id="三、总结："><a href="#三、总结：" class="headerlink" title="三、总结："></a>三、总结：</h2><p>这东西还是挺好玩的，希望本文对大家有用</p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>python是比较轻量级的，但是一些IDE为python集成了许多插件，造成其很大（如python xy），<br>今天我们可以在文本编辑器中（本文使用notepad++）连接python,还原轻巧的python。</p>
+<h2 id="二、前期准备："><a href="#二、前期准备：" class="headerlink" title="二、前期准备："></a>二、前期准备：</h2><h3 id="1-python下载（最好是python-2-7版本）："><a href="#1-python下载（最好是python-2-7版本）：" class="headerlink" title="1.python下载（最好是python 2.7版本）："></a>1.python下载（最好是python 2.7版本）：</h3><p>python的msi也就十几M，下载很快，下载完双击安装即可（注意，记住自己的python安装目录）<br>    <a href="https://www.python.org/getit/" target="_blank" rel="external">下载传送门</a></p>
+<h3 id="2-环境变量配置"><a href="#2-环境变量配置" class="headerlink" title="2.环境变量配置:"></a>2.环境变量配置:</h3><p>环境变量的配置是为了让大家在任何位置输入python时，操作系统都会自动寻找到python的<br>位置，并运行它。<br>把刚才安装的python目录加入到系统环境变量中。</p>
+<h3 id="3-任意一款文本编辑器"><a href="#3-任意一款文本编辑器" class="headerlink" title="3.任意一款文本编辑器"></a>3.任意一款文本编辑器</h3><p>这里推荐两款：</p>
+<ol>
+<li>Notepad++: <a href="http://notepad-plus.en.softonic.com/" target="_blank" rel="external">下载传送门</a></li>
+<li>Sublime: <a href="http://www.sublimetext.com/" target="_blank" rel="external">下载传送门</a><br>PS. 此处给出的下载版本都是官网版本，sublime Text 3正版会收费，大家可以自行在网<br>上找破解版。<br>PS. 本文使用notepad++</li>
+</ol>
+<h2 id="三、配置notepad-："><a href="#三、配置notepad-：" class="headerlink" title="三、配置notepad++："></a>三、配置notepad++：</h2><ol>
+<li>点击notepad++上部菜单栏的run–&gt;run，出现弹窗（或直接按F5）</li>
+<li>输入 cmd /k 你的python安装目录\python “$(FULL_CURRENT_PATH)” &amp; PAUSE &amp; EXIT<br> 比如我的安装目录为E：\python27</li>
+<li>点击save，为python运行设置快捷键（注意，不能与notepad++内部热键冲突，我的是ctrl+F5）</li>
+</ol>
+<h2 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h2><p>notepad++中新建一个文档，输入print 1，保存，ctrl+F5运行，是不是就运行出结果了呢！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://lovebear.top/2016/12/13/Pacman_project1_code/" data-id="ciwpnsf2a0002i0osx5ij7xwv" class="article-share-link">Share</a>
+      <a data-url="http://lovebear.top/2016/12/15/notepad++&python/" data-id="ciwpo1ka100064gosny2jcmy8" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pacman/">pacman</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2016/12/15/notepad++&python/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Notepad++配置python环境
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/12/11/Ubuntu-Python_Version/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Ubuntu Python 默认使用版本改变</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
 </section>
         
           <aside id="sidebar">
