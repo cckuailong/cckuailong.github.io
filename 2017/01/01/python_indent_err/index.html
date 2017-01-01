@@ -6,14 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lovebear.top">
-  <title>Tag: pacman | Blog for You</title>
+  <title>Python unexpected indent 解决 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://lovebear.top/tags/pacman/index.html">
+  <meta name="description" content="一、前言：python中最常见的错误就是unexpected indent错误了，经常检查发现代码没什么问题，但是就是不知道哪儿错了，提示错误如下：
+IndentationError: unexpected indent
+其实就是缩进问题，缩进中有的地方用了tab，有的地方用了space，很多时候排查不方便，本文提供一个直观的办法解决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python unexpected indent 解决">
+<meta property="og:url" content="http://lovebear.top/2017/01/01/python_indent_err/index.html">
 <meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言：python中最常见的错误就是unexpected indent错误了，经常检查发现代码没什么问题，但是就是不知道哪儿错了，提示错误如下：
+IndentationError: unexpected indent
+其实就是缩进问题，缩进中有的地方用了tab，有的地方用了space，很多时候排查不方便，本文提供一个直观的办法解决">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
+<meta property="og:updated_time" content="2017-01-01T06:43:55.693Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
+<meta name="twitter:title" content="Python unexpected indent 解决">
+<meta name="twitter:description" content="一、前言：python中最常见的错误就是unexpected indent错误了，经常检查发现代码没什么问题，但是就是不知道哪儿错了，提示错误如下：
+IndentationError: unexpected indent
+其实就是缩进问题，缩进中有的地方用了tab，有的地方用了space，很多时候排查不方便，本文提供一个直观的办法解决">
+<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -139,54 +152,179 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-python_indent_err" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/13/Pacman_project1_code/" class="archive-article-date">
-  	<time datetime="2016-12-13T13:37:20.392Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/13/Pacman_project1_code/">Pacman_project1代码及解析</a>
+    <h1 class="article-title" itemprop="name">
+      Python unexpected indent 解决
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        <a href="/2017/01/01/python_indent_err/" class="archive-article-date">
+  	<time datetime="2017-01-01T06:30:16.427Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-01</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>python中最常见的错误就是unexpected indent错误了，经常检查发现代码没什么问题，但是<br>就是不知道哪儿错了，提示错误如下：</p>
+<pre><code>IndentationError: unexpected indent
+</code></pre><p>其实就是缩进问题，缩进中有的地方用了tab，有的地方用了space，很多时候排查不方便，<br>本文提供一个直观的办法解决</p>
+<a id="more"></a>
+<h2 id="二、解决方案："><a href="#二、解决方案：" class="headerlink" title="二、解决方案："></a>二、解决方案：</h2><p>本文使用notepad++文本编辑器，其他文本编辑器自行百度相似的方法</p>
+<p>notepad++菜单栏选择</p>
+<pre><code>view(视图)--&gt;Show Symbol(显示符号)--&gt;Show White Space and Tab(显示空格和制表符)
+</code></pre><p>这样在代码中会直观的显示出tab和space，只要保证缩进中都是统一的符号（不能space和tab<br>一起用，只能用俩者的一种），错误就可以解决。</p>
+<p><img src="http://oeqaghyw9.bkt.clouddn.com/flag.jpg" alt="hjj"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oeqaghyw9.bkt.clouddn.com/url/zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pacman/">pacman</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://lovebear.top/2017/01/01/python_indent_err/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+    <a href="/2017/01/01/XX-NET/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Ubuntu Python 默认使用版本改变
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/15/notepad++ And python/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Notepad++配置python环境</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="python_indent_err" data-title="Python unexpected indent 解决" data-url="http://lovebear.top/2017/01/01/python_indent_err/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"lovebear"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -214,9 +352,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
