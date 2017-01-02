@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lovebear.top">
-  <title>Blog for You</title>
+  <title>Linux开机自动运行普通用户python脚本 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://lovebear.top/page/2/index.html">
+  <meta name="description" content="一、前言：最近无聊写了一个监控键盘按键的简单恶意软件，因为我的电脑不可能24小时开机监控，费时费力，于是想到我还有个云服务器，可以在云服务器上持续运行我的服务接收端来进行24小时监控。由于我的恶意软件用python编写的（开发挺快的），所以需要在服务器中设置开机自动运行我的python服务器脚本，服务器环境为linux。这里只介绍linux，windows服务器比较简单，自行百度吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux开机自动运行普通用户python脚本">
+<meta property="og:url" content="http://lovebear.top/2017/01/02/AutoRunPython_Linux/index.html">
 <meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言：最近无聊写了一个监控键盘按键的简单恶意软件，因为我的电脑不可能24小时开机监控，费时费力，于是想到我还有个云服务器，可以在云服务器上持续运行我的服务接收端来进行24小时监控。由于我的恶意软件用python编写的（开发挺快的），所以需要在服务器中设置开机自动运行我的python服务器脚本，服务器环境为linux。这里只介绍linux，windows服务器比较简单，自行百度吧。">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
+<meta property="og:updated_time" content="2017-01-02T04:04:18.812Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
+<meta name="twitter:title" content="Linux开机自动运行普通用户python脚本">
+<meta name="twitter:description" content="一、前言：最近无聊写了一个监控键盘按键的简单恶意软件，因为我的电脑不可能24小时开机监控，费时费力，于是想到我还有个云服务器，可以在云服务器上持续运行我的服务接收端来进行24小时监控。由于我的恶意软件用python编写的（开发挺快的），所以需要在服务器中设置开机自动运行我的python服务器脚本，服务器环境为linux。这里只介绍linux，windows服务器比较简单，自行百度吧。">
+<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -139,32 +146,61 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Pacman_project1_code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-AutoRunPython_Linux" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/13/Pacman_project1_code/">Pacman_project1代码及解析</a>
+    <h1 class="article-title" itemprop="name">
+      Linux开机自动运行普通用户python脚本
     </h1>
   
 
-        <a href="/2016/12/13/Pacman_project1_code/" class="archive-article-date">
-  	<time datetime="2016-12-13T13:37:20.392Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-13</time>
+        <a href="/2017/01/02/AutoRunPython_Linux/" class="archive-article-date">
+  	<time datetime="2017-01-02T03:37:40.926Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-02</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>初学人工智能，感到非常好玩，老师留了一个Pacman Project，经查阅，伯克利大学的人工智能<br>课程也用这个Project作为实验教材。为了方便同学们，我写了Project 1——search的代码，并对每行<br>代码进行详细的注释解析。（网上有别人写好的代码，但是很乱，而且没有注释。。。）</p>
-        
-          <a class="article-more-a" href="/2016/12/13/Pacman_project1_code/#more">more >></a>
-        
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近无聊写了一个监控键盘按键的简单恶意软件，因为我的电脑不可能24小时开机监控，费时<br>费力，于是想到我还有个云服务器，可以在云服务器上持续运行我的服务接收端来进行24小时<br>监控。<br>由于我的恶意软件用python编写的（开发挺快的），所以需要在服务器中设置开机自动运行我的<br>python服务器脚本，服务器环境为linux。<br>这里只介绍linux，windows服务器比较简单，自行百度吧。</p>
+<a id="more"></a>
+<h2 id="二、解决方案："><a href="#二、解决方案：" class="headerlink" title="二、解决方案："></a>二、解决方案：</h2><p>Linux在启动时，会自动执行/etc/rc.d目录下的初始化程序，因此我们可以把启动任务放到该<br>目录下。</p>
+<p>测试环境：CentOS，管理员:root，普通用户：test1，脚本文件放在/home/test1中， 脚本名：test.py</p>
+<p>1.因为其中的rc.local是在完成所有初始化之后执行，因此我们可以把启动脚本写到里面<br>2.用root账号登陆Linux，vim /etc/rc.d/rc.local编辑文件，在最后加入两行需要执行的脚本程序： </p>
+<pre><code>cd /home/test1   (该步不可少，否则会提示没有权限打开&#39;test.log&#39;文件) 
+su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为一个参数传递级su)
+</code></pre><h2 id="三、测试："><a href="#三、测试：" class="headerlink" title="三、测试："></a>三、测试：</h2><p>重新启动机器，测试一下，是不是python脚本已经自动运行起来了呢！</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oeqaghyw9.bkt.clouddn.com/url/zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -172,152 +208,107 @@
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pacman/">pacman</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 	</div>
 
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/13/Pacman_project1_code/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://lovebear.top/2017/01/02/AutoRunPython_Linux/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
-
-
-
   
-    <article id="post-Ubuntu-Python_Version" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/11/Ubuntu-Python_Version/">Ubuntu Python 默认使用版本改变</a>
-    </h1>
-  
-
-        <a href="/2016/12/11/Ubuntu-Python_Version/" class="archive-article-date">
-  	<time datetime="2016-12-11T01:29:35.966Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-11</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>ubuntu 14系统的初始默认python版本为python 2.7.6，也就是说，当我们输入</p>
-<pre><code>python 运行程序
-</code></pre><p>ubuntu默认使用python 2.7.6<br>而当我们想用python3运行程序时，必须用</p>
-<pre><code>python3 运行程序
-</code></pre><p>怎么使python命令自动使用python3以上的版本运行程序呢？</p>
-        
-          <a class="article-more-a" href="/2016/12/11/Ubuntu-Python_Version/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/11/Ubuntu-Python_Version/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Hexo-Your-Blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/08/Hexo-Your-Blog/">Hexo Your Blog</a>
-    </h1>
-  
-
-        <a href="/2016/10/08/Hexo-Your-Blog/" class="archive-article-date">
-  	<time datetime="2016-10-08T12:24:30.365Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-08</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>之前逛一位ctf大神的博客，偶然发现这个Hexo，了解一下，还真是好东西，既能提高技能，<br>又能装逼（qwq这是重点），网上的大多数教程都是大同小异，完全按照那个来搭建会失败，<br>本文图文教程，让小白也能成功搭建起属于自己的专属Blog。</p>
-        
-          <a class="article-more-a" href="/2016/10/08/Hexo-Your-Blog/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/10/08/Hexo-Your-Blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
+<nav id="article-nav">
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+    <a href="/2017/01/01/OCR_Training/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">OCR--基于字符训练方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="AutoRunPython_Linux" data-title="Linux开机自动运行普通用户python脚本" data-url="http://lovebear.top/2017/01/02/AutoRunPython_Linux/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"lovebear"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -344,8 +335,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
