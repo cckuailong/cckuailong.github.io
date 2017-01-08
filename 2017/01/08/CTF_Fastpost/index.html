@@ -6,23 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lovebear.top">
-  <title>OCR--基于字符训练方法 | Blog for You</title>
+  <title>CTF--快速提交（fastpost） | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：最近做了一道关于OCR的题，看到图片中的文字（数字）都非常清晰，第一时间想到了使用pytesser，但是在写完代码后，发现并不能识别出来，本来pytesser的识别率就不是很高。后来发现这些数字还有一个规律，相同的数字基本都是一个样式的，于是，想到了字符训练的方法，即，分离出每个字符，再将其他图片中的文字与之匹配的方法。
-原题目是计算图片中的数乘以图片名字并相加，得出最终结果。图片文件链">
+  <meta name="description" content="一、前言：CTF比赛中，fastpost问题应该是非常常见的题型，这种类型题的代码基本类似，采用脚本自动提交即可，这里给出python2版本的代码，采用的是request库
+原题目链接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OCR--基于字符训练方法">
-<meta property="og:url" content="http://lovebear.top/2017/01/01/OCR_Training/index.html">
+<meta property="og:title" content="CTF--快速提交（fastpost）">
+<meta property="og:url" content="http://lovebear.top/2017/01/08/CTF_Fastpost/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：最近做了一道关于OCR的题，看到图片中的文字（数字）都非常清晰，第一时间想到了使用pytesser，但是在写完代码后，发现并不能识别出来，本来pytesser的识别率就不是很高。后来发现这些数字还有一个规律，相同的数字基本都是一个样式的，于是，想到了字符训练的方法，即，分离出每个字符，再将其他图片中的文字与之匹配的方法。
-原题目是计算图片中的数乘以图片名字并相加，得出最终结果。图片文件链">
+<meta property="og:description" content="一、前言：CTF比赛中，fastpost问题应该是非常常见的题型，这种类型题的代码基本类似，采用脚本自动提交即可，这里给出python2版本的代码，采用的是request库
+原题目链接">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
-<meta property="og:updated_time" content="2017-01-01T13:57:34.477Z">
+<meta property="og:updated_time" content="2017-01-08T13:24:46.627Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OCR--基于字符训练方法">
-<meta name="twitter:description" content="一、前言：最近做了一道关于OCR的题，看到图片中的文字（数字）都非常清晰，第一时间想到了使用pytesser，但是在写完代码后，发现并不能识别出来，本来pytesser的识别率就不是很高。后来发现这些数字还有一个规律，相同的数字基本都是一个样式的，于是，想到了字符训练的方法，即，分离出每个字符，再将其他图片中的文字与之匹配的方法。
-原题目是计算图片中的数乘以图片名字并相加，得出最终结果。图片文件链">
+<meta name="twitter:title" content="CTF--快速提交（fastpost）">
+<meta name="twitter:description" content="一、前言：CTF比赛中，fastpost问题应该是非常常见的题型，这种类型题的代码基本类似，采用脚本自动提交即可，这里给出python2版本的代码，采用的是request库
+原题目链接">
 <meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
@@ -149,151 +149,48 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-OCR_Training" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-CTF_Fastpost" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      OCR--基于字符训练方法
+      CTF--快速提交（fastpost）
     </h1>
   
 
-        <a href="/2017/01/01/OCR_Training/" class="archive-article-date">
-  	<time datetime="2017-01-01T13:18:26.814Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-01</time>
+        <a href="/2017/01/08/CTF_Fastpost/" class="archive-article-date">
+  	<time datetime="2017-01-08T13:07:08.628Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-08</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近做了一道关于OCR的题，看到图片中的文字（数字）都非常清晰，第一时间想到了使用<br>pytesser，但是在写完代码后，发现并不能识别出来，本来pytesser的识别率就不是很高。<br>后来发现这些数字还有一个规律，相同的数字基本都是一个样式的，于是，想到了字符训练<br>的方法，即，分离出每个字符，再将其他图片中的文字与之匹配的方法。</p>
-<p>原题目是计算图片中的数乘以图片名字并相加，得出最终结果。<br><a href="http://pan.baidu.com/s/1qYjgVBu" target="_blank" rel="external">图片文件链接</a>     提取码： o9tn<br><a href="http://www.shiyanbar.com/ctf/27" target="_blank" rel="external">原题目链接</a></p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>CTF比赛中，fastpost问题应该是非常常见的题型，这种类型题的代码基本类似，采用脚本<br>自动提交即可，这里给出python2版本的代码，采用的是request库</p>
+<p><a href="http://www.shiyanbar.com/ctf/1841" target="_blank" rel="external">原题目链接</a></p>
 <a id="more"></a>
-<h2 id="二、字符训练："><a href="#二、字符训练：" class="headerlink" title="二、字符训练："></a>二、字符训练：</h2><p>寻找0-9的特征，截出10个特征</p>
-<pre><code>#-*- encoding: utf-8 -*-
-from PIL import Image
+<h2 id="二、原题："><a href="#二、原题：" class="headerlink" title="二、原题："></a>二、原题：</h2><p><img src="http://oeqaghyw9.bkt.clouddn.com/ctf_fastpostfastpost1.png" alt="question"></p>
+<p>红色的数字会在短时间内变化，所以通过脚本解决这个问题。</p>
+<h2 id="三、代码及注释"><a href="#三、代码及注释" class="headerlink" title="三、代码及注释"></a>三、代码及注释</h2><pre><code># -*- coding: utf-8 -*-
+import hashlib
+import requests
+import re
 
-box1 = (0,0,6,10)           #分成四个格子
-box2 = (10,0,16,10)
-box3 = (20,0,26,10)
-box4 = (30,0,36,10)
+url = &#39;http://ctf5.shiyanbar.com/ppc/sd.php&#39;    #post的地址
+session = requests.Session()
+f = session.get(url)         #获取界面html
+zz = r&#39;red&quot;&gt;(.*)&lt;/div&gt;&#39;      #匹配红色字段
+a = re.findall(zz,f.content)[0]#获取题目中的sha1值
+for x in range (0,100001):
+    sx = str(x)
+    xmd5 = hashlib.md5(sx).hexdigest()#md5加密
+    xsha1 = hashlib.sha1(xmd5).hexdigest()#sha1加密
+    if xsha1 == a:#比较是否与题目的sha1值相同
+        post = session.post(url,{&#39;inputNumber&#39;:x})      #获得html
+        print post.content
+</code></pre><p>得到了flag，可以提交啦，以后的fastpost都可以套用这个。</p>
 
-def openim(path):
-    return Image.open(path)
-#训练0-9数字图片
-img0 = openim(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\1.bmp&#39;)
-i0 = img0.crop(box2)
-i0.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\0.bmp&#39;)
-
-img1 = openim(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\2.bmp&#39;)
-i1 = img1.crop(box4)
-i1.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\1.bmp&#39;)
-
-img2 = openim(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\1.bmp&#39;)
-i2 = img2.crop(box4)
-i2.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\2.bmp&#39;)
-
-img3 = openim(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\3.bmp&#39;)
-i3 = img3.crop(box3)
-i3.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\3.bmp&#39;)
-
-img4 = openim(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\13.bmp&#39;)
-i4 = img4.crop(box2)
-i4.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\4.bmp&#39;)
-
-img5 = openim(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\3.bmp&#39;)
-i5 = img5.crop(box1)
-i5.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\5.bmp&#39;)
-
-img6 = openim(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\1.bmp&#39;)
-i6 = img6.crop(box3)
-i6.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\6.bmp&#39;)
-
-img7 = openim(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\1.bmp&#39;)
-i7 = img7.crop(box1)
-i7.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\7.bmp&#39;)
-
-img8 = openim(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\3.bmp&#39;)
-i8 = img8.crop(box4)
-i8.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\8.bmp&#39;)
-
-img9 = openim(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\7.bmp&#39;)
-i9 = img9.crop(box3)
-i9.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\9.bmp&#39;)
-</code></pre><h2 id="三、根据训练结果匹配："><a href="#三、根据训练结果匹配：" class="headerlink" title="三、根据训练结果匹配："></a>三、根据训练结果匹配：</h2><pre><code>#-*- encoding: utf-8 -*-
-from PIL import Image
-
-def openim(path):       #打开图片
-    return Image.open(path)
-def print1(im):
-    width = im.size[0]         #获得像素点集合（作为识别标识）
-    height = im.size[1]
-    pix = im.load()
-    result = []
-    for x in range(width):
-        for y in range(height):
-            result.append(pix[x,y])
-    return result
-
-def convert1(img):
-    img = img.convert(&quot;L&quot;)    #灰度化
-    WHITE, BLACK = 255, 0
-    img = img.point(lambda x: WHITE if x &gt;= 230 else BLACK)  #有颜色的地方全部变黑
-    img = img.convert(&#39;1&#39;)
-    return img
-
-def cut(img):
-    box1 = (0,0,6,10)    #裁剪成4个盒子训练，box中是坐标
-    box2 = (10,0,16,10)
-    box3 = (20,0,26,10)
-    box4 = (30,0,36,10)
-    im1 = img.crop(box1)
-    im2 = img.crop(box2)
-    im3 = img.crop(box3)
-    im4 = img.crop(box4)
-    return im1,im2,im3,im4
-
-def OCR(img):           #把4个数字分开，分别进行匹配
-    test1 = convert1(img)
-    im1,im2,im3,im4 = cut(test1)
-    result = []
-    for i in range(10):
-        if print1(im1) == font[i]:
-            result.append(str(i))
-    for i in range(10):
-        if print1(im2) == font[i]:
-            result.append(str(i))
-    for i in range(10):
-        if print1(im3) == font[i]:
-            result.append(str(i))
-    for i in range(10):
-        if print1(im4) == font[i]:
-            result.append(str(i))
-    return int(&#39;&#39;.join(result))
-
-
-
-
-def getfont():        #训练
-    font = []
-    path = &#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\&#39;
-    name = r&#39;.bmp&#39;
-
-    for i in range(10):
-        im = openim(path+str(i)+name)
-        font.append(print1(convert1(im)))
-    return font
-
-font = getfont()
-
-path = &#39;C:\\Users\\lovebear96\\Desktop\\bmp\\&#39;
-sum = 0
-for i in range(1,10000):             #根据训练结果匹配得数字
-    img = openim(path+str(i)+&#39;.bmp&#39;)
-    sum+=i*int(OCR(img))
-print &#39;sum =&#39;+str(sum)
-</code></pre>
       
 
       
@@ -382,7 +279,7 @@ print &#39;sum =&#39;+str(sum)
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://lovebear.top/2017/01/01/OCR_Training/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://lovebear.top/2017/01/08/CTF_Fastpost/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -396,18 +293,9 @@ print &#39;sum =&#39;+str(sum)
   
 <nav id="article-nav">
   
-    <a href="/2017/01/02/AutoRunPython_Linux/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Linux开机自动运行普通用户python脚本
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/01/01/XX-NET/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">XX-NET简介及安装</div>
+    <a href="/2017/01/02/AutoRunPython_Linux/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux开机自动运行普通用户python脚本</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -420,7 +308,7 @@ print &#39;sum =&#39;+str(sum)
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="OCR_Training" data-title="OCR--基于字符训练方法" data-url="http://lovebear.top/2017/01/01/OCR_Training/"></div>
+	<div class="ds-thread" data-thread-key="CTF_Fastpost" data-title="CTF--快速提交（fastpost）" data-url="http://lovebear.top/2017/01/08/CTF_Fastpost/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
