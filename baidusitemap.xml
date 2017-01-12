@@ -4,8 +4,27 @@
 
     
   <url>
+    <loc>http://lovebear.top/2017/01/12/CTF_Fastpost2/</loc>
+    <lastmod>2017-01-12T01:37:13.892Z</lastmod>
+    <data>
+        <display>
+        <title>CTF--快速提交2--基于学习的快速提交</title>
+        <pubTime>2017-01-12T01:29:01.340Z</pubTime>
+        
+        <tag>ctf</tag>
+         
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://lovebear.top/2017/01/08/CTF_Fastpost/</loc>
-    <lastmod>2017-01-08T13:24:46.627Z</lastmod>
+    <lastmod>2017-01-08T13:28:11.204Z</lastmod>
     <data>
         <display>
         <title>CTF--快速提交（fastpost）</title>
@@ -28,9 +47,9 @@
         <title>Linux开机自动运行普通用户python脚本</title>
         <pubTime>2017-01-02T03:37:40.926Z</pubTime>
         
-        <tag>Linux</tag>
-         
         <tag>python</tag>
+         
+        <tag>Linux</tag>
          
          
            

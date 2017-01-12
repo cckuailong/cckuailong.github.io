@@ -6,18 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lovebear.top">
-  <title>Blog for You</title>
+  <title>CTF--快速提交2--基于学习的快速提交 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="6UyRA5c8wR">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://lovebear.top/baidu_verify_6UyRA5c8wR.html">
+  <meta name="description" content="一、前言：上次介绍了简单的fastpost方法，这次我们来看一个稍微复杂的，基于学习的快速提交
+原题目链接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF--快速提交2--基于学习的快速提交">
+<meta property="og:url" content="http://lovebear.top/2017/01/12/CTF_Fastpost2/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="6UyRA5c8wR">
-<meta property="og:updated_time" content="2016-12-14T00:10:47.282Z">
+<meta property="og:description" content="一、前言：上次介绍了简单的fastpost方法，这次我们来看一个稍微复杂的，基于学习的快速提交
+原题目链接">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
+<meta property="og:updated_time" content="2017-01-12T01:37:13.892Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
-<meta name="twitter:description" content="6UyRA5c8wR">
+<meta name="twitter:title" content="CTF--快速提交2--基于学习的快速提交">
+<meta name="twitter:description" content="一、前言：上次介绍了简单的fastpost方法，这次我们来看一个稍微复杂的，基于学习的快速提交
+原题目链接">
+<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -143,12 +149,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-undefined" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-CTF_Fastpost2" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CTF--快速提交2--基于学习的快速提交
+    </h1>
+  
+
+        <a href="/2017/01/12/CTF_Fastpost2/" class="archive-article-date">
+  	<time datetime="2017-01-12T01:29:01.340Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-12</time>
+</a>
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        6UyRA5c8wR
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>上次介绍了简单的fastpost方法，这次我们来看一个稍微复杂的，基于学习的快速提交</p>
+<p><a href="http://www.shiyanbar.com/ctf/1843" target="_blank" rel="external">原题目链接</a></p>
+<a id="more"></a>
+<h2 id="二、原题："><a href="#二、原题：" class="headerlink" title="二、原题："></a>二、原题：</h2><p><a href="http://ctf5.shiyanbar.com/ppc/acsii.php" target="_blank" rel="external">question</a></p>
+<p>红色的数字会在短时间内变化，所以通过脚本解决这个问题。</p>
+<h2 id="三、代码及注释"><a href="#三、代码及注释" class="headerlink" title="三、代码及注释"></a>三、代码及注释</h2><pre><code># -*- coding: utf-8 -*-
+import requests
+import re
+
+url = &#39;http://ctf5.shiyanbar.com/ppc/acsii.php&#39;    #post的地址
+session = requests.Session()
+f = session.get(url)         #获取界面html
+zz = r&#39;red&quot;&gt;(.*)&lt;/div&gt;&#39;      #匹配红色字段
+a = re.findall(zz,f.content)[0]
+a=a.replace(&#39;&lt;br/&gt;&#39;,&#39;&lt;br /&gt;&#39;)
+a=a.replace(&#39;&lt;br&gt;&#39;,&#39;&lt;br /&gt;&#39;)    #图形替换为对应的数字
+a=a.replace(&#39;xxxxx&lt;br /&gt;x&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br /&gt;&amp;nbsp;xxxx&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;x&lt;br /&gt;xxxxx&lt;br /&gt;&#39;,&#39;5&#39;)
+a=a.replace(&#39;&amp;nbsp;xx&lt;br /&gt;&amp;nbsp;&amp;nbsp;x&amp;nbsp;x&amp;nbsp;&amp;nbsp;&lt;br /&gt;&amp;nbsp;&amp;nbsp;x&amp;nbsp;&amp;nbsp;&lt;br /&gt;&amp;nbsp;&amp;nbsp;x&amp;nbsp;&amp;nbsp;&lt;br /&gt;xxxxx&lt;br /&gt;&#39;,&#39;1&#39;)
+a=a.replace(&#39;&amp;nbsp;x&amp;nbsp;&amp;nbsp;&amp;nbsp;x&lt;br /&gt;x&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;x&lt;br /&gt;&amp;nbsp;xxxxx&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;x&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;x&lt;br /&gt;&#39;,&#39;4&#39;)
+a=a.replace(&#39;&amp;nbsp;xxx&amp;nbsp;&lt;br /&gt;x&amp;nbsp;&amp;nbsp;&amp;nbsp;x&lt;br /&gt;x&amp;nbsp;&amp;nbsp;&amp;nbsp;x&lt;br /&gt;x&amp;nbsp;&amp;nbsp;&amp;nbsp;x&lt;br /&gt;&amp;nbsp;xxx&amp;nbsp;&lt;br /&gt;&#39;,&#39;0&#39;)
+a=a.replace(&#39;&amp;nbsp;xxx&amp;nbsp;&lt;br /&gt;x&amp;nbsp;&amp;nbsp;&amp;nbsp;x&lt;br /&gt;&amp;nbsp;&amp;nbsp;xx&amp;nbsp;&lt;br /&gt;x&amp;nbsp;&amp;nbsp;&amp;nbsp;x&lt;br /&gt;&amp;nbsp;xxx&amp;nbsp;&lt;br /&gt;&#39;,&#39;8&#39;)
+a=a.replace(&#39;&amp;nbsp;xxx&amp;nbsp;&lt;br /&gt;x&amp;nbsp;&amp;nbsp;&amp;nbsp;x&amp;nbsp;&lt;br /&gt;&amp;nbsp;&amp;nbsp;xx&amp;nbsp;&lt;br /&gt;&amp;nbsp;x&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;br /&gt;xxxxx&lt;br /&gt;&#39;,&#39;2&#39;)
+a=a.replace(&#39;&lt;br /&gt;&lt;br /&gt;&#39;,&#39;&#39;)
+a=a.replace(&#39;&lt;br /&gt;&#39;,&#39;&#39;)
+post = session.post(url,{&#39;inputNumber&#39;:a})      #获得html
+print post.content
+</code></pre><p>得到了flag，可以提交啦，以后的fastpost都可以套用这个。</p>
+
       
 
       
@@ -182,6 +228,11 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
       
 
       
@@ -232,7 +283,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://lovebear.top/baidu_verify_6UyRA5c8wR.html" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://lovebear.top/2017/01/12/CTF_Fastpost2/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -244,6 +295,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2017/01/08/CTF_Fastpost/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CTF--快速提交（fastpost）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 
 
@@ -251,7 +312,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="undefined" data-title="" data-url="http://lovebear.top/baidu_verify_6UyRA5c8wR.html"></div>
+	<div class="ds-thread" data-thread-key="CTF_Fastpost2" data-title="CTF--快速提交2--基于学习的快速提交" data-url="http://lovebear.top/2017/01/12/CTF_Fastpost2/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -297,7 +358,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
