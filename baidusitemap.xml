@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://www.lovebear.top/2017/01/17/CTF_EuclidInversion/</loc>
+    <lastmod>2017-01-17T07:35:27.698Z</lastmod>
+    <data>
+        <display>
+        <title>CTF--欧几里得求逆</title>
+        <pubTime>2017-01-17T07:20:37.210Z</pubTime>
+        
+        <tag>ctf</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lovebear.top/2017/01/12/CTF_Fastpost2/</loc>
     <lastmod>2017-01-12T01:37:13.892Z</lastmod>
     <data>
@@ -11,9 +28,9 @@
         <title>CTF--快速提交2--基于学习的快速提交</title>
         <pubTime>2017-01-12T01:29:01.340Z</pubTime>
         
-        <tag>python</tag>
-         
         <tag>ctf</tag>
+         
+        <tag>python</tag>
          
          
            

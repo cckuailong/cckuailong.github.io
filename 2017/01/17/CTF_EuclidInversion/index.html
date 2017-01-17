@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Blog for You</title>
+  <title>CTF--欧几里得求逆 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="6UyRA5c8wR">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://www.lovebear.top/baidu_verify_6UyRA5c8wR.html">
+  <meta name="description" content="一、前言：最近做了一道ctf的题目，是关于仿射函数的，本身题目比较简单，这里不过多介绍，其中有一个环节需要进行乘法逆元的求解，这里需要用到欧几里得求逆的方法，是一种很好的求乘法逆元的思想，这里简单介绍，也相当于做一下笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF--欧几里得求逆">
+<meta property="og:url" content="http://www.lovebear.top/2017/01/17/CTF_EuclidInversion/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="6UyRA5c8wR">
-<meta property="og:updated_time" content="2016-12-14T00:10:47.282Z">
+<meta property="og:description" content="一、前言：最近做了一道ctf的题目，是关于仿射函数的，本身题目比较简单，这里不过多介绍，其中有一个环节需要进行乘法逆元的求解，这里需要用到欧几里得求逆的方法，是一种很好的求乘法逆元的思想，这里简单介绍，也相当于做一下笔记。">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
+<meta property="og:updated_time" content="2017-01-17T07:35:27.698Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
-<meta name="twitter:description" content="6UyRA5c8wR">
+<meta name="twitter:title" content="CTF--欧几里得求逆">
+<meta name="twitter:description" content="一、前言：最近做了一道ctf的题目，是关于仿射函数的，本身题目比较简单，这里不过多介绍，其中有一个环节需要进行乘法逆元的求解，这里需要用到欧几里得求逆的方法，是一种很好的求乘法逆元的思想，这里简单介绍，也相当于做一下笔记。">
+<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -143,12 +146,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-undefined" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-CTF_EuclidInversion" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CTF--欧几里得求逆
+    </h1>
+  
+
+        <a href="/2017/01/17/CTF_EuclidInversion/" class="archive-article-date">
+  	<time datetime="2017-01-17T07:20:37.210Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-17</time>
+</a>
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        6UyRA5c8wR
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近做了一道ctf的题目，是关于仿射函数的，本身题目比较简单，这里不过多介绍，其中<br>有一个环节需要进行乘法逆元的求解，这里需要用到欧几里得求逆的方法，是一种很好<br>的求乘法逆元的思想，这里简单介绍，也相当于做一下笔记。</p>
+<a id="more"></a>
+<h2 id="二、算法介绍："><a href="#二、算法介绍：" class="headerlink" title="二、算法介绍："></a>二、算法介绍：</h2><pre><code>44
+5     0     1|8
+4     1    -8|1
+1    -8     9
+</code></pre><p>如上述，假设我们要求5对44的模逆</p>
+<p>第一行为模</p>
+<p>第二行第一个数为元，0，1固定，8是44/5的值</p>
+<p>第三行4为(44 mod 5)，1为右上角的值，-8是(0-1*8)[0，1，8为上一行的后三个数]，1为5/4</p>
+<p>第四行的1为(5 mod 4)， -8为右上角的值， 9为(1-(-8)*1)</p>
+<p>当最左边出现1的时候，9就是我们需要的值，即5对44模逆的结果为9</p>
+<h2 id="三、代码："><a href="#三、代码：" class="headerlink" title="三、代码："></a>三、代码：</h2><pre><code>def Moni(a,n):
+    p = a
+    q = n
+    x = 0
+    y = 1
+    z = int(q)/p
+    while(1 != p):
+        t = p
+        p = q % p
+        q = t
+        t = y
+        y = x - y*z
+        x = t
+        z = int(q)/p
+    y=y%n
+    if(y &lt; 0):
+        y += n
+    return y
+
+&#39;&#39;&#39;
+p    x    y(q=last p)|z
+26  
+5   0   1|5
+1   5   -5(21)
+&#39;&#39;&#39;
+
+y=Moni(5,26)
+</code></pre>
       
 
       
@@ -182,6 +237,11 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
+	</div>
+
       
 
       
@@ -232,7 +292,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/baidu_verify_6UyRA5c8wR.html" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2017/01/17/CTF_EuclidInversion/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -244,6 +304,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2017/01/12/CTF_Fastpost2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CTF--快速提交2--基于学习的快速提交</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 
 
@@ -251,7 +321,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="undefined" data-title="" data-url="http://www.lovebear.top/baidu_verify_6UyRA5c8wR.html"></div>
+	<div class="ds-thread" data-thread-key="CTF_EuclidInversion" data-title="CTF--欧几里得求逆" data-url="http://www.lovebear.top/2017/01/17/CTF_EuclidInversion/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -297,7 +367,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
