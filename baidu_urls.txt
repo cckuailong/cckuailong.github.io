@@ -1,3 +1,4 @@
+http://www.lovebear.top/2017/01/18/python_mapAllFiles/
 http://www.lovebear.top/2017/01/17/CTF_Airdecap-ng/
 http://www.lovebear.top/2017/01/17/CTF_Python_MD5/
 http://www.lovebear.top/2017/01/17/CTF_EuclidInversion/
@@ -7,4 +8,3 @@ http://www.lovebear.top/2017/01/02/AutoRunPython_Linux/
 http://www.lovebear.top/2017/01/01/CTF_OCR_Training/
 http://www.lovebear.top/2017/01/01/XX-NET/
 http://www.lovebear.top/2017/01/01/python_indent_err/
-http://www.lovebear.top/2016/12/15/notepad++ And python/
