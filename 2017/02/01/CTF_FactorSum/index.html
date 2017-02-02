@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>CTF--快速提交（fastpost） | Blog for You</title>
+  <title>CTF--大数因子求和与大数模运算 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：CTF比赛中，fastpost问题应该是非常常见的题型，这种类型题的代码基本类似，采用脚本自动提交即可，这里给出python2版本的代码，采用的是request库
+  <meta name="description" content="一、前言：在实验吧遇到一道看起来很简单的题，其实有很多内容在其中，这道题包括大数的全部因子求和，并且穿插了大数模运算的技巧。
 原题目链接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CTF--快速提交（fastpost）">
-<meta property="og:url" content="http://www.lovebear.top/2017/01/08/CTF_Fastpost/index.html">
+<meta property="og:title" content="CTF--大数因子求和与大数模运算">
+<meta property="og:url" content="http://www.lovebear.top/2017/02/01/CTF_FactorSum/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：CTF比赛中，fastpost问题应该是非常常见的题型，这种类型题的代码基本类似，采用脚本自动提交即可，这里给出python2版本的代码，采用的是request库
+<meta property="og:description" content="一、前言：在实验吧遇到一道看起来很简单的题，其实有很多内容在其中，这道题包括大数的全部因子求和，并且穿插了大数模运算的技巧。
 原题目链接">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
-<meta property="og:updated_time" content="2017-01-08T13:28:11.204Z">
+<meta property="og:updated_time" content="2017-02-01T14:14:33.736Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CTF--快速提交（fastpost）">
-<meta name="twitter:description" content="一、前言：CTF比赛中，fastpost问题应该是非常常见的题型，这种类型题的代码基本类似，采用脚本自动提交即可，这里给出python2版本的代码，采用的是request库
+<meta name="twitter:title" content="CTF--大数因子求和与大数模运算">
+<meta name="twitter:description" content="一、前言：在实验吧遇到一道看起来很简单的题，其实有很多内容在其中，这道题包括大数的全部因子求和，并且穿插了大数模运算的技巧。
 原题目链接">
 <meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
   
@@ -149,48 +149,47 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-CTF_Fastpost" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-CTF_FactorSum" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      CTF--快速提交（fastpost）
+      CTF--大数因子求和与大数模运算
     </h1>
   
 
-        <a href="/2017/01/08/CTF_Fastpost/" class="archive-article-date">
-  	<time datetime="2017-01-08T13:07:08.628Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-08</time>
+        <a href="/2017/02/01/CTF_FactorSum/" class="archive-article-date">
+  	<time datetime="2017-02-01T13:27:36.911Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-01</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>CTF比赛中，fastpost问题应该是非常常见的题型，这种类型题的代码基本类似，采用脚本<br>自动提交即可，这里给出python2版本的代码，采用的是request库</p>
-<p><a href="http://www.shiyanbar.com/ctf/1841" target="_blank" rel="external">原题目链接</a></p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>在实验吧遇到一道看起来很简单的题，其实有很多内容在其中，这道题包括大数的全部因子<br>求和，并且穿插了大数模运算的技巧。</p>
+<p><a href="http://www.shiyanbar.com/ctf/1906" target="_blank" rel="external">原题目链接</a></p>
 <a id="more"></a>
-<h2 id="二、原题："><a href="#二、原题：" class="headerlink" title="二、原题："></a>二、原题：</h2><p><img src="http://oeqaghyw9.bkt.clouddn.com/ctf_fastpostfastpost1.png" alt="question"></p>
-<p>红色的数字会在短时间内变化，所以通过脚本解决这个问题。</p>
-<h2 id="三、代码及注释"><a href="#三、代码及注释" class="headerlink" title="三、代码及注释"></a>三、代码及注释</h2><pre><code># -*- coding: utf-8 -*-
-import hashlib
-import requests
-import re
-
-url = &#39;http://ctf5.shiyanbar.com/ppc/sd.php&#39;    #post的地址
-session = requests.Session()
-f = session.get(url)         #获取界面html
-zz = r&#39;red&quot;&gt;(.*)&lt;/div&gt;&#39;      #匹配红色字段
-a = re.findall(zz,f.content)[0]#获取题目中的sha1值
-for x in range (0,100001):
-    sx = str(x)
-    xmd5 = hashlib.md5(sx).hexdigest()#md5加密
-    xsha1 = hashlib.sha1(xmd5).hexdigest()#sha1加密
-    if xsha1 == a:#比较是否与题目的sha1值相同
-        post = session.post(url,{&#39;inputNumber&#39;:x})      #获得html
-        print post.content
-</code></pre><p>得到了flag，可以提交啦，以后的fastpost都可以套用这个。</p>
-
+<h2 id="二、原题："><a href="#二、原题：" class="headerlink" title="二、原题："></a>二、原题：</h2><p>求12345^12345的所有约数（即因子）之和，并对其取模9901再输出。</p>
+<h2 id="三、分析："><a href="#三、分析：" class="headerlink" title="三、分析："></a>三、分析：</h2><p>注意： 首先明确一点初中的知识，一个数的因子包括1和这个数本身</p>
+<ol>
+<li>质因数分解12345，可以自己写脚本，也可以直接在线分解，提供一个在线质因数分解网站：<br><a href="http://www.atool.org/quality_factor.php" target="_blank" rel="external">http://www.atool.org/quality_factor.php</a><br>得到12345 = 3 <em> 5 </em> 823</li>
+<li>12345^12345 = 3^12345 + 5^12345 + 823^12345</li>
+<li>12345^12345的因子和可以化为<br>（3^0+3^1+3^2….+3^12345）<em>（5^0+5^1+5^2….+5^12345）</em>（823^0+823^1+823^2….+823^12345）</li>
+<li>根据大数模运算的方法可知<br>(a<em>b</em>c)%p==(a%p)<em>(b%p)</em>(c%p)%p<br>可得<br>（3^0%9901+….+3^12345%9901）<em>（5^0%9901+….+5^12345%9901）</em>（823^0%9901+….+823^12345%9901）%9901</li>
+<li>也可以进行优化，这里就是提供思想</li>
+</ol>
+<h2 id="四、python代码"><a href="#四、python代码" class="headerlink" title="四、python代码"></a>四、python代码</h2><pre><code>#-*- coding:utf-8 -*-
+#print 12345**12345
+key=12345#12345=3*5*823
+sum=0
+key1=key2=key3=0
+for i in range(0,12346):
+   key1+=3**i%9901
+   key2+=5**i%9901
+   key3+=823**i%9901
+print (key1*key2*key3)%9901
+</code></pre>
       
 
       
@@ -226,7 +225,7 @@ for x in range (0,100001):
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 	</div>
 
       
@@ -279,7 +278,7 @@ for x in range (0,100001):
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2017/01/08/CTF_Fastpost/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2017/02/01/CTF_FactorSum/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -293,18 +292,9 @@ for x in range (0,100001):
   
 <nav id="article-nav">
   
-    <a href="/2017/01/12/CTF_Fastpost2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CTF--快速提交2--基于学习的快速提交
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/01/02/AutoRunPython_Linux/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux开机自动运行普通用户python脚本</div>
+    <a href="/2017/02/01/doublepalidrome/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">双基回文数的判断</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -317,7 +307,7 @@ for x in range (0,100001):
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="CTF_Fastpost" data-title="CTF--快速提交（fastpost）" data-url="http://www.lovebear.top/2017/01/08/CTF_Fastpost/"></div>
+	<div class="ds-thread" data-thread-key="CTF_FactorSum" data-title="CTF--大数因子求和与大数模运算" data-url="http://www.lovebear.top/2017/02/01/CTF_FactorSum/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
