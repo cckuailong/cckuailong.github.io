@@ -6,14 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Archives: 2017 | Blog for You</title>
+  <title>CTF--BMP文件的LSB题型 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://www.lovebear.top/archives/2017/index.html">
+  <meta name="description" content="一、前言：我在之前的Blog中介绍了BMP的格式，而在隐写领域，经常利用LSB技术将信息隐藏在BMP格式的文件中。这里通过一道具体的题目来介绍，并且使用python编写代码，以后的题型都可以套用这个代码。
+原题目链接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF--BMP文件的LSB题型">
+<meta property="og:url" content="http://www.lovebear.top/2017/02/03/CTF_BMP_LSB/index.html">
 <meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言：我在之前的Blog中介绍了BMP的格式，而在隐写领域，经常利用LSB技术将信息隐藏在BMP格式的文件中。这里通过一道具体的题目来介绍，并且使用python编写代码，以后的题型都可以套用这个代码。
+原题目链接">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
+<meta property="og:updated_time" content="2017-02-03T05:57:44.336Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
+<meta name="twitter:title" content="CTF--BMP文件的LSB题型">
+<meta name="twitter:description" content="一、前言：我在之前的Blog中介绍了BMP的格式，而在隐写领域，经常利用LSB技术将信息隐藏在BMP格式的文件中。这里通过一道具体的题目来介绍，并且使用python编写代码，以后的题型都可以套用这个代码。
+原题目链接">
+<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -139,186 +149,190 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-CTF_BMP_LSB" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      CTF--BMP文件的LSB题型
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/03/CTF_BMP_LSB/" class="archive-article-date">
+
+        <a href="/2017/02/03/CTF_BMP_LSB/" class="archive-article-date">
   	<time datetime="2017-02-03T04:54:14.369Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-03</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/03/CTF_BMP_LSB/">CTF--BMP文件的LSB题型</a>
-    </h1>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>我在之前的Blog中介绍了BMP的格式，而在隐写领域，经常利用LSB技术将信息隐藏在BMP格式的<br>文件中。这里通过一道具体的题目来介绍，并且使用python编写代码，以后的题型都可以套用<br>这个代码。</p>
+<p><a href="http://www.shiyanbar.com/ctf/1897" target="_blank" rel="external">原题目链接</a></p>
+<a id="more"></a>
+<h2 id="二、原题："><a href="#二、原题：" class="headerlink" title="二、原题："></a>二、原题：</h2><p>hint： 二战胜利后的亲吻！女主的腰下的好低！真的很低！最低位了！</p>
+<p><img src="http://oeqaghyw9.bkt.clouddn.com/b/LSB01.bmp" alt="图片下载"></p>
+<h2 id="三、python代码："><a href="#三、python代码：" class="headerlink" title="三、python代码："></a>三、python代码：</h2><pre><code># -*- coding: utf8 -*-
+#最低位的亲吻
+from PIL import Image
+def foo():
+    im=Image.open(&#39;C:\\Users\\lovebear96\\Desktop\\01.bmp&#39;)
+    im2=im.copy()
 
-        <div class="article-info info-on-right">
-          
+    pix=im2.load()    #加载bmp图片的数据区
+    width,height=im2.size
+
+    for x in xrange(0,width):
+        for y in xrange(0,height):
+            #LSB
+            if pix[x,y]&amp;0x1==0:  #获取最后一位
+                pix[x,y]=0 #黑
+            else:
+                pix[x,y]=255
+    im2.show()
+    pass
+
+if __name__ == &#39;__main__&#39;:
+    foo()
+    print &#39;ok&#39;
+    pass
+</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oeqaghyw9.bkt.clouddn.com/url/zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2017/02/03/CTF_BMP_LSB/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/03/IMG_BMP_Format/" class="archive-article-date">
-  	<time datetime="2017-02-03T01:48:03.536Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/03/IMG_BMP_Format/">IMG格式--BMP文件格式解析</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/image/">image</a></li></ul>
-	</div>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/02/03/IMG_BMP_Format/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">IMG格式--BMP文件格式解析</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/01/CTF_FactorSum/" class="archive-article-date">
-  	<time datetime="2017-02-01T13:27:36.911Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/01/CTF_FactorSum/">CTF--大数因子求和与大数模运算</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/01/doublepalidrome/" class="archive-article-date">
-  	<time datetime="2017-02-01T05:09:25.111Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/01/doublepalidrome/">双基回文数的判断</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="CTF_BMP_LSB" data-title="CTF--BMP文件的LSB题型" data-url="http://www.lovebear.top/2017/02/03/CTF_BMP_LSB/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"lovebear"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/31/GetPrimeList/" class="archive-article-date">
-  	<time datetime="2017-01-31T12:52:33.539Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/31/GetPrimeList/">素数表的快速创建</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="page-number" href="/archives/2017/page/3/">3</a><a class="page-number" href="/archives/2017/page/4/">4</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -347,8 +361,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
