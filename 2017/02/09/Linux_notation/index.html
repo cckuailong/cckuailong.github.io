@@ -18,7 +18,7 @@
 以前不太了解Linux作为服务器的好处，着手">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
-<meta property="og:updated_time" content="2017-02-14T02:51:37.474Z">
+<meta property="og:updated_time" content="2017-02-14T02:53:41.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux学习笔记--基本命令">
 <meta name="twitter:description" content="一、前言：作为一名小白，之前一直非常喜欢使用windows的图形化界面。发现许多大神都在使用Linux的系统，在键盘上敲击各种命令，非常的帅气。最近在windows上安装一些开源软件的时候，发现有的开源软件在Linux下安装使用效果比windows要好，而且自己弄了一台服务器，装的系统也是Linux（CentOS），于是，决定好好的学习一波Linux。
@@ -291,7 +291,48 @@ last            #查询当前登陆和过去登陆的用户信息，读取/var/l
 lastlog            #查看所有用户最后一次登录时间，读取/var/log/lastlog文件
 </code></pre><h3 id="10-输出命令echo"><a href="#10-输出命令echo" class="headerlink" title="10. 输出命令echo"></a>10. 输出命令echo</h3><pre><code>echo [选项] [输出内容]
       -e        #支持&quot;\&quot;控制的字符转换
-</code></pre><p>| 控制字符 |  作用             |<br>|：———：|:——————:|<br>|    \a      |警告音             |<br>|    \b      |退格              |<br>|    \n      |换行              |<br>|    \r      |回车              |<br>|    \t      |tab                |<br>|    \v      |垂直tab             |<br>|    \0nnn   |8进制ascii码表输出 |<br>|    \xhhh   |16进制ascii码表输出 |</p>
+</code></pre><table>
+<thead>
+<tr>
+<th style="text-align:center">控制字符</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\a</td>
+<td style="text-align:center">警告音</td>
+</tr>
+<tr>
+<td style="text-align:center">\b</td>
+<td style="text-align:center">退格</td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td style="text-align:center">换行</td>
+</tr>
+<tr>
+<td style="text-align:center">\r</td>
+<td style="text-align:center">回车</td>
+</tr>
+<tr>
+<td style="text-align:center">\t</td>
+<td style="text-align:center">tab</td>
+</tr>
+<tr>
+<td style="text-align:center">\v</td>
+<td style="text-align:center">垂直tab</td>
+</tr>
+<tr>
+<td style="text-align:center">\0nnn</td>
+<td style="text-align:center">8进制ascii码表输出</td>
+</tr>
+<tr>
+<td style="text-align:center">\xhhh</td>
+<td style="text-align:center">16进制ascii码表输出</td>
+</tr>
+</tbody>
+</table>
 <pre><code>开启颜色显示    \e[1;31m
 关闭颜色显示    \e[0m
 #30m=黑色        31m=红色        32m=绿色        33m=黄色
@@ -533,6 +574,10 @@ unalias      #临时删除别名
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">image</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">pacman</a>
               </li>
              
@@ -546,10 +591,6 @@ unalias      #临时删除别名
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">image</a>
               </li>
             
             <div class="clearfix"></div>
