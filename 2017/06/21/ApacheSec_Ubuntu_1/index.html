@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://www.lovebear.top">
+  <title>Apache服务器安全--Ubuntu上的Apache安全配置（一） | Blog for You</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、前言：最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有所不同。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache服务器安全--Ubuntu上的Apache安全配置（一）">
+<meta property="og:url" content="http://www.lovebear.top/2017/06/21/ApacheSec_Ubuntu_1/index.html">
+<meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言：最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有所不同。">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/1.png">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/2.png">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/3.png">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/4.png">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/5.png">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/6.png">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/7.png">
+<meta property="og:updated_time" content="2017-06-22T08:31:51.641Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache服务器安全--Ubuntu上的Apache安全配置（一）">
+<meta name="twitter:description" content="一、前言：最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有所不同。">
+<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  
+
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="http://oeqaghyw9.bkt.clouddn.com/url/photoUrl.jpghead.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">lovebear</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">someone there for you</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="qq" target="_blank" href="/346813862" title="qq"><i class="icon-qq"></i></a>
+		        
+					<a class="weixin" target="_blank" href="/hjj19960127" title="weixin"><i class="icon-weixin"></i></a>
+		        
+					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">lovebear</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://oeqaghyw9.bkt.clouddn.com/url/photoUrl.jpghead.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">lovebear</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">someone there for you</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="qq" target="_blank" href="/346813862" title="qq"><i class="icon-qq"></i></a>
+			        
+						<a class="weixin" target="_blank" href="/hjj19960127" title="weixin"><i class="icon-weixin"></i></a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-ApacheSec_Ubuntu_1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Apache服务器安全--Ubuntu上的Apache安全配置（一）
+    </h1>
+  
+
+        <a href="/2017/06/21/ApacheSec_Ubuntu_1/" class="archive-article-date">
+  	<time datetime="2017-06-21T09:24:39.814Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-21</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套<br>Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache<br>更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有<br>所不同。</p>
+<a id="more"></a>
+<h2 id="二、简单介绍："><a href="#二、简单介绍：" class="headerlink" title="二、简单介绍："></a>二、简单介绍：</h2><h3 id="1、隐藏Apache的版本和操作系统信息"><a href="#1、隐藏Apache的版本和操作系统信息" class="headerlink" title="1、隐藏Apache的版本和操作系统信息"></a>1、隐藏Apache的版本和操作系统信息</h3><p>Apache默认会显示出你安装的Apache版本以及你的操作系统信息，这将会使你的服务器存在<br>很大的安全隐患。</p>
+<p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/1.png" alt="demo1"></p>
+<p>安全配置策略：<br>（1） 修改Apache主配置文件</p>
+<pre><code>sudo vim /etc/apache2/conf-enabled/security.conf
+</code></pre><p>（2） 增添或修改</p>
+<pre><code>ServerSignature Off
+ServerTokens Prod
+</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart
+</code></pre><p>配置完成效果，没有了信息的展示</p>
+<p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/2.png" alt="demo1"></p>
+<h3 id="2、关闭目录浏览和禁止符号链接（软链接）"><a href="#2、关闭目录浏览和禁止符号链接（软链接）" class="headerlink" title="2、关闭目录浏览和禁止符号链接（软链接）"></a>2、关闭目录浏览和禁止符号链接（软链接）</h3><p>Apache默认列出服务器上的文件列表，这会泄露很多其他项目的信息</p>
+<p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/3.png" alt="demo1"></p>
+<p>安全配置策略：<br>（1）修改apache2.conf</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf
+</code></pre><p>（2）对网站根目录增添或修改</p>
+<pre><code>Options -FollowSymLinks
+AllowOverride None
+Require all granted
+</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart
+</code></pre><p>配置完成效果，根目录拒绝列出服务器文件</p>
+<p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/4.png" alt="demo1"></p>
+<h3 id="3、取消不必须的模块"><a href="#3、取消不必须的模块" class="headerlink" title="3、取消不必须的模块"></a>3、取消不必须的模块</h3><p>Apache默认安装了一些正常使用时用不到的不必要模块，建议取消这些不必要的模块，可以通过<br>下面的命令来查看当前已安装的模块</p>
+<pre><code>sudo ls /etc/apache2/mod-enabled/
+</code></pre><p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/5.png" alt="demo1"></p>
+<p>安全配置策略：<br>autoindex模块不必要，取消加载</p>
+<p>（1）取消加载autoindex</p>
+<pre><code>sudo a2dismod autoindex
+</code></pre><p>（2）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart
+</code></pre><p>配置完成效果，autoindex模块取消加载</p>
+<p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/6.png" alt="demo1"></p>
+<h3 id="4、利用ModSecurity模块"><a href="#4、利用ModSecurity模块" class="headerlink" title="4、利用ModSecurity模块"></a>4、利用ModSecurity模块</h3><p>ModSecurity模块是一个用来保护你的web服务器的免费模块，它可以防御多种攻击，如SQL注入<br>XSS，session劫持，暴力破解等，这个模块还可以实时监控你的流量。</p>
+<p>安全配置策略：<br>（1）安装ModSecurity模块</p>
+<pre><code>sudo apt-get install libapache2-modsecurity
+</code></pre><p>（2）查看ModSecurity模块是否安装成功并运行</p>
+<pre><code>sudo apachectl -M | grep --color security
+</code></pre><p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/7.png" alt="demo1"></p>
+<p>（3）为了使ModSecurity模块规则生效，，你需要重命名并且修改推荐的安全配置文件并且设置SecRuleEngine选项为on</p>
+<pre><code>sudo mv /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf
+</code></pre><pre><code>sudo vim /etc/modsecurity/modsecurity.conf
+</code></pre><p>增添或修改：</p>
+<pre><code>SecRuleEngine On
+</code></pre><p>（4）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart
+</code></pre><p>（5）高级配置<br>ModSecurity中有许多的安全规则，他们都在”/usr/share/modsecurity-crs”目录中，你需要激活他们</p>
+<pre><code>sudo vim /etc/apache2/mod-enabled/security2.conf
+</code></pre><p>增添或修改：</p>
+<pre><code>IncludeOptional /etc/modsecurity/*.conf
+IncludeOptional &quot;/usr/share/modsecurity-crs/*.conf&quot;
+IncludeOptional &quot;/usr/share/modsecurity-crs/base_rules/*.conf
+</code></pre><p>重启Apache</p>
+<h3 id="5、关闭SSI和CGI"><a href="#5、关闭SSI和CGI" class="headerlink" title="5、关闭SSI和CGI"></a>5、关闭SSI和CGI</h3><p>服务器端包含 SSI，是英文 Server Side Includes的简写。SSI是一种可以指挥服务器动态声称网页内容的HTML指令。<br>通常SSI可以用来确保网页中的一些通用内容，比如版权信息、联系方式、或导航信息在全站所有网页中保持<br>一致。使用SSI显示这些通用内容还可以减轻网站维护的工作量，因为当需要修改这些通用信息的时候，只需要<br>改一个地方就可以了，而不需要逐个修改每一个网页。</p>
+<p>cgi是common gateway interface的简称，这是一个用来处理http请求的接口；<br>由于http请求十分多样且十分复杂，web服务器不能完成这种操作，于是便利用了外部程序来处理这些请求，web服<br>务器将参数传递给外部程序，外部程序将运行结果返回给web服务器；外部程序和web服务器的交互需要一种接口，<br>那就是cgi接口，于是这些外部程序也叫cgi程序。在不需要这个功能的情况下，开启CGI执行比较危险，因为攻击者<br>可以上传写好的恶意CGI程序，利用配置的漏洞来进行web渗透。</p>
+<p>安全配置策略：<br>当不需要这些功能时，将其关闭<br>（1）修改apache2配置文件</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf
+</code></pre><p>（2）增添或修改：</p>
+<pre><code>Options -FollowSymLinks -Include -ExecCGI
+AllowOverride None 
+Require all granted
+</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart
+</code></pre><h3 id="6、限制大请求包"><a href="#6、限制大请求包" class="headerlink" title="6、限制大请求包"></a>6、限制大请求包</h3><p>Apache默认对HTTP的请求大小没有限制，攻击者会利用发送大数据包来进行拒绝服务攻击，我们可以对Apache进行一些<br>设置来限制合适大小的数据包。</p>
+<p>你可以在Apache的主配置文件中设置数据包大小为0（无限制）~2147483647（2G）<br>举个例子，你可以限制”/var/wwww/html”目录的请求包大小限制为200K</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf
+</code></pre><p>增添或修改：<br>LimitRequestBody 204800<br>重启Apache服务器</p>
+<h3 id="7、不允许浏览document-root以外的目录"><a href="#7、不允许浏览document-root以外的目录" class="headerlink" title="7、不允许浏览document root以外的目录"></a>7、不允许浏览document root以外的目录</h3><p>Apache推荐只能访问document root目录。<br>举个例子，你可以进行下面的设置来保护根目录（/）</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf
+</code></pre><p>增添或修改：</p>
+<pre><code>Options None         关闭所有的选项
+Order deny,allow    应用的deny和allow顺序
+Deny from all        禁止所有对根目录（/）的访问
+</code></pre><p>重启Apache</p>
+<h3 id="8、保持Apache服务器的更新"><a href="#8、保持Apache服务器的更新" class="headerlink" title="8、保持Apache服务器的更新"></a>8、保持Apache服务器的更新</h3><p>新的版本会修复一些软件自身的一些bug</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oeqaghyw9.bkt.clouddn.com/url/zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2017/06/21/ApacheSec_Ubuntu_1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/20/Ubuntu配置curl支持https/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu配置curl支持https</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ApacheSec_Ubuntu_1" data-title="Apache服务器安全--Ubuntu上的Apache安全配置（一）" data-url="http://www.lovebear.top/2017/06/21/ApacheSec_Ubuntu_1/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"lovebear"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 lovebear
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Lovebear
+      	</div>
+		<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+		</script>
+		<span id="busuanzi_container_site_pv">
+			Total Visit: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> times
+		</span>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=4.0.0.js"></script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">翻墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">image</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">pacman</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Apache</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>hexo主题</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://portal.qiniu.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>七牛云</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>不如</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.cnblogs.com/tengj/p/5353897.html" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>深入hexo</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.dnspod.cn/Login" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>DNSPod</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ibruce.info/2013/11/26/markdown/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>markdown</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;blog更新比较慢&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
