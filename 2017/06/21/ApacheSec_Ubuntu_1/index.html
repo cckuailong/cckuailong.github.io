@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/5.png">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/6.png">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/7.png">
-<meta property="og:updated_time" content="2017-06-22T08:31:51.641Z">
+<meta property="og:updated_time" content="2017-06-23T00:26:19.989Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache服务器安全--Ubuntu上的Apache安全配置（一）">
 <meta name="twitter:description" content="一、前言：最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有所不同。">
@@ -171,7 +171,7 @@
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套<br>Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache<br>更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有<br>所不同。</p>
 <a id="more"></a>
-<h2 id="二、简单介绍："><a href="#二、简单介绍：" class="headerlink" title="二、简单介绍："></a>二、简单介绍：</h2><h3 id="1、隐藏Apache的版本和操作系统信息"><a href="#1、隐藏Apache的版本和操作系统信息" class="headerlink" title="1、隐藏Apache的版本和操作系统信息"></a>1、隐藏Apache的版本和操作系统信息</h3><p>Apache默认会显示出你安装的Apache版本以及你的操作系统信息，这将会使你的服务器存在<br>很大的安全隐患。</p>
+<h2 id="二、安全问题及配置策略："><a href="#二、安全问题及配置策略：" class="headerlink" title="二、安全问题及配置策略："></a>二、安全问题及配置策略：</h2><h3 id="1、隐藏Apache的版本和操作系统信息"><a href="#1、隐藏Apache的版本和操作系统信息" class="headerlink" title="1、隐藏Apache的版本和操作系统信息"></a>1、隐藏Apache的版本和操作系统信息</h3><p>Apache默认会显示出你安装的Apache版本以及你的操作系统信息，这将会使你的服务器存在<br>很大的安全隐患。</p>
 <p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/1.png" alt="demo1"></p>
 <p>安全配置策略：<br>（1） 修改Apache主配置文件</p>
 <pre><code>sudo vim /etc/apache2/conf-enabled/security.conf
@@ -348,6 +348,15 @@ Deny from all        禁止所有对根目录（/）的访问
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/06/23/ApacheSec_Ubuntu_2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Apache服务器安全--Ubuntu上的Apache安全配置（二）
+        
+      </div>
+    </a>
   
   
     <a href="/2017/06/20/Ubuntu配置curl支持https/" id="article-nav-older" class="article-nav-link-wrap">
