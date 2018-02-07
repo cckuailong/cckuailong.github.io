@@ -141,6 +141,182 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python_scrapy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/06/python_scrapy/">python爬虫框架--scrapy</a>
+    </h1>
+  
+
+        <a href="/2018/02/06/python_scrapy/" class="archive-article-date">
+  	<time datetime="2018-02-06T13:26:54.399Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-06</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>之前简单的接触过scrapy，但是并没有进一步了解以及使用。最近写完一套PAT题库，想要<br>对题目和解答代码进行整理放到github上，但是苦于题目过多，于是我就想到了使用爬虫<br>来解决这个问题，也一下子想起了scrapy。网络上对这款基于python的爬虫框架普遍给予了<br>很高的评价。scrapy经过不断地完善，功能也日益强大，这里只摘取平时用到比较多的功能<br>进行详细说明。</p>
+        
+          <a class="article-more-a" href="/2018/02/06/python_scrapy/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/06/python_scrapy/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-python_UnicodeDecodeError" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/06/python_UnicodeDecodeError/">解决python 2的UnicodeDecodeError错误</a>
+    </h1>
+  
+
+        <a href="/2018/02/06/python_UnicodeDecodeError/" class="archive-article-date">
+  	<time datetime="2018-02-06T08:31:04.031Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-06</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近使用scrapy爬取中文网页并向文件中写入的时候，出现了下面的错误： </p>
+<pre><code>UnicodeDecodeError： &#39;ascii&#39; codec can&#39;t decode byte ...... : ordinal not in range(128)
+</code></pre><p>这是因为python的默认编码是ascii，当出现Unicode编码时，python编译器的编码处理部分会<br>产生错误这时我们有三种解决办法:</p>
+<ol>
+<li>升级为Python3</li>
+<li>将python编码设置为 GBK 或者 UTF-8 ，这里介绍UTF-8。</li>
+<li>使用codecs代替open来打开写入的文件</li>
+</ol>
+<p>博主对上述三种解决方案的推荐优先级为： 3 &gt; 2 &gt; 1</p>
+        
+          <a class="article-more-a" href="/2018/02/06/python_UnicodeDecodeError/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/06/python_UnicodeDecodeError/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Ubuntu14_forgrt_root_pwd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/03/Ubuntu14_forgrt_root_pwd/">Ubuntu 14中忘记root password的解决办法（半转载）</a>
+    </h1>
+  
+
+        <a href="/2017/09/03/Ubuntu14_forgrt_root_pwd/" class="archive-article-date">
+  	<time datetime="2017-09-03T12:22:19.310Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-03</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>一个学长不小心把自己Ubuntu的root密码忘记了，这也唤起了我的好奇心，于是上网查了<br>一波，在此做一个记录，以后遇到这类尴尬（逗比）的情况，就能及时弥补了。</p>
+        
+          <a class="article-more-a" href="/2017/09/03/Ubuntu14_forgrt_root_pwd/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/03/Ubuntu14_forgrt_root_pwd/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-ApacheOptimize_Ubuntu_2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -253,174 +429,6 @@
 
 
   
-    <article id="post-ApacheSec_Ubuntu_2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/23/ApacheSec_Ubuntu_2/">Apache服务器安全--Ubuntu上的Apache安全配置（二）</a>
-    </h1>
-  
-
-        <a href="/2017/06/23/ApacheSec_Ubuntu_2/" class="archive-article-date">
-  	<time datetime="2017-06-23T00:21:07.136Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-23</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>上一章，我们列举了一系列Ubuntu端Apache配置的安全防御措施，这一章我们将继续来关注<br>Apache安全配置策略。这一章主要介绍一些先进的小技术来使你的服务器变得更加安全。</p>
-        
-          <a class="article-more-a" href="/2017/06/23/ApacheSec_Ubuntu_2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/23/ApacheSec_Ubuntu_2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-ApacheSec_Ubuntu_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/21/ApacheSec_Ubuntu_1/">Apache服务器安全--Ubuntu上的Apache安全配置（一）</a>
-    </h1>
-  
-
-        <a href="/2017/06/21/ApacheSec_Ubuntu_1/" class="archive-article-date">
-  	<time datetime="2017-06-21T09:24:39.814Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-21</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套<br>Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache<br>更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有<br>所不同。</p>
-        
-          <a class="article-more-a" href="/2017/06/21/ApacheSec_Ubuntu_1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/21/ApacheSec_Ubuntu_1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Ubuntu配置curl支持https" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/20/Ubuntu配置curl支持https/">Ubuntu配置curl支持https</a>
-    </h1>
-  
-
-        <a href="/2017/06/20/Ubuntu配置curl支持https/" class="archive-article-date">
-  	<time datetime="2017-06-20T03:14:12.988Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-20</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>curl是一个开源的文件传输工具，但是ubuntu默认安装的curl不支持https，需要重新将curl<br>进行编译，这里查找了网上的一些资料，综合起来实现了curl对https的支持。</p>
-        
-          <a class="article-more-a" href="/2017/06/20/Ubuntu配置curl支持https/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/20/Ubuntu配置curl支持https/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -435,7 +443,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 lovebear
+    		&copy; 2018 lovebear
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Lovebear

@@ -4,6 +4,74 @@
 
     
   <url>
+    <loc>http://www.lovebear.top/2018/02/06/python_scrapy/</loc>
+    <lastmod>2018-02-07T02:52:07.744Z</lastmod>
+    <data>
+        <display>
+        <title>python爬虫框架--scrapy</title>
+        <pubTime>2018-02-06T13:26:54.399Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lovebear.top/2018/02/06/python_UnicodeDecodeError/</loc>
+    <lastmod>2018-02-06T10:18:27.937Z</lastmod>
+    <data>
+        <display>
+        <title>解决python 2的UnicodeDecodeError错误</title>
+        <pubTime>2018-02-06T08:31:04.031Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lovebear.top/2017/09/03/Ubuntu14_forgrt_root_pwd/</loc>
+    <lastmod>2017-09-03T12:41:49.191Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu 14中忘记root password的解决办法（半转载）</title>
+        <pubTime>2017-09-03T12:22:19.310Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lovebear.top/2017/01/31/GetPrimeList/</loc>
+    <lastmod>2017-08-09T09:34:40.350Z</lastmod>
+    <data>
+        <display>
+        <title>素数表的快速创建</title>
+        <pubTime>2017-01-31T12:52:33.539Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lovebear.top/2017/06/24/ApacheOptimize_Ubuntu_2/</loc>
     <lastmod>2017-06-24T01:43:46.226Z</lastmod>
     <data>
@@ -175,23 +243,6 @@
         <display>
         <title>双基回文数的判断</title>
         <pubTime>2017-02-01T05:09:25.111Z</pubTime>
-        
-        <tag>python</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.lovebear.top/2017/01/31/GetPrimeList/</loc>
-    <lastmod>2017-02-01T05:08:08.736Z</lastmod>
-    <data>
-        <display>
-        <title>素数表的快速创建</title>
-        <pubTime>2017-01-31T12:52:33.539Z</pubTime>
         
         <tag>python</tag>
          
