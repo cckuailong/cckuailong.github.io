@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>IMG格式--BMP文件格式解析 | Blog for You</title>
+  <title>Ubuntu-Windows双系统安装教程 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：这两天遇到了许多关于bmp隐藏信息（最低位隐藏）的问题，在解决问题的过程中，我发现BMP格式的图片可以细分为很多种，就决定将BMP文件详细的研究一下，查阅了一些资料进行整理，在这里进行记录。">
+  <meta name="description" content="一、前言：最近，在为一个项目做可行性分析时，发现使用linux开发有一些优势，可以方便的调用一些已有的工具。原来一直在虚拟机中使用linux，想到最近也在不断完善linux的知识，所以干脆就装个linux，想到了安装linux-windows双系统，本文的操作环境是ubuntu 16.04和windows 8.1，背景为已安装windows的基础上安装ubuntu。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IMG格式--BMP文件格式解析">
-<meta property="og:url" content="http://www.lovebear.top/2017/02/03/IMG_BMP_Format/index.html">
+<meta property="og:title" content="Ubuntu-Windows双系统安装教程">
+<meta property="og:url" content="http://www.lovebear.top/2018/02/10/Ubuntu-Windows-DoubleOS/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：这两天遇到了许多关于bmp隐藏信息（最低位隐藏）的问题，在解决问题的过程中，我发现BMP格式的图片可以细分为很多种，就决定将BMP文件详细的研究一下，查阅了一些资料进行整理，在这里进行记录。">
+<meta property="og:description" content="一、前言：最近，在为一个项目做可行性分析时，发现使用linux开发有一些优势，可以方便的调用一些已有的工具。原来一直在虚拟机中使用linux，想到最近也在不断完善linux的知识，所以干脆就装个linux，想到了安装linux-windows双系统，本文的操作环境是ubuntu 16.04和windows 8.1，背景为已安装windows的基础上安装ubuntu。">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
-<meta property="og:updated_time" content="2017-02-03T04:44:54.369Z">
+<meta property="og:updated_time" content="2018-02-10T14:48:04.131Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IMG格式--BMP文件格式解析">
-<meta name="twitter:description" content="一、前言：这两天遇到了许多关于bmp隐藏信息（最低位隐藏）的问题，在解决问题的过程中，我发现BMP格式的图片可以细分为很多种，就决定将BMP文件详细的研究一下，查阅了一些资料进行整理，在这里进行记录。">
+<meta name="twitter:title" content="Ubuntu-Windows双系统安装教程">
+<meta name="twitter:description" content="一、前言：最近，在为一个项目做可行性分析时，发现使用linux开发有一些优势，可以方便的调用一些已有的工具。原来一直在虚拟机中使用linux，想到最近也在不断完善linux的知识，所以干脆就装个linux，想到了安装linux-windows双系统，本文的操作环境是ubuntu 16.04和windows 8.1，背景为已安装windows的基础上安装ubuntu。">
 <meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
@@ -148,232 +148,48 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-IMG_BMP_Format" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Ubuntu-Windows-DoubleOS" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      IMG格式--BMP文件格式解析
+      Ubuntu-Windows双系统安装教程
     </h1>
   
 
-        <a href="/2017/02/03/IMG_BMP_Format/" class="archive-article-date">
-  	<time datetime="2017-02-03T01:48:03.536Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-03</time>
+        <a href="/2018/02/10/Ubuntu-Windows-DoubleOS/" class="archive-article-date">
+  	<time datetime="2018-02-10T04:11:55.646Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-10</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>这两天遇到了许多关于bmp隐藏信息（最低位隐藏）的问题，在解决问题的过程中，我发现BMP<br>格式的图片可以细分为很多种，就决定将BMP文件详细的研究一下，查阅了一些资料进行整理，<br>在这里进行记录。</p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近，在为一个项目做可行性分析时，发现使用linux开发有一些优势，可以方便的调用<br>一些已有的工具。原来一直在虚拟机中使用linux，想到最近也在不断完善linux的知识，<br>所以干脆就装个linux，想到了安装linux-windows双系统，本文的操作环境是ubuntu 16.04<br>和windows 8.1，背景为已安装windows的基础上安装ubuntu。</p>
 <a id="more"></a>
-<h2 id="二、简单介绍："><a href="#二、简单介绍：" class="headerlink" title="二、简单介绍："></a>二、简单介绍：</h2><p>BMP文件格式，又称为Bitmap（位图）或是DIB(Device-Independent Device，设备无关位图)，是Windows<br>系统中广泛使用的图像文件格式。由于它可以不作任何变换地保存图像像素域的数据，因<br>此成为我们取得RAW数据的重要来源。Windows的图形用户界面（graphical user interfaces）也<br>在它的内建图像子系统GDI中对BMP格式提供了支持。</p>
-<p>注意： BMP文件采用小尾顺序进行记录（即低地址村存放低位数据，高地址存放高位数据）</p>
-<h2 id="三、BMP格式结构："><a href="#三、BMP格式结构：" class="headerlink" title="三、BMP格式结构："></a>三、BMP格式结构：</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">数据段名称</th>
-<th style="text-align:center">对应的Windows结构体</th>
-<th style="text-align:center">大小(byte)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">BMP文件头</td>
-<td style="text-align:center">BITMAPFILEHEADER</td>
-<td style="text-align:center">14</td>
-</tr>
-<tr>
-<td style="text-align:center">位图信息头</td>
-<td style="text-align:center">BITMAPINFOHEADER</td>
-<td style="text-align:center">40</td>
-</tr>
-<tr>
-<td style="text-align:center">调色板</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">颜色索引数决定</td>
-</tr>
-<tr>
-<td style="text-align:center">位图数据</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">图像尺寸决定</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>bmp文件头(bmp file header)： 文件的格式、大小等信息</li>
-<li>位图信息头(bitmap information)： 图像数据的尺寸、位平面数、压缩方式、颜色索引等信息</li>
-<li>调色板(color palette)： 可选，如使用索引来表示图像，调色板就是索引与其对应的颜色的映射表</li>
-<li>位图数据(bitmap data)： 图像数据</li>
-</ul>
-<p>注意： 我们一般见到的图像以24位图像为主，即R、G、B三种颜色各用8个bit来表示，这样的图像<br>我们称为真彩色，这种情况下是不需要调色板的，也就是所位图信息头后面紧跟的就是位图数<br>据了。因此，我们常常见到有这样一种说法：位图文件从文件头开始偏移54个字节就是位图数据<br>了，这其实说的是24或32位图的情况。这也就解释了我们按照这种程序写出来的程序为什么对某<br>些位图文件没用了。</p>
-<h2 id="四、各数据段详解："><a href="#四、各数据段详解：" class="headerlink" title="四、各数据段详解："></a>四、各数据段详解：</h2><h3 id="BMP文件头"><a href="#BMP文件头" class="headerlink" title="BMP文件头"></a>BMP文件头</h3><pre><code>typedef struct tagBITMAPFILEHEADER 
-{  
-UINT16 bfType;    
-DWORD bfSize; 
-UINT16 bfReserved1; 
-UINT16 bfReserved2; 
-DWORD bfOffBits;
-} BITMAPFILEHEADER;
-</code></pre><table>
-<thead>
-<tr>
-<th style="text-align:center">变量名</th>
-<th style="text-align:center">地址偏移</th>
-<th style="text-align:center">大小(byte)</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">bfType</td>
-<td style="text-align:center">0000H</td>
-<td style="text-align:center">2</td>
-<td style="text-align:left">文件类型，取值：<br>● BM – Windows<br>● BA – OS/2 Bitmap Array<br>● CI – OS/2 Color Icon<br>● CP – OS/2 Color Pointer<br>● IC – OS/2 Icon<br>● PT – OS/2 Pointer</td>
-</tr>
-<tr>
-<td style="text-align:center">bfSize</td>
-<td style="text-align:center">0002H</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">说明该位图文件的大小，以字节为单位</td>
-</tr>
-<tr>
-<td style="text-align:center">bfReserved1</td>
-<td style="text-align:center">0006H</td>
-<td style="text-align:center">2</td>
-<td style="text-align:left">保留</td>
-</tr>
-<tr>
-<td style="text-align:center">bfreserved2</td>
-<td style="text-align:center">0008H</td>
-<td style="text-align:center">2</td>
-<td style="text-align:left">保留</td>
-</tr>
-<tr>
-<td style="text-align:center">bfOffBits</td>
-<td style="text-align:center">000AH</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">说明从文件头开始到实际图像数据间字节的偏移（一般通过这种方式找到位图数据）</td>
-</tr>
-</tbody>
-</table>
-<h3 id="位图信息头"><a href="#位图信息头" class="headerlink" title="位图信息头"></a>位图信息头</h3><pre><code>typedef struct tagBITMAPINFOHEADER 
-{  
-DWORD biSize;
-DWORD biWidth;
-DWORD biHeight;
-UINT16 biPlanes;
-UINT16 biBitCount;    
-DWORD biCompression; 
-DWORD biSizeImage;
-DWORD biXPelsPerMeter;
-DWORD biYPelsPerMeter;
-DWORD biClrUsed;
-DWORD biClrImportant;
-} BITMAPINFOHEADER;
-</code></pre><table>
-<thead>
-<tr>
-<th style="text-align:center">变量名</th>
-<th style="text-align:center">地址偏移</th>
-<th style="text-align:center">大小(byte)</th>
-<th style="text-align:left">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">biSize</td>
-<td style="text-align:center">000EH</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">BITMAPINFOHEADER结构所需要的字节数</td>
-</tr>
-<tr>
-<td style="text-align:center">biWidth</td>
-<td style="text-align:center">0012H</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">说明图像的宽度，像素为单位</td>
-</tr>
-<tr>
-<td style="text-align:center">biHeight</td>
-<td style="text-align:center">0016H</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">说明图像的高度，像素为单位<br>注：biHeight还用来指明该图像是倒向位图（正数）还是正向（负数）位图</td>
-</tr>
-<tr>
-<td style="text-align:center">biPlanes</td>
-<td style="text-align:center">001AH</td>
-<td style="text-align:center">2</td>
-<td style="text-align:left">说明颜色平面数，总为1</td>
-</tr>
-<tr>
-<td style="text-align:center">biBitCount</td>
-<td style="text-align:center">001CH</td>
-<td style="text-align:center">2</td>
-<td style="text-align:left">说明比特数/像素，值为1、4、8、16、24、32</td>
-</tr>
-<tr>
-<td style="text-align:center">biCompression</td>
-<td style="text-align:center">001EH</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">说明图像数据压缩的类型：<br>● 0 – BI_RGB 不压缩（最常用）<br>● 1 – BI_RLE8 8比特游程编码(RLE)，只用于8位位图<br>● 2 – BI_RLE4 4比特游程编码(RLE)，只用于4位位图<br>● 3 – BI_BITFIELDS 比特域，用于16/32位位图<br>● 4 – BI_JPEG JPEG 位图含JPEG图像(仅用于打印机)<br>● 5 – BI_PNG PNG 位图含PNG图像(仅用于打印机)</td>
-</tr>
-<tr>
-<td style="text-align:center">biSizeImage</td>
-<td style="text-align:center">0022H</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">图像大小，字节为单位（BI_RGB时，可设置为0）</td>
-</tr>
-<tr>
-<td style="text-align:center">biXPelsPerMeter</td>
-<td style="text-align:center">0026H</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">水平分辨率，用像素/米表示，有符号整数，0为默认设置</td>
-</tr>
-<tr>
-<td style="text-align:center">biYPelsPerMeter</td>
-<td style="text-align:center">002AH</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">垂直分辨率，用像素/米表示，有符号整数，0为默认设置</td>
-</tr>
-<tr>
-<td style="text-align:center">biClrUsed</td>
-<td style="text-align:center">002EH</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">位图实际使用彩色表中颜色索引（0值表示适用所有调色板项）</td>
-</tr>
-<tr>
-<td style="text-align:center">biClrImportant</td>
-<td style="text-align:center">0032H</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">对图像显示有重要影响的颜色索引的数目（0值表示都重要）</td>
-</tr>
-</tbody>
-</table>
-<h3 id="调色板"><a href="#调色板" class="headerlink" title="调色板"></a>调色板</h3><p>下面的数据就是调色板了。前面也已经提过，调色板其实是一张映射表，标识颜色索引号与其<br>代表的颜色的对应关系。它在文件中的布局就像一个二维数组palette[N][4],其中N表示总的<br>颜色索引数，每行的四个元素分别表示该索引对应的B、G、R和Alpha的值，每个分量占一个字节。<br>如不设透明通道时，Alpha为0。因为前面知道，本图有256个颜色索引，因此N = 256。索引号就是<br>所在行的行号，对应的颜色就是所在行的四个元素。</p>
-<h3 id="位图数据"><a href="#位图数据" class="headerlink" title="位图数据"></a>位图数据</h3><p>每个像素占的字节数取决于biBitCount的值，如果biBitCount=8，像素值代表颜色索引值，如果<br>biBitCount=24、32，则位图数据区就不是索引，而是实际的像素值。<br>24位RGB按照BGR的顺序来存储每个像素的各颜色通道的值，一个像素的所有颜色分量值都存<br>完后才存下一个下一个像素，不进行交织存储。<br>32位数据按照BGRA的顺序存储，其余与24位位图的方式一样。</p>
-<p>如果位图信息中图像高度是正数，位图数据排列为，从图像的左下角到图像的右上角，并且以<br>行为主序。</p>
-<h2 id="五、对齐规则："><a href="#五、对齐规则：" class="headerlink" title="五、对齐规则："></a>五、对齐规则：</h2><p>讲完了像素的排列规则以及各像素的颜色分量的排列规则，最后我们谈谈数据的对齐规则。我们<br>知道Windows默认的扫描的最小单位是4字节，如果数据对齐满足这个值的话对于数据的获取速度<br>等都是有很大的增益的。因此，BMP图像顺应了这个要求，要求每行的数据的长度必须是4的倍数，<br>如果不够需要进行比特填充（以0填充），这样可以达到按行的快速存取。这时，位图数据区的<br>大小就未必是 图片宽×每像素字节数×图片高 能表示的了，因为每行可能还需要进行比特填充。</p>
-<h2 id="六、嵌入式平台BMP格式"><a href="#六、嵌入式平台BMP格式" class="headerlink" title="六、嵌入式平台BMP格式"></a>六、嵌入式平台BMP格式</h2><p>嵌入式平台BMP格式在调色板数据段与PC机的不同，如在嵌入式平台上常见的16位r5g6b5位图<br>实际上采用的掩模的方式而不是索引的方式来表示图像。此时，在调色板数据段共有四个部分，<br>每个部分为四个字节，实际表示的是彩色版规范。即：</p>
-<ul>
-<li>第一个部分是红色分量的掩模</li>
-<li>第二个部分是绿色分量的掩模</li>
-<li>第三个部分是蓝色分量的掩模</li>
-<li>第四个部分是Alpha分量的掩模（缺省为0）</li>
-</ul>
-<p>典型的调色板规范在文件中的顺序为为：</p>
-<pre><code>00F8 0000 E007 0000 1F00 0000 0000 0000
-</code></pre><p>其中</p>
-<pre><code>00F8 0000 为 FB00h=1111100000000000（二进制），是蓝红分量的掩码。 
-E007 0000 为 07E0h=0000011111100000（二进制），是绿色分量的掩码。 
-1F00 0000 为 001Fh=0000000000011111（二进制），是蓝色分量的掩码。 
-0000 0000 设置为0。
-</code></pre><p>将掩码跟像素值进行“与”运算再进行移位操作就可以得到各色分量值。看看掩码，就可以明白<br>事实上在每个像素值的两个字节16位中，按从高到低取5、6、5位分别就是r、g、b分量值。取出分<br>量值后把r、g、b值分别乘以8、4、8就可以补齐每个分量为一个字节，再把这三个字节按BGR组合，<br>放入存储器，就可以转换为24位标准BMP格式了。</p>
-<p>这样我们假设在位图数据区有一个像素的数据在文件中表示为02 F1。这个数据实际上应为F102：</p>
-<pre><code>r = (F102 AND F800) &gt;&gt; 8 = F0h = 240
-g = (F102 AND 07E0) &gt;&gt; 3 = 20h = 32 
-b = (F102 AND 001F) &lt;&lt; 3 = 10h =16
-</code></pre><p>至此我们就可以显示了。</p>
+<h2 id="二、安装过程："><a href="#二、安装过程：" class="headerlink" title="二、安装过程："></a>二、安装过程：</h2><ol>
+<li>修改BOIS启动项</li>
+</ol>
+<p>（1） 重启windows，开机时进入BOIS（Thinkpad按F12，其他品牌的电脑快捷键自行查询）<br>（2） Tab选择App Menu，选中Setup，点击Enter<br>（3） 选择Security，选中最下面的Secure Boot，点击Enter，Secure Boot修改为Disabled<br>（4） Esc退出，选择Startup，UEFI/Legacy Boot修改为Both，UEFI/Legacy Boot Priority修改为<br>UEFIFirst，CSM Support 修改为Yes<br>（5） F10，保存并退出</p>
+<ol>
+<li>清理磁盘空间</li>
+</ol>
+<p>（1） 我的电脑右键–管理–磁盘管理<br>（2） 选中你要安装Ubuntu的磁盘，右键–删除卷</p>
+<ol>
+<li>制作Ubuntu启动盘</li>
+</ol>
+<p>（1） 插入u盘，管理员打开UltraISO，文件–打开，找到下载好的iso镜像文件<br>（2） 启动–写入硬盘映像<br>（3） 点击格式化，其他选项默认<br>（4） 点击写入</p>
+<ol>
+<li>安装ubuntu</li>
+</ol>
+<p>（1） 重启计算机（插入u盘），进入BOIS（F12），选择 USB启动选项<br>（2） 选择install ubuntu，进行安装<br>（3） 分区时，选择高级选项，选择分出的空闲分区（freespace，刚刚删除卷的那部分），为其<br>分配根目录（/），其他目录根据自己需要分区，此处注意不要把自己其他地方的东西覆<br>盖了，一定要看好了<br>（4） 安装完毕， 重启后，进入ubuntu双系统启动引导界面</p>
+<ol>
+<li>修改启动顺序（可选）</li>
+</ol>
+<pre><code>sudo vim /etc/default/grub
+</code></pre><p>找到GRUB_DEFAULT=0所在行，将0修改为windows所在行号</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>windows+ubuntu的双系统安装就是这么简单，不要害怕，多动手试一试就会掌握了，但是在<br>实验之前一定要将自己原来的系统进行备份。</p>
 
       
 
@@ -410,7 +226,7 @@ b = (F102 AND 001F) &lt;&lt; 3 = 10h =16
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/image/">image</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
 	</div>
 
       
@@ -463,7 +279,7 @@ b = (F102 AND 001F) &lt;&lt; 3 = 10h =16
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2017/02/03/IMG_BMP_Format/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2018/02/10/Ubuntu-Windows-DoubleOS/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -477,18 +293,18 @@ b = (F102 AND 001F) &lt;&lt; 3 = 10h =16
   
 <nav id="article-nav">
   
-    <a href="/2017/02/03/CTF_BMP_LSB/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/02/11/python_selenium/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          CTF--BMP文件的LSB题型
+          Python+Selenium进行动态加载网页爬取
         
       </div>
     </a>
   
   
-    <a href="/2017/02/01/CTF_FactorSum/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CTF--大数因子求和与大数模运算</div>
+    <a href="/2018/02/06/python_scrapy/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python爬虫框架--scrapy</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -501,7 +317,7 @@ b = (F102 AND 001F) &lt;&lt; 3 = 10h =16
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="IMG_BMP_Format" data-title="IMG格式--BMP文件格式解析" data-url="http://www.lovebear.top/2017/02/03/IMG_BMP_Format/"></div>
+	<div class="ds-thread" data-thread-key="Ubuntu-Windows-DoubleOS" data-title="Ubuntu-Windows双系统安装教程" data-url="http://www.lovebear.top/2018/02/10/Ubuntu-Windows-DoubleOS/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

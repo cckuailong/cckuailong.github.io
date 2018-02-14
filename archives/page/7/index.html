@@ -6,24 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>CTF--Airdecap-ng分析实战 | Blog for You</title>
+  <title>Archives | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：Airdecap-ng十分的强大，他被用作无线网络的分析与破解中，有linux版本和windows版本，大家可以根据自己的系统进行下载安装，下面通过一道简单的ctf实战题来接触了解一下Airdecap的强大之处。
-原题目链接">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CTF--Airdecap-ng分析实战">
-<meta property="og:url" content="http://www.lovebear.top/2017/01/17/CTF_Airdecap-ng/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Blog for You">
+<meta property="og:url" content="http://www.lovebear.top/archives/page/7/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：Airdecap-ng十分的强大，他被用作无线网络的分析与破解中，有linux版本和windows版本，大家可以根据自己的系统进行下载安装，下面通过一道简单的ctf实战题来接触了解一下Airdecap的强大之处。
-原题目链接">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
-<meta property="og:updated_time" content="2017-01-17T11:26:07.513Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CTF--Airdecap-ng分析实战">
-<meta name="twitter:description" content="一、前言：Airdecap-ng十分的强大，他被用作无线网络的分析与破解中，有linux版本和windows版本，大家可以根据自己的系统进行下载安装，下面通过一道简单的ctf实战题来接触了解一下Airdecap的强大之处。
-原题目链接">
-<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
+<meta name="twitter:title" content="Blog for You">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -151,183 +141,90 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-CTF_Airdecap-ng" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      CTF--Airdecap-ng分析实战
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/12/11/Ubuntu-Python_Version/" class="archive-article-date">
+  	<time datetime="2016-12-11T01:29:35.966Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-11</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/12/11/Ubuntu-Python_Version/">Ubuntu Python 默认使用版本改变</a>
     </h1>
   
 
-        <a href="/2017/01/17/CTF_Airdecap-ng/" class="archive-article-date">
-  	<time datetime="2017-01-17T11:06:05.787Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-17</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Airdecap-ng十分的强大，他被用作无线网络的分析与破解中，有linux版本和windows版本，<br>大家可以根据自己的系统进行下载安装，下面通过一道简单的ctf实战题来接触了解一下<br>Airdecap的强大之处。</p>
-<p><a href="http://www.shiyanbar.com/ctf/1853" target="_blank" rel="external">原题目链接</a></p>
-<a id="more"></a>
-<h2 id="二、开始使用airdecap-ng："><a href="#二、开始使用airdecap-ng：" class="headerlink" title="二、开始使用airdecap-ng："></a>二、开始使用airdecap-ng：</h2><h3 id="1-用aircrack-ng检查cap包"><a href="#1-用aircrack-ng检查cap包" class="headerlink" title="1. 用aircrack-ng检查cap包:"></a>1. 用aircrack-ng检查cap包:</h3><pre><code>aircrack-ng-1.1-win\bin&gt;aircrack-ng.exe shipin.cap
-</code></pre><p><img src="http://oeqaghyw9.bkt.clouddn.com/airdecap/1.png" alt="demo1"></p>
-<h3 id="2-使用弱口令字典破解wpa加密"><a href="#2-使用弱口令字典破解wpa加密" class="headerlink" title="2. 使用弱口令字典破解wpa加密:"></a>2. 使用弱口令字典破解wpa加密:</h3><pre><code>aircrack-ng.exe shipin.cap -w wordlist.txt
-</code></pre><p>这里wordlist.txt是弱口令字典，包含了常见的路由器密码，可以网上下载到</p>
-<p>这一步骤可以使用EWSA软件进行破解，得到密码88888888</p>
-<h3 id="3-用密码解密cap"><a href="#3-用密码解密cap" class="headerlink" title="3. 用密码解密cap:"></a>3. 用密码解密cap:</h3><pre><code>airdecap-ng.exe shipin.cap -e 0719 -p 88888888
-</code></pre><p>使用到了刚才的essid和破解的密码</p>
-<p><img src="http://oeqaghyw9.bkt.clouddn.com/airdecap/2.png" alt="demo2"></p>
-<p>于是在目录下生成一个shipin-dec.cap，使用wireshark打开,找到A记录的第一个，即为flag</p>
-<p><img src="http://oeqaghyw9.bkt.clouddn.com/airdecap/3.png" alt="demo3"></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://oeqaghyw9.bkt.clouddn.com/url/zhifubao.JPG">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2017/01/17/CTF_Airdecap-ng/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
   
-<nav id="article-nav">
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/10/08/Hexo-Your-Blog/" class="archive-article-date">
+  	<time datetime="2016-10-08T12:24:30.365Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-08</time>
+</a>
+        </div>
+    	 
   
-    <a href="/2017/01/18/python_mapAllFiles/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Python 遍历文件夹中所有文件
-        
-      </div>
-    </a>
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/10/08/Hexo-Your-Blog/">Hexo Your Blog</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
   
   
-    <a href="/2017/01/17/CTF_Python_MD5/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CTF--python hashlib库中MD5用法</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="CTF_Airdecap-ng" data-title="CTF--Airdecap-ng分析实战" data-url="http://www.lovebear.top/2017/01/17/CTF_Airdecap-ng/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"lovebear"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/6/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="page-number current">7</span>
+    </nav>
+  
 
 
           </div>
@@ -355,8 +252,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
