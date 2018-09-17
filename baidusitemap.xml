@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://www.lovebear.top/2018/09/17/Safari_Dos/</loc>
+    <lastmod>2018-09-17T14:09:42.161Z</lastmod>
+    <data>
+        <display>
+        <title>针对Sarafi的Dos攻击--导致机器重启</title>
+        <pubTime>2018-09-17T13:25:31.780Z</pubTime>
+        
+        <tag>Vulnerability</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lovebear.top/2018/02/06/python_scrapy/</loc>
     <lastmod>2018-09-17T02:30:04.749Z</lastmod>
     <data>
@@ -471,9 +488,9 @@
         <title>Linux开机自动运行普通用户python脚本</title>
         <pubTime>2017-01-02T03:37:40.926Z</pubTime>
         
-        <tag>Linux</tag>
-         
         <tag>python</tag>
+         
+        <tag>Linux</tag>
          
          
            

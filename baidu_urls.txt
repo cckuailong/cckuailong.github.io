@@ -1,3 +1,4 @@
+http://www.lovebear.top/2018/09/17/Safari_Dos/
 http://www.lovebear.top/2018/09/16/Redis_getshell/
 http://www.lovebear.top/2018/09/16/Linux_shell/
 http://www.lovebear.top/2018/02/11/python_selenium/
@@ -7,4 +8,3 @@ http://www.lovebear.top/2018/02/06/python_UnicodeDecodeError/
 http://www.lovebear.top/2017/09/03/Ubuntu14_forgrt_root_pwd/
 http://www.lovebear.top/2017/06/24/ApacheOptimize_Ubuntu_2/
 http://www.lovebear.top/2017/06/23/ApacheOptimize_Ubuntu_1/
-http://www.lovebear.top/2017/06/23/ApacheSec_Ubuntu_2/
