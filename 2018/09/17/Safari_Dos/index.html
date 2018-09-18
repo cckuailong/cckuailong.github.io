@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://www.lovebear.top">
   <title>针对Sarafi的Dos攻击--导致机器重启 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：最近一段html代码火了起来，主要是针对ios系统的Safari进行Dos攻击，被攻击者被诱导使用Safari打开恶意url，导致ios的系统资源被耗尽，从而进行保护式重启动作。本文对攻击代码进行解析，并给出一些其他的可能攻击代码变种，最后给出可能可行的修复建议。">
+  <meta name="description" content="一、前言：最近一段html代码火了起来，主要是针对ios系统的Safari进行Dos攻击，被攻击者被诱导使用Safari打开恶意url，导致ios的系统资源被耗尽，从而进行保护式重启动作。本文对攻击代码进行解析，并给出一些其他的可能攻击代码变种，最后给出可能可行的修复建议。大家可以使用Safari（手机电脑都可以）访问Safari_dos进行测试，这是我自己的网站，比较安全，手机会重启，然后恢复一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="针对Sarafi的Dos攻击--导致机器重启">
 <meta property="og:url" content="http://www.lovebear.top/2018/09/17/Safari_Dos/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：最近一段html代码火了起来，主要是针对ios系统的Safari进行Dos攻击，被攻击者被诱导使用Safari打开恶意url，导致ios的系统资源被耗尽，从而进行保护式重启动作。本文对攻击代码进行解析，并给出一些其他的可能攻击代码变种，最后给出可能可行的修复建议。">
-<meta property="og:updated_time" content="2018-09-17T14:09:42.161Z">
+<meta property="og:description" content="一、前言：最近一段html代码火了起来，主要是针对ios系统的Safari进行Dos攻击，被攻击者被诱导使用Safari打开恶意url，导致ios的系统资源被耗尽，从而进行保护式重启动作。本文对攻击代码进行解析，并给出一些其他的可能攻击代码变种，最后给出可能可行的修复建议。大家可以使用Safari（手机电脑都可以）访问Safari_dos进行测试，这是我自己的网站，比较安全，手机会重启，然后恢复一">
+<meta property="og:updated_time" content="2018-09-18T04:08:16.652Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="针对Sarafi的Dos攻击--导致机器重启">
-<meta name="twitter:description" content="一、前言：最近一段html代码火了起来，主要是针对ios系统的Safari进行Dos攻击，被攻击者被诱导使用Safari打开恶意url，导致ios的系统资源被耗尽，从而进行保护式重启动作。本文对攻击代码进行解析，并给出一些其他的可能攻击代码变种，最后给出可能可行的修复建议。">
+<meta name="twitter:description" content="一、前言：最近一段html代码火了起来，主要是针对ios系统的Safari进行Dos攻击，被攻击者被诱导使用Safari打开恶意url，导致ios的系统资源被耗尽，从而进行保护式重启动作。本文对攻击代码进行解析，并给出一些其他的可能攻击代码变种，最后给出可能可行的修复建议。大家可以使用Safari（手机电脑都可以）访问Safari_dos进行测试，这是我自己的网站，比较安全，手机会重启，然后恢复一">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -183,7 +183,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近一段html代码火了起来，主要是针对ios系统的Safari进行Dos攻击，被攻击者被<br>诱导使用Safari打开恶意url，导致ios的系统资源被耗尽，从而进行保护式重启动作。<br>本文对攻击代码进行解析，并给出一些其他的可能攻击代码变种，最后给出可能可行<br>的修复建议。</p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近一段html代码火了起来，主要是针对ios系统的Safari进行Dos攻击，被攻击者被<br>诱导使用Safari打开恶意url，导致ios的系统资源被耗尽，从而进行保护式重启动作。<br>本文对攻击代码进行解析，并给出一些其他的可能攻击代码变种，最后给出可能可行<br>的修复建议。<br>大家可以使用Safari（手机电脑都可以）访问<a href="http://www.lovebear.top/safari-reaper">Safari_dos</a>进行测试，<br>这是我自己的网站，比较安全，手机会重启，然后恢复一切正常，可以尝试。</p>
 <a id="more"></a>
 <h2 id="二、攻击代码解析："><a href="#二、攻击代码解析：" class="headerlink" title="二、攻击代码解析："></a>二、攻击代码解析：</h2><p>首先，先附上攻击代码：</p>
 <pre><code>&lt;!DOCTYPE html&gt;
@@ -430,7 +430,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ctf</a>
+                <a href="javascript:void(0)">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -438,19 +438,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">pacman</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -462,7 +454,15 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">pacman</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
               </li>
              
               <li class="article-tag-list-item">
