@@ -14,15 +14,15 @@
 <meta property="og:url" content="http://www.lovebear.top/2018/09/19/Ygtoo_TimeInject/index.html">
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言：翻wooyun关闭之前的漏洞进行学习的时候，发现阳光兔了阳光兔的后台登陆地址传送门，当时wooyun上爆出的漏洞是后台登陆弱口令漏洞，我偶然发现，这个后台存在sql时间盲注，就进行了一波紧张刺激的脱库，写本文的时候，已经将漏洞提交，并不会用数据做恶意的事情。">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ygtoo2.png">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ygtoo3.png">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ygtoo4.png">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ygtoo1.png">
-<meta property="og:updated_time" content="2018-09-19T12:26:37.930Z">
+<meta property="og:image" content="http://www.lovebear.top/img/ygtoo2.png">
+<meta property="og:image" content="http://www.lovebear.top/img/ygtoo3.png">
+<meta property="og:image" content="http://www.lovebear.top/img/ygtoo4.png">
+<meta property="og:image" content="http://www.lovebear.top/img/ygtoo1.png">
+<meta property="og:updated_time" content="2018-12-05T08:55:43.557Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阳光兔后台时间注入--可脱库">
 <meta name="twitter:description" content="一、前言：翻wooyun关闭之前的漏洞进行学习的时候，发现阳光兔了阳光兔的后台登陆地址传送门，当时wooyun上爆出的漏洞是后台登陆弱口令漏洞，我偶然发现，这个后台存在sql时间盲注，就进行了一波紧张刺激的脱库，写本文的时候，已经将漏洞提交，并不会用数据做恶意的事情。">
-<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/ygtoo2.png">
+<meta name="twitter:image" content="http://www.lovebear.top/img/ygtoo2.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -66,7 +66,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://oeqaghyw9.bkt.clouddn.com/url/photoUrl.jpghead.jpg" class="js-avatar">
+			<img src="http://www.lovebear.top/img/url_photoUrl.jpghead.jpg" class="js-avatar">
 		</a>
 
 		<hgroup>
@@ -129,7 +129,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://oeqaghyw9.bkt.clouddn.com/url/photoUrl.jpghead.jpg" class="js-avatar">
+				<img src="http://www.lovebear.top/img/url_photoUrl.jpghead.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author">lovebear</h1>
@@ -252,13 +252,13 @@ partition
 </ol>
 <pre><code>python sqlmap.py -r post.txt --level=3 --tamper=space2comment --dbms mysql -D ygtoo 
 --T increment_trx -C &quot;jobid,table,partition,database,timestamp,checkpoint&quot; --dump
-</code></pre><p><img src="http://oeqaghyw9.bkt.clouddn.com/ygtoo2.png" alt="hjj"><br>可以看到正在dump数据<br><img src="http://oeqaghyw9.bkt.clouddn.com/ygtoo3.png" alt="hjj"><br>最后爆破出数据的结果<br><img src="http://oeqaghyw9.bkt.clouddn.com/ygtoo4.png" alt="hjj"><br>我们在这个表中发现了ygtoo库中其他隐藏的表名！</p>
+</code></pre><p><img src="http://www.lovebear.top/img/ygtoo2.png" alt="hjj"><br>可以看到正在dump数据<br><img src="http://www.lovebear.top/img/ygtoo3.png" alt="hjj"><br>最后爆破出数据的结果<br><img src="http://www.lovebear.top/img/ygtoo4.png" alt="hjj"><br>我们在这个表中发现了ygtoo库中其他隐藏的表名！</p>
 <ol>
 <li>猜解qt_student表中的列</li>
 </ol>
 <pre><code>python sqlmap.py -r post.txt --tamper=space2comment --dbms mysql -D ygtoo -T qt_student
  --columns
-</code></pre><p>这个直接dump不出来，得用sqlmap的爆破猜解方式，我就猜了一小部分（14%）<br><img src="http://oeqaghyw9.bkt.clouddn.com/ygtoo1.png" alt="hjj"><br>可以看到里面有学生的email，密码等敏感信息。</p>
+</code></pre><p>这个直接dump不出来，得用sqlmap的爆破猜解方式，我就猜了一小部分（14%）<br><img src="http://www.lovebear.top/img/ygtoo1.png" alt="hjj"><br>可以看到里面有学生的email，密码等敏感信息。</p>
 <p>数据太多了，我就不进行往下拖数据了，主要是没钱买服务器跑脚本qwq</p>
 <h2 id="三、总结："><a href="#三、总结：" class="headerlink" title="三、总结："></a>三、总结：</h2><p>漏洞比较小，当作实战中的练手了，sqlmap确实很强大，要不还得我自己写脚本跑。。。<br>也算是联系了一下sqlmap的使用吧，漏洞已经提交了，希望修复之前不要被别人利用。</p>
 
@@ -278,7 +278,7 @@ partition
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="http://oeqaghyw9.bkt.clouddn.com/url/zhifubao.JPG">
+                      <img class="reward-img" src="http://www.lovebear.top/img/url_zhifubao.JPG">
                       <span class="reward-type">支付宝</span>
                     </div>
                     
@@ -562,10 +562,6 @@ partition
           
             <li class="search-li">
               <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>hexo主题</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://portal.qiniu.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>七牛云</a>
             </li>
           
             <li class="search-li">

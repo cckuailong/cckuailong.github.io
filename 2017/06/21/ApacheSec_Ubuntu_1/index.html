@@ -14,18 +14,18 @@
 <meta property="og:url" content="http://www.lovebear.top/2017/06/21/ApacheSec_Ubuntu_1/index.html">
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言：最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有所不同。">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/1.png">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/2.png">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/3.png">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/4.png">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/5.png">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/6.png">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/7.png">
-<meta property="og:updated_time" content="2017-06-23T00:26:19.989Z">
+<meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_1.png">
+<meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_2.png">
+<meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_3.png">
+<meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_4.png">
+<meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_5.png">
+<meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_6.png">
+<meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_7.png">
+<meta property="og:updated_time" content="2018-12-05T08:45:39.744Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache服务器安全--Ubuntu上的Apache安全配置（一）">
 <meta name="twitter:description" content="一、前言：最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有所不同。">
-<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/1.png">
+<meta name="twitter:image" content="http://www.lovebear.top/img/ApacheSec_1_1.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -69,7 +69,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://oeqaghyw9.bkt.clouddn.com/url/photoUrl.jpghead.jpg" class="js-avatar">
+			<img src="http://www.lovebear.top/img/url_photoUrl.jpghead.jpg" class="js-avatar">
 		</a>
 
 		<hgroup>
@@ -132,7 +132,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://oeqaghyw9.bkt.clouddn.com/url/photoUrl.jpghead.jpg" class="js-avatar">
+				<img src="http://www.lovebear.top/img/url_photoUrl.jpghead.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author">lovebear</h1>
@@ -194,7 +194,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套<br>Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache<br>更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有<br>所不同。</p>
 <a id="more"></a>
 <h2 id="二、安全问题及配置策略："><a href="#二、安全问题及配置策略：" class="headerlink" title="二、安全问题及配置策略："></a>二、安全问题及配置策略：</h2><h3 id="1、隐藏Apache的版本和操作系统信息"><a href="#1、隐藏Apache的版本和操作系统信息" class="headerlink" title="1、隐藏Apache的版本和操作系统信息"></a>1、隐藏Apache的版本和操作系统信息</h3><p>Apache默认会显示出你安装的Apache版本以及你的操作系统信息，这将会使你的服务器存在<br>很大的安全隐患。</p>
-<p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/1.png" alt="demo1"></p>
+<p><img src="http://www.lovebear.top/img/ApacheSec_1_1.png" alt="demo1"></p>
 <p>安全配置策略：<br>（1） 修改Apache主配置文件</p>
 <pre><code>sudo vim /etc/apache2/conf-enabled/security.conf
 </code></pre><p>（2） 增添或修改</p>
@@ -203,9 +203,9 @@ ServerTokens Prod
 </code></pre><p>（3）重启Apache</p>
 <pre><code>sudo /etc/init.d/apache2 restart
 </code></pre><p>配置完成效果，没有了信息的展示</p>
-<p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/2.png" alt="demo1"></p>
+<p><img src="http://www.lovebear.top/img/ApacheSec_1_2.png" alt="demo1"></p>
 <h3 id="2、关闭目录浏览和禁止符号链接（软链接）"><a href="#2、关闭目录浏览和禁止符号链接（软链接）" class="headerlink" title="2、关闭目录浏览和禁止符号链接（软链接）"></a>2、关闭目录浏览和禁止符号链接（软链接）</h3><p>Apache默认列出服务器上的文件列表，这会泄露很多其他项目的信息</p>
-<p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/3.png" alt="demo1"></p>
+<p><img src="http://www.lovebear.top/img/ApacheSec_1_3.png" alt="demo1"></p>
 <p>安全配置策略：<br>（1）修改apache2.conf</p>
 <pre><code>sudo vim /etc/apache2/apache2.conf
 </code></pre><p>（2）对网站根目录增添或修改</p>
@@ -215,23 +215,23 @@ Require all granted
 </code></pre><p>（3）重启Apache</p>
 <pre><code>sudo /etc/init.d/apache2 restart
 </code></pre><p>配置完成效果，根目录拒绝列出服务器文件</p>
-<p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/4.png" alt="demo1"></p>
+<p><img src="http://www.lovebear.top/img/ApacheSec_1_4.png" alt="demo1"></p>
 <h3 id="3、取消不必须的模块"><a href="#3、取消不必须的模块" class="headerlink" title="3、取消不必须的模块"></a>3、取消不必须的模块</h3><p>Apache默认安装了一些正常使用时用不到的不必要模块，建议取消这些不必要的模块，可以通过<br>下面的命令来查看当前已安装的模块</p>
 <pre><code>sudo ls /etc/apache2/mod-enabled/
-</code></pre><p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/5.png" alt="demo1"></p>
+</code></pre><p><img src="http://www.lovebear.top/img/ApacheSec_1_5.png" alt="demo1"></p>
 <p>安全配置策略：<br>autoindex模块不必要，取消加载</p>
 <p>（1）取消加载autoindex</p>
 <pre><code>sudo a2dismod autoindex
 </code></pre><p>（2）重启Apache</p>
 <pre><code>sudo /etc/init.d/apache2 restart
 </code></pre><p>配置完成效果，autoindex模块取消加载</p>
-<p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/6.png" alt="demo1"></p>
+<p><img src="http://www.lovebear.top/img/ApacheSec_1_6.png" alt="demo1"></p>
 <h3 id="4、利用ModSecurity模块"><a href="#4、利用ModSecurity模块" class="headerlink" title="4、利用ModSecurity模块"></a>4、利用ModSecurity模块</h3><p>ModSecurity模块是一个用来保护你的web服务器的免费模块，它可以防御多种攻击，如SQL注入<br>XSS，session劫持，暴力破解等，这个模块还可以实时监控你的流量。</p>
 <p>安全配置策略：<br>（1）安装ModSecurity模块</p>
 <pre><code>sudo apt-get install libapache2-modsecurity
 </code></pre><p>（2）查看ModSecurity模块是否安装成功并运行</p>
 <pre><code>sudo apachectl -M | grep --color security
-</code></pre><p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/1/7.png" alt="demo1"></p>
+</code></pre><p><img src="http://www.lovebear.top/img/ApacheSec_1_7.png" alt="demo1"></p>
 <p>（3）为了使ModSecurity模块规则生效，，你需要重命名并且修改推荐的安全配置文件并且设置SecRuleEngine选项为on</p>
 <pre><code>sudo mv /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf
 </code></pre><pre><code>sudo vim /etc/modsecurity/modsecurity.conf
@@ -285,7 +285,7 @@ Deny from all        禁止所有对根目录（/）的访问
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="http://oeqaghyw9.bkt.clouddn.com/url/zhifubao.JPG">
+                      <img class="reward-img" src="http://www.lovebear.top/img/url_zhifubao.JPG">
                       <span class="reward-type">支付宝</span>
                     </div>
                     
@@ -578,10 +578,6 @@ Deny from all        禁止所有对根目录（/）的访问
           
             <li class="search-li">
               <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>hexo主题</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://portal.qiniu.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>七牛云</a>
             </li>
           
             <li class="search-li">

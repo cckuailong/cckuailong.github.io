@@ -14,13 +14,13 @@
 <meta property="og:url" content="http://www.lovebear.top/2017/06/23/ApacheSec_Ubuntu_2/index.html">
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言：上一章，我们列举了一系列Ubuntu端Apache配置的安全防御措施，这一章我们将继续来关注Apache安全配置策略。这一章主要介绍一些先进的小技术来使你的服务器变得更加安全。">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/2/1.png">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/2/2.png">
-<meta property="og:updated_time" content="2017-06-23T05:25:17.753Z">
+<meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_2_1.png">
+<meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_2_2.png">
+<meta property="og:updated_time" content="2018-12-05T08:46:27.306Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache服务器安全--Ubuntu上的Apache安全配置（二）">
 <meta name="twitter:description" content="一、前言：上一章，我们列举了一系列Ubuntu端Apache配置的安全防御措施，这一章我们将继续来关注Apache安全配置策略。这一章主要介绍一些先进的小技术来使你的服务器变得更加安全。">
-<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/2/1.png">
+<meta name="twitter:image" content="http://www.lovebear.top/img/ApacheSec_2_1.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -64,7 +64,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://oeqaghyw9.bkt.clouddn.com/url/photoUrl.jpghead.jpg" class="js-avatar">
+			<img src="http://www.lovebear.top/img/url_photoUrl.jpghead.jpg" class="js-avatar">
 		</a>
 
 		<hgroup>
@@ -127,7 +127,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://oeqaghyw9.bkt.clouddn.com/url/photoUrl.jpghead.jpg" class="js-avatar">
+				<img src="http://www.lovebear.top/img/url_photoUrl.jpghead.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author">lovebear</h1>
@@ -202,7 +202,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <pre><code>sudo a2enmod headers
 </code></pre><p>安装完毕后，重启成功</p>
 <p>配置完成效果，访问应答包中出现了X-Frame-Options：SAMEORIGIN</p>
-<p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/2/1.png" alt="demo1"></p>
+<p><img src="http://www.lovebear.top/img/ApacheSec_2_1.png" alt="demo1"></p>
 <h3 id="2、禁用Etag"><a href="#2、禁用Etag" class="headerlink" title="2、禁用Etag"></a>2、禁用Etag</h3><p>Etag是服务器和浏览器的一个功能，用来判断浏览器缓存里的元素是否和原来服务器上的<br>一致。Apache默认的Etag格式为inode-size-timestamp，暴露了一些敏感信息，可以修改Etag的<br>格式来保护敏感信息，但最好的方法是将Etag关闭，因为Etag还会引发一些其他的问题。</p>
 <p>安全配置策略：</p>
 <p>（1）修改apache2.conf</p>
@@ -241,7 +241,7 @@ RewriteRule .* - [F]
 </code></pre><p>（3）重启Apache</p>
 <pre><code>sudo /etc/init.d/apache2 restart
 </code></pre><p>配置完成效果，访问应答包中出现了X-X-XSS-Protection</p>
-<p><img src="http://oeqaghyw9.bkt.clouddn.com/ApacheSec/2/2.png" alt="demo1"></p>
+<p><img src="http://www.lovebear.top/img/ApacheSec_2_2.png" alt="demo1"></p>
 <h3 id="6、使用HTTPOnly标志保护Cookies"><a href="#6、使用HTTPOnly标志保护Cookies" class="headerlink" title="6、使用HTTPOnly标志保护Cookies"></a>6、使用HTTPOnly标志保护Cookies</h3><p>网站的XSS漏洞会使用户被攻击者进行cookie的盗取，利用的是脚本获取cookie后发送到攻击<br>者的网站，而HTTPOnly标志会禁止脚本获取cookie，从而防止了盗取用户cookie。</p>
 <p>安全配置策略：</p>
 <p>（1）修改apache2配置文件</p>
@@ -267,7 +267,7 @@ RewriteRule .* - [F]
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="http://oeqaghyw9.bkt.clouddn.com/url/zhifubao.JPG">
+                      <img class="reward-img" src="http://www.lovebear.top/img/url_zhifubao.JPG">
                       <span class="reward-type">支付宝</span>
                     </div>
                     
@@ -560,10 +560,6 @@ RewriteRule .* - [F]
           
             <li class="search-li">
               <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>hexo主题</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://portal.qiniu.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>七牛云</a>
             </li>
           
             <li class="search-li">

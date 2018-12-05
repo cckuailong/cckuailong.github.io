@@ -18,7 +18,7 @@
 原题目链接">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
-<meta property="og:updated_time" content="2017-01-17T11:26:07.513Z">
+<meta property="og:updated_time" content="2018-12-05T08:47:24.557Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CTF--Airdecap-ng分析实战">
 <meta name="twitter:description" content="一、前言：Airdecap-ng十分的强大，他被用作无线网络的分析与破解中，有linux版本和windows版本，大家可以根据自己的系统进行下载安装，下面通过一道简单的ctf实战题来接触了解一下Airdecap的强大之处。
@@ -67,7 +67,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://oeqaghyw9.bkt.clouddn.com/url/photoUrl.jpghead.jpg" class="js-avatar">
+			<img src="http://www.lovebear.top/img/url_photoUrl.jpghead.jpg" class="js-avatar">
 		</a>
 
 		<hgroup>
@@ -130,7 +130,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://oeqaghyw9.bkt.clouddn.com/url/photoUrl.jpghead.jpg" class="js-avatar">
+				<img src="http://www.lovebear.top/img/url_photoUrl.jpghead.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author">lovebear</h1>
@@ -193,15 +193,15 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <p><a href="http://www.shiyanbar.com/ctf/1853" target="_blank" rel="external">原题目链接</a></p>
 <a id="more"></a>
 <h2 id="二、开始使用airdecap-ng："><a href="#二、开始使用airdecap-ng：" class="headerlink" title="二、开始使用airdecap-ng："></a>二、开始使用airdecap-ng：</h2><h3 id="1-用aircrack-ng检查cap包"><a href="#1-用aircrack-ng检查cap包" class="headerlink" title="1. 用aircrack-ng检查cap包:"></a>1. 用aircrack-ng检查cap包:</h3><pre><code>aircrack-ng-1.1-win\bin&gt;aircrack-ng.exe shipin.cap
-</code></pre><p><img src="http://oeqaghyw9.bkt.clouddn.com/airdecap/1.png" alt="demo1"></p>
+</code></pre><p><img src="http://www.lovebear.top/img/airdecap_1.png" alt="demo1"></p>
 <h3 id="2-使用弱口令字典破解wpa加密"><a href="#2-使用弱口令字典破解wpa加密" class="headerlink" title="2. 使用弱口令字典破解wpa加密:"></a>2. 使用弱口令字典破解wpa加密:</h3><pre><code>aircrack-ng.exe shipin.cap -w wordlist.txt
 </code></pre><p>这里wordlist.txt是弱口令字典，包含了常见的路由器密码，可以网上下载到</p>
 <p>这一步骤可以使用EWSA软件进行破解，得到密码88888888</p>
 <h3 id="3-用密码解密cap"><a href="#3-用密码解密cap" class="headerlink" title="3. 用密码解密cap:"></a>3. 用密码解密cap:</h3><pre><code>airdecap-ng.exe shipin.cap -e 0719 -p 88888888
 </code></pre><p>使用到了刚才的essid和破解的密码</p>
-<p><img src="http://oeqaghyw9.bkt.clouddn.com/airdecap/2.png" alt="demo2"></p>
+<p><img src="http://www.lovebear.top/img/airdecap_2.png" alt="demo2"></p>
 <p>于是在目录下生成一个shipin-dec.cap，使用wireshark打开,找到A记录的第一个，即为flag</p>
-<p><img src="http://oeqaghyw9.bkt.clouddn.com/airdecap/3.png" alt="demo3"></p>
+<p><img src="http://www.lovebear.top/img/airdecap_3.png" alt="demo3"></p>
 
       
 
@@ -219,7 +219,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
                   <div class="reward-box">
                     
                     <div class="reward-box-item">
-                      <img class="reward-img" src="http://oeqaghyw9.bkt.clouddn.com/url/zhifubao.JPG">
+                      <img class="reward-img" src="http://www.lovebear.top/img/url_zhifubao.JPG">
                       <span class="reward-type">支付宝</span>
                     </div>
                     
@@ -512,10 +512,6 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
           
             <li class="search-li">
               <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>hexo主题</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://portal.qiniu.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>七牛云</a>
             </li>
           
             <li class="search-li">
