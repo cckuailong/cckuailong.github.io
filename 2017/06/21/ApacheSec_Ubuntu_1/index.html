@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
   <title>Apache服务器安全--Ubuntu上的Apache安全配置（一） | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、前言：最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有所不同。">
+<meta name="keywords" content="Ubuntu,Apache">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Apache服务器安全--Ubuntu上的Apache安全配置（一）">
 <meta property="og:url" content="http://www.lovebear.top/2017/06/21/ApacheSec_Ubuntu_1/index.html">
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言：最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有所不同。">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_1.png">
 <meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_2.png">
 <meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_3.png">
@@ -21,7 +23,7 @@
 <meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_5.png">
 <meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_6.png">
 <meta property="og:image" content="http://www.lovebear.top/img/ApacheSec_1_7.png">
-<meta property="og:updated_time" content="2018-12-05T08:45:39.744Z">
+<meta property="og:updated_time" content="2018-12-05T08:45:39.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache服务器安全--Ubuntu上的Apache安全配置（一）">
 <meta name="twitter:description" content="一、前言：最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有所不同。">
@@ -32,12 +34,12 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
   
 
   
 
-  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc" />
+  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc">
   <script>(function(){
 var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?1bc693950a04b443481f93da0209d936":"https://jspassport.ssl.qhimg.com/11.0.1.js?1bc693950a04b443481f93da0209d936";
 document.write('<script src="' + src + '" id="sozz"><\/script>');
@@ -60,7 +62,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 
   <script src="/js/jquery.js"></script>
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -173,7 +175,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ApacheSec_Ubuntu_1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ApacheSec_Ubuntu_1" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -185,7 +187,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
   
 
         <a href="/2017/06/21/ApacheSec_Ubuntu_1/" class="archive-article-date">
-  	<time datetime="2017-06-21T09:24:39.814Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-21</time>
+  	<time datetime="2017-06-21T09:24:39.815Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-21</time>
 </a>
       </header>
     
@@ -451,14 +453,9 @@ Deny from all        禁止所有对根目录（/）的访问
 	}
 </script>
 
-<script src="/./main.js?v=4.0.0.js"></script>
+<script src="/./main.js?v=4.0.0"></script>
 
 
-
-<div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
-<a title="totop"><img src="/img/scrollup.png"/></a>
-</div>
-<script src="/js/totop.js"></script>
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
   <div class="tools-wrap">
@@ -501,6 +498,22 @@ Deny from all        禁止所有对根目录（/）的访问
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">翻墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
@@ -511,29 +524,13 @@ Deny from all        禁止所有对根目录（/）的访问
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">pacman</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">翻墙</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
@@ -678,5 +675,5 @@ Deny from all        禁止所有对根目录（/）的访问
 
 </div>
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true}});</script></body>
 </html>

@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
   <title>Ubuntu-Windows双系统安装教程 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、前言：最近，在为一个项目做可行性分析时，发现使用linux开发有一些优势，可以方便的调用一些已有的工具。原来一直在虚拟机中使用linux，想到最近也在不断完善linux的知识，所以干脆就装个linux，想到了安装linux-windows双系统，本文的操作环境是ubuntu 16.04和windows 8.1，背景为已安装windows的基础上安装ubuntu。">
+<meta name="keywords" content="ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu-Windows双系统安装教程">
 <meta property="og:url" content="http://www.lovebear.top/2018/02/10/Ubuntu-Windows-DoubleOS/index.html">
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言：最近，在为一个项目做可行性分析时，发现使用linux开发有一些优势，可以方便的调用一些已有的工具。原来一直在虚拟机中使用linux，想到最近也在不断完善linux的知识，所以干脆就装个linux，想到了安装linux-windows双系统，本文的操作环境是ubuntu 16.04和windows 8.1，背景为已安装windows的基础上安装ubuntu。">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2018-12-05T08:54:43.208Z">
+<meta property="og:updated_time" content="2018-12-05T08:54:43.209Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu-Windows双系统安装教程">
 <meta name="twitter:description" content="一、前言：最近，在为一个项目做可行性分析时，发现使用linux开发有一些优势，可以方便的调用一些已有的工具。原来一直在虚拟机中使用linux，想到最近也在不断完善linux的知识，所以干脆就装个linux，想到了安装linux-windows双系统，本文的操作环境是ubuntu 16.04和windows 8.1，背景为已安装windows的基础上安装ubuntu。">
@@ -27,12 +29,12 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
   
 
   
 
-  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc" />
+  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc">
   <script>(function(){
 var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?1bc693950a04b443481f93da0209d936":"https://jspassport.ssl.qhimg.com/11.0.1.js?1bc693950a04b443481f93da0209d936";
 document.write('<script src="' + src + '" id="sozz"><\/script>');
@@ -55,7 +57,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 
   <script src="/js/jquery.js"></script>
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -168,7 +170,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Ubuntu-Windows-DoubleOS" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Ubuntu-Windows-DoubleOS" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -180,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
   
 
         <a href="/2018/02/10/Ubuntu-Windows-DoubleOS/" class="archive-article-date">
-  	<time datetime="2018-02-10T04:11:55.646Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-10</time>
+  	<time datetime="2018-02-10T04:11:55.647Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-10</time>
 </a>
       </header>
     
@@ -192,19 +194,19 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <li>修改BOIS启动项</li>
 </ol>
 <p>（1） 重启windows，开机时进入BOIS（Thinkpad按F12，其他品牌的电脑快捷键自行查询）<br>（2） Tab选择App Menu，选中Setup，点击Enter<br>（3） 选择Security，选中最下面的Secure Boot，点击Enter，Secure Boot修改为Disabled<br>（4） Esc退出，选择Startup，UEFI/Legacy Boot修改为Both，UEFI/Legacy Boot Priority修改为<br>UEFIFirst，CSM Support 修改为Yes<br>（5） F10，保存并退出</p>
-<ol>
+<ol start="2">
 <li>清理磁盘空间</li>
 </ol>
 <p>（1） 我的电脑右键–管理–磁盘管理<br>（2） 选中你要安装Ubuntu的磁盘，右键–删除卷</p>
-<ol>
+<ol start="3">
 <li>制作Ubuntu启动盘</li>
 </ol>
 <p>（1） 插入u盘，管理员打开UltraISO，文件–打开，找到下载好的iso镜像文件<br>（2） 启动–写入硬盘映像<br>（3） 点击格式化，其他选项默认<br>（4） 点击写入</p>
-<ol>
+<ol start="4">
 <li>安装ubuntu</li>
 </ol>
 <p>（1） 重启计算机（插入u盘），进入BOIS（F12），选择 USB启动选项<br>（2） 选择install ubuntu，进行安装<br>（3） 分区时，选择高级选项，选择分出的空闲分区（freespace，刚刚删除卷的那部分），为其<br>分配根目录（/），其他目录根据自己需要分区，此处注意不要把自己其他地方的东西覆<br>盖了，一定要看好了<br>（4） 安装完毕， 重启后，进入ubuntu双系统启动引导界面</p>
-<ol>
+<ol start="5">
 <li>修改启动顺序（可选）</li>
 </ol>
 <pre><code>sudo vim /etc/default/grub
@@ -393,14 +395,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 	}
 </script>
 
-<script src="/./main.js?v=4.0.0.js"></script>
+<script src="/./main.js?v=4.0.0"></script>
 
 
-
-<div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
-<a title="totop"><img src="/img/scrollup.png"/></a>
-</div>
-<script src="/js/totop.js"></script>
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
   <div class="tools-wrap">
@@ -443,6 +440,22 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">翻墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
@@ -453,29 +466,13 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">pacman</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">翻墙</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
@@ -620,5 +617,5 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 
 </div>
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true}});</script></body>
 </html>

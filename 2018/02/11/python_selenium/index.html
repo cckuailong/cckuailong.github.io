@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
   <title>Python+Selenium进行动态加载网页爬取 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、前言：今天想要爬取PTA的题目信息，但是发现scrapy爬取返回的response中没有题目信息，检查元素查看了一下PTA题目网页的源代码，发现这个网页是使用js动态加载的，也就是说是需要浏览器加载好js代码，返回题目信息。那怎么进行爬虫呢，这就需要使用前几章提到的Selenium，本文使用python+Selenium进行动态加载网页爬取的演示和讲解。">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python+Selenium进行动态加载网页爬取">
 <meta property="og:url" content="http://www.lovebear.top/2018/02/11/Python_selenium/index.html">
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言：今天想要爬取PTA的题目信息，但是发现scrapy爬取返回的response中没有题目信息，检查元素查看了一下PTA题目网页的源代码，发现这个网页是使用js动态加载的，也就是说是需要浏览器加载好js代码，返回题目信息。那怎么进行爬虫呢，这就需要使用前几章提到的Selenium，本文使用python+Selenium进行动态加载网页爬取的演示和讲解。">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
-<meta property="og:updated_time" content="2018-09-17T02:26:20.376Z">
+<meta property="og:updated_time" content="2018-09-17T02:26:20.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python+Selenium进行动态加载网页爬取">
 <meta name="twitter:description" content="一、前言：今天想要爬取PTA的题目信息，但是发现scrapy爬取返回的response中没有题目信息，检查元素查看了一下PTA题目网页的源代码，发现这个网页是使用js动态加载的，也就是说是需要浏览器加载好js代码，返回题目信息。那怎么进行爬虫呢，这就需要使用前几章提到的Selenium，本文使用python+Selenium进行动态加载网页爬取的演示和讲解。">
@@ -27,12 +29,12 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
   
 
   
 
-  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc" />
+  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc">
   <script>(function(){
 var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?1bc693950a04b443481f93da0209d936":"https://jspassport.ssl.qhimg.com/11.0.1.js?1bc693950a04b443481f93da0209d936";
 document.write('<script src="' + src + '" id="sozz"><\/script>');
@@ -55,7 +57,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 
   <script src="/js/jquery.js"></script>
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -168,7 +170,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python_selenium" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Python_selenium" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -180,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
   
 
         <a href="/2018/02/11/Python_selenium/" class="archive-article-date">
-  	<time datetime="2018-02-11T01:10:57.795Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
+  	<time datetime="2018-02-11T01:10:57.796Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
 </a>
       </header>
     
@@ -196,11 +198,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <pre><code>browser = webdriver.Chrome()
 </code></pre><p>Selenium可以声明很多种浏览器对象，可以模拟各种浏览器，需要对应浏览器类型及其版本下载<br>相应的webdriver，并将webdriver的目录加入到系统的环境变量中。</p>
 <p>Selenium 支持的伪浏览器： Chrome, Firefox, IE, Opera, HtmlUnit, PhantomJS, Appium等</p>
-<ol>
+<ol start="2">
 <li>访问抓取页面</li>
 </ol>
 <pre><code>browser.get(&quot;http://www.baidu.com&quot;)
-</code></pre><ol>
+</code></pre><ol start="3">
 <li>查找元素</li>
 </ol>
 <p>查找元素的方式有很多种，可以进行单个元素或多个元素的查询，多个元素查询返回查询列表</p>
@@ -259,8 +261,8 @@ f=codecs.open(r&#39;C:\Users\lovebear96\Desktop\1.txt&#39;,&#39;w&#39;,&#39;utf-
 f.write(res)
 f.close()
 
-browser.close()
-</code></pre><ol>
+browser.close() 
+</code></pre><ol start="4">
 <li>多说一句</li>
 </ol>
 <p>代码中出现了–headless，这个是chrome的无浏览器模式，可以不用打开浏览器进行爬取，可以节<br>省资源和加快爬取速度。这个功能只有在高版本的chrome中才支持:</p>
@@ -450,14 +452,9 @@ browser.close()
 	}
 </script>
 
-<script src="/./main.js?v=4.0.0.js"></script>
+<script src="/./main.js?v=4.0.0"></script>
 
 
-
-<div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
-<a title="totop"><img src="/img/scrollup.png"/></a>
-</div>
-<script src="/js/totop.js"></script>
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
   <div class="tools-wrap">
@@ -500,6 +497,22 @@ browser.close()
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">翻墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
@@ -510,29 +523,13 @@ browser.close()
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">pacman</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">翻墙</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
@@ -677,5 +674,5 @@ browser.close()
 
 </div>
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true}});</script></body>
 </html>

