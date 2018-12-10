@@ -6,23 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>素数表的快速创建 | Blog for You</title>
+  <title>CAIDA-Bgpcorsaro创建新插件（后附一键配置脚本） | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：进入大学第一学期的第一个实验就是，在一定的时间限制内，找出0~2000000的素数，也就是创建一个2000000以内的素数表。普通的素数遍历方式肯定行不通，简单优化（如sqrt(2000000),循环时剔除偶数，等方法）也不见得能通过测试，这里介绍两种进一步优化的算法。 我们知道，要想减少算法的时间复杂度，除了优化算法，另一种必不可少的思想就是“空间换时间”。本文第一种算法是对算法的优化">
-<meta name="keywords" content="python">
+  <meta name="description" content="一、前言：最近需要做有关BGP数据处理分析的工作，CAIDA提供了开源的BGPStream帮助大家更加系统对BGP数据进行分析和处理。其中的Bgpcorsaro模块更是提供了插件功能，提供了一个系统的数据分析框架。但是由于BGPStream还不是很完善，提供的release和github上的版本不一致，而且教程混乱，甚至有很多错误。。。基于种种问题，我通过摸索，找到了创建新的Bgpcorsaro插">
+<meta name="keywords" content="BGP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="素数表的快速创建">
-<meta property="og:url" content="http://www.lovebear.top/2017/01/31/GetPrimeList/index.html">
+<meta property="og:title" content="CAIDA-Bgpcorsaro创建新插件（后附一键配置脚本）">
+<meta property="og:url" content="http://www.lovebear.top/2018/12/07/Bgpcorsaro_create_new_plugin/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：进入大学第一学期的第一个实验就是，在一定的时间限制内，找出0~2000000的素数，也就是创建一个2000000以内的素数表。普通的素数遍历方式肯定行不通，简单优化（如sqrt(2000000),循环时剔除偶数，等方法）也不见得能通过测试，这里介绍两种进一步优化的算法。 我们知道，要想减少算法的时间复杂度，除了优化算法，另一种必不可少的思想就是“空间换时间”。本文第一种算法是对算法的优化">
+<meta property="og:description" content="一、前言：最近需要做有关BGP数据处理分析的工作，CAIDA提供了开源的BGPStream帮助大家更加系统对BGP数据进行分析和处理。其中的Bgpcorsaro模块更是提供了插件功能，提供了一个系统的数据分析框架。但是由于BGPStream还不是很完善，提供的release和github上的版本不一致，而且教程混乱，甚至有很多错误。。。基于种种问题，我通过摸索，找到了创建新的Bgpcorsaro插">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
-<meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2018-12-05T08:50:44.025Z">
+<meta property="og:updated_time" content="2018-12-10T07:10:24.800Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="素数表的快速创建">
-<meta name="twitter:description" content="一、前言：进入大学第一学期的第一个实验就是，在一定的时间限制内，找出0~2000000的素数，也就是创建一个2000000以内的素数表。普通的素数遍历方式肯定行不通，简单优化（如sqrt(2000000),循环时剔除偶数，等方法）也不见得能通过测试，这里介绍两种进一步优化的算法。 我们知道，要想减少算法的时间复杂度，除了优化算法，另一种必不可少的思想就是“空间换时间”。本文第一种算法是对算法的优化">
-<meta name="twitter:image" content="http://www.lovebear.top/img/54494-106.jpg">
+<meta name="twitter:title" content="CAIDA-Bgpcorsaro创建新插件（后附一键配置脚本）">
+<meta name="twitter:description" content="一、前言：最近需要做有关BGP数据处理分析的工作，CAIDA提供了开源的BGPStream帮助大家更加系统对BGP数据进行分析和处理。其中的Bgpcorsaro模块更是提供了插件功能，提供了一个系统的数据分析框架。但是由于BGPStream还不是很完善，提供的release和github上的版本不一致，而且教程混乱，甚至有很多错误。。。基于种种问题，我通过摸索，找到了创建新的Bgpcorsaro插">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -170,85 +167,104 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-GetPrimeList" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Bgpcorsaro_create_new_plugin" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      素数表的快速创建
+      CAIDA-Bgpcorsaro创建新插件（后附一键配置脚本）
     </h1>
   
 
-        <a href="/2017/01/31/GetPrimeList/" class="archive-article-date">
-  	<time datetime="2017-01-31T12:52:33.539Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-31</time>
+        <a href="/2018/12/07/Bgpcorsaro_create_new_plugin/" class="archive-article-date">
+  	<time datetime="2018-12-07T05:59:49.744Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-07</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>进入大学第一学期的第一个实验就是，在一定的时间限制内，找出0~2000000的素数，也就是<br>创建一个2000000以内的素数表。普通的素数遍历方式肯定行不通，简单优化（如sqrt(2000000),<br>循环时剔除偶数，等方法）也不见得能通过测试，这里介绍两种进一步优化的算法。</p>
-<p>我们知道，要想减少算法的时间复杂度，除了优化算法，另一种必不可少的思想就是“空间换<br>时间”。本文第一种算法是对算法的优化，第二种算法是利用“空间换时间”的思想，使时间复杂<br>度达到最小化。</p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近需要做有关BGP数据处理分析的工作，CAIDA提供了开源的BGPStream帮助大家<br>更加系统对BGP数据进行分析和处理。其中的Bgpcorsaro模块更是提供了插件功能，<br>提供了一个系统的数据分析框架。但是由于BGPStream还不是很完善，提供的release<br>和github上的版本不一致，而且教程混乱，甚至有很多错误。。。基于种种问题，<br>我通过摸索，找到了创建新的Bgpcorsaro插件的正确配置方法，并写出了一个一键<br>进行新插件配置的脚本，在此做记录。</p>
 <a id="more"></a>
-<h2 id="二、素数表优化算法："><a href="#二、素数表优化算法：" class="headerlink" title="二、素数表优化算法："></a>二、素数表优化算法：</h2><h3 id="1-算法思想："><a href="#1-算法思想：" class="headerlink" title="1. 算法思想："></a>1. 算法思想：</h3><p>判断一个数是不是素数的时候，我们经常的做法就是从2遍历到这个数的平方根大小（即2&lt;=i&lt;=sqrt(n)），<br>用 n%i 判断是否等于0，来进行素数判断。<br>对这个算法进行优化，就是需要减少i的个数，来减少循环的次数。那么思考，如果一个合数h<br>作为n（判断n是否为素数）的因子，则n一定不是素数。所以，这里只需要令i为素数（即遍历素表），<br>来计算n%i即可。</p>
-<h3 id="2-python代码"><a href="#2-python代码" class="headerlink" title="2. python代码"></a>2. python代码</h3><pre><code>def isPrime(n,pList):  
-    i=0
-    while(pList[i]&lt;=math.sqrt(n)):  
-        if(n%pList[i]==0):
-            return False
-        i+=1
-    return True
-
-#素数表创建
-def getPrimeList(num):
-    pList=[2]
-    for i in xrange(3,num,2):
-        if(isPrime(i,pList)):
-            pList.append(i)
-    return pList
-</code></pre><h2 id="三、空间换时间法："><a href="#三、空间换时间法：" class="headerlink" title="三、空间换时间法："></a>三、空间换时间法：</h2><h3 id="1-算法思想：-1"><a href="#1-算法思想：-1" class="headerlink" title="1. 算法思想："></a>1. 算法思想：</h3><p>首先为1到2000000创建一个列表，记录是否被访问过（初始化为0，访问过为1）。一个数为素数，<br>那么它的所有整数倍的数都是合数，将其整数倍的数标记为已访问，这样访问遍历的次数<br>将会大大减少。</p>
-<h3 id="2-python代码："><a href="#2-python代码：" class="headerlink" title="2. python代码："></a>2. python代码：</h3><pre><code>def isPrime_f(n):
-    for i in xrange(2,int(math.sqrt(n)),2):
-        if(n%i==0):
-            return False
-    return True
-
-#空间换时间的快速素数表创建
-def getPrimeList_fast(num):
-    pList=[]
-    visited=[0]*(num+1)
-    visited[0]=1
-    visited[1]=1
-    for i in xrange(0,num+1):
-        if(visited[i]==1):
-            continue
-        else:
-            if(isPrime_f(i)):
-                pList.append(i)
-                j=1
-                while(1):
-                    tmp=j*i
-                    j+=1
-                    if(tmp&gt;num):
-                        break
-                    visited[tmp]=1
-            else:
-                continue
-    return pList
-</code></pre><h2 id="四、两算法时间复杂度对比："><a href="#四、两算法时间复杂度对比：" class="headerlink" title="四、两算法时间复杂度对比："></a>四、两算法时间复杂度对比：</h2><ol>
-<li>python自带记录代码运行时间的模块timeit，编写如下代码：</li>
+<h2 id="二、环境配置："><a href="#二、环境配置：" class="headerlink" title="二、环境配置："></a>二、环境配置：</h2><p>BGPStream安装方法参见 <a href="http://bgpstream.caida.org/docs/install/bgpstream" target="_blank" rel="noopener">BGPStream安装</a><br>此处不再赘述，这里没什么问题，由于我使用的是ubuntu，所以下面给出的配置针对<br>ubuntu进行说明，其他系统原理一致，配置方法类似。<br>运行以下命令进行环境配置：</p>
+<pre><code>sudo apt-get install automake autoconf aptitude
+sudo aptitude install libtool
+</code></pre><h2 id="三、创建新的插件："><a href="#三、创建新的插件：" class="headerlink" title="三、创建新的插件："></a>三、创建新的插件：</h2><p>这里还是以官网上的elemcounter作为新插件的名字。</p>
+<ol>
+<li>编辑 configure.ac<br>添加ED_WITH_PLUGIN()</li>
 </ol>
-<pre><code>t1=Timer(&quot;getPrimeList(100000)&quot;,&quot;from __main__ import getPrimeList&quot;)
-t2=Timer(&quot;getPrimeList_fast(100000)&quot;,&quot;from __main__ import getPrimeList_fast&quot;)
-print t1.timeit(1)
-print t2.timeit(1)
+<pre><code>    ED_WITH_PLUGIN([bgpcorsaro_pfxmonitor],[pfxmonitor],[PFXMONITOR],[yes])
+    ED_WITH_PLUGIN([bgpcorsaro_pacifier],[pacifier],[PACIFIER],[yes])
+
+    ED_WITH_PLUGIN([bgpcorsaro_elemcounter],[elemcounter],[ELEMCOUNTER],[yes])
+
+    # this MUST go after all the ED_WITH_PLUGIN macro calls
+    AC_DEFINE_UNQUOTED([ED_PLUGIN_INIT_ALL_ENABLED], $ED_PLUGIN_INIT_ALL_ENABLED,
+               [plugins to call the init macro for in bgpcorsaro_plugin.c])
 </code></pre><ol start="2">
-<li>运行结果：</li>
+<li>编辑 bgpcorsaro/lib/bgpcorsaro_plugin.h<br>按上面的格式添加，并修改最大插件ID</li>
 </ol>
-<pre><code>0.164174172965     #优化算法
-0.0783876242201    #空间换时间法
-</code></pre><h2 id="五、总结："><a href="#五、总结：" class="headerlink" title="五、总结："></a>五、总结：</h2><p>两种算法的优化效果都非常的好，第二种方法虽然非常快，但是十分耗费空间，这时，算法<br>的选择就需要大家根据需求进行必要选择了。</p>
+<pre><code>    typedef enum bgpcorsaro_plugin_id
+    {
+      /** Prefix Monitor plugin */
+      BGPCORSARO_PLUGIN_ID_PFXMONITOR       = 1,
+
+      /** Pacifier plugin */
+      BGPCORSARO_PLUGIN_ID_PACIFIER         = 2,
+
+      /** Elem Counter plugin */
+      BGPCORSARO_PLUGIN_ID_ELEMCOUNTER      = 3,
+
+      /** Maximum plugin ID assigned */
+      BGPCORSARO_PLUGIN_ID_MAX              = BGPCORSARO_PLUGIN_ID_ELEMCOUNTER
+    } bgpcorsaro_plugin_id_t;
+</code></pre><ol start="3">
+<li>编辑 bgpcorsaro/lib/bgpcorsaro_plugin</li>
+</ol>
+<pre><code>    #ifdef WITH_PLUGIN_ELEMCOUNTER
+    #include &quot;bgpcorsaro_elemcounter.h&quot;
+    #endif
+</code></pre><ol start="4">
+<li>编辑 bgpcorsaro/lib/plugins/Makefile.am  （注意这里官网写错了，缺少了plugins）</li>
+</ol>
+<pre><code>    if WITH_PLUGIN_ELEMCOUNTER
+    PLUGIN_SRC+=bgpcorsaro_elemcounter.c bgpcorsaro_elemcounter.h
+    endif
+</code></pre><ol start="5">
+<li>创建 bgpcorsaro/lib/plugins/bgpcorsaro_elemcounter.h</li>
+</ol>
+<pre><code>    #ifndef __BGPCORSARO_ELEMCOUNTER_H
+    #define __BGPCORSARO_ELEMCOUNTER_H
+
+    #include &quot;bgpcorsaro_plugin.h&quot;
+
+    /** @file
+     *
+     * @brief Header file which exports bgpcorsaro_elemcounter plugin API
+     *
+     */
+
+    BGPCORSARO_PLUGIN_GENERATE_PROTOS(bgpcorsaro_elemcounter)
+
+    #endif /* __BGPCORSARO_ELEMCOUNTER_H */
+</code></pre><ol start="6">
+<li><p>创建 bgpcorsaro/lib/plugins/bgpcorsaro_elemcounter.c<br><a href="http://www.lovebear.top/resource/bgpcorsaro_elemcounter.c">查看bgpcorsaro_elemcounter.c代码</a></p>
+</li>
+<li><p>编译运行<br>回到BGPStream根目录，执行</p>
+</li>
+</ol>
+<pre><code>    autoreconf -vfi
+    ./configure
+    make
+    sudo make install
+</code></pre><p>若没有修改configure.ac和Makefile.am文件，则只需要执行</p>
+<pre><code>    make
+    sudo make install
+</code></pre><p>运行，检查-x中插件是否被添加成功。</p>
+<pre><code>bgpcorsaro -h
+</code></pre><h2 id="四-使用脚本，一键配置创建新插件："><a href="#四-使用脚本，一键配置创建新插件：" class="headerlink" title="四 使用脚本，一键配置创建新插件："></a>四 使用脚本，一键配置创建新插件：</h2><p>脚本下载及使用方法我已传到GitHub上</p>
+<p><a href="https://www.github.com/cckuailong/BGPStream_Operate_Plugin" target="_blank" rel="noopener">BGPCorsaro插件自动创建，删除脚本</a></p>
 
       
 
@@ -285,7 +301,7 @@ print t2.timeit(1)
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BGP/">BGP</a></li></ul>
 	</div>
 
       
@@ -338,7 +354,7 @@ print t2.timeit(1)
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2017/01/31/GetPrimeList/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2018/12/07/Bgpcorsaro_create_new_plugin/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -352,18 +368,9 @@ print t2.timeit(1)
   
 <nav id="article-nav">
   
-    <a href="/2017/02/01/Doublepalidrome/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          双基回文数的判断
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/01/31/Pem_format/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">openssl生成pem文件格式详解</div>
+    <a href="/2018/09/19/Ygtoo_TimeInject/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">阳光兔后台时间注入--可脱库</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -376,7 +383,7 @@ print t2.timeit(1)
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="GetPrimeList" data-title="素数表的快速创建" data-url="http://www.lovebear.top/2017/01/31/GetPrimeList/"></div>
+	<div class="ds-thread" data-thread-key="Bgpcorsaro_create_new_plugin" data-title="CAIDA-Bgpcorsaro创建新插件（后附一键配置脚本）" data-url="http://www.lovebear.top/2018/12/07/Bgpcorsaro_create_new_plugin/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

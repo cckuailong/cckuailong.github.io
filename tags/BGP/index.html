@@ -6,23 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>素数表的快速创建 | Blog for You</title>
+  <title>Tag: BGP | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：进入大学第一学期的第一个实验就是，在一定的时间限制内，找出0~2000000的素数，也就是创建一个2000000以内的素数表。普通的素数遍历方式肯定行不通，简单优化（如sqrt(2000000),循环时剔除偶数，等方法）也不见得能通过测试，这里介绍两种进一步优化的算法。 我们知道，要想减少算法的时间复杂度，除了优化算法，另一种必不可少的思想就是“空间换时间”。本文第一种算法是对算法的优化">
-<meta name="keywords" content="python">
-<meta property="og:type" content="article">
-<meta property="og:title" content="素数表的快速创建">
-<meta property="og:url" content="http://www.lovebear.top/2017/01/31/GetPrimeList/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Blog for You">
+<meta property="og:url" content="http://www.lovebear.top/tags/BGP/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：进入大学第一学期的第一个实验就是，在一定的时间限制内，找出0~2000000的素数，也就是创建一个2000000以内的素数表。普通的素数遍历方式肯定行不通，简单优化（如sqrt(2000000),循环时剔除偶数，等方法）也不见得能通过测试，这里介绍两种进一步优化的算法。 我们知道，要想减少算法的时间复杂度，除了优化算法，另一种必不可少的思想就是“空间换时间”。本文第一种算法是对算法的优化">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
-<meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2018-12-05T08:50:44.025Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="素数表的快速创建">
-<meta name="twitter:description" content="一、前言：进入大学第一学期的第一个实验就是，在一定的时间限制内，找出0~2000000的素数，也就是创建一个2000000以内的素数表。普通的素数遍历方式肯定行不通，简单优化（如sqrt(2000000),循环时剔除偶数，等方法）也不见得能通过测试，这里介绍两种进一步优化的算法。 我们知道，要想减少算法的时间复杂度，除了优化算法，另一种必不可少的思想就是“空间换时间”。本文第一种算法是对算法的优化">
-<meta name="twitter:image" content="http://www.lovebear.top/img/54494-106.jpg">
+<meta name="twitter:title" content="Blog for You">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -170,231 +162,54 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-GetPrimeList" class="article article-type-post " itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      素数表的快速创建
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/12/07/Bgpcorsaro_create_new_plugin/" class="archive-article-date">
+  	<time datetime="2018-12-07T05:59:49.744Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-07</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/12/07/Bgpcorsaro_create_new_plugin/">CAIDA-Bgpcorsaro创建新插件（后附一键配置脚本）</a>
     </h1>
   
 
-        <a href="/2017/01/31/GetPrimeList/" class="archive-article-date">
-  	<time datetime="2017-01-31T12:52:33.539Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-31</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>进入大学第一学期的第一个实验就是，在一定的时间限制内，找出0~2000000的素数，也就是<br>创建一个2000000以内的素数表。普通的素数遍历方式肯定行不通，简单优化（如sqrt(2000000),<br>循环时剔除偶数，等方法）也不见得能通过测试，这里介绍两种进一步优化的算法。</p>
-<p>我们知道，要想减少算法的时间复杂度，除了优化算法，另一种必不可少的思想就是“空间换<br>时间”。本文第一种算法是对算法的优化，第二种算法是利用“空间换时间”的思想，使时间复杂<br>度达到最小化。</p>
-<a id="more"></a>
-<h2 id="二、素数表优化算法："><a href="#二、素数表优化算法：" class="headerlink" title="二、素数表优化算法："></a>二、素数表优化算法：</h2><h3 id="1-算法思想："><a href="#1-算法思想：" class="headerlink" title="1. 算法思想："></a>1. 算法思想：</h3><p>判断一个数是不是素数的时候，我们经常的做法就是从2遍历到这个数的平方根大小（即2&lt;=i&lt;=sqrt(n)），<br>用 n%i 判断是否等于0，来进行素数判断。<br>对这个算法进行优化，就是需要减少i的个数，来减少循环的次数。那么思考，如果一个合数h<br>作为n（判断n是否为素数）的因子，则n一定不是素数。所以，这里只需要令i为素数（即遍历素表），<br>来计算n%i即可。</p>
-<h3 id="2-python代码"><a href="#2-python代码" class="headerlink" title="2. python代码"></a>2. python代码</h3><pre><code>def isPrime(n,pList):  
-    i=0
-    while(pList[i]&lt;=math.sqrt(n)):  
-        if(n%pList[i]==0):
-            return False
-        i+=1
-    return True
-
-#素数表创建
-def getPrimeList(num):
-    pList=[2]
-    for i in xrange(3,num,2):
-        if(isPrime(i,pList)):
-            pList.append(i)
-    return pList
-</code></pre><h2 id="三、空间换时间法："><a href="#三、空间换时间法：" class="headerlink" title="三、空间换时间法："></a>三、空间换时间法：</h2><h3 id="1-算法思想：-1"><a href="#1-算法思想：-1" class="headerlink" title="1. 算法思想："></a>1. 算法思想：</h3><p>首先为1到2000000创建一个列表，记录是否被访问过（初始化为0，访问过为1）。一个数为素数，<br>那么它的所有整数倍的数都是合数，将其整数倍的数标记为已访问，这样访问遍历的次数<br>将会大大减少。</p>
-<h3 id="2-python代码："><a href="#2-python代码：" class="headerlink" title="2. python代码："></a>2. python代码：</h3><pre><code>def isPrime_f(n):
-    for i in xrange(2,int(math.sqrt(n)),2):
-        if(n%i==0):
-            return False
-    return True
-
-#空间换时间的快速素数表创建
-def getPrimeList_fast(num):
-    pList=[]
-    visited=[0]*(num+1)
-    visited[0]=1
-    visited[1]=1
-    for i in xrange(0,num+1):
-        if(visited[i]==1):
-            continue
-        else:
-            if(isPrime_f(i)):
-                pList.append(i)
-                j=1
-                while(1):
-                    tmp=j*i
-                    j+=1
-                    if(tmp&gt;num):
-                        break
-                    visited[tmp]=1
-            else:
-                continue
-    return pList
-</code></pre><h2 id="四、两算法时间复杂度对比："><a href="#四、两算法时间复杂度对比：" class="headerlink" title="四、两算法时间复杂度对比："></a>四、两算法时间复杂度对比：</h2><ol>
-<li>python自带记录代码运行时间的模块timeit，编写如下代码：</li>
-</ol>
-<pre><code>t1=Timer(&quot;getPrimeList(100000)&quot;,&quot;from __main__ import getPrimeList&quot;)
-t2=Timer(&quot;getPrimeList_fast(100000)&quot;,&quot;from __main__ import getPrimeList_fast&quot;)
-print t1.timeit(1)
-print t2.timeit(1)
-</code></pre><ol start="2">
-<li>运行结果：</li>
-</ol>
-<pre><code>0.164174172965     #优化算法
-0.0783876242201    #空间换时间法
-</code></pre><h2 id="五、总结："><a href="#五、总结：" class="headerlink" title="五、总结："></a>五、总结：</h2><p>两种算法的优化效果都非常的好，第二种方法虽然非常快，但是十分耗费空间，这时，算法<br>的选择就需要大家根据需求进行必要选择了。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="http://www.lovebear.top/img/url_zhifubao.JPG">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BGP/">BGP</a></li></ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2017/01/31/GetPrimeList/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/02/01/Doublepalidrome/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          双基回文数的判断
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/01/31/Pem_format/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">openssl生成pem文件格式详解</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="GetPrimeList" data-title="素数表的快速创建" data-url="http://www.lovebear.top/2017/01/31/GetPrimeList/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"lovebear"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
+    
 
 
           </div>
@@ -422,9 +237,9 @@ print t2.timeit(1)
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
