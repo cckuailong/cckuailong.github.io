@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>CTF--python hashlib库中MD5用法 | Blog for You</title>
+  <title>Notepad++配置python环境 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：这篇博客介绍python hashlib库的MD5用法，通过一道具体的ctf题目来引入 原题目链接">
-<meta name="keywords" content="ctf,python,md5">
+  <meta name="description" content="一、前言：python是比较轻量级的，但是一些IDE为python集成了许多插件，造成其很大（如python xy），今天我们可以在文本编辑器中（本文使用notepad++）连接python,还原轻巧的python。">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CTF--python hashlib库中MD5用法">
-<meta property="og:url" content="http://www.lovebear.top/2017/01/17/CTF_Python_MD5/index.html">
+<meta property="og:title" content="Notepad++配置python环境">
+<meta property="og:url" content="http://www.lovebear.top/2016/12/15/Notepad++_And_python/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：这篇博客介绍python hashlib库的MD5用法，通过一道具体的ctf题目来引入 原题目链接">
+<meta property="og:description" content="一、前言：python是比较轻量级的，但是一些IDE为python集成了许多插件，造成其很大（如python xy），今天我们可以在文本编辑器中（本文使用notepad++）连接python,还原轻巧的python。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2018-12-05T08:50:11.600Z">
+<meta property="og:updated_time" content="2018-12-05T08:51:53.228Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CTF--python hashlib库中MD5用法">
-<meta name="twitter:description" content="一、前言：这篇博客介绍python hashlib库的MD5用法，通过一道具体的ctf题目来引入 原题目链接">
+<meta name="twitter:title" content="Notepad++配置python环境">
+<meta name="twitter:description" content="一、前言：python是比较轻量级的，但是一些IDE为python集成了许多插件，造成其很大（如python xy），今天我们可以在文本编辑器中（本文使用notepad++）连接python,还原轻巧的python。">
 <meta name="twitter:image" content="http://www.lovebear.top/img/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
@@ -170,55 +170,39 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-CTF_Python_MD5" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Notepad++_And_python" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      CTF--python hashlib库中MD5用法
+      Notepad++配置python环境
     </h1>
   
 
-        <a href="/2017/01/17/CTF_Python_MD5/" class="archive-article-date">
-  	<time datetime="2017-01-17T08:21:33.456Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-17</time>
+        <a href="/2016/12/15/Notepad++_And_python/" class="archive-article-date">
+  	<time datetime="2016-12-15T00:27:34.351Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>这篇博客介绍python hashlib库的MD5用法，通过一道具体的ctf题目来引入</p>
-<p><a href="http://www.shiyanbar.com/ctf/1901" target="_blank" rel="noopener">原题目链接</a></p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>python是比较轻量级的，但是一些IDE为python集成了许多插件，造成其很大（如python xy），<br>今天我们可以在文本编辑器中（本文使用notepad++）连接python,还原轻巧的python。</p>
 <a id="more"></a>
-<h2 id="二、原题："><a href="#二、原题：" class="headerlink" title="二、原题："></a>二、原题：</h2><p><a href="http://ctf5.shiyanbar.com/misc/rot-13.txt" target="_blank" rel="noopener">question</a></p>
-<p>破解下面的密文：</p>
-<p>83 89 78 84 45 86 96 45 115 121 110 116 136 132 132 132 108 128 117 118 134 110 123 111 110<br>127 108 112 124 122 108 118 128 108 131 114 127 134 108 116 124 124 113 108 76 76 76 76 138<br>23 90 81 66 71 64 69 114 65 112 64 66 63 69 61 70 114 62 66 61 62 69 67 70 63 61 110 110 112<br>64 68 62 70 61 112 111 112</p>
-<p>flag格式flag{}<br>[这里注意，如果题目显示一些乱码，需要更改浏览器编码为GBK，不同浏览器修改方式不同]</p>
-<h2 id="三、代码及注释"><a href="#三、代码及注释" class="headerlink" title="三、代码及注释"></a>三、代码及注释</h2><pre><code># -*- coding: utf-8 -*-
-import hashlib
-s=&#39;83 89 78 84 45 86 96 45 115 121 110 116 136 132 132 132 108 128 117 118 134 110 123 111 110
-127 108 112 124 122 108 118 128 108 131 114 127 134 108 116 124 124 113 108 76 76 76 76 138 23 
-90 81 66 71 64 69 114 65 112 64 66 63 69 61 70 114 62 66 61 62 69 67 70 63 61 110 110 112 64 68 
-62 70 61 112 111 112&#39;
-l=s.split(&#39; &#39;)
-t=&#39;&#39;
-for i in l:
-    t+=chr(int(i)-13)   #得到部分flag及其md5
-print t
-m=t[-32:]
-dic=&#39;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&amp;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~ &#39;
-#可打印字符
-for i1 in dic:           #枚举所有情况，进行md5后与给定md5比较，相等，即为flag
-    for i2 in dic:
-        for i3 in dic:
-            for i4 in dic:
-                md5 = hashlib.md5()
-                b = &#39;flag{www_shiyanbar_com_is_very_good_&#39; +i1+i2+i3+i4+&#39;}&#39;
-                md5.update(b)
-                if md5.hexdigest() == m:
-                    print &#39;%s&#39; % b
-</code></pre><p>python库中的md5函数使用简便，而且运行速度很快</p>
+<h2 id="二、前期准备："><a href="#二、前期准备：" class="headerlink" title="二、前期准备："></a>二、前期准备：</h2><h3 id="1-python下载（最好是python-2-7版本）："><a href="#1-python下载（最好是python-2-7版本）：" class="headerlink" title="1.python下载（最好是python 2.7版本）："></a>1.python下载（最好是python 2.7版本）：</h3><p>python的msi也就十几M，下载很快，下载完双击安装即可（注意，记住自己的python安装目录）<br>    <a href="https://www.python.org/getit/" target="_blank" rel="noopener">下载传送门</a></p>
+<h3 id="2-环境变量配置"><a href="#2-环境变量配置" class="headerlink" title="2.环境变量配置:"></a>2.环境变量配置:</h3><p>环境变量的配置是为了让大家在任何位置输入python时，操作系统都会自动寻找到python的<br>位置，并运行它。<br>把刚才安装的python目录加入到系统环境变量中。</p>
+<h3 id="3-任意一款文本编辑器"><a href="#3-任意一款文本编辑器" class="headerlink" title="3.任意一款文本编辑器"></a>3.任意一款文本编辑器</h3><p>这里推荐两款：</p>
+<ol>
+<li>Notepad++: <a href="http://notepad-plus.en.softonic.com/" target="_blank" rel="noopener">下载传送门</a></li>
+<li>Sublime: <a href="http://www.sublimetext.com/" target="_blank" rel="noopener">下载传送门</a><br>PS. 此处给出的下载版本都是官网版本，sublime Text 3正版会收费，大家可以自行在网<br>上找破解版。<br>PS. 本文使用notepad++</li>
+</ol>
+<h2 id="三、配置notepad-："><a href="#三、配置notepad-：" class="headerlink" title="三、配置notepad++："></a>三、配置notepad++：</h2><ol>
+<li>点击notepad++上部菜单栏的run–&gt;run，出现弹窗（或直接按F5）</li>
+<li>输入 cmd /k 你的python安装目录\python “$(FULL_CURRENT_PATH)” &amp; PAUSE &amp; EXIT<br> 比如我的安装目录为E：\python27</li>
+<li>点击save，为python运行设置快捷键（注意，不能与notepad++内部热键冲突，我的是ctrl+F5）</li>
+</ol>
+<h2 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h2><p>notepad++中新建一个文档，输入print 1，保存，ctrl+F5运行，是不是就运行出结果了呢！</p>
 
       
 
@@ -255,7 +239,7 @@ for i1 in dic:           #枚举所有情况，进行md5后与给定md5比较，
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/md5/">md5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 	</div>
 
       
@@ -308,7 +292,7 @@ for i1 in dic:           #枚举所有情况，进行md5后与给定md5比较，
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2017/01/17/CTF_Python_MD5/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2016/12/15/Notepad++_And_python/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -322,18 +306,18 @@ for i1 in dic:           #枚举所有情况，进行md5后与给定md5比较，
   
 <nav id="article-nav">
   
-    <a href="/2017/01/17/CTF_Airdecap-ng/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/01/01/Python_indent_err/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          CTF--Airdecap-ng分析实战
+          Python unexpected indent 解决
         
       </div>
     </a>
   
   
-    <a href="/2017/01/17/CTF_EuclidInversion/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CTF--欧几里得求逆</div>
+    <a href="/2016/12/13/Pacman_project1_code/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Pacman_project1代码及解析</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -346,7 +330,7 @@ for i1 in dic:           #枚举所有情况，进行md5后与给定md5比较，
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="CTF_Python_MD5" data-title="CTF--python hashlib库中MD5用法" data-url="http://www.lovebear.top/2017/01/17/CTF_Python_MD5/"></div>
+	<div class="ds-thread" data-thread-key="Notepad++_And_python" data-title="Notepad++配置python环境" data-url="http://www.lovebear.top/2016/12/15/Notepad++_And_python/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
