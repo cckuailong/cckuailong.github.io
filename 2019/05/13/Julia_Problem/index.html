@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言：Julia目前最新版本为1.1，由于是新语言，还是有一些问题，这里做一个整理，并不断更新中。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-14T00:09:38.436Z">
+<meta property="og:updated_time" content="2019-05-15T12:52:47.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Julia问题及解决方案整理">
 <meta name="twitter:description" content="一、前言：Julia目前最新版本为1.1，由于是新语言，还是有一些问题，这里做一个整理，并不断更新中。">
@@ -205,6 +205,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <pre><code>~/.julia
 </code></pre><p>安装的各种包都下载在里面，会导致系统盘负载较高，需要更换其位置。<br>增加系统环境变量</p>
 <pre><code>JULIA_DEPOT_PATH=你想要设置的环境目录
+</code></pre><pre><code>输入 ]up 进行更新（必要）
 </code></pre><p>再次运行julia发现工作环境目录改变</p>
 <h3 id="更换国内源"><a href="#更换国内源" class="headerlink" title="更换国内源"></a>更换国内源</h3><pre><code>(v1.1) pkg&gt; add PkgMirrors
 </code></pre><pre><code>julia&gt; import PkgMirrors
@@ -225,6 +226,10 @@ git stash drop
 <li>购买VPN（ss等，配置成全局代理，P.S. PAC不行）</li>
 <li>根据错误提示下载相应的包，放到提示的目录中（比较麻烦，但是可行）</li>
 </ol>
+<h3 id="Atom-package目录更改"><a href="#Atom-package目录更改" class="headerlink" title="Atom package目录更改"></a>Atom package目录更改</h3><p>Atom默认package目录为</p>
+<pre><code>~/.atom
+</code></pre><pre><code>ATOM_HOME=你想要设置的package目录
+</code></pre><p>发现Atom安装package目录已更改成功</p>
 
       
 
