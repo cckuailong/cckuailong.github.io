@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言：Julia目前最新版本为1.1，由于是新语言，还是有一些问题，这里做一个整理，并不断更新中。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-15T12:52:47.695Z">
+<meta property="og:updated_time" content="2019-06-07T03:58:45.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Julia问题及解决方案整理">
 <meta name="twitter:description" content="一、前言：Julia目前最新版本为1.1，由于是新语言，还是有一些问题，这里做一个整理，并不断更新中。">
@@ -230,7 +230,29 @@ git stash drop
 <pre><code>~/.atom
 </code></pre><pre><code>ATOM_HOME=你想要设置的package目录
 </code></pre><p>发现Atom安装package目录已更改成功</p>
+<h3 id="创建第三方package"><a href="#创建第三方package" class="headerlink" title="创建第三方package"></a>创建第三方package</h3><pre><code>import Pkg
+Pkg.add(&quot;PkgTemplates&quot;)
+</code></pre><p>创建package脚本</p>
+<pre><code>using PkgTemplates
 
+t = Template(;
+           user=&quot;Your Github Username&quot;,
+           authors=[&quot;The Author&quot;],
+           dir=&quot;Package生成到哪个目录&quot;,
+           julia_version=v&quot;1.1&quot;,   # 最低julia编译版本
+           plugins=[
+               TravisCI(),         # build pass
+               Coveralls(),        # coverage
+           ],
+       )
+generate(t, &quot;Package Name&quot;)
+run(`git -C $(joinpath(t.dir, &quot;Package Name&quot;)) ls-files`);
+</code></pre><p>向Project.toml中添加依赖包</p>
+<pre><code>cd 到package目录
+] 进入Pkg模式
+activate .
+add 依赖包
+</code></pre>
       
 
       
