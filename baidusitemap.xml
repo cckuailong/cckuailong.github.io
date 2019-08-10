@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://www.lovebear.top/2019/08/10/Gitbook2PDF/</loc>
+    <lastmod>2019-08-10T13:08:02.196Z</lastmod>
+    <data>
+        <display>
+        <title>Github开源Gitbook转PDF</title>
+        <pubTime>2019-08-10T01:51:27.004Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lovebear.top/2019/05/13/Julia_Problem/</loc>
     <lastmod>2019-06-14T10:45:56.682Z</lastmod>
     <data>
@@ -283,9 +300,9 @@
         <title>CTF--python hashlib库中MD5用法</title>
         <pubTime>2017-01-17T08:21:33.456Z</pubTime>
         
-        <tag>ctf</tag>
-         
         <tag>python</tag>
+         
+        <tag>ctf</tag>
          
         <tag>md5</tag>
          
@@ -355,9 +372,9 @@
         <title>CTF--BMP文件的LSB题型</title>
         <pubTime>2017-02-03T04:54:14.369Z</pubTime>
         
-        <tag>ctf</tag>
-         
         <tag>python</tag>
+         
+        <tag>ctf</tag>
          
          
            
@@ -603,9 +620,9 @@
         <title>CTF--大数因子求和与大数模运算</title>
         <pubTime>2017-02-01T13:27:36.912Z</pubTime>
         
-        <tag>ctf</tag>
-         
         <tag>python</tag>
+         
+        <tag>ctf</tag>
          
          
            
@@ -639,9 +656,9 @@
         <title>CTF--快速提交2--基于学习的快速提交</title>
         <pubTime>2017-01-12T01:29:01.341Z</pubTime>
         
-        <tag>ctf</tag>
-         
         <tag>python</tag>
+         
+        <tag>ctf</tag>
          
          
            

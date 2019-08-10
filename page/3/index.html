@@ -176,6 +176,70 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Python_UnicodeDecodeError" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/06/Python_UnicodeDecodeError/">解决python 2的UnicodeDecodeError错误</a>
+    </h1>
+  
+
+        <a href="/2018/02/06/Python_UnicodeDecodeError/" class="archive-article-date">
+  	<time datetime="2018-02-06T08:31:04.032Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-06</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近使用scrapy爬取中文网页并向文件中写入的时候，出现了下面的错误： </p>
+<pre><code>UnicodeDecodeError： &#39;ascii&#39; codec can&#39;t decode byte ...... : ordinal not in range(128)
+</code></pre><p>这是因为python的默认编码是ascii，当出现Unicode编码时，python编译器的编码处理部分会<br>产生错误这时我们有三种解决办法:</p>
+<ol>
+<li>升级为Python3</li>
+<li>将python编码设置为 GBK 或者 UTF-8 ，这里介绍UTF-8。</li>
+<li>使用codecs代替open来打开写入的文件</li>
+</ol>
+<p>博主对上述三种解决方案的推荐优先级为： 3 &gt; 2 &gt; 1</p>
+        
+          <a class="article-more-a" href="/2018/02/06/Python_UnicodeDecodeError/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/06/Python_UnicodeDecodeError/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Ubuntu14_forgrt_root_pwd" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -400,62 +464,6 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 
 
   
-    <article id="post-ApacheSec_Ubuntu_1" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/21/ApacheSec_Ubuntu_1/">Apache服务器安全--Ubuntu上的Apache安全配置（一）</a>
-    </h1>
-  
-
-        <a href="/2017/06/21/ApacheSec_Ubuntu_1/" class="archive-article-date">
-  	<time datetime="2017-06-21T09:24:39.815Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-21</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近在本地服务器配置Apache的https的vhost时，查找资料的过程中偶然发现了国外的这一套<br>Apache安全手册，是针对ubuntu进行的演示，在此作为学习的笔记来记录如何使配置的Apache<br>更加的安全。在其他linux或windows系统的Apache安全配置应该类似，只是配置文件的位置有<br>所不同。</p>
-        
-          <a class="article-more-a" href="/2017/06/21/ApacheSec_Ubuntu_1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/21/ApacheSec_Ubuntu_1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -541,10 +549,6 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -553,15 +557,15 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">BGP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Julia</a>
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,6 +581,14 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Julia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">翻墙</a>
               </li>
              
@@ -585,11 +597,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">image</a>
+                <a href="javascript:void(0)">pacman</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">pacman</a>
+                <a href="javascript:void(0)">image</a>
               </li>
             
             <div class="clearfix"></div>
