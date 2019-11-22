@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Blog for You</title>
+  <title>Mysql数据迁移及数据恢复 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="6UyRA5c8wR">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://www.lovebear.top/baidu_verify_6UyRA5c8wR.html">
+  <meta name="description" content="一、前言：Mysql数据所在的磁盘满了，需要将数据库迁移到其他挂载磁盘，在此记录。系统：Ubuntu 16.04恢复过程中，同时遇到了数据表损坏的情况，使用 myisamchk 进行恢复。">
+<meta name="keywords" content="DataBase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql数据迁移及数据恢复">
+<meta property="og:url" content="http://www.lovebear.top/2019/11/22/Mysql_Data_Migrate_And_Resume/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="6UyRA5c8wR">
+<meta property="og:description" content="一、前言：Mysql数据所在的磁盘满了，需要将数据库迁移到其他挂载磁盘，在此记录。系统：Ubuntu 16.04恢复过程中，同时遇到了数据表损坏的情况，使用 myisamchk 进行恢复。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2016-12-14T00:10:47.282Z">
+<meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
+<meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
+<meta property="og:updated_time" content="2019-11-22T14:42:12.727Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
-<meta name="twitter:description" content="6UyRA5c8wR">
+<meta name="twitter:title" content="Mysql数据迁移及数据恢复">
+<meta name="twitter:description" content="一、前言：Mysql数据所在的磁盘满了，需要将数据库迁移到其他挂载磁盘，在此记录。系统：Ubuntu 16.04恢复过程中，同时遇到了数据表损坏的情况，使用 myisamchk 进行恢复。">
+<meta name="twitter:image" content="http://www.lovebear.top/img/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -178,12 +182,75 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-undefined" class="article article-type-page " itemscope="" itemprop="blogPost">
+            <article id="post-Mysql_Data_Migrate_And_Resume" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Mysql数据迁移及数据恢复
+    </h1>
+  
+
+        <a href="/2019/11/22/Mysql_Data_Migrate_And_Resume/" class="archive-article-date">
+  	<time datetime="2019-11-22T14:02:59.526Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-22</time>
+</a>
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        6UyRA5c8wR
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Mysql数据所在的磁盘满了，需要将数据库迁移到其他挂载磁盘，在此记录。<br>系统：Ubuntu 16.04<br>恢复过程中，同时遇到了数据表损坏的情况，使用 myisamchk 进行恢复。</p>
+<a id="more"></a>
+<h2 id="二、数据库迁移："><a href="#二、数据库迁移：" class="headerlink" title="二、数据库迁移："></a>二、数据库迁移：</h2><ol>
+<li><p>Ubuntu 16.04 mysql 默认数据存储路径为</p>
+<pre><code>/var/lib/mysql
+</code></pre><p>或者可以在mysql控制台中输入下述命令来查看当前数据存储路径</p>
+<pre><code>show global variables like &quot;%datadir%&quot;
+</code></pre></li>
+<li><p>新建需要迁移的目录</p>
+<pre><code>mkdir /home/mysql
+</code></pre></li>
+<li><p>转移数据</p>
+<pre><code>mv /var/lib/mysql/* /home/mysql
+</code></pre></li>
+<li><p>修改用户和权限</p>
+<pre><code>chown mysql:mysql /home/mysql
+chmod -R 755 /home/mysql
+</code></pre></li>
+<li><p>修改 apparmor 相关配置</p>
+<pre><code>vim /etc/apparmor.d/usr.sbin.mysqld
+</code></pre><p>修改  </p>
+<pre><code># Allow data dir access 
+</code></pre></li>
+</ol>
+<p>目录替换为要转移的目录</p>
+<pre><code>vim /etc/apparmor.d/abstractions/mysql
+</code></pre><p>目录替换为要转移的目录</p>
+<ol start="6">
+<li>修改mysql默认数据存储目录<pre><code>vim /etc/mysql/mysql.conf.d/mysqld.cnf
+</code></pre></li>
+</ol>
+<p>修改datadir=为要转移的目录</p>
+<ol start="7">
+<li><p>重启 apparmor 和 mysql</p>
+<pre><code>/etc/init.d/apparmor restart  
+/etc/init.d/mysql restart 
+</code></pre></li>
+<li><p>查看修改是否成功</p>
+<pre><code>show global variables like &quot;%datadir%&quot;
+</code></pre></li>
+</ol>
+<p>查看是否已经修改成功</p>
+<h2 id="三、数据恢复："><a href="#三、数据恢复：" class="headerlink" title="三、数据恢复："></a>三、数据恢复：</h2><ol>
+<li>进入到 mysql 数据存储目录<pre><code>cd /home/mysql (默认 cd /var/lib/mysql)
+</code></pre></li>
+</ol>
+<p>恢复</p>
+<pre><code>myisamchk -r -f messages --sort_buffer_size=2G --tmpdir=/home/tmp
+</code></pre><pre><code>--sort_buffer_size  指定大一点的sort_buffer
+--tmpdir            指定tmp目录，默认使用/tmp，数据表数据量大/tmp空间不够
+</code></pre>
       
 
       
@@ -217,6 +284,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataBase/">DataBase</a></li></ul>
+	</div>
+
       
 
       
@@ -267,7 +339,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/baidu_verify_6UyRA5c8wR.html" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2019/11/22/Mysql_Data_Migrate_And_Resume/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -279,6 +351,16 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/10/Gitbook2PDF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Github开源Gitbook转PDF</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 
 
@@ -286,7 +368,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="undefined" data-title="" data-url="http://www.lovebear.top/baidu_verify_6UyRA5c8wR.html"></div>
+	<div class="ds-thread" data-thread-key="Mysql_Data_Migrate_And_Resume" data-title="Mysql数据迁移及数据恢复" data-url="http://www.lovebear.top/2019/11/22/Mysql_Data_Migrate_And_Resume/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -346,7 +428,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
