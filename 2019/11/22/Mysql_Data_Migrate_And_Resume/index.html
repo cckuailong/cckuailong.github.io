@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2019-11-22T14:42:12.727Z">
+<meta property="og:updated_time" content="2019-11-22T14:52:52.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql数据迁移及数据恢复">
 <meta name="twitter:description" content="一、前言：Mysql数据所在的磁盘满了，需要将数据库迁移到其他挂载磁盘，在此记录。系统：Ubuntu 16.04恢复过程中，同时遇到了数据表损坏的情况，使用 myisamchk 进行恢复。">
@@ -203,50 +203,53 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Mysql数据所在的磁盘满了，需要将数据库迁移到其他挂载磁盘，在此记录。<br>系统：Ubuntu 16.04<br>恢复过程中，同时遇到了数据表损坏的情况，使用 myisamchk 进行恢复。</p>
 <a id="more"></a>
 <h2 id="二、数据库迁移："><a href="#二、数据库迁移：" class="headerlink" title="二、数据库迁移："></a>二、数据库迁移：</h2><ol>
-<li><p>Ubuntu 16.04 mysql 默认数据存储路径为</p>
+<li>Ubuntu 16.04 mysql 默认数据存储路径为</li>
+</ol>
 <pre><code>/var/lib/mysql
 </code></pre><p>或者可以在mysql控制台中输入下述命令来查看当前数据存储路径</p>
 <pre><code>show global variables like &quot;%datadir%&quot;
-</code></pre></li>
-<li><p>新建需要迁移的目录</p>
+</code></pre><ol start="2">
+<li>新建需要迁移的目录</li>
+</ol>
 <pre><code>mkdir /home/mysql
-</code></pre></li>
-<li><p>转移数据</p>
+</code></pre><ol start="3">
+<li>转移数据</li>
+</ol>
 <pre><code>mv /var/lib/mysql/* /home/mysql
-</code></pre></li>
-<li><p>修改用户和权限</p>
+</code></pre><ol start="4">
+<li>修改用户和权限</li>
+</ol>
 <pre><code>chown mysql:mysql /home/mysql
 chmod -R 755 /home/mysql
-</code></pre></li>
-<li><p>修改 apparmor 相关配置</p>
+</code></pre><ol start="5">
+<li>修改 apparmor 相关配置</li>
+</ol>
 <pre><code>vim /etc/apparmor.d/usr.sbin.mysqld
 </code></pre><p>修改  </p>
 <pre><code># Allow data dir access 
-</code></pre></li>
-</ol>
-<p>目录替换为要转移的目录</p>
+</code></pre><p>目录替换为要转移的目录</p>
 <pre><code>vim /etc/apparmor.d/abstractions/mysql
 </code></pre><p>目录替换为要转移的目录</p>
 <ol start="6">
-<li>修改mysql默认数据存储目录<pre><code>vim /etc/mysql/mysql.conf.d/mysqld.cnf
-</code></pre></li>
+<li>修改mysql默认数据存储目录</li>
 </ol>
-<p>修改datadir=为要转移的目录</p>
+<pre><code>vim /etc/mysql/mysql.conf.d/mysqld.cnf
+</code></pre><p>修改datadir=为要转移的目录</p>
 <ol start="7">
-<li><p>重启 apparmor 和 mysql</p>
+<li>重启 apparmor 和 mysql</li>
+</ol>
 <pre><code>/etc/init.d/apparmor restart  
 /etc/init.d/mysql restart 
-</code></pre></li>
-<li><p>查看修改是否成功</p>
+</code></pre><ol start="8">
+<li>查看修改是否成功</li>
+</ol>
 <pre><code>show global variables like &quot;%datadir%&quot;
-</code></pre></li>
-</ol>
-<p>查看是否已经修改成功</p>
+</code></pre><p>查看是否已经修改成功</p>
 <h2 id="三、数据恢复："><a href="#三、数据恢复：" class="headerlink" title="三、数据恢复："></a>三、数据恢复：</h2><ol>
-<li>进入到 mysql 数据存储目录<pre><code>cd /home/mysql (默认 cd /var/lib/mysql)
-</code></pre></li>
+<li>进入到 mysql 数据存储目录</li>
 </ol>
-<p>恢复</p>
+<pre><code>cd /home/mysql (默认 cd /var/lib/mysql)
+</code></pre><p>恢复</p>
 <pre><code>myisamchk -r -f messages --sort_buffer_size=2G --tmpdir=/home/tmp
 </code></pre><pre><code>--sort_buffer_size  指定大一点的sort_buffer
 --tmpdir            指定tmp目录，默认使用/tmp，数据表数据量大/tmp空间不够
@@ -483,6 +486,14 @@ chmod -R 755 /home/mysql
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Julia</a>
               </li>
              
@@ -491,15 +502,7 @@ chmod -R 755 /home/mysql
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,15 +518,15 @@ chmod -R 755 /home/mysql
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">image</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">pacman</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">hexo</a>
               </li>
             
             <div class="clearfix"></div>
