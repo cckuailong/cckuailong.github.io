@@ -176,6 +176,230 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Redis_getshell" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/16/Redis_getshell/">利用Redis通过cron进行Getshell（配合SSRF利用）</a>
+    </h1>
+  
+
+        <a href="/2018/09/16/Redis_getshell/" class="archive-article-date">
+  	<time datetime="2018-09-16T08:43:05.400Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-16</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Redis配置不当可能会导致未授权访问漏洞，本文利用此漏洞，通过cron进行Getshell，<br>并给出实际攻击场景中配合SSRF漏洞进行的反弹shell攻击，最后会给出Redis的正确<br>配置建议。</p>
+        
+          <a class="article-more-a" href="/2018/09/16/Redis_getshell/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vulnerability/">Vulnerability</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/16/Redis_getshell/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Linux_shell" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/16/Linux_shell/">Linux反弹shell的N种方法</a>
+    </h1>
+  
+
+        <a href="/2018/09/16/Linux_shell/" class="archive-article-date">
+  	<time datetime="2018-09-16T07:33:43.926Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-16</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Linux作服务器有很多的优点，所以很多服务都选择搭建在Linux服务器上，当我们发现<br>服务器漏洞并对其进行漏洞利用的时候，比较理想的情况就是拿到网站的shell，这就需<br>要用到Linux shell反弹，因为请求是从内部主动发起，所以防火墙过滤策略一般并不会<br>十分严格（参考特洛伊木马，从内部攻击）。本文收集了一些Linux的反弹shell方法，并<br>加上了一些自己的理解。</p>
+        
+          <a class="article-more-a" href="/2018/09/16/Linux_shell/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/16/Linux_shell/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Python_selenium" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/11/Python_selenium/">Python+Selenium进行动态加载网页爬取</a>
+    </h1>
+  
+
+        <a href="/2018/02/11/Python_selenium/" class="archive-article-date">
+  	<time datetime="2018-02-11T01:10:57.796Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>今天想要爬取PTA的题目信息，但是发现scrapy爬取返回的response中没有题目信息，检查元素查看<br>了一下PTA题目网页的源代码，发现这个网页是使用js动态加载的，也就是说是需要浏览器加载好js<br>代码，返回题目信息。那怎么进行爬虫呢，这就需要使用前几章提到的Selenium，本文使用python+<br>Selenium进行动态加载网页爬取的演示和讲解。</p>
+        
+          <a class="article-more-a" href="/2018/02/11/Python_selenium/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/11/Python_selenium/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Ubuntu-Windows-DoubleOS" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/10/Ubuntu-Windows-DoubleOS/">Ubuntu-Windows双系统安装教程</a>
+    </h1>
+  
+
+        <a href="/2018/02/10/Ubuntu-Windows-DoubleOS/" class="archive-article-date">
+  	<time datetime="2018-02-10T04:11:55.647Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-10</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近，在为一个项目做可行性分析时，发现使用linux开发有一些优势，可以方便的调用<br>一些已有的工具。原来一直在虚拟机中使用linux，想到最近也在不断完善linux的知识，<br>所以干脆就装个linux，想到了安装linux-windows双系统，本文的操作环境是ubuntu 16.04<br>和windows 8.1，背景为已安装windows的基础上安装ubuntu。</p>
+        
+          <a class="article-more-a" href="/2018/02/10/Ubuntu-Windows-DoubleOS/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/10/Ubuntu-Windows-DoubleOS/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Python_scrapy" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -232,241 +456,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 
 
   
-    <article id="post-Python_UnicodeDecodeError" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/06/Python_UnicodeDecodeError/">解决python 2的UnicodeDecodeError错误</a>
-    </h1>
-  
-
-        <a href="/2018/02/06/Python_UnicodeDecodeError/" class="archive-article-date">
-  	<time datetime="2018-02-06T08:31:04.032Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-06</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近使用scrapy爬取中文网页并向文件中写入的时候，出现了下面的错误： </p>
-<pre><code>UnicodeDecodeError： &#39;ascii&#39; codec can&#39;t decode byte ...... : ordinal not in range(128)
-</code></pre><p>这是因为python的默认编码是ascii，当出现Unicode编码时，python编译器的编码处理部分会<br>产生错误这时我们有三种解决办法:</p>
-<ol>
-<li>升级为Python3</li>
-<li>将python编码设置为 GBK 或者 UTF-8 ，这里介绍UTF-8。</li>
-<li>使用codecs代替open来打开写入的文件</li>
-</ol>
-<p>博主对上述三种解决方案的推荐优先级为： 3 &gt; 2 &gt; 1</p>
-        
-          <a class="article-more-a" href="/2018/02/06/Python_UnicodeDecodeError/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/06/Python_UnicodeDecodeError/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Ubuntu14_forgrt_root_pwd" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/03/Ubuntu14_forgrt_root_pwd/">Ubuntu 14中忘记root password的解决办法（半转载）</a>
-    </h1>
-  
-
-        <a href="/2017/09/03/Ubuntu14_forgrt_root_pwd/" class="archive-article-date">
-  	<time datetime="2017-09-03T12:22:19.311Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-03</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>一个学长不小心把自己Ubuntu的root密码忘记了，这也唤起了我的好奇心，于是上网查了<br>一波，在此做一个记录，以后遇到这类尴尬（逗比）的情况，就能及时弥补了。</p>
-        
-          <a class="article-more-a" href="/2017/09/03/Ubuntu14_forgrt_root_pwd/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/03/Ubuntu14_forgrt_root_pwd/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-ApacheOptimize_Ubuntu_2" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/24/ApacheOptimize_Ubuntu_2/">Apache服务器安全--Ubuntu上的Apache性能优化（二）</a>
-    </h1>
-  
-
-        <a href="/2017/06/24/ApacheOptimize_Ubuntu_2/" class="archive-article-date">
-  	<time datetime="2017-06-24T00:11:18.332Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-24</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>上一章，我们讲了一些Apache配置小技巧来优化web服务器，这一章，我们将涉及到更多的<br>配置技巧，这些会使我们的服务器性能有一个整体的提升。</p>
-        
-          <a class="article-more-a" href="/2017/06/24/ApacheOptimize_Ubuntu_2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/24/ApacheOptimize_Ubuntu_2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-ApacheOptimize_Ubuntu_1" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/23/ApacheOptimize_Ubuntu_1/">Apache服务器安全--Ubuntu上的Apache性能优化（一）</a>
-    </h1>
-  
-
-        <a href="/2017/06/23/ApacheOptimize_Ubuntu_1/" class="archive-article-date">
-  	<time datetime="2017-06-23T05:57:08.999Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-23</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Apache是一个开源的web服务器，在世界上拥有70%的份额。我们可以通过增加额外的硬件，如<br>RAM，CPU等来提高服务器的性能，同样我们也可以通过定制一些Apache配置来提高我们服务器<br>的性能。</p>
-        
-          <a class="article-more-a" href="/2017/06/23/ApacheOptimize_Ubuntu_1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/23/ApacheOptimize_Ubuntu_1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -549,6 +541,10 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -558,14 +554,6 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">BGP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,6 +570,14 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
