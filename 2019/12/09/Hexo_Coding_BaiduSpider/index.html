@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>双基回文数的判断 | Blog for You</title>
+  <title>Hexo进行Coding Page分流，实现百度爬虫收录 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：回文数相信大家都不会陌生（设n是一任意自然数。若将n的各位数字反向排列所得自然数n1与n相等，则称n为一回文数，如123321），判断方法的代码也很容易想到，今天要介绍的是一种特殊的回文数–双基回文数">
-<meta name="keywords" content="python">
+  <meta name="description" content="一、前言Hexo + GitPage服务搭建个人博客已经非常流行，搭建方法详见 Hexo Your Blog,但是由于github限制了百度的爬虫抓取，所以git page搭建的博客不会被百度爬取收录，为了使百度收录我们的blog，分享更多的知识给大家，特查询总结了Coding Page进行分流的方法来实现百度爬虫收录。全文 以我的项目为例，Github仓库(https://github.com/">
+<meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="双基回文数的判断">
-<meta property="og:url" content="http://www.lovebear.top/2017/02/01/Doublepalidrome/index.html">
+<meta property="og:title" content="Hexo进行Coding Page分流，实现百度爬虫收录">
+<meta property="og:url" content="http://www.lovebear.top/2019/12/09/Hexo_Coding_BaiduSpider/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：回文数相信大家都不会陌生（设n是一任意自然数。若将n的各位数字反向排列所得自然数n1与n相等，则称n为一回文数，如123321），判断方法的代码也很容易想到，今天要介绍的是一种特殊的回文数–双基回文数">
+<meta property="og:description" content="一、前言Hexo + GitPage服务搭建个人博客已经非常流行，搭建方法详见 Hexo Your Blog,但是由于github限制了百度的爬虫抓取，所以git page搭建的博客不会被百度爬取收录，为了使百度收录我们的blog，分享更多的知识给大家，特查询总结了Coding Page进行分流的方法来实现百度爬虫收录。全文 以我的项目为例，Github仓库(https://github.com/">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2018-12-05T08:50:28.696Z">
+<meta property="og:updated_time" content="2019-12-09T07:40:57.046Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="双基回文数的判断">
-<meta name="twitter:description" content="一、前言：回文数相信大家都不会陌生（设n是一任意自然数。若将n的各位数字反向排列所得自然数n1与n相等，则称n为一回文数，如123321），判断方法的代码也很容易想到，今天要介绍的是一种特殊的回文数–双基回文数">
+<meta name="twitter:title" content="Hexo进行Coding Page分流，实现百度爬虫收录">
+<meta name="twitter:description" content="一、前言Hexo + GitPage服务搭建个人博客已经非常流行，搭建方法详见 Hexo Your Blog,但是由于github限制了百度的爬虫抓取，所以git page搭建的博客不会被百度爬取收录，为了使百度收录我们的blog，分享更多的知识给大家，特查询总结了Coding Page进行分流的方法来实现百度爬虫收录。全文 以我的项目为例，Github仓库(https://github.com/">
 <meta name="twitter:image" content="http://www.lovebear.top/img/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
@@ -182,63 +182,113 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Doublepalidrome" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Hexo_Coding_BaiduSpider" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      双基回文数的判断
+      Hexo进行Coding Page分流，实现百度爬虫收录
     </h1>
   
 
-        <a href="/2017/02/01/Doublepalidrome/" class="archive-article-date">
-  	<time datetime="2017-02-01T05:09:25.112Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-01</time>
+        <a href="/2019/12/09/Hexo_Coding_BaiduSpider/" class="archive-article-date">
+  	<time datetime="2019-12-09T06:57:24.546Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-09</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>回文数相信大家都不会陌生（设n是一任意自然数。若将n的各位数字反向排列所得自然<br>数n1与n相等，则称n为一回文数，如123321），判断方法的代码也很容易想到，今天要介绍的<br>是一种特殊的回文数–双基回文数</p>
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>Hexo + GitPage服务搭建个人博客已经非常流行，搭建方法详见 <a href="http://lovebear.top/2016/10/08/Hexo-Your-Blog/" target="_blank" rel="noopener">Hexo Your Blog</a>,<br>但是由于github限制了百度的爬虫抓取，所以git page搭建的博客不会被百度爬取收录，<br>为了使百度收录我们的blog，分享更多的知识给大家，特查询总结了Coding Page进行分流<br>的方法来实现百度爬虫收录。<br>全文 以我的项目为例，<br>Github仓库(<a href="https://github.com/cckuailong.github.io)，" target="_blank" rel="noopener">https://github.com/cckuailong.github.io)，</a><br>Coding仓库(<a href="https://git.dev.tencent.com/cckuailong/cckuailong.coding.me" target="_blank" rel="noopener">https://git.dev.tencent.com/cckuailong/cckuailong.coding.me</a>)<br>域名(<a href="http://www.lovebear.top">www.lovebear.top</a>)</p>
 <a id="more"></a>
-<h2 id="二、双基回文数的定义："><a href="#二、双基回文数的定义：" class="headerlink" title="二、双基回文数的定义："></a>二、双基回文数的定义：</h2><p>如果一个数在至少两种进位制(二进制到十进制)下的表示是回文数,我们就称之为双基回<br>文数.<br>例如，495的二进制表示是111101111,八进制表示是757,这两种进制下的表示都是回文数,所<br>以495就是一个双基回文数.</p>
-<h2 id="三、双基回文数的python代码："><a href="#三、双基回文数的python代码：" class="headerlink" title="三、双基回文数的python代码："></a>三、双基回文数的python代码：</h2><pre><code>#进制转换
-def change(n,b):   #10进制数转为 b 进制
-    i=0
-    sum=[]
-    while(1):
-        if(n&lt;b):
-            sum.append(chr(ord(&#39;0&#39;)+n))
-            i+=1
-            return sum[::-1]
-        sum.append(chr(n%b+ord(&#39;0&#39;)))
-        i+=1
-        n/=b
+<h2 id="二、Coding-Page注册"><a href="#二、Coding-Page注册" class="headerlink" title="二、Coding Page注册"></a>二、Coding Page注册</h2><ul>
+<li><p>访问 <a href="https://coding.net" target="_blank" rel="noopener">https://coding.net</a> ，点击右上角个人版登陆，然后进行注册，登陆等常规操作。</p>
+</li>
+<li><p>创建新项目，这里取名为 cckuailong.coding.me</p>
+</li>
+<li><p>点击右上角的头像，进入个人设置，点击右方SSH公钥，参考github上传ssh公钥的方法，<br>见 <a href="http://lovebear.top/2016/10/08/Hexo-Your-Blog/" target="_blank" rel="noopener">Hexo Your Blog</a>，将openssh生成的公钥上传</p>
+</li>
+</ul>
+<h2 id="三、将Git-Page的代码转移到Coding-Page"><a href="#三、将Git-Page的代码转移到Coding-Page" class="headerlink" title="三、将Git Page的代码转移到Coding Page"></a>三、将Git Page的代码转移到Coding Page</h2><ul>
+<li>将GitPage仓库clone到本地</li>
+</ul>
+<pre><code>git clone https://github.com/cckuailong/cckuailong.github.io
+</code></pre><ul>
+<li>将clone下来的仓库代码上传到coding</li>
+</ul>
+<pre><code>cd cckuailong.github.io
+git push https://git.dev.tencent.com/cckuailong/cckuailong.coding.me.git --all
+</code></pre><p>若 ssh公钥 上传成功，则不需要输入密码，否则根据提示输入coding注册的用户名和密码</p>
+<h2 id="四、开启Page服务"><a href="#四、开启Page服务" class="headerlink" title="四、开启Page服务"></a>四、开启Page服务</h2><ul>
+<li><p>进入新创建的项目，点击 代码–Page服务</p>
+</li>
+<li><p>开启Page服务，此时访问 <a href="https://cckuailong.coding.me" target="_blank" rel="noopener">https://cckuailong.coding.me</a> 即可访问Page页面</p>
+</li>
+<li><p>点击右上角 设置</p>
+</li>
+<li><p>输入要绑定的域名</p>
+</li>
+</ul>
+<pre><code>www.lovebear.top
+lovebear.top
+</code></pre><h2 id="五、设置DNSpod"><a href="#五、设置DNSpod" class="headerlink" title="五、设置DNSpod"></a>五、设置DNSpod</h2><p>思想是国内解析域名到Coding Page, 国外解析到Git Page</p>
+<p>直接给出我的配置，供参考</p>
+<table>
+<thead>
+<tr>
+<th>主机记录</th>
+<th>记录类型</th>
+<th>线路类型</th>
+<th>记录值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@</td>
+<td>CNAME</td>
+<td>境外</td>
+<td>cckuailong.github.io.</td>
+</tr>
+<tr>
+<td>@</td>
+<td>CNAME</td>
+<td>境内</td>
+<td>cckuailong.coding.me.</td>
+</tr>
+<tr>
+<td>www</td>
+<td>CNMAE</td>
+<td>默认</td>
+<td>lovebear.top.</td>
+</tr>
+<tr>
+<td>@</td>
+<td>NS</td>
+<td>默认</td>
+<td>f1g1ns1.dnspod.net.</td>
+</tr>
+<tr>
+<td>@</td>
+<td>NS</td>
+<td>默认</td>
+<td>f1g1ns2.dnspod.net.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="六、设置hexo提交新内容时，同时提交到GitPage和CodingPage"><a href="#六、设置hexo提交新内容时，同时提交到GitPage和CodingPage" class="headerlink" title="六、设置hexo提交新内容时，同时提交到GitPage和CodingPage"></a>六、设置hexo提交新内容时，同时提交到GitPage和CodingPage</h2><ul>
+<li>Hexo中的 _config.yml文件的deploy，修改为</li>
+</ul>
+<pre><code>deploy:
+- type: git
+  repo: 
+        github: git@github.com:cckuailong/cckuailong.github.io.git
+        coding: git@git.coding.net:cckuailong/cckuailong.coding.me.git
+  branch: master
+</code></pre><ul>
+<li>这时，就实现了博客分流，并且因为国内ip会解析到 coding.me, 所以，也实现了百度抓取。<br>试一试给百度提交链接，我们的博客就能被百度收录了。</li>
+</ul>
 
-#回文(palindrome)
-def palindrome(s):
-    i=0
-    while(i&lt;len(s)/2):
-        if(s[i]!=s[-1*(i+1)]):
-            return False
-        i+=1
-    return True
-
-#双基回文（double palindrome）
-def d_palindrome(n):
-    cnt=0
-    for i in range(2,10):
-        s=&#39;&#39;.join(change(n,i))
-        if(palindrome(s)):
-            cnt+=1
-    if(palindrome(str(n))):
-        cnt+=1
-    if(cnt&gt;=2):
-        return True
-    else:
-        return False
-</code></pre>
       
 
       
@@ -274,7 +324,7 @@ def d_palindrome(n):
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
 	</div>
 
       
@@ -327,7 +377,7 @@ def d_palindrome(n):
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2017/02/01/Doublepalidrome/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2019/12/09/Hexo_Coding_BaiduSpider/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -341,18 +391,9 @@ def d_palindrome(n):
   
 <nav id="article-nav">
   
-    <a href="/2017/02/01/CTF_FactorSum/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CTF--大数因子求和与大数模运算
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/01/31/GetPrimeList/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">素数表的快速创建</div>
+    <a href="/2019/12/08/Spark-HadoopYarn-Kafka_Kafka/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spark-HadoopYarn-Kafka集群搭建--搭建Kafka集群</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -365,7 +406,7 @@ def d_palindrome(n):
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Doublepalidrome" data-title="双基回文数的判断" data-url="http://www.lovebear.top/2017/02/01/Doublepalidrome/"></div>
+	<div class="ds-thread" data-thread-key="Hexo_Coding_BaiduSpider" data-title="Hexo进行Coding Page分流，实现百度爬虫收录" data-url="http://www.lovebear.top/2019/12/09/Hexo_Coding_BaiduSpider/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
