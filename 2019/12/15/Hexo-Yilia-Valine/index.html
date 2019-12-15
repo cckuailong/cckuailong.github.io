@@ -6,23 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Linux开机自动运行普通用户python脚本 | Blog for You</title>
+  <title>Hexo的Yilia主题配置Valine评论功能 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：最近无聊写了一个监控键盘按键的简单恶意软件，因为我的电脑不可能24小时开机监控，费时费力，于是想到我还有个云服务器，可以在云服务器上持续运行我的服务接收端来进行24小时监控。由于我的恶意软件用python编写的（开发挺快的），所以需要在服务器中设置开机自动运行我的python服务器脚本，服务器环境为linux。windows服务器比较简单，把要启动的快捷方式放到C:\Users\用户\A">
-<meta name="keywords" content="Linux,python">
+  <meta name="description" content="一、前言Hexo Your Blog教我们搭建自己的Hexo博客，使用的主题是Yilia。由于多说等Yilia自兼容的评论系统已经跑路，所以选择为其配置Valine来满足需求。">
+<meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux开机自动运行普通用户python脚本">
-<meta property="og:url" content="http://www.lovebear.top/2017/01/02/AutoRunPython_Linux/index.html">
+<meta property="og:title" content="Hexo的Yilia主题配置Valine评论功能">
+<meta property="og:url" content="http://www.lovebear.top/2019/12/15/Hexo-Yilia-Valine/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：最近无聊写了一个监控键盘按键的简单恶意软件，因为我的电脑不可能24小时开机监控，费时费力，于是想到我还有个云服务器，可以在云服务器上持续运行我的服务接收端来进行24小时监控。由于我的恶意软件用python编写的（开发挺快的），所以需要在服务器中设置开机自动运行我的python服务器脚本，服务器环境为linux。windows服务器比较简单，把要启动的快捷方式放到C:\Users\用户\A">
+<meta property="og:description" content="一、前言Hexo Your Blog教我们搭建自己的Hexo博客，使用的主题是Yilia。由于多说等Yilia自兼容的评论系统已经跑路，所以选择为其配置Valine来满足需求。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
-<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
-<meta property="og:updated_time" content="2017-01-02T05:06:37.695Z">
+<meta property="og:updated_time" content="2019-12-15T05:51:22.393Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux开机自动运行普通用户python脚本">
-<meta name="twitter:description" content="一、前言：最近无聊写了一个监控键盘按键的简单恶意软件，因为我的电脑不可能24小时开机监控，费时费力，于是想到我还有个云服务器，可以在云服务器上持续运行我的服务接收端来进行24小时监控。由于我的恶意软件用python编写的（开发挺快的），所以需要在服务器中设置开机自动运行我的python服务器脚本，服务器环境为linux。windows服务器比较简单，把要启动的快捷方式放到C:\Users\用户\A">
-<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
+<meta name="twitter:title" content="Hexo的Yilia主题配置Valine评论功能">
+<meta name="twitter:description" content="一、前言Hexo Your Blog教我们搭建自己的Hexo博客，使用的主题是Yilia。由于多说等Yilia自兼容的评论系统已经跑路，所以选择为其配置Valine来满足需求。">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -182,32 +179,94 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-AutoRunPython_Linux" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Hexo-Yilia-Valine" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Linux开机自动运行普通用户python脚本
+      Hexo的Yilia主题配置Valine评论功能
     </h1>
   
 
-        <a href="/2017/01/02/AutoRunPython_Linux/" class="archive-article-date">
-  	<time datetime="2017-01-02T03:37:40.926Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-02</time>
+        <a href="/2019/12/15/Hexo-Yilia-Valine/" class="archive-article-date">
+  	<time datetime="2019-12-15T05:25:32.615Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-15</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近无聊写了一个监控键盘按键的简单恶意软件，因为我的电脑不可能24小时开机监控，费时<br>费力，于是想到我还有个云服务器，可以在云服务器上持续运行我的服务接收端来进行24小时<br>监控。<br>由于我的恶意软件用python编写的（开发挺快的），所以需要在服务器中设置开机自动运行我的<br>python服务器脚本，服务器环境为linux。<br>windows服务器比较简单，把要启动的快捷方式放到<br>C:\Users\用户\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup<br>即可实现。(AppData文件夹在windows中是默认隐藏的)</p>
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p><a href="http://lovebear.top/2016/10/08/Hexo-Your-Blog/" target="_blank" rel="noopener">Hexo Your Blog</a>教我们搭建自己的Hexo博客，使用的主题是Yilia。<br>由于多说等Yilia自兼容的评论系统已经跑路，所以选择为其配置Valine来满足需求。</p>
 <a id="more"></a>
-<h2 id="二、解决方案："><a href="#二、解决方案：" class="headerlink" title="二、解决方案："></a>二、解决方案：</h2><p>Linux在启动时，会自动执行/etc/rc.d目录下的初始化程序，因此我们可以把启动任务放到该<br>目录下。</p>
-<p>测试环境：CentOS，管理员:root，普通用户：test1，脚本文件放在/home/test1中， 脚本名：test.py</p>
-<p>1.因为其中的rc.local是在完成所有初始化之后执行，因此我们可以把启动脚本写到里面<br>2.用root账号登陆Linux，vim /etc/rc.d/rc.local编辑文件，在最后加入两行需要执行的脚本程序： </p>
-<pre><code>cd /home/test1   (该步不可少，否则会提示没有权限打开&#39;test.log&#39;文件) 
-su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为一个参数传递级su)
-</code></pre><h2 id="三、测试："><a href="#三、测试：" class="headerlink" title="三、测试："></a>三、测试：</h2><p>重新启动机器，测试一下，是不是python脚本已经自动运行起来了呢！</p>
+<h2 id="二、配置LeanCloud"><a href="#二、配置LeanCloud" class="headerlink" title="二、配置LeanCloud"></a>二、配置LeanCloud</h2><p>Valine是配合<a href="https://www.leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a>使用的，所以首先</p>
+<ul>
+<li><p>注册LeanCloud账号并登录控制台</p>
+</li>
+<li><p>点击 “创建应用” – 输入应用名字（随便起） – 选择 “开发版” – “创建”</p>
+</li>
+<li><p>点击创建好的应用的右上角的 “设置”(小齿轮)</p>
+</li>
+</ul>
+<p>“应用 keys” 中，有接下来会用到的 AppID 和 AppKey</p>
+<p>进入 “安全中心”，”服务开关” 只开启数据存储，Web安全域名，添加Blog网站的域名</p>
+<h2 id="三、配置Yilia-Valine"><a href="#三、配置Yilia-Valine" class="headerlink" title="三、配置Yilia Valine"></a>三、配置Yilia Valine</h2><ul>
+<li>新建 valine.ejs</li>
+</ul>
+<p>进入hexo目录下的themes/yilia/layout/_partial/post，新建文件valine.ejs,写入</p>
+<pre><code>&lt;div id=&quot;vcomment&quot; class=&quot;comment&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;//cdn1.lncld.net/static/js/3.0.4/av-min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&#39;//unpkg.com/valine/dist/Valine.min.js&#39;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var notify = &#39;&lt;%= theme.valine.notify %&gt;&#39; == true ? true : false;
+    var verify = &#39;&lt;%= theme.valine.verify %&gt;&#39; == true ? true : false;
+    new Valine({
+        av: AV,
+        el: &#39;#vcomment&#39;,
+        notify: notify,
+        app_id: &quot;&lt;%= theme.valine.appid %&gt;&quot;,
+        app_key: &quot;&lt;%= theme.valine.appkey %&gt;&quot;,
+        placeholder: &quot;&lt;%= theme.valine.placeholder %&gt;&quot;,
+        avatar:&quot;&lt;%= theme.valine.avatar %&gt;&quot;,
+    });
+&lt;/script&gt;
+</code></pre><ul>
+<li>修改 article.ejs</li>
+</ul>
+<p>在任意处加上</p>
+<pre><code>&lt;% if (!index){ %&gt;
+  &lt;% if (theme.valine &amp;&amp; theme.valine.appid &amp;&amp; theme.valine.appkey){ %&gt;
+    &lt;section id=&quot;comments&quot; class=&quot;comments&quot;&gt;
+      &lt;style&gt;
+        .comments{margin:30px;padding:10px;background:rgb(255, 255, 255)}
+        @media screen and (max-width:400px){.comments{margin:auto;padding:10px;background:rgb(214, 252, 203)}}
+      &lt;/style&gt;
+      &lt;%- partial(&#39;post/valine&#39;, {
+        title: post.title,
+        url: config.url+url_for(post.path)
+      }) %&gt;
+    &lt;/section&gt;
+  &lt;% } %&gt;
+&lt;% } %&gt;
+</code></pre><ul>
+<li>修改 Yilia配置文件(themes/yilia/_config.yml)</li>
+</ul>
+<p>添加</p>
+<pre><code># Valine https://valine.js.org
+valine: 
+  appid: LeanCloud中的AppID
+  appkey: LeanCloud中的AppKey
+  verify: false #验证码
+  notify: false #评论回复提醒
+  avatar: retro #评论列表头像样式：&#39;&#39;/mm/identicon/monsterid/wavatar/retro/hide
+  placeholder: 请留下宝贵的评论 #评论框占位符
+</code></pre><ul>
+<li>提交即可</li>
+</ul>
+<pre><code>hexo g
+hexo d
+</code></pre><h2 id="四、管理评论"><a href="#四、管理评论" class="headerlink" title="四、管理评论"></a>四、管理评论</h2><p>登陆LeanCloud控制台，存储–结构化数据–Comment，即可对评论进行操作</p>
 
       
 
@@ -244,7 +303,7 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 	</div>
 
       
@@ -297,7 +356,7 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2017/01/02/AutoRunPython_Linux/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2019/12/15/Hexo-Yilia-Valine/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -311,18 +370,9 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
   
 <nav id="article-nav">
   
-    <a href="/2017/01/08/CTF_Fastpost/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CTF--快速提交（fastpost）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/01/01/CTF_OCR_Training/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">OCR--基于字符训练方法</div>
+    <a href="/2019/12/09/Hexo_Coding_BaiduSpider/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo进行Coding Page分流，实现百度爬虫收录</div>
       <i class="icon-circle-right"></i>
     </a>
   
