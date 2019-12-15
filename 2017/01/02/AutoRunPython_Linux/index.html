@@ -9,7 +9,7 @@
   <title>Linux开机自动运行普通用户python脚本 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、前言：最近无聊写了一个监控键盘按键的简单恶意软件，因为我的电脑不可能24小时开机监控，费时费力，于是想到我还有个云服务器，可以在云服务器上持续运行我的服务接收端来进行24小时监控。由于我的恶意软件用python编写的（开发挺快的），所以需要在服务器中设置开机自动运行我的python服务器脚本，服务器环境为linux。windows服务器比较简单，把要启动的快捷方式放到C:\Users\用户\A">
-<meta name="keywords" content="Linux,python">
+<meta name="keywords" content="python,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux开机自动运行普通用户python脚本">
 <meta property="og:url" content="http://www.lovebear.top/2017/01/02/AutoRunPython_Linux/index.html">
@@ -27,7 +27,7 @@
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico">
   
   <link rel="stylesheet" href="/main.css?v=4.0.0">
   
@@ -64,6 +64,13 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
   gtag('js', new Date());
 
   gtag('config', 'UA-134162688-1');
+</script>
+
+<script>
+  (function(){
+  var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+  document.write('<script src="' + src + '" id="sozz"><\/script>');
+  })();
 </script>
 
 </head>
@@ -333,24 +340,6 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
 
 
 
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="AutoRunPython_Linux" data-title="Linux开机自动运行普通用户python脚本" data-url="http://www.lovebear.top/2017/01/02/AutoRunPython_Linux/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"lovebear"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
 
 
 
@@ -399,7 +388,7 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false,
+		open_in_new: true,
 		root: "/",
 		innerArchive: true
 	}
@@ -434,14 +423,6 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">BGP</a>
               </li>
              
@@ -450,43 +431,11 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
+                <a href="javascript:void(0)">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Julia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">DataBase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">翻墙</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,6 +444,46 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">DataBase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Julia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">翻墙</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,7 +551,7 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
             </li>
           
             <li class="search-li">
-              <a href="https://www.dnspod.cn/Login" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>DNSPod</a>
+              <a href="https://www.dnspod.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>DNSPod</a>
             </li>
           
             <li class="search-li">
@@ -577,7 +566,7 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;blog更新比较慢&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">每天进步一点点</div>
   	  	
     	</section>
     
