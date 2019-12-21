@@ -9,7 +9,7 @@
   <title>Scada设备默认密码收集 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言Scada是工业控制系统 ICS 中的主要部分，其中很多Scada设备直接暴露在外网中，处于一个很不安全的状态，而其中一些管理员在对Scada设备进行配置部署的时候，没有修改系统默认密码。可见，收集各厂商的默认密码很有意义。">
-<meta name="keywords" content="大数据">
+<meta name="keywords" content="ICS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scada设备默认密码收集">
 <meta property="og:url" content="http://www.lovebear.top/2019/12/20/Scada_Default_Pwd/index.html">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2019-12-20T15:12:30.374Z">
+<meta property="og:updated_time" content="2019-12-21T00:31:21.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scada设备默认密码收集">
 <meta name="twitter:description" content="前言Scada是工业控制系统 ICS 中的主要部分，其中很多Scada设备直接暴露在外网中，处于一个很不安全的状态，而其中一些管理员在对Scada设备进行配置部署的时候，没有修改系统默认密码。可见，收集各厂商的默认密码很有意义。">
@@ -203,7 +203,55 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Scada是工业控制系统 ICS 中的主要部分，其中很多Scada设备直接暴露在外网中，<br>处于一个很不安全的状态，而其中一些管理员在对Scada设备进行配置部署的时候，<br>没有修改系统默认密码。可见，收集各厂商的默认密码很有意义。</p>
 <a id="more"></a>
 <h2 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a>原文链接</h2><p><a href="http://www.critifence.com/default-password-database/" target="_blank" rel="noopener">SCADA Default Password (SDPD)</a></p>
-<h2 id="Scada默认密码列表"><a href="#Scada默认密码列表" class="headerlink" title="Scada默认密码列表"></a>Scada默认密码列表</h2><table>
+<h2 id="Scada默认密码列表"><a href="#Scada默认密码列表" class="headerlink" title="Scada默认密码列表"></a>Scada默认密码列表</h2><style>
+
+  table {
+    table-layout: fixed;
+    width: 1000px; /*表格宽度*/
+    max-width: 1000px; /*表格最大宽度，避免表格过宽*/
+    border: 1px solid #dedede; /*表格外边框设置*/
+    margin: 15px auto; /*外边距*/
+    border-collapse: collapse; /*使用单一线条的边框*/
+    word-break:break-all;
+    word-wrap:break-word;
+    empty-cells: show; /*单元格无内容依旧绘制边框*/
+  }
+  table th,
+  table td {
+    height: 35px; /*统一每一行的默认高度*/
+    border: 1px solid #dedede; /*内部边框样式*/
+    padding: 0 10px; /*内边距*/
+  }
+  table th {
+    font-weight: bold; /*加粗*/
+    text-align: center !important; /*内容居中，加上 !important 避免被 Markdown 样式覆盖*/
+    background: rgba(158,188,226,0.2); /*背景色*/
+  }
+
+  table tbody tr:nth-child(2n) {
+    background: rgba(158,188,226,0.12);
+  }
+
+  table th {
+    white-space: nowrap; /*表头内容强制在一行显示*/
+  }
+
+  table th:nth-of-type(1){
+    width: 20%;
+  }
+  table th:nth-of-type(2){
+    width: 20%;
+  }
+  table th:nth-of-type(3){
+    width: 20%;
+  }
+  table th:nth-of-type(4){
+    width: 40%;
+  }
+
+</style>
+
+<table>
 <thead>
 <tr>
 <th>Product</th>
@@ -2753,7 +2801,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ICS/">ICS</a></li></ul>
 	</div>
 
       
@@ -2946,39 +2994,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">DataBase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">BGP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Julia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
+                <a href="javascript:void(0)">ctf</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2986,15 +3006,43 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Julia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">DataBase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">翻墙</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">翻墙</a>
+                <a href="javascript:void(0)">Vulnerability</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3003,6 +3051,10 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">pacman</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ICS</a>
               </li>
             
             <div class="clearfix"></div>

@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2019-12-08T05:03:42.018Z">
+<meta property="og:updated_time" content="2019-12-21T00:31:09.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark-HadoopYarn-Kafka集群搭建--搭建Kafka集群">
 <meta name="twitter:description" content="前言最后，是Kafka集群的搭建，包括，配置zookeeper，配置Kafka，启动Kafka集群，查看是否启动成功和关闭集群，还有关于提高性能的一些建议。">
@@ -251,6 +251,51 @@ mkdir logs
 </code></pre><h3 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
 <li>vim ~/kafka/config/server.properties</li>
 </ul>
+<style>
+
+  table {
+    table-layout: fixed;
+    width: 1000px; /*表格宽度*/
+    max-width: 1000px; /*表格最大宽度，避免表格过宽*/
+    border: 1px solid #dedede; /*表格外边框设置*/
+    margin: 15px auto; /*外边距*/
+    border-collapse: collapse; /*使用单一线条的边框*/
+    word-break:break-all;
+    word-wrap:break-word;
+    empty-cells: show; /*单元格无内容依旧绘制边框*/
+  }
+  table th,
+  table td {
+    height: 35px; /*统一每一行的默认高度*/
+    border: 1px solid #dedede; /*内部边框样式*/
+    padding: 0 10px; /*内边距*/
+  }
+  table th {
+    font-weight: bold; /*加粗*/
+    text-align: center !important; /*内容居中，加上 !important 避免被 Markdown 样式覆盖*/
+    background: rgba(158,188,226,0.2); /*背景色*/
+  }
+
+  table tbody tr:nth-child(2n) {
+    background: rgba(158,188,226,0.12);
+  }
+
+  table th {
+    white-space: nowrap; /*表头内容强制在一行显示*/
+  }
+
+  table th:nth-of-type(1){
+    width: 25%;
+  }
+  table th:nth-of-type(2){
+    width: 30%;
+  }
+  table th:nth-of-type(3){
+    width: 45%;
+  }
+
+</style>
+
 <table>
 <thead>
 <tr>
@@ -570,39 +615,11 @@ parition数量=consumer数量
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">DataBase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">BGP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Julia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
+                <a href="javascript:void(0)">ctf</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -610,15 +627,43 @@ parition数量=consumer数量
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Julia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">DataBase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">翻墙</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">翻墙</a>
+                <a href="javascript:void(0)">Vulnerability</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,6 +672,10 @@ parition数量=consumer数量
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">pacman</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ICS</a>
               </li>
             
             <div class="clearfix"></div>
