@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2019-12-08T04:46:21.829Z">
+<meta property="og:updated_time" content="2019-12-27T15:16:37.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark-HadoopYarn-Kafka集群搭建--基础环境">
 <meta name="twitter:description" content="前言首先，是基础环境的搭建，包括，root账户设置，修改默认python版本为py3，配置域名，配置ssh免密登陆，安装jdk8等。">
@@ -244,6 +244,10 @@ StrictModes yes
 192.168.139.140 slave2
 ... ...
 </code></pre><h3 id="ssh免密登陆"><a href="#ssh免密登陆" class="headerlink" title="ssh免密登陆"></a>ssh免密登陆</h3><ul>
+<li>安装ssh</li>
+</ul>
+<pre><code>apt install ssh
+</code></pre><ul>
 <li>master，各slave，生成ssh rsa公私钥</li>
 </ul>
 <pre><code>ssh-keygen -t rsa
@@ -528,15 +532,15 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -548,23 +552,15 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ubuntu</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,6 +569,14 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">pacman</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
               </li>
             
             <div class="clearfix"></div>
