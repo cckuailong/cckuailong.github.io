@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2019-12-27T15:16:37.799Z">
+<meta property="og:updated_time" content="2020-01-06T09:06:03.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark-HadoopYarn-Kafka集群搭建--基础环境">
 <meta name="twitter:description" content="前言首先，是基础环境的搭建，包括，root账户设置，修改默认python版本为py3，配置域名，配置ssh免密登陆，安装jdk8等。">
@@ -256,7 +256,7 @@ StrictModes yes
 </code></pre><ul>
 <li>slave* 生成的id_rsa.pub 发送给master</li>
 </ul>
-<pre><code class="slave1">scp ~/.ssh/id_rsa.pub spark@master:~/.ssh/id_rsa.pub.slave1
+<pre><code class="slave1">scp ~/.ssh/id_rsa.pub root@master:~/.ssh/id_rsa.pub.slave1
 </code></pre>
 <ul>
 <li>master上将所有公钥加到authorized_keys中</li>
@@ -266,7 +266,7 @@ StrictModes yes
 <ul>
 <li>master上生成的authorized_keys分发给每个slave</li>
 </ul>
-<pre><code class="master">scp ~/.ssh/authorized_keys spark@slave1:~/.ssh/
+<pre><code class="master">scp ~/.ssh/authorized_keys root@slave1:~/.ssh/
 </code></pre>
 <h3 id="安装jdk-8"><a href="#安装jdk-8" class="headerlink" title="安装jdk 8"></a>安装jdk 8</h3><ol>
 <li>安装openjdk-8</li>
@@ -508,10 +508,6 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Ubuntu</a>
               </li>
              
@@ -532,7 +528,11 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,15 +540,15 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Julia</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ssl</a>
+                <a href="javascript:void(0)">BGP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,15 +560,15 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">ssl</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
               </li>
              
               <li class="article-tag-list-item">
