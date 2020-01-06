@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2020-01-06T09:00:30.975Z">
+<meta property="og:updated_time" content="2020-01-06T15:55:20.689Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZooKeeper-Hbase-OpenTSDB集群搭建--OpenTSDB">
 <meta name="twitter:description" content="前言接下来，是OpenTSDB的搭建，包括，安装，配置，启动停止，和基本的使用方法。OpenTSDB是基于Hbase的时间序列数据库，部署前，要保证HBase正确部署并成功运行。">
@@ -273,18 +273,27 @@ tsd.storage.hbase.zk_quorum = master,slave1,slave2
 </code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ul>
 <li>访问 <a href="http://master:4399" target="_blank" rel="noopener">http://master:4399</a>，看到opentsdb页面</li>
 </ul>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
 <li>写入整形数据</li>
 </ul>
-<pre><code>curl -i -X POST -d &#39;{&quot;metric&quot;:&quot;bgp.message&quot;,&quot;timestamp&quot;:1531486607,&quot;value&quot;:7,&quot;tags&quot;:{&quot;tag&quot;:&quot;test&quot;}}&#39; http://master:4399/api/put?details
+<pre><code>curl -i -X POST -d &#39;{&quot;metric&quot;:&quot;bgp.message&quot;, &quot;timestamp&quot;:1531486607,&quot;value&quot;:7, &quot;tags&quot;:{&quot;tag&quot;:&quot;test&quot;}}&#39; http://master:4399/api/put?details
 </code></pre><ul>
 <li>写入文本数据（注解）</li>
 </ul>
-<pre><code>curl -i -X POST -d &#39;{&quot;startTime&quot;:1578276065,&quot;custom&quot;:{&quot;type&quot;:4}}&#39; http://master:4399/api/annotation/put?details
+<pre><code>curl -i -X POST -d &#39;{&quot;startTime&quot;:1578276065, &quot;tsuid&quot;:&quot;000001000001000001&quot;, &quot;custom&quot;:{&quot;type&quot;:4}}&#39; http://master:4399/api/annotation/put?details
 </code></pre><ul>
-<li>读取文本数据（注解）</li>
+<li>批量写入注解</li>
+</ul>
+<pre><code>/api/annotation/bulk
+</code></pre><pre><code>curl -i -X POST -d &#39;[{&quot;startTime&quot;:1578276069,&quot;endTime&quot;:1578276069, &quot;tsuid&quot;:&quot;000001000001000001&quot;, &quot;custom&quot;:{&quot;type&quot;:4}},{&quot;startTime&quot;:1578276569,&quot;tsuid&quot;:&quot;000001000001000001&quot;,&quot;custom&quot;:{&quot;type&quot;:6}}]&#39; http://master:4399/api/annotation/bulk/put
+</code></pre><ul>
+<li>读取单条文本数据（注解）</li>
 </ul>
 <pre><code>curl http://master:4399/api/annotation?start_time=1578276065
+</code></pre><ul>
+<li>批量读取数据（返回包含注解）</li>
+</ul>
+<pre><code>curl -i -X POST -d &#39;{&quot;start&quot;:1578276060,&quot;end&quot;: 1578276070,&quot;showTSUIDs&quot;:true,&quot;queries&quot;:[{&quot;metric&quot;:&quot;bgp.message&quot;,&quot;aggregator&quot;: &quot;min&quot;}]}&#39; http://master:4399/api/query
 </code></pre>
       
 
@@ -523,11 +532,15 @@ tsd.storage.hbase.zk_quorum = master,slave1,slave2
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ctf</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,11 +548,11 @@ tsd.storage.hbase.zk_quorum = master,slave1,slave2
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">hexo</a>
+                <a href="javascript:void(0)">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
+                <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,11 +560,7 @@ tsd.storage.hbase.zk_quorum = master,slave1,slave2
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,11 +580,11 @@ tsd.storage.hbase.zk_quorum = master,slave1,slave2
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">image</a>
+                <a href="javascript:void(0)">pacman</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">pacman</a>
+                <a href="javascript:void(0)">image</a>
               </li>
             
             <div class="clearfix"></div>
