@@ -12,11 +12,11 @@
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu 16.04配置pppoe">
-<meta property="og:url" content="http://www.lovebear.top/2020/01/03/ubuntu配置pppoe/index.html">
+<meta property="og:url" content="http://www.lovebear.top/2020/01/03/Ubuntu配置pppoe/index.html">
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言ubuntu安装配置pppoe协议踩了一些坑，在此记录一下，包括安装，配置，启动，停止。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-03T08:40:45.118Z">
+<meta property="og:updated_time" content="2020-01-07T05:57:01.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 16.04配置pppoe">
 <meta name="twitter:description" content="一、前言ubuntu安装配置pppoe协议踩了一些坑，在此记录一下，包括安装，配置，启动，停止。">
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ubuntu配置pppoe" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Ubuntu配置pppoe" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -190,7 +190,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
     </h1>
   
 
-        <a href="/2020/01/03/ubuntu配置pppoe/" class="archive-article-date">
+        <a href="/2020/01/03/Ubuntu配置pppoe/" class="archive-article-date">
   	<time datetime="2020-01-03T08:36:19.475Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-03</time>
 </a>
       </header>
@@ -222,6 +222,32 @@ password：分配的密码
 firewall：0
 </code></pre><h2 id="五、启动pppoe"><a href="#五、启动pppoe" class="headerlink" title="五、启动pppoe"></a>五、启动pppoe</h2><pre><code>pppoe-start
 </code></pre><h2 id="六、停止pppoe"><a href="#六、停止pppoe" class="headerlink" title="六、停止pppoe"></a>六、停止pppoe</h2><pre><code>pppoe-stop
+</code></pre><h2 id="解决频繁掉线问题"><a href="#解决频繁掉线问题" class="headerlink" title="解决频繁掉线问题"></a>解决频繁掉线问题</h2><ul>
+<li>如果是Network-Manager配置的拨号</li>
+</ul>
+<pre><code>vim /etc/ppp/options
+</code></pre><pre><code>lcp-echo-interval 值改成 3153600000
+</code></pre><ul>
+<li>如果是pppoeconf配置的拨号（本文使用的配置方法）</li>
+</ul>
+<pre><code>vim /etc/ppp/peers/dsl-provider
+</code></pre><pre><code>lcp-echo-failure 4
+lcp-echo-interval 30
+</code></pre><p>注释掉</p>
+<ul>
+<li>另外：archlinux如果用rp-pppoe拨号</li>
+</ul>
+<pre><code>vim /etc/ppp/pppoe.conf
+</code></pre><pre><code>LCP_INTERVAL=20
+LCP_FAILURE=3
+</code></pre><p>加大数值</p>
+<ul>
+<li>重启网络</li>
+</ul>
+<p>三种重启方式，选择一个</p>
+<pre><code>/etc/init.d/networking restart
+service network-manager restart
+/etc/init.d/network-manager restart
 </code></pre>
       
 
@@ -311,7 +337,7 @@ firewall：0
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/01/03/ubuntu配置pppoe/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/01/03/Ubuntu配置pppoe/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -468,15 +494,7 @@ firewall：0
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,15 +502,23 @@ firewall：0
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Julia</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
+                <a href="javascript:void(0)">DataBase</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">DataBase</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
