@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2020-01-06T15:55:20.689Z">
+<meta property="og:updated_time" content="2020-01-08T05:27:36.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZooKeeper-Hbase-OpenTSDB集群搭建--OpenTSDB">
 <meta name="twitter:description" content="前言接下来，是OpenTSDB的搭建，包括，安装，配置，启动停止，和基本的使用方法。OpenTSDB是基于Hbase的时间序列数据库，部署前，要保证HBase正确部署并成功运行。">
@@ -245,6 +245,10 @@ tsd.http.staticroot = ./staticroot
 # Where TSD should write it&#39;s cache files to
 # *** REQUIRED ***
 tsd.http.cachedir = /root/openTSDB_temp
+
+# Enable chunk &amp;&amp; set the max chunk size
+tsd.http.request.enable_chunked = true
+tsd.http.request.max_chunk = 10485760
 
 
 # --------- CORE ----------
@@ -540,19 +544,11 @@ tsd.storage.hbase.zk_quorum = master,slave1,slave2
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,11 +560,19 @@ tsd.storage.hbase.zk_quorum = master,slave1,slave2
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">DataBase</a>
+                <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">DataBase</a>
               </li>
              
               <li class="article-tag-list-item">
