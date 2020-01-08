@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言bgpstream官网中的操作代码不翻墙加载十分缓慢（甚至加载不出来），这里做一个中文版的翻译记录，记录Ubuntu安装BGPStream（包括 libBGPStream和pybgpstream）原英文链接">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-08T08:45:15.486Z">
+<meta property="og:updated_time" content="2020-01-08T14:57:18.343Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyBGPStream安装">
 <meta name="twitter:description" content="一、前言bgpstream官网中的操作代码不翻墙加载十分缓慢（甚至加载不出来），这里做一个中文版的翻译记录，记录Ubuntu安装BGPStream（包括 libBGPStream和pybgpstream）原英文链接">
@@ -247,6 +247,16 @@ valid ris.rrc06 1427846570
 valid ris.rrc06 1427846573
     A 2001:200:0:fe00::6249:0 25152 A {&#39;next-hop&#39;: &#39;2001:200:0:fe00::9c1:0&#39;, &#39;prefix&#39;: &#39;2a00:bdc0:e004::/48&#39;, &#39;as-path&#39;: &#39;25152 2497 6939 47541 28709&#39;}
 ...
+</code></pre><h2 id="四、示例"><a href="#四、示例" class="headerlink" title="四、示例"></a>四、示例</h2><pre><code>stream = BGPStream(
+    data_interface=&quot;singlefile&quot;
+)
+file_type = &#39;rib-file&#39;
+stream.set_data_interface_option(&#39;singlefile&#39;, file_type, filepath)
+for rec in stream.records():
+    if rec.status != &quot;valid&quot;:
+        continue
+    for elem in rec:
+        ......
 </code></pre>
       
 
@@ -460,19 +470,19 @@ valid ris.rrc06 1427846573
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Apache</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Apache</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,11 +494,7 @@ valid ris.rrc06 1427846573
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,15 +510,15 @@ valid ris.rrc06 1427846573
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ssl</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">DataBase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,6 +527,10 @@ valid ris.rrc06 1427846573
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
