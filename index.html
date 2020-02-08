@@ -176,6 +176,226 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Mycat_Mysql_Vertical_Split" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/08/Mycat_Mysql_Vertical_Split/">Mycat基于Mysql的垂直切分</a>
+    </h1>
+  
+
+        <a href="/2020/02/08/Mycat_Mysql_Vertical_Split/" class="archive-article-date">
+  	<time datetime="2020-02-08T11:18:24.235Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-08</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>Mycat可以对数据库进行分库分表管理，本文针对Mycat的垂直切分功能进行实验，<br>实现不同的表，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。</p>
+<h2 id="二、环境"><a href="#二、环境" class="headerlink" title="二、环境"></a>二、环境</h2><ul>
+<li>Mycat 1.6.7.5</li>
+<li>Mysql 5.7</li>
+<li><p>openjdk-8</p>
+</li>
+<li><p>mycat master: master(192.168.118.128)</p>
+</li>
+<li>mycat slave1: slave1(192.168.118.129)</li>
+</ul>
+<p>数据库名</p>
+<ul>
+<li>master, slave1: tp_bgp_data</li>
+</ul>
+<p>表名</p>
+<ul>
+<li>master: link, origin</li>
+<li>slave1: monitor</li>
+</ul>
+<h2 id="三、安装配置"><a href="#三、安装配置" class="headerlink" title="三、安装配置"></a>三、安装配置</h2><h3 id="安装-mysql"><a href="#安装-mysql" class="headerlink" title="安装 mysql"></a>安装 mysql</h3><p>设置为允许远程连接</p>
+<h3 id="下载mycat"><a href="#下载mycat" class="headerlink" title="下载mycat"></a>下载mycat</h3><p>master上下载并解压Mycat</p>
+<pre><code>wget http://dl.mycat.io/1.6.7.5/Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
+tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
+</code></pre><h3 id="配置Mycat"><a href="#配置Mycat" class="headerlink" title="配置Mycat"></a>配置Mycat</h3><p>配置文件在 ~/mycat/conf</p>
+<ul>
+<li>schema.xml</li>
+</ul>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE mycat:schema SYSTEM &quot;schema.dtd&quot;&gt;
+&lt;mycat:schema xmlns:mycat=&quot;http://io.mycat/&quot;&gt;
+
+    &lt;schema name=&quot;TESTDB&quot; checkSQLschema=&quot;true&quot; sqlMaxLimit=&quot;100&quot; randomDataNode=&quot;dn1&quot;&gt;
+        &lt;table name=&quot;link&quot; dataNode=&quot;dn1&quot;/&gt;
+        &lt;table name=&quot;origin&quot; dataNode=&quot;dn1&quot;/&gt;
+        &lt;table name=&quot;monitor&quot; dataNode=&quot;dn2&quot;/&gt;
+    &lt;/schema&gt;
+
+    &lt;dataNode name=&quot;dn1&quot; dataHost=&quot;master&quot; database=&quot;tp_bgp_data&quot; /&gt;
+    &lt;dataNode name=&quot;dn2&quot; dataHost=&quot;slave1&quot; database=&quot;tp_bgp_data&quot; /&gt;
+
+    &lt;dataHost name=&quot;master&quot; maxCon=&quot;1000&quot; minCon=&quot;10&quot; balance=&quot;0&quot;
+              writeType=&quot;0&quot; dbType=&quot;mysql&quot; dbDriver=&quot;native&quot; switchType=&quot;1&quot;  slaveThreshold=&quot;100&quot;&gt;
+        &lt;heartbeat&gt;select user()&lt;/heartbeat&gt;
+
+        &lt;writeHost host=&quot;hostM1&quot; url=&quot;localhost:3306&quot; user=&quot;root&quot;
+                   password=&quot;1q2w3e4r&quot;&gt;
+        &lt;/writeHost&gt;
+    &lt;/dataHost&gt;
+
+    &lt;dataHost name=&quot;slave1&quot; maxCon=&quot;1000&quot; minCon=&quot;10&quot; balance=&quot;0&quot;
+              writeType=&quot;0&quot; dbType=&quot;mysql&quot; dbDriver=&quot;native&quot; switchType=&quot;1&quot;  slaveThreshold=&quot;100&quot;&gt;
+        &lt;heartbeat&gt;select user()&lt;/heartbeat&gt;
+
+        &lt;writeHost host=&quot;hostM1&quot; url=&quot;slave1:3306&quot; user=&quot;root&quot;
+                   password=&quot;1q2w3e4r&quot;&gt;
+        &lt;/writeHost&gt;
+    &lt;/dataHost&gt;
+
+&lt;/mycat:schema&gt;
+</code></pre><ul>
+<li>server.xml</li>
+</ul>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE mycat:server SYSTEM &quot;server.dtd&quot;&gt;
+&lt;mycat:server xmlns:mycat=&quot;http://io.mycat/&quot;&gt;
+    &lt;system&gt;
+    &lt;property name=&quot;nonePasswordLogin&quot;&gt;0&lt;/property&gt;
+    &lt;property name=&quot;ignoreUnknownCommand&quot;&gt;0&lt;/property&gt;
+    &lt;property name=&quot;useHandshakeV10&quot;&gt;1&lt;/property&gt;
+    &lt;property name=&quot;removeGraveAccent&quot;&gt;1&lt;/property&gt;
+    &lt;property name=&quot;useSqlStat&quot;&gt;0&lt;/property&gt;
+    &lt;property name=&quot;useGlobleTableCheck&quot;&gt;0&lt;/property&gt;
+        &lt;property name=&quot;sqlExecuteTimeout&quot;&gt;300&lt;/property&gt;
+        &lt;property name=&quot;sequnceHandlerType&quot;&gt;1&lt;/property&gt;
+
+        &lt;property name=&quot;sequnceHandlerPattern&quot;&gt;(?:(\s*next\s+value\s+for\s*MYCATSEQ_(\w+))(,|\)|\s)*)+&lt;/property&gt;
+    &lt;property name=&quot;subqueryRelationshipCheck&quot;&gt;false&lt;/property&gt;
+    &lt;property name=&quot;sequenceHanlderClass&quot;&gt;io.mycat.route.sequence.handler.HttpIncrSequenceHandler&lt;/property&gt;
+
+        &lt;property name=&quot;processorBufferPoolType&quot;&gt;0&lt;/property&gt;
+
+        &lt;property name=&quot;maxStringLiteralLength&quot;&gt;65535&lt;/property&gt;
+        &lt;property name=&quot;sequnceHandlerType&quot;&gt;0&lt;/property&gt;
+        &lt;property name=&quot;backSocketNoDelay&quot;&gt;1&lt;/property&gt;
+        &lt;property name=&quot;frontSocketNoDelay&quot;&gt;1&lt;/property&gt;
+        &lt;property name=&quot;processorExecutor&quot;&gt;16&lt;/property&gt;
+
+            &lt;property name=&quot;serverPort&quot;&gt;8066&lt;/property&gt; &lt;property name=&quot;managerPort&quot;&gt;9066&lt;/property&gt; 
+            &lt;property name=&quot;idleTimeout&quot;&gt;300000&lt;/property&gt; &lt;property name=&quot;bindIp&quot;&gt;0.0.0.0&lt;/property&gt;
+            &lt;property name=&quot;dataNodeIdleCheckPeriod&quot;&gt;300000&lt;/property&gt;
+            &lt;property name=&quot;frontWriteQueueSize&quot;&gt;4096&lt;/property&gt; &lt;property name=&quot;processors&quot;&gt;32&lt;/property&gt;
+
+        &lt;property name=&quot;handleDistributedTransactions&quot;&gt;0&lt;/property&gt;
+
+        &lt;!--
+            off heap for merge/order/group/limit      1开启   0关闭
+        --&gt;
+        &lt;property name=&quot;useOffHeapForMerge&quot;&gt;0&lt;/property&gt;
+
+        &lt;!--
+            单位为m
+        --&gt;
+        &lt;property name=&quot;memoryPageSize&quot;&gt;64k&lt;/property&gt;
+
+        &lt;!--
+            单位为k
+        --&gt;
+        &lt;property name=&quot;spillsFileBufferSize&quot;&gt;1k&lt;/property&gt;
+
+        &lt;property name=&quot;useStreamOutput&quot;&gt;0&lt;/property&gt;
+
+        &lt;!--
+            单位为m
+        --&gt;
+        &lt;property name=&quot;systemReserveMemorySize&quot;&gt;384m&lt;/property&gt;
+
+        &lt;property name=&quot;useZKSwitch&quot;&gt;false&lt;/property&gt;
+
+        &lt;property name=&quot;strictTxIsolation&quot;&gt;false&lt;/property&gt;
+
+        &lt;property name=&quot;useZKSwitch&quot;&gt;true&lt;/property&gt;
+
+        &lt;property name=&quot;parallExecute&quot;&gt;0&lt;/property&gt;
+    &lt;/system&gt;
+
+    &lt;user name=&quot;root&quot; defaultAccount=&quot;true&quot;&gt;
+        &lt;property name=&quot;password&quot;&gt;1q2w3e4r&lt;/property&gt;
+        &lt;property name=&quot;schemas&quot;&gt;TESTDB&lt;/property&gt;
+        &lt;property name=&quot;defaultSchema&quot;&gt;TESTDB&lt;/property&gt;
+    &lt;/user&gt;
+
+    &lt;user name=&quot;user&quot;&gt;
+        &lt;property name=&quot;password&quot;&gt;user&lt;/property&gt;
+        &lt;property name=&quot;schemas&quot;&gt;TESTDB&lt;/property&gt;
+        &lt;property name=&quot;readOnly&quot;&gt;true&lt;/property&gt;
+        &lt;property name=&quot;defaultSchema&quot;&gt;TESTDB&lt;/property&gt;
+    &lt;/user&gt;
+
+&lt;/mycat:server&gt;
+</code></pre><h2 id="四、实验"><a href="#四、实验" class="headerlink" title="四、实验"></a>四、实验</h2><h3 id="启动Mycat"><a href="#启动Mycat" class="headerlink" title="启动Mycat"></a>启动Mycat</h3><p>master上运行</p>
+<pre><code>~/mycat/bin/mycat start
+</code></pre><p>检查是否启动成功</p>
+<pre><code>cat ~/mycat/logs/wrapper.log
+</code></pre><p>若显示successful，则启动成功，否则，查看其中的报错，可能是配置错误，可能是环境错误（例：java环境未安装）</p>
+<h3 id="操作Mycat"><a href="#操作Mycat" class="headerlink" title="操作Mycat"></a>操作Mycat</h3><ul>
+<li>登陆mycat</li>
+</ul>
+<p>登录到Mycat的逻辑数据库TESTDB（server.xml中可修改）</p>
+<pre><code>mysql -uroot -p1q2w3e4r -h127.0.0.1 -P8066 -DTESTDB
+</code></pre><ul>
+<li>查看表</li>
+</ul>
+<pre><code>show tables;
+</code></pre><p>发现master和slave1主机的tp_bgp_data数据库中的表都在</p>
+<ul>
+<li>写数据</li>
+</ul>
+<pre><code>insert into monitor values(1, &quot;aabbcc&quot;);
+</code></pre><ul>
+<li>读数据</li>
+</ul>
+<pre><code>select * from monitor;
+</code></pre><p>结果</p>
+<pre><code>mysql&gt; select * from monitor;
++------+---------+
+| id   | msg_md5 |
++------+---------+
+|    1 | aabbcc  |
++------+---------+
+</code></pre><h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>以上就是Mycat的垂直切分示例，使用Mycat中间件可以使我们操作分布式数据库，就像操作单一数据库一样，<br>对于单数据库切换到分布式数据库有着十分重要的意义，并且原项目不需进行代码改动。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/08/Mycat_Mysql_Vertical_Split/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-PyBgpStream_Install" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -388,59 +608,6 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 
 
   
-    <article id="post-ZooKeeper-Hbase-OpenTSDB_ZK" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/06/ZooKeeper-Hbase-OpenTSDB_ZK/">ZooKeeper-Hbase-OpenTSDB集群搭建--ZooKeeper</a>
-    </h1>
-  
-
-        <a href="/2020/01/06/ZooKeeper-Hbase-OpenTSDB_ZK/" class="archive-article-date">
-  	<time datetime="2020-01-06T07:59:38.825Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先，是ZooKeeper的搭建，包括，安装，配置，启动停止，还有我自己写的集群控制脚本。<br>ZooKeeper是HBase运行的前提，是分布式应用程序协调服务，很多开源分布式软件都依赖ZooKeeper，如Kafka，HBase等。</p>
-        
-          <a class="article-more-a" href="/2020/01/06/ZooKeeper-Hbase-OpenTSDB_ZK/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/06/ZooKeeper-Hbase-OpenTSDB_ZK/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -518,14 +685,6 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Ubuntu</a>
               </li>
              
@@ -534,11 +693,19 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">BGP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ctf</a>
+                <a href="javascript:void(0)">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,11 +713,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Julia</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,15 +721,27 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
+                <a href="javascript:void(0)">Julia</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">DataBase</a>
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">DataBase</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,10 +750,6 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Vulnerability</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
