@@ -200,9 +200,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <li>Mysql 5.7</li>
 <li><p>openjdk-8</p>
 </li>
-<li><p>mycat master: master(192.168.118.128)</p>
+<li><p>mycat master: 192.168.118.128(domain: server)</p>
 </li>
-<li>mycat slave1: slave1(192.168.118.129)</li>
+<li>mycat slave1: 192.168.118.129(domain: slave1)</li>
 </ul>
 <p>数据库名</p>
 <ul>
@@ -342,7 +342,7 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
 <li>登陆mycat</li>
 </ul>
 <p>登录到Mycat的逻辑数据库TESTDB（server.xml中可修改）</p>
-<pre><code>mysql -uroot -p1q2w3e4r -h127.0.0.1 -P8066 -DTESTDB
+<pre><code>mysql -uroot -p1q2w3e4r -hmaster -P8066 -DTESTDB
 </code></pre><ul>
 <li>查看表</li>
 </ul>
@@ -693,6 +693,10 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ctf</a>
               </li>
              
@@ -701,7 +705,7 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -709,7 +713,7 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
+                <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -717,15 +721,7 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Julia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -733,7 +729,11 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">DataBase</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -741,7 +741,7 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">DataBase</a>
+                <a href="javascript:void(0)">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
