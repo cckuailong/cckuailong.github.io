@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://www.lovebear.top">
   <title>Mycat基于Mysql的垂直切分 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言Mycat可以对数据库进行分库分表管理，本文针对Mycat的垂直切分功能进行实验，实现不同的表，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。 二、环境 Mycat 1.6.7.5 Mysql 5.7 openjdk-8  mycat master: 192.168.118.128(domain: server)  mycat slave1: 192.168.118.">
+  <meta name="description" content="一、前言Mycat可以对数据库进行分库分表管理，本文针对Mycat的垂直切分功能进行实验，实现不同的表，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mycat基于Mysql的垂直切分">
 <meta property="og:url" content="http://www.lovebear.top/2020/02/08/Mycat_Mysql_Vertical_Split/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言Mycat可以对数据库进行分库分表管理，本文针对Mycat的垂直切分功能进行实验，实现不同的表，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。 二、环境 Mycat 1.6.7.5 Mysql 5.7 openjdk-8  mycat master: 192.168.118.128(domain: server)  mycat slave1: 192.168.118.">
+<meta property="og:description" content="一、前言Mycat可以对数据库进行分库分表管理，本文针对Mycat的垂直切分功能进行实验，实现不同的表，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
 <meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
-<meta property="og:updated_time" content="2020-02-09T00:27:57.464Z">
+<meta property="og:updated_time" content="2020-02-09T00:34:30.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mycat基于Mysql的垂直切分">
-<meta name="twitter:description" content="一、前言Mycat可以对数据库进行分库分表管理，本文针对Mycat的垂直切分功能进行实验，实现不同的表，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。 二、环境 Mycat 1.6.7.5 Mysql 5.7 openjdk-8  mycat master: 192.168.118.128(domain: server)  mycat slave1: 192.168.118.">
+<meta name="twitter:description" content="一、前言Mycat可以对数据库进行分库分表管理，本文针对Mycat的垂直切分功能进行实验，实现不同的表，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。">
 <meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
@@ -201,6 +201,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>Mycat可以对数据库进行分库分表管理，本文针对Mycat的垂直切分功能进行实验，<br>实现不同的表，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。</p>
+<a id="more"></a>
 <h2 id="二、环境"><a href="#二、环境" class="headerlink" title="二、环境"></a>二、环境</h2><ul>
 <li>Mycat 1.6.7.5</li>
 <li>Mysql 5.7</li>
@@ -591,6 +592,14 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">BGP</a>
               </li>
              
@@ -599,7 +608,7 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">python</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,7 +616,7 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Linux</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -615,7 +624,7 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
+                <a href="javascript:void(0)">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,19 +636,11 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">DataBase</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
