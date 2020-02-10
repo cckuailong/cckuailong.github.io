@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2019-12-08T05:00:27.046Z">
+<meta property="og:updated_time" content="2020-02-10T11:54:03.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark-HadoopYarn-Kafka集群搭建--搭建Spark集群">
 <meta name="twitter:description" content="前言然后，是Spark集群的搭建，包括，添加环境变量，修改相应的配置文件，启动Spark集群，查看是否启动成功和关闭集群。">
@@ -229,6 +229,10 @@ SPARK_DRIVER_MEMORY=1G
 <li>配置内容</li>
 </ul>
 <pre><code>slave1
+</code></pre><ul>
+<li>复制master中的spark到slave*</li>
+</ul>
+<pre><code>scp -r /root/spark root@slave1:/root
 </code></pre><h3 id="启动Spark"><a href="#启动Spark" class="headerlink" title="启动Spark"></a>启动Spark</h3><ul>
 <li>master启动</li>
 </ul>
@@ -505,11 +509,11 @@ NodeManager
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,7 +521,7 @@ NodeManager
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
+                <a href="javascript:void(0)">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,7 +529,7 @@ NodeManager
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">mysql</a>
+                <a href="javascript:void(0)">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
