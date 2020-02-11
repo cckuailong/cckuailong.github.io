@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2019-12-21T00:31:09.844Z">
+<meta property="og:updated_time" content="2020-02-11T03:08:01.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark-HadoopYarn-Kafka集群搭建--搭建Kafka集群">
 <meta name="twitter:description" content="前言最后，是Kafka集群的搭建，包括，配置zookeeper，配置Kafka，启动Kafka集群，查看是否启动成功和关闭集群，还有关于提高性能的一些建议。">
@@ -209,7 +209,7 @@ mv kafka_2.12-2.3.1/ kafka
 mkdir zookeeper &amp;&amp; cd zookeeper
 mkdir data &amp;&amp; mkdir logs
 </code></pre><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
-<li>vim ~/kafka/conf/zookeeper.properties</li>
+<li>vim ~/kafka/config/zookeeper.properties</li>
 </ul>
 <pre><code>dataDir=/root/kafka/zookeeper/data
 dataLogDir=/root/kafka/zookeeper/logs
@@ -615,19 +615,7 @@ parition数量=consumer数量
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -639,15 +627,23 @@ parition数量=consumer数量
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Julia</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -656,6 +652,10 @@ parition数量=consumer数量
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
               </li>
              
               <li class="article-tag-list-item">
