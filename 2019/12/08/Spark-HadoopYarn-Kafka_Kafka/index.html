@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2020-02-11T03:16:08.356Z">
+<meta property="og:updated_time" content="2020-02-11T03:28:42.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark-HadoopYarn-Kafka集群搭建--搭建Kafka集群">
 <meta name="twitter:description" content="前言最后，是Kafka集群的搭建，包括，配置zookeeper，配置Kafka，启动Kafka集群，查看是否启动成功和关闭集群，还有关于提高性能的一些建议。">
@@ -221,8 +221,8 @@ tickTime=2000
 initLimit=10
 syncLimit=5
 
-server.1={master}:4001:4002
-server.2={slave1}:4001:4002
+server.1=master:4001:4002
+server.2=slave1:4001:4002
 </code></pre><ul>
 <li>master 创建 myid文件</li>
 </ul>
