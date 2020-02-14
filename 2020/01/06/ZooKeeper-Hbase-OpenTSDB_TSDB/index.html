@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2020-01-08T05:27:36.851Z">
+<meta property="og:updated_time" content="2020-02-14T03:58:08.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZooKeeper-Hbase-OpenTSDB集群搭建--OpenTSDB">
 <meta name="twitter:description" content="前言接下来，是OpenTSDB的搭建，包括，安装，配置，启动停止，和基本的使用方法。OpenTSDB是基于Hbase的时间序列数据库，部署前，要保证HBase正确部署并成功运行。">
@@ -218,7 +218,7 @@ cp -r third_party ./build
 <ul>
 <li>修改create_table.sh中的bug</li>
 </ul>
-<pre><code>vim create_table.sh
+<pre><code>vim ~/opentsdb/src/create_table.sh
 
 TSDB_TTL=${TSDB_TTL-&#39;FOREVER&#39;} 改成 TSDB_TTL=${TSDB_TTL-&#39;2147483647&#39;}
 </code></pre><ul>
@@ -228,7 +228,7 @@ TSDB_TTL=${TSDB_TTL-&#39;FOREVER&#39;} 改成 TSDB_TTL=${TSDB_TTL-&#39;214748364
 </code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
 <li>获取配置文件</li>
 </ul>
-<pre><code>cp src/opentsdb.conf build/opentasdb.conf
+<pre><code>cp src/opentsdb.conf build/opentsdb.conf
 </code></pre><ul>
 <li>vim build/opentsdb.conf</li>
 </ul>
@@ -256,6 +256,7 @@ tsd.http.request.max_chunk = 10485760
 # is False
 tsd.core.auto_create_metrics = true
 
+# --------- STORAGE ----------
 # Name of the HBase table where data points are stored, default is &quot;tsdb&quot;
 tsd.storage.hbase.data_table = tsdb
 
@@ -264,7 +265,7 @@ tsd.storage.hbase.zk_basedir = /hbase
 
 # A comma separated list of Zookeeper hosts to connect to, with or without
 # port specifiers, default is &quot;localhost&quot;
-tsd.storage.hbase.zk_quorum = master,slave1,slave2
+tsd.storage.hbase.zk_quorum = master:2189,slave1:2189,slave2:2189
 </code></pre><p>P.S.</p>
 <p>tsd.core.auto_create_metrics = false时，opentsdb在写入数据时不会新建metric，若需要则改为true</p>
 <p>否则，需要使用这种方式创建metric</p>
@@ -273,7 +274,8 @@ tsd.storage.hbase.zk_quorum = master,slave1,slave2
 <li>保证hadoop，zookeeper，hbase正确运行</li>
 <li>运行openTSDB</li>
 </ul>
-<pre><code>./tsdb tsd
+<pre><code>cd ~/opentsdb/build
+./tsdb tsd
 </code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ul>
 <li>访问 <a href="http://master:4399" target="_blank" rel="noopener">http://master:4399</a>，看到opentsdb页面</li>
 </ul>

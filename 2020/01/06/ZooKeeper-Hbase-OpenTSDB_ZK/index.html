@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2020-01-06T08:52:40.685Z">
+<meta property="og:updated_time" content="2020-02-14T03:17:39.517Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZooKeeper-Hbase-OpenTSDB集群搭建--ZooKeeper">
 <meta name="twitter:description" content="前言首先，是ZooKeeper的搭建，包括，安装，配置，启动停止，还有我自己写的集群控制脚本。ZooKeeper是HBase运行的前提，是分布式应用程序协调服务，很多开源分布式软件都依赖ZooKeeper，如Kafka，HBase等。">
@@ -205,7 +205,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><pre><code>tar zxvf apache-zookeeper-3.5.6-bin.tar.gz -C ~/
 cd ~/
 mv apache-zookeeper-3.5.6-bin/ zookeeper
-</code></pre><h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><ul>
+</code></pre><h3 id="设置环境变量（master-slave-）"><a href="#设置环境变量（master-slave-）" class="headerlink" title="设置环境变量（master, slave*）"></a>设置环境变量（master, slave*）</h3><ul>
 <li>编辑 /etc/profile</li>
 </ul>
 <pre><code>export ZOOKEEPER_HOME=/root/zookeeper
@@ -218,24 +218,33 @@ export PATH=$PATH:$ZOOKEEPER_HOME/bin
 <li>创建zoo.cfg</li>
 </ul>
 <pre><code>cd ~/zookeeper/conf
-cp zoo_example.cfg zoo.cfg
+cp zoo_sample.cfg zoo.cfg
 </code></pre><ul>
 <li>编辑zoo.cfg (vim zoo.cfg)</li>
 </ul>
-<pre><code>dataDir=/root/zookeeper/data 
+<pre><code>dataDir=/root/zookeeper/data
+
+clientPort=2189
 
 server.1=master:2888:3888
 server.2=slave1:2888:3888
 server.3=slave2:2888:3888
 </code></pre><p>其他配置不动即可</p>
 <ul>
+<li>创建数据目录</li>
+</ul>
+<pre><code>cd ~/zookeeper/
+mkdir data
+</code></pre><ul>
 <li>创建myid文件</li>
 </ul>
 <p>在dataDir目录下新建myid文件，输入一个数字 (master为1，slave1为2，slave2为3)</p>
-<ul>
+<pre><code>cd ~/zookeeper/data
+echo 1 &gt; myid
+</code></pre><ul>
 <li>将master的zookeeper文件夹拷贝到slave*</li>
 </ul>
-<pre><code>scp -r zookeeper/ root@slave*:/root
+<pre><code>scp -r ~/zookeeper/ root@slave*:/root
 </code></pre><p>P.S. 注意记得修改myid文件</p>
 <h2 id="集群控制"><a href="#集群控制" class="headerlink" title="集群控制"></a>集群控制</h2><h3 id="启动-amp-amp-停止"><a href="#启动-amp-amp-停止" class="headerlink" title="启动 &amp;&amp; 停止"></a>启动 &amp;&amp; 停止</h3><ul>
 <li>启动</li>

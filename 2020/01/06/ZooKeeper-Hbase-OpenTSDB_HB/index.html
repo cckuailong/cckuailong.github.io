@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2020-01-06T08:53:57.283Z">
+<meta property="og:updated_time" content="2020-02-14T03:35:04.992Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZooKeeper-Hbase-OpenTSDB集群搭建--HBase">
 <meta name="twitter:description" content="前言然后，是HBase的搭建，包括，安装，配置，启动停止，和检查是否安装成功。HBase是一个分布式的、面向列的开源数据库，是OpenTSDB承载的基础。">
@@ -205,7 +205,8 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><pre><code>tar zxvf hbase-1.4.12-bin.tar.gz -C ~/
 cd ~
 mv hbase-1.4.12-bin hbase
-</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
+</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><pre><code>cd ~/hbase/conf
+</code></pre><ul>
 <li>vim hbase-env.sh</li>
 </ul>
 <pre><code>export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
@@ -230,9 +231,9 @@ export HBASE_MANAGES_ZK=false
         &lt;value&gt;true&lt;/value&gt;
     &lt;/property&gt;
 
-    &lt;property&gt;     
+    &lt;property&gt;
         &lt;name&gt;hbase.zookeeper.property.clientPort&lt;/name&gt;
-        &lt;value&gt;2181&lt;/value&gt;
+        &lt;value&gt;2189&lt;/value&gt;
     &lt;/property&gt;
 
     &lt;property&gt;
@@ -259,7 +260,7 @@ slave2
 </code></pre><ul>
 <li>将master的zookeeper文件夹拷贝到slave*</li>
 </ul>
-<pre><code>scp -r hbase/ root@slave*:/root
+<pre><code>scp -r ~/hbase/ root@slave*:/root
 </code></pre><h2 id="集群部署"><a href="#集群部署" class="headerlink" title="集群部署"></a>集群部署</h2><h3 id="启动hadoop集群-Zookeeper集群-hbase集群-按顺序启动）"><a href="#启动hadoop集群-Zookeeper集群-hbase集群-按顺序启动）" class="headerlink" title="启动hadoop集群+Zookeeper集群+hbase集群(按顺序启动）"></a>启动hadoop集群+Zookeeper集群+hbase集群(按顺序启动）</h3><pre><code>~/hadoop/sbin/start-all.sh
 ~/zookeeper/bin/controll-all.sh start
 ~/hbase/bin/start-hbase.sh
