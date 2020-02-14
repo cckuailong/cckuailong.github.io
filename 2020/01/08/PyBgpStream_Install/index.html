@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言bgpstream官网中的操作代码不翻墙加载十分缓慢（甚至加载不出来），这里做一个中文版的翻译记录，记录Ubuntu安装BGPStream（包括 libBGPStream和pybgpstream）原英文链接">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-08T14:57:18.343Z">
+<meta property="og:updated_time" content="2020-02-14T08:39:28.765Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyBGPStream安装">
 <meta name="twitter:description" content="一、前言bgpstream官网中的操作代码不翻墙加载十分缓慢（甚至加载不出来），这里做一个中文版的翻译记录，记录Ubuntu安装BGPStream（包括 libBGPStream和pybgpstream）原英文链接">
@@ -202,7 +202,8 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <h2 id="二、安装libBGPStream"><a href="#二、安装libBGPStream" class="headerlink" title="二、安装libBGPStream"></a>二、安装libBGPStream</h2><ul>
 <li>安装依赖</li>
 </ul>
-<pre><code>$ sudo apt-get install zlib1g-dev libbz2-dev libcurl4-openssl-dev
+<pre><code>$ sudo apt -y install curl
+$ sudo apt -y install zlib1g-dev libbz2-dev libcurl4-openssl-dev
 </code></pre><ul>
 <li>下载安装wandio</li>
 </ul>
@@ -231,8 +232,15 @@ $ make
 $ make check
 $ sudo make install
 $ sudo ldconfig
-</code></pre><h2 id="三、安装PyBgpstream"><a href="#三、安装PyBgpstream" class="headerlink" title="三、安装PyBgpstream"></a>三、安装PyBgpstream</h2><h3 id="从PyPI安装"><a href="#从PyPI安装" class="headerlink" title="从PyPI安装"></a>从PyPI安装</h3><pre><code>pip install pybgpstream
-</code></pre><h3 id="源码安装"><a href="#源码安装" class="headerlink" title="源码安装"></a>源码安装</h3><pre><code>$ mkdir ~/src
+</code></pre><h2 id="三、安装PyBgpstream"><a href="#三、安装PyBgpstream" class="headerlink" title="三、安装PyBgpstream"></a>三、安装PyBgpstream</h2><h3 id="从PyPI安装"><a href="#从PyPI安装" class="headerlink" title="从PyPI安装"></a>从PyPI安装</h3><pre><code>pip install python-dateutil pybgpstream
+</code></pre><h3 id="源码安装"><a href="#源码安装" class="headerlink" title="源码安装"></a>源码安装</h3><ul>
+<li>安装 python-dateutil</li>
+</ul>
+<pre><code>pip install python-dateutil
+</code></pre><ul>
+<li>安装 pybgpstream</li>
+</ul>
+<pre><code>$ mkdir ~/src
 $ cd ~/src/
 $ curl -LO https://github.com/CAIDA/pybgpstream/releases/download/v2.0/pybgpstream-2.0.0.tar.gz
 $ tar zxf pybgpstream-2.0.0.tar.gz
@@ -247,7 +255,9 @@ valid ris.rrc06 1427846570
 valid ris.rrc06 1427846573
     A 2001:200:0:fe00::6249:0 25152 A {&#39;next-hop&#39;: &#39;2001:200:0:fe00::9c1:0&#39;, &#39;prefix&#39;: &#39;2a00:bdc0:e004::/48&#39;, &#39;as-path&#39;: &#39;25152 2497 6939 47541 28709&#39;}
 ...
-</code></pre><h2 id="四、示例"><a href="#四、示例" class="headerlink" title="四、示例"></a>四、示例</h2><pre><code>stream = BGPStream(
+</code></pre><h2 id="四、示例"><a href="#四、示例" class="headerlink" title="四、示例"></a>四、示例</h2><pre><code>from pybgpstream import BGPStream
+
+stream = BGPStream(
     data_interface=&quot;singlefile&quot;
 )
 file_type = &#39;rib-file&#39;
@@ -256,8 +266,10 @@ for rec in stream.records():
     if rec.status != &quot;valid&quot;:
         continue
     for elem in rec:
-        ......
-</code></pre>
+        print(elem)
+</code></pre><h2 id="附"><a href="#附" class="headerlink" title="附"></a>附</h2><p>自动安装pybgpstream脚本</p>
+<p><a href="http://lovebear.top/files/bgpstream_install.sh" target="_blank" rel="noopener">此处下载</a></p>
+
       
 
       
