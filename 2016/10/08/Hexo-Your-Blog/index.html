@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言：之前逛一位ctf大神的博客，偶然发现这个Hexo，了解一下，还真是好东西，既能提高技能，又能装逼（qwq这是重点），网上的大多数教程都是大同小异，完全按照那个来搭建会失败，本文图文教程，让小白也能成功搭建起属于自己的专属Blog。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
-<meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2018-12-05T08:39:31.180Z">
+<meta property="og:image" content="http://lovebear.top/img/54494-106.jpg">
+<meta property="og:image" content="http://lovebear.top/img/flag.jpg">
+<meta property="og:updated_time" content="2020-02-15T04:56:50.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo Your Blog">
 <meta name="twitter:description" content="一、前言：之前逛一位ctf大神的博客，偶然发现这个Hexo，了解一下，还真是好东西，既能提高技能，又能装逼（qwq这是重点），网上的大多数教程都是大同小异，完全按照那个来搭建会失败，本文图文教程，让小白也能成功搭建起属于自己的专属Blog。">
-<meta name="twitter:image" content="http://www.lovebear.top/img/54494-106.jpg">
+<meta name="twitter:image" content="http://lovebear.top/img/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -240,7 +240,7 @@ Enter same passphrase again:&lt;再次输入加密串&gt;
 <li>打开生产的id_rsa.pub文件。此文件里面内容为刚才生成的密钥。如果看不到这个文件，<br>你需要设置显示隐藏文件。</li>
 <li>登陆<a href="https://github.com/" target="_blank" rel="noopener">github</a>。点击右上角的头像 —&gt; Settings<br>—&gt; SSH and GPG keys —&gt; New SSH key</li>
 </ul>
-<p><img src="http://www.lovebear.top/img/Hexo_1.png" alt="demo" title="demo"></p>
+<p><img src="http://lovebear.top/img/Hexo-Your-Blog_1.png" alt="demo" title="demo"></p>
 <ul>
 <li>把你id_rsa.pub中的内容（密钥）复制到key文本框中，点击 add SSH key </li>
 </ul>
@@ -263,8 +263,8 @@ $ git config --global user.email  &quot;cnfeat@gmail.com&quot;//填写自己的�
 <h3 id="至此，SSH-keys配置成功。"><a href="#至此，SSH-keys配置成功。" class="headerlink" title="至此，SSH keys配置成功。"></a>至此，SSH keys配置成功。</h3><h2 id="四、GitHub上建立仓库（GitHub-Pages）："><a href="#四、GitHub上建立仓库（GitHub-Pages）：" class="headerlink" title="四、GitHub上建立仓库（GitHub Pages）："></a>四、GitHub上建立仓库（GitHub Pages）：</h2><p>与GitHub建立好链接之后，就可以方便的使用它提供的Pages服务，GitHub Pages分两种，一种是你的GitHub<br>用户名建立的username.github.io这样的用户&amp;组织页（站），另一种是依附项目的pages。</p>
 <p>想建立个人博客是用的第一种，形如beiyuu.github.io这样的可访问的站</p>
 <p>PS. 每个用户名下面只能建立一个。</p>
-<h3 id="1-点击右上角的new-Repository-创建仓库"><a href="#1-点击右上角的new-Repository-创建仓库" class="headerlink" title="1.点击右上角的new Repository,创建仓库"></a>1.点击右上角的new Repository,创建仓库</h3><p><img src="http://www.lovebear.top/img/Hexo_2.png" alt="demo" title="demo"></p>
-<h3 id="2-填写项目信息"><a href="#2-填写项目信息" class="headerlink" title="2.填写项目信息"></a>2.填写项目信息</h3><p><img src="http://www.lovebear.top/img/Hexo_3.png" alt="demo" title="demo"></p>
+<h3 id="1-点击右上角的new-Repository-创建仓库"><a href="#1-点击右上角的new-Repository-创建仓库" class="headerlink" title="1.点击右上角的new Repository,创建仓库"></a>1.点击右上角的new Repository,创建仓库</h3><p><img src="http://lovebear.top/img/Hexo-Your-Blog_2.png" alt="demo" title="demo"></p>
+<h3 id="2-填写项目信息"><a href="#2-填写项目信息" class="headerlink" title="2.填写项目信息"></a>2.填写项目信息</h3><p><img src="http://lovebear.top/img/Hexo-Your-Blog_3.png" alt="demo" title="demo"></p>
 <p>Resporitary name: 填写 你的账号名.github.io，例如我的登陆用户名是cckuailong，建立仓库的名称就是<br>cckuailong.github.io</p>
 <p>Description: 填写你的仓库描述（随便写点就行）</p>
 <p>PS. 选中public选项，让大家都可以访问。记得勾选上Initialize this resporitary with a README。</p>
@@ -306,26 +306,26 @@ deploy:
 <h3 id="2-执行："><a href="#2-执行：" class="headerlink" title="2.执行："></a>2.执行：</h3><pre><code class="bash">$ hexo g -d
 </code></pre>
 <p>完成部署。</p>
-<h3 id="3-登陆GitHub，打开刚才创建的仓库（Repositary），发现里面多了很多部署好的文件。"><a href="#3-登陆GitHub，打开刚才创建的仓库（Repositary），发现里面多了很多部署好的文件。" class="headerlink" title="3.登陆GitHub，打开刚才创建的仓库（Repositary），发现里面多了很多部署好的文件。"></a>3.登陆GitHub，打开刚才创建的仓库（Repositary），发现里面多了很多部署好的文件。</h3><p><img src="http://www.lovebear.top/img/Hexo_4.png" alt="demo" title="demo"></p>
+<h3 id="3-登陆GitHub，打开刚才创建的仓库（Repositary），发现里面多了很多部署好的文件。"><a href="#3-登陆GitHub，打开刚才创建的仓库（Repositary），发现里面多了很多部署好的文件。" class="headerlink" title="3.登陆GitHub，打开刚才创建的仓库（Repositary），发现里面多了很多部署好的文件。"></a>3.登陆GitHub，打开刚才创建的仓库（Repositary），发现里面多了很多部署好的文件。</h3><p><img src="http://lovebear.top/img/Hexo-Your-Blog_4.png" alt="demo" title="demo"></p>
 <p>PS. 你的文件可能没有404.html和CNAME两个文件，不要急，下面会讲到。</p>
-<h2 id="八、DNS与GitHub-Pages的绑定："><a href="#八、DNS与GitHub-Pages的绑定：" class="headerlink" title="八、DNS与GitHub Pages的绑定："></a>八、DNS与GitHub Pages的绑定：</h2><h2 id="1-什么是DNS？"><a href="#1-什么是DNS？" class="headerlink" title="1.什么是DNS？"></a>1.什么是<a href="http://baike.baidu.com/link?url=H5Wgp2Lfh84R-Y3WrxXxiV3t631NuC6OLnkPIHyzjM-6hbBwJKLIU615EHyEA9QRG0e-HUEGlAuT-wKgqsRSEa" target="_blank" rel="noopener">DNS</a>？</h2><p>例如，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a>, <a href="http://www.lovebear.top">www.lovebear.top</a> 这些方便好记的网址就可以认为是DNS了。</p>
+<h2 id="八、DNS与GitHub-Pages的绑定："><a href="#八、DNS与GitHub-Pages的绑定：" class="headerlink" title="八、DNS与GitHub Pages的绑定："></a>八、DNS与GitHub Pages的绑定：</h2><h2 id="1-什么是DNS？"><a href="#1-什么是DNS？" class="headerlink" title="1.什么是DNS？"></a>1.什么是<a href="http://baike.baidu.com/link?url=H5Wgp2Lfh84R-Y3WrxXxiV3t631NuC6OLnkPIHyzjM-6hbBwJKLIU615EHyEA9QRG0e-HUEGlAuT-wKgqsRSEa" target="_blank" rel="noopener">DNS</a>？</h2><p>例如，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a>, lovebear.top 这些方便好记的网址就可以认为是DNS了。</p>
 <h2 id="2-购买DNS"><a href="#2-购买DNS" class="headerlink" title="2.购买DNS"></a>2.购买DNS</h2><p>网上大多数推荐GoDaddy，但是我这里推荐百度开放云（上面的域名很便宜啊）<br><a href="https://cloud.baidu.com/" target="_blank" rel="noopener">传送门在这里</a></p>
-<h2 id="3-DNS设置"><a href="#3-DNS设置" class="headerlink" title="3.DNS设置"></a>3.DNS设置</h2><h3 id="1-注册DNSpod（速度快，稳定，还免费！！！）"><a href="#1-注册DNSpod（速度快，稳定，还免费！！！）" class="headerlink" title="1)注册DNSpod（速度快，稳定，还免费！！！）"></a>1)注册DNSpod（速度快，稳定，还免费！！！）</h3><h3 id="2-在左侧选中域名解析，点击，添加域名，输入你刚才购买的域名"><a href="#2-在左侧选中域名解析，点击，添加域名，输入你刚才购买的域名" class="headerlink" title="2)在左侧选中域名解析，点击，添加域名，输入你刚才购买的域名"></a>2)在左侧选中域名解析，点击，添加域名，输入你刚才购买的域名</h3><p><img src="http://www.lovebear.top/img/Hexo_5.png" alt="demo" title="demo"></p>
+<h2 id="3-DNS设置"><a href="#3-DNS设置" class="headerlink" title="3.DNS设置"></a>3.DNS设置</h2><h3 id="1-注册DNSpod（速度快，稳定，还免费！！！）"><a href="#1-注册DNSpod（速度快，稳定，还免费！！！）" class="headerlink" title="1)注册DNSpod（速度快，稳定，还免费！！！）"></a>1)注册DNSpod（速度快，稳定，还免费！！！）</h3><h3 id="2-在左侧选中域名解析，点击，添加域名，输入你刚才购买的域名"><a href="#2-在左侧选中域名解析，点击，添加域名，输入你刚才购买的域名" class="headerlink" title="2)在左侧选中域名解析，点击，添加域名，输入你刚才购买的域名"></a>2)在左侧选中域名解析，点击，添加域名，输入你刚才购买的域名</h3><p><img src="http://lovebear.top/img/Hexo-Your-Blog_5.png" alt="demo" title="demo"></p>
 <h3 id="3-点击添加成功的域名（这里是lovebear-top），进入到管理你的域名后，点击记录，添加两条记录（一个是-，另一个是www）"><a href="#3-点击添加成功的域名（这里是lovebear-top），进入到管理你的域名后，点击记录，添加两条记录（一个是-，另一个是www）" class="headerlink" title="3)点击添加成功的域名（这里是lovebear.top），进入到管理你的域名后，点击记录，添加两条记录（一个是@，另一个是www）"></a>3)点击添加成功的域名（这里是lovebear.top），进入到管理你的域名后，点击记录，添加两条记录（一个是@，另一个是www）</h3><p><strong>注意：</strong>在添加记录时，会填写记录值，获得你的记录值的方式如下：</p>
 <p>Win+R打开运行，输入cmd，回车，打开shell，输入</p>
 <pre><code class="bash">Ping username.github.io
 </code></pre>
-<p><img src="http://www.lovebear.top/img/Hexo_6.png" alt="demo" title="demo"></p>
+<p><img src="http://lovebear.top/img/Hexo-Your-Blog_6.png" alt="demo" title="demo"></p>
 <p>方括号中的ip即为你的记录值，把它填到两个记录中就可以啦。</p>
-<h3 id="4-登陆百度开放云，点击域名管理，点击右方的更多操作，选择域名信息"><a href="#4-登陆百度开放云，点击域名管理，点击右方的更多操作，选择域名信息" class="headerlink" title="4)登陆百度开放云，点击域名管理，点击右方的更多操作，选择域名信息"></a>4)登陆百度开放云，点击域名管理，点击右方的更多操作，选择域名信息</h3><p><img src="http://www.lovebear.top/img/Hexo_7.png" alt="demo" title="demo"></p>
+<h3 id="4-登陆百度开放云，点击域名管理，点击右方的更多操作，选择域名信息"><a href="#4-登陆百度开放云，点击域名管理，点击右方的更多操作，选择域名信息" class="headerlink" title="4)登陆百度开放云，点击域名管理，点击右方的更多操作，选择域名信息"></a>4)登陆百度开放云，点击域名管理，点击右方的更多操作，选择域名信息</h3><p><img src="http://lovebear.top/img/Hexo-Your-Blog_7.png" alt="demo" title="demo"></p>
 <p>点击修改DNS，修改成图中显示的两个dns</p>
-<p><img src="http://www.lovebear.top/img/Hexo_8.png" alt="demo" title="demo"></p>
+<p><img src="http://lovebear.top/img/Hexo-Your-Blog_8.png" alt="demo" title="demo"></p>
 <p>保存</p>
-<h3 id="5-打开GitHub，点击Create-new-file，新建文件名为CNAME，内容是你刚才申请的域名"><a href="#5-打开GitHub，点击Create-new-file，新建文件名为CNAME，内容是你刚才申请的域名" class="headerlink" title="5)打开GitHub，点击Create new file，新建文件名为CNAME，内容是你刚才申请的域名"></a>5)打开GitHub，点击Create new file，新建文件名为CNAME，内容是你刚才申请的域名</h3><p><img src="http://www.lovebear.top/img/Hexo_9.png" alt="demo" title="demo"></p>
+<h3 id="5-打开GitHub，点击Create-new-file，新建文件名为CNAME，内容是你刚才申请的域名"><a href="#5-打开GitHub，点击Create-new-file，新建文件名为CNAME，内容是你刚才申请的域名" class="headerlink" title="5)打开GitHub，点击Create new file，新建文件名为CNAME，内容是你刚才申请的域名"></a>5)打开GitHub，点击Create new file，新建文件名为CNAME，内容是你刚才申请的域名</h3><p><img src="http://lovebear.top/img/Hexo-Your-Blog_9.png" alt="demo" title="demo"></p>
 <p><strong>注意要保存到主干（master）</strong></p>
 <p>保存后发现仓库中多了个CNAME文件</p>
 <h2 id="至此，DNS设置完成，DNSpod第一次解析域名可能会时间稍长，至多一天，请大家耐心等待吧。"><a href="#至此，DNS设置完成，DNSpod第一次解析域名可能会时间稍长，至多一天，请大家耐心等待吧。" class="headerlink" title="至此，DNS设置完成，DNSpod第一次解析域名可能会时间稍长，至多一天，请大家耐心等待吧。"></a>至此，DNS设置完成，DNSpod第一次解析域名可能会时间稍长，至多一天，请大家耐心等待吧。</h2><h2 id="九、大功告成："><a href="#九、大功告成：" class="headerlink" title="九、大功告成："></a>九、大功告成：</h2><p>浏览器输入你购买的域名，是不是就成功了呢^_^</p>
-<p><img src="http://www.lovebear.top/img/Hexo_10.png" alt="demo" title="demo"><br><img src="http://www.lovebear.top/img/54494-106.jpg" alt="hjj"></p>
+<p><img src="http://lovebear.top/img/Hexo-Your-Blog_10.png" alt="demo" title="demo"><br><img src="http://lovebear.top/img/54494-106.jpg" alt="hjj"></p>
 
       
 
