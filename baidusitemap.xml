@@ -4,14 +4,14 @@
 
     
   <url>
-    <loc>http://www.lovebear.top/2020/02/15/PHP_CutOff_Bypass/</loc>
-    <lastmod>2020-02-15T12:04:34.361Z</lastmod>
+    <loc>http://www.lovebear.top/2020/02/16/PowerShell_15_Ways_Bypass_ExecutionPolicy/</loc>
+    <lastmod>2020-02-16T09:16:20.417Z</lastmod>
     <data>
         <display>
-        <title>PHP截断绕过总结</title>
-        <pubTime>2020-02-15T11:47:00.804Z</pubTime>
+        <title>绕过PowerShell 执行策略的15种方法</title>
+        <pubTime>2020-02-16T08:00:24.697Z</pubTime>
         
-        <tag>Vulnerability</tag>
+        <tag>shell</tag>
          
          
            
@@ -22,13 +22,30 @@
     
   <url>
     <loc>http://www.lovebear.top/2016/10/08/Hexo-Your-Blog/</loc>
-    <lastmod>2020-02-15T04:56:50.449Z</lastmod>
+    <lastmod>2020-02-16T08:55:05.926Z</lastmod>
     <data>
         <display>
         <title>Hexo Your Blog</title>
         <pubTime>2016-10-08T12:24:30.366Z</pubTime>
         
         <tag>hexo</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lovebear.top/2020/02/15/PHP_CutOff_Bypass/</loc>
+    <lastmod>2020-02-15T12:04:34.361Z</lastmod>
+    <data>
+        <display>
+        <title>PHP截断绕过总结</title>
+        <pubTime>2020-02-15T11:47:00.804Z</pubTime>
+        
+        <tag>Vulnerability</tag>
          
          
            
