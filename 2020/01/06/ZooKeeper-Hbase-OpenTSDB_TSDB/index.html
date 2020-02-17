@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2020-02-14T03:58:08.623Z">
+<meta property="og:updated_time" content="2020-02-17T06:52:31.778Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZooKeeper-Hbase-OpenTSDB集群搭建--OpenTSDB">
 <meta name="twitter:description" content="前言接下来，是OpenTSDB的搭建，包括，安装，配置，启动停止，和基本的使用方法。OpenTSDB是基于Hbase的时间序列数据库，部署前，要保证HBase正确部署并成功运行。">
@@ -219,8 +219,7 @@ cp -r third_party ./build
 <li>修改create_table.sh中的bug</li>
 </ul>
 <pre><code>vim ~/opentsdb/src/create_table.sh
-
-TSDB_TTL=${TSDB_TTL-&#39;FOREVER&#39;} 改成 TSDB_TTL=${TSDB_TTL-&#39;2147483647&#39;}
+</code></pre><pre><code>TSDB_TTL=${TSDB_TTL-&#39;FOREVER&#39;} 改成 TSDB_TTL=${TSDB_TTL-&#39;2147483647&#39;}
 </code></pre><ul>
 <li>创建openTSDB所需要的表</li>
 </ul>
@@ -244,7 +243,7 @@ tsd.http.staticroot = ./staticroot
 
 # Where TSD should write it&#39;s cache files to
 # *** REQUIRED ***
-tsd.http.cachedir = /root/openTSDB_temp
+tsd.http.cachedir = ./temp
 
 # Enable chunk &amp;&amp; set the max chunk size
 tsd.http.request.enable_chunked = true
