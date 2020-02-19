@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2020-01-06T09:06:03.106Z">
+<meta property="og:updated_time" content="2020-02-18T09:04:12.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark-HadoopYarn-Kafka集群搭建--基础环境">
 <meta name="twitter:description" content="前言首先，是基础环境的搭建，包括，root账户设置，修改默认python版本为py3，配置域名，配置ssh免密登陆，安装jdk8等。">
@@ -285,6 +285,15 @@ StrictModes yes
 export JRE_HOME=$JAVA_HOME/jre
 export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
 export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+
+export SPARK_HOME=/root/spark
+export PYTHONPATH=${SPARK_HOME}/python:$PYTHONPATH 
+export PYTHONPATH=${SPARK_HOME}/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH
+
+export PYSPARK_PYTHON=/usr/bin/python
+export PYSPARK_DRIVER_PYTHON=/usr/bin/python
+
+export PATH=$PATH:$SPARK_HOME/bin
 </code></pre><p>source /etc/profile</p>
 
       

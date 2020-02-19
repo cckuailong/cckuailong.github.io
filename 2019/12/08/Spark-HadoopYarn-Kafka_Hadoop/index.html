@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2019-12-08T04:51:06.767Z">
+<meta property="og:updated_time" content="2020-02-18T08:13:01.527Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark-HadoopYarn-Kafka集群搭建--搭建Hadoop2.7集群">
 <meta name="twitter:description" content="前言接下来，是Hadoop集群的搭建，包括，添加环境变量，修改相应的配置文件，启动Hadoop集群，查看是否启动成功和关闭集群。">
@@ -291,6 +291,18 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
     &lt;property&gt;
         &lt;name&gt;yarn.resourcemanager.webapp.address&lt;/name&gt;
         &lt;value&gt;master:8088&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.scheduler.maximum-allocation-mb&lt;/name&gt;
+        &lt;value&gt;9216&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.scheduler.minimum-allocation-mb&lt;/name&gt;
+        &lt;value&gt;4000&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.nodemanager.vmem-pmem-ratio&lt;/name&gt;
+        &lt;value&gt;4.1&lt;/value&gt;
     &lt;/property&gt;
 &lt;/configuration&gt;
 </code></pre><ul>
