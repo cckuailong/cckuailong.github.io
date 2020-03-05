@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言bgpstream官网中的操作代码不翻墙加载十分缓慢（甚至加载不出来），这里做一个中文版的翻译记录，记录Ubuntu安装BGPStream（包括 libBGPStream和pybgpstream）原英文链接">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-02-14T08:39:28.765Z">
+<meta property="og:updated_time" content="2020-03-05T11:23:16.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyBGPStream安装">
 <meta name="twitter:description" content="一、前言bgpstream官网中的操作代码不翻墙加载十分缓慢（甚至加载不出来），这里做一个中文版的翻译记录，记录Ubuntu安装BGPStream（包括 libBGPStream和pybgpstream）原英文链接">
@@ -267,6 +267,16 @@ for rec in stream.records():
         continue
     for elem in rec:
         print(elem)
+</code></pre><h2 id="注"><a href="#注" class="headerlink" title="注"></a>注</h2><p>运行的时候不断报WARN，可以修改libbgpstream的源码</p>
+<pre><code>vim libbgpstream-2.0.0/lib/formats/libparsebgp/lib/bgp/parsebgp_bgp_update.c
+</code></pre><p>注释掉 559行的PARSEBGP_SKIP_INVALID_MSG()，570行的PARSEBGP_SKIP_NOT_IMPLEMENTED()</p>
+<p>重新编译</p>
+<pre><code>$ cd libbgpstream-2.0.0/
+$ ./configure --without-kafka
+$ make
+$ make check
+$ sudo make install
+$ sudo ldconfig
 </code></pre><h2 id="附"><a href="#附" class="headerlink" title="附"></a>附</h2><p>自动安装pybgpstream脚本</p>
 <p><a href="http://lovebear.top/files/bgpstream_install.sh" target="_blank" rel="noopener">此处下载</a></p>
 
