@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2020-02-17T06:52:31.778Z">
+<meta property="og:updated_time" content="2020-03-09T05:54:46.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZooKeeper-Hbase-OpenTSDB集群搭建--OpenTSDB">
 <meta name="twitter:description" content="前言接下来，是OpenTSDB的搭建，包括，安装，配置，启动停止，和基本的使用方法。OpenTSDB是基于Hbase的时间序列数据库，部署前，要保证HBase正确部署并成功运行。">
@@ -299,7 +299,29 @@ tsd.storage.hbase.zk_quorum = master:2189,slave1:2189,slave2:2189
 <li>批量读取数据（返回包含注解）</li>
 </ul>
 <pre><code>curl -i -X POST -d &#39;{&quot;start&quot;:1578276060,&quot;end&quot;: 1578276070,&quot;showTSUIDs&quot;:true,&quot;queries&quot;:[{&quot;metric&quot;:&quot;bgp.message&quot;,&quot;aggregator&quot;: &quot;min&quot;}]}&#39; http://master:4399/api/query
-</code></pre>
+</code></pre><h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><ul>
+<li>成功执行 create_table.sh 后，启动时报错，找不到 tsdb 表或tsdb-uid表</li>
+</ul>
+<ol>
+<li>查看hbase中是否成功生成tsdb相关表</li>
+</ol>
+<p>进入hbase shell</p>
+<pre><code>~/hbase/bin/hbase shell
+</code></pre><p>列出Hbase表，查看有没有 tsdb tsdb-meta tsdb-tree tsdb-uid</p>
+<pre><code>hbase(main):001:0&gt; list
+</code></pre><ol start="2">
+<li>查看zookeeper有没有表记录</li>
+</ol>
+<p>进入Hbase Zookeeper Shell</p>
+<pre><code>~/hbase/bin/hbase zkcli
+</code></pre><p>列出Hbase的zookeeper记录表</p>
+<pre><code>[zk: master:2189,slave1:2189,slave2:2189(CONNECTED) 0] ls /hbase/table
+</code></pre><p>删除tsdb相关记录表</p>
+<pre><code>[zk: master:2189,slave1:2189,slave2:2189(CONNECTED) 0] rmr /hbase/table/tsdb.....
+</code></pre><ol start="3">
+<li>重新运行create_table.sh</li>
+</ol>
+
       
 
       
