@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Archives: 2017/1 | Blog for You</title>
+  <title>Linux挂载磁盘 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://www.lovebear.top/archives/2017/01/page/3/index.html">
+  <meta name="description" content="一、前言最近，服务器磁盘空间满了，需要挂在一块额外的磁盘，在此记录。">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux挂载磁盘">
+<meta property="og:url" content="http://www.lovebear.top/2020/03/15/Linux_Mount_Disk/index.html">
 <meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言最近，服务器磁盘空间满了，需要挂在一块额外的磁盘，在此记录。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-03-15T00:57:29.403Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
+<meta name="twitter:title" content="Linux挂载磁盘">
+<meta name="twitter:description" content="一、前言最近，服务器磁盘空间满了，需要挂在一块额外的磁盘，在此记录。">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -174,91 +179,234 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Linux_Mount_Disk" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/01/CTF_OCR_Training/" class="archive-article-date">
-  	<time datetime="2017-01-01T13:18:26.815Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-01</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/01/CTF_OCR_Training/">OCR--基于字符训练方法</a>
+    <h1 class="article-title" itemprop="name">
+      Linux挂载磁盘
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/01/Python_indent_err/" class="archive-article-date">
-  	<time datetime="2017-01-01T06:30:16.427Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-01</time>
+        <a href="/2020/03/15/Linux_Mount_Disk/" class="archive-article-date">
+  	<time datetime="2020-03-14T23:52:50.391Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/01/Python_indent_err/">Python unexpected indent 解决</a>
-    </h1>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>最近，服务器磁盘空间满了，需要挂在一块额外的磁盘，在此记录。</p>
+<a id="more"></a>
+<h2 id="二、检查"><a href="#二、检查" class="headerlink" title="二、检查"></a>二、检查</h2><ul>
+<li>查看已挂载磁盘及其使用情况</li>
+</ul>
+<pre><code>df -h
+</code></pre><p>示例结果</p>
+<pre><code>Filesystem                    Size  Used Avail Use% Mounted on
+udev                           16G     0   16G   0% /dev
+/dev/sda1                     1.8T  1.2T  506G  71% /
+</code></pre><ul>
+<li>查看未挂载磁盘</li>
+</ul>
+<pre><code>lsblk
+</code></pre><p>示例结果</p>
+<pre><code>sda      8:0    0  1.8T  0 disk 
+├─sda1   8:1    0  1.8T  0 part /
+├─sda2   8:2    0    1K  0 part 
+└─sda5   8:5    0 31.9G  0 part [SWAP]
+sdb      8:16   0  1.8T  0 disk 
+</code></pre><p>本文对sdb进行挂载</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ul>
+<li>分区</li>
+</ul>
+<pre><code>fdisk /dev/sdb
+</code></pre><p>注：若出现</p>
+<pre><code>/dev/sdb: device contains a valid &#39;ext4&#39; signature; it is strongly recommended to wipe the device with wipefs(8) if this is unexpected, in order to avoid possible collisions
+</code></pre><p>说明，磁盘不是空盘，需要进行备份后，将其清洗，否则，直接看下一步骤 分区2</p>
+<ul>
+<li>清洗sdb</li>
+</ul>
+<pre><code>wipefs -a /dev/sdb
+</code></pre><p>wipefs后 再进行fdisk操作</p>
+<ul>
+<li>分区2</li>
+</ul>
+<pre><code>Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): 
 
-        <div class="article-info info-on-right">
-          
+Using default response p.
+Partition number (1-4, default 1): 
+First sector (2048-3907029167, default 2048): 
+Last sector, +sectors or +size{K,M,G,T,P} (2048-3907029167, default 3907029167): 
+
+Created a new partition 1 of type &#39;Linux&#39; and of size 1.8 TiB.
+
+Command (m for help): wq
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+</code></pre><p>直接回车会使用默认值，保存配置后，分区完毕</p>
+<p>注：</p>
+<p>删除分区操作：</p>
+<pre><code>1 按d
+2 选择相应的分区号，回车即可
+</code></pre><ul>
+<li>格式化</li>
+</ul>
+<pre><code>mkfs -t ext4 /dev/sdb1
+</code></pre><ul>
+<li>挂载</li>
+</ul>
+<pre><code>mount /dev/sdb1 /mysql
+</code></pre><h2 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h2><pre><code>df -h
+</code></pre><p>查看是否挂载成功</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://lovebear.top/img/url_zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/03/15/Linux_Mount_Disk/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/01/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2017/01/">1</a><a class="page-number" href="/archives/2017/01/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
   
+<nav id="article-nav">
+  
+  
+    <a href="/2020/02/23/Spark_Yarn_Warning_Sparkjars/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spark On Yarn报警告信息 Neither spark.yarn.jars nor spark.yarn.archive is set</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
+
+
+
+
+
+  
+    <section id="comments" class="comments">
+      <style>
+        .comments{margin:30px;padding:10px;background:rgb(255, 255, 255)}
+        @media screen and (max-width:400px){.comments{margin:auto;padding:10px;background:rgb(214, 252, 203)}}
+      </style>
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'false' == true ? true : false;
+    var verify = 'false' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "J3JcKBL0IxtN9XJWzPrnegcB-gzGzoHsz",
+        app_key: "ewqKho2b8ByxHacJAjmvq5ur",
+        placeholder: "请留下宝贵的评论",
+        avatar:"retro",
+    });
+</script>
+
+    </section>
+  
 
           </div>
         </div>
@@ -299,8 +447,8 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
