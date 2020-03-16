@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Blog for You</title>
+  <title>Mycat基于Mysql的垂直切分 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://www.lovebear.top/page/6/index.html">
+  <meta name="description" content="一、前言Mycat可以对数据库进行分库分表管理，本文针对Mycat的水平切分功能进行实验，实现同一张表的数据，根据配置的rule，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mycat基于Mysql的垂直切分">
+<meta property="og:url" content="http://www.lovebear.top/2020/03/16/Mycat_Mysql_Horizontal_Split/index.html">
 <meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言Mycat可以对数据库进行分库分表管理，本文针对Mycat的水平切分功能进行实验，实现同一张表的数据，根据配置的rule，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
+<meta property="og:updated_time" content="2020-03-16T07:10:01.661Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
+<meta name="twitter:title" content="Mycat基于Mysql的垂直切分">
+<meta name="twitter:description" content="一、前言Mycat可以对数据库进行分库分表管理，本文针对Mycat的水平切分功能进行实验，实现同一张表的数据，根据配置的rule，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。">
+<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -174,32 +182,235 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Safari_Dos" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+            <article id="post-Mycat_Mysql_Horizontal_Split" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/17/Safari_Dos/">针对Sarafi的Dos攻击--导致机器重启</a>
+    <h1 class="article-title" itemprop="name">
+      Mycat基于Mysql的垂直切分
     </h1>
   
 
-        <a href="/2018/09/17/Safari_Dos/" class="archive-article-date">
-  	<time datetime="2018-09-17T13:25:31.780Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-17</time>
+        <a href="/2020/03/16/Mycat_Mysql_Horizontal_Split/" class="archive-article-date">
+  	<time datetime="2020-03-16T06:17:45.478Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-16</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近一段html代码火了起来，主要是针对ios系统的Safari进行Dos攻击，被攻击者被<br>诱导使用Safari打开恶意url，导致ios的系统资源被耗尽，从而进行保护式重启动作。<br>本文对攻击代码进行解析，并给出一些其他的可能攻击代码变种，最后给出可能可行<br>的修复建议。<br>大家可以使用Safari（手机电脑都可以）访问<a href="http://www.lovebear.top/safari-reaper">Safari_dos</a>进行测试，<br>这是我自己的网站，比较安全，手机会重启，然后恢复一切正常，可以尝试。</p>
-        
-          <a class="article-more-a" href="/2018/09/17/Safari_Dos/#more">more >></a>
-        
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>Mycat可以对数据库进行分库分表管理，本文针对Mycat的水平切分功能进行实验，<br>实现同一张表的数据，根据配置的rule，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。</p>
+<a id="more"></a>
+<h2 id="二、环境"><a href="#二、环境" class="headerlink" title="二、环境"></a>二、环境</h2><ul>
+<li>Mycat 1.6.7.5</li>
+<li>Mysql 5.7</li>
+<li><p>openjdk-8</p>
+</li>
+<li><p>mycat master: 192.168.118.128(domain: server)</p>
+</li>
+<li>mycat slave1: 192.168.118.129(domain: slave1)</li>
+</ul>
+<p>数据库名</p>
+<ul>
+<li>master, slave1: bgp</li>
+</ul>
+<p>表名</p>
+<ul>
+<li>master: message</li>
+<li>slave1: message</li>
+</ul>
+<h2 id="三、安装配置"><a href="#三、安装配置" class="headerlink" title="三、安装配置"></a>三、安装配置</h2><h3 id="安装-mysql"><a href="#安装-mysql" class="headerlink" title="安装 mysql"></a>安装 mysql</h3><p>设置为允许远程连接</p>
+<h3 id="下载mycat"><a href="#下载mycat" class="headerlink" title="下载mycat"></a>下载mycat</h3><p>master上下载并解压Mycat</p>
+<pre><code>wget http://dl.mycat.io/1.6.7.5/Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
+tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
+</code></pre><h3 id="配置Mycat"><a href="#配置Mycat" class="headerlink" title="配置Mycat"></a>配置Mycat</h3><p>配置文件在 ~/mycat/conf</p>
+<ul>
+<li>rule.xml</li>
+</ul>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!-- - - Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); 
+        - you may not use this file except in compliance with the License. - You 
+        may obtain a copy of the License at - - http://www.apache.org/licenses/LICENSE-2.0 
+        - - Unless required by applicable law or agreed to in writing, software - 
+        distributed under the License is distributed on an &quot;AS IS&quot; BASIS, - WITHOUT 
+        WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. - See the 
+        License for the specific language governing permissions and - limitations 
+        under the License. --&gt;
+&lt;!DOCTYPE mycat:rule SYSTEM &quot;rule.dtd&quot;&gt;
+&lt;mycat:rule xmlns:mycat=&quot;http://io.mycat/&quot;&gt;
+        &lt;tableRule name=&quot;rule-mod&quot;&gt;
+                &lt;rule&gt;
+                        &lt;columns&gt;timestamp&lt;/columns&gt;
+                        &lt;algorithm&gt;func-mod&lt;/algorithm&gt;
+                &lt;/rule&gt;
+        &lt;/tableRule&gt;
+        &lt;function name=&quot;func-mod&quot; class=&quot;io.mycat.route.function.PartitionByMod&quot;&gt;
+        &lt;!--指定分片数量，不可以被更改--&gt;
+                &lt;property name=&quot;count&quot;&gt;2&lt;/property&gt;
+        &lt;/function&gt;
+&lt;/mycat:rule&gt;
+</code></pre><ul>
+<li>schema.xml</li>
+</ul>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE mycat:schema SYSTEM &quot;schema.dtd&quot;&gt;
+&lt;mycat:schema xmlns:mycat=&quot;http://io.mycat/&quot;&gt;
+
+    &lt;schema name=&quot;BGP&quot; checkSQLschema=&quot;false&quot; sqlMaxLimit=&quot;100&quot; randomDataNode=&quot;dn1&quot;&gt;
+        &lt;table name=&quot;message&quot; dataNode=&quot;dn1,dn2&quot; rule=&quot;rule-mod&quot; splitTableNames =&quot;false&quot;/&gt;
+    &lt;/schema&gt;
+
+    &lt;dataNode name=&quot;dn1&quot; dataHost=&quot;master&quot; database=&quot;bgp&quot; /&gt;
+    &lt;dataNode name=&quot;dn2&quot; dataHost=&quot;slave1&quot; database=&quot;bgp&quot; /&gt;
+
+    &lt;dataHost name=&quot;master&quot; maxCon=&quot;1000&quot; minCon=&quot;10&quot; balance=&quot;0&quot;
+                    writeType=&quot;0&quot; dbType=&quot;mysql&quot; dbDriver=&quot;native&quot; switchType=&quot;1&quot;  slaveThreshold=&quot;100&quot;&gt;
+        &lt;heartbeat&gt;select user()&lt;/heartbeat&gt;
+            &lt;writeHost host=&quot;hostM1&quot; url=&quot;localhost:3306&quot; user=&quot;root&quot; password=&quot;1q2w3e4r&quot;&gt;
+            &lt;/writeHost&gt;
+    &lt;/dataHost&gt;
+    &lt;dataHost name=&quot;slave1&quot; maxCon=&quot;1000&quot; minCon=&quot;10&quot; balance=&quot;0&quot;
+                    writeType=&quot;0&quot; dbType=&quot;mysql&quot; dbDriver=&quot;native&quot; switchType=&quot;1&quot;  slaveThreshold=&quot;100&quot;&gt;
+            &lt;heartbeat&gt;select user()&lt;/heartbeat&gt;
+            &lt;writeHost host=&quot;hostM1&quot; url=&quot;slave1:3306&quot; user=&quot;root&quot; password=&quot;1q2w3e4r&quot;&gt;
+            &lt;/writeHost&gt;
+    &lt;/dataHost&gt;
+
+
+&lt;/mycat:schema&gt;
+</code></pre><ul>
+<li>server.xml</li>
+</ul>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE mycat:server SYSTEM &quot;server.dtd&quot;&gt;
+&lt;mycat:server xmlns:mycat=&quot;http://io.mycat/&quot;&gt;
+    &lt;system&gt;
+    &lt;property name=&quot;nonePasswordLogin&quot;&gt;0&lt;/property&gt;
+    &lt;property name=&quot;ignoreUnknownCommand&quot;&gt;0&lt;/property&gt;
+    &lt;property name=&quot;useHandshakeV10&quot;&gt;1&lt;/property&gt;
+    &lt;property name=&quot;removeGraveAccent&quot;&gt;1&lt;/property&gt;
+    &lt;property name=&quot;useSqlStat&quot;&gt;0&lt;/property&gt;
+    &lt;property name=&quot;useGlobleTableCheck&quot;&gt;0&lt;/property&gt;
+        &lt;property name=&quot;sqlExecuteTimeout&quot;&gt;300&lt;/property&gt;
+        &lt;property name=&quot;sequnceHandlerType&quot;&gt;1&lt;/property&gt;
+
+        &lt;property name=&quot;sequnceHandlerPattern&quot;&gt;(?:(\s*next\s+value\s+for\s*MYCATSEQ_(\w+))(,|\)|\s)*)+&lt;/property&gt;
+    &lt;property name=&quot;subqueryRelationshipCheck&quot;&gt;false&lt;/property&gt;
+    &lt;property name=&quot;sequenceHanlderClass&quot;&gt;io.mycat.route.sequence.handler.HttpIncrSequenceHandler&lt;/property&gt;
+
+        &lt;property name=&quot;processorBufferPoolType&quot;&gt;0&lt;/property&gt;
+
+        &lt;property name=&quot;maxStringLiteralLength&quot;&gt;65535&lt;/property&gt;
+        &lt;property name=&quot;sequnceHandlerType&quot;&gt;0&lt;/property&gt;
+        &lt;property name=&quot;backSocketNoDelay&quot;&gt;1&lt;/property&gt;
+        &lt;property name=&quot;frontSocketNoDelay&quot;&gt;1&lt;/property&gt;
+        &lt;property name=&quot;processorExecutor&quot;&gt;16&lt;/property&gt;
+
+            &lt;property name=&quot;serverPort&quot;&gt;8066&lt;/property&gt; &lt;property name=&quot;managerPort&quot;&gt;9066&lt;/property&gt; 
+            &lt;property name=&quot;idleTimeout&quot;&gt;300000&lt;/property&gt; &lt;property name=&quot;bindIp&quot;&gt;0.0.0.0&lt;/property&gt;
+            &lt;property name=&quot;dataNodeIdleCheckPeriod&quot;&gt;300000&lt;/property&gt;
+            &lt;property name=&quot;frontWriteQueueSize&quot;&gt;4096&lt;/property&gt; &lt;property name=&quot;processors&quot;&gt;32&lt;/property&gt;
+
+        &lt;property name=&quot;handleDistributedTransactions&quot;&gt;0&lt;/property&gt;
+
+        &lt;!--
+            off heap for merge/order/group/limit      1开启   0关闭
+        --&gt;
+        &lt;property name=&quot;useOffHeapForMerge&quot;&gt;0&lt;/property&gt;
+
+        &lt;!--
+            单位为m
+        --&gt;
+        &lt;property name=&quot;memoryPageSize&quot;&gt;64k&lt;/property&gt;
+
+        &lt;!--
+            单位为k
+        --&gt;
+        &lt;property name=&quot;spillsFileBufferSize&quot;&gt;1k&lt;/property&gt;
+
+        &lt;property name=&quot;useStreamOutput&quot;&gt;0&lt;/property&gt;
+
+        &lt;!--
+            单位为m
+        --&gt;
+        &lt;property name=&quot;systemReserveMemorySize&quot;&gt;384m&lt;/property&gt;
+
+        &lt;property name=&quot;useZKSwitch&quot;&gt;false&lt;/property&gt;
+
+        &lt;property name=&quot;strictTxIsolation&quot;&gt;false&lt;/property&gt;
+
+        &lt;property name=&quot;useZKSwitch&quot;&gt;true&lt;/property&gt;
+
+        &lt;property name=&quot;parallExecute&quot;&gt;0&lt;/property&gt;
+    &lt;/system&gt;
+
+    &lt;user name=&quot;root&quot; defaultAccount=&quot;true&quot;&gt;
+        &lt;property name=&quot;password&quot;&gt;1q2w3e4r&lt;/property&gt;
+        &lt;property name=&quot;schemas&quot;&gt;BGP&lt;/property&gt;
+        &lt;property name=&quot;defaultSchema&quot;&gt;BGP&lt;/property&gt;
+    &lt;/user&gt;
+
+    &lt;user name=&quot;user&quot;&gt;
+        &lt;property name=&quot;password&quot;&gt;user&lt;/property&gt;
+        &lt;property name=&quot;schemas&quot;&gt;BGP&lt;/property&gt;
+        &lt;property name=&quot;readOnly&quot;&gt;true&lt;/property&gt;
+        &lt;property name=&quot;defaultSchema&quot;&gt;BGP&lt;/property&gt;
+    &lt;/user&gt;
+
+&lt;/mycat:server&gt;
+</code></pre><h2 id="四、实验"><a href="#四、实验" class="headerlink" title="四、实验"></a>四、实验</h2><h3 id="启动Mycat"><a href="#启动Mycat" class="headerlink" title="启动Mycat"></a>启动Mycat</h3><p>master上运行</p>
+<pre><code>~/mycat/bin/mycat start
+</code></pre><p>检查是否启动成功</p>
+<pre><code>cat ~/mycat/logs/wrapper.log
+</code></pre><p>若显示successful，则启动成功，否则，查看其中的报错，可能是配置错误，可能是环境错误（例：java环境未安装）</p>
+<h3 id="操作Mycat"><a href="#操作Mycat" class="headerlink" title="操作Mycat"></a>操作Mycat</h3><ul>
+<li>登陆mycat</li>
+</ul>
+<p>登录到Mycat的逻辑数据库BGP（server.xml中可修改）</p>
+<pre><code>mysql -uroot -p1q2w3e4r -hmaster -P8066 -DBGP
+</code></pre><ul>
+<li>写数据</li>
+</ul>
+<pre><code>insert into message (timestamp,pref,orig,mon,msg) values(0,&quot;a0&quot;,&quot;b0&quot;,&quot;c0&quot;,&quot;d0&quot;);
+insert into message (timestamp,pref,orig,mon,msg) values(1,&quot;a1&quot;,&quot;b1&quot;,&quot;c1&quot;,&quot;d1&quot;);
+insert into message (timestamp,pref,orig,mon,msg) values(2,&quot;a2&quot;,&quot;b2&quot;,&quot;c2&quot;,&quot;d2&quot;);
+</code></pre><ul>
+<li>读数据</li>
+</ul>
+<pre><code>select * from message;
+</code></pre><p>结果</p>
+<p>三条数据被按照一定策略（此处配置的rule为，对timestamp进行取模），写入到不同机器的数据库中</p>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>以上就是Mycat的水平切分示例。数据分配的策略可以改动rule中的配置来进行自定义。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://lovebear.top/img/url_zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -207,246 +418,112 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vulnerability/">Vulnerability</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
 	</div>
 
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/17/Safari_Dos/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/03/16/Mycat_Mysql_Horizontal_Split/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
   
-    <article id="post-Redis_getshell" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/16/Redis_getshell/">利用Redis通过cron进行Getshell（配合SSRF利用）</a>
-    </h1>
   
+    <a href="/2020/03/15/Linux_Mount_Disk/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux挂载磁盘</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        <a href="/2018/09/16/Redis_getshell/" class="archive-article-date">
-  	<time datetime="2018-09-16T08:43:05.400Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-16</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Redis配置不当可能会导致未授权访问漏洞，本文利用此漏洞，通过cron进行Getshell，<br>并给出实际攻击场景中配合SSRF漏洞进行的反弹shell攻击，最后会给出Redis的正确<br>配置建议。</p>
-        
-          <a class="article-more-a" href="/2018/09/16/Redis_getshell/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vulnerability/">Vulnerability</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/16/Redis_getshell/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
 
 
 
 
 
   
-    <article id="post-Linux_shell" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+    <section id="comments" class="comments">
+      <style>
+        .comments{margin:30px;padding:10px;background:rgb(255, 255, 255)}
+        @media screen and (max-width:400px){.comments{margin:auto;padding:10px;background:rgb(214, 252, 203)}}
+      </style>
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'false' == true ? true : false;
+    var verify = 'false' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "J3JcKBL0IxtN9XJWzPrnegcB-gzGzoHsz",
+        app_key: "ewqKho2b8ByxHacJAjmvq5ur",
+        placeholder: "请留下宝贵的评论",
+        avatar:"retro",
+    });
+</script>
+
+    </section>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/16/Linux_shell/">Linux反弹shell的N种方法</a>
-    </h1>
-  
-
-        <a href="/2018/09/16/Linux_shell/" class="archive-article-date">
-  	<time datetime="2018-09-16T07:33:43.926Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-16</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Linux作服务器有很多的优点，所以很多服务都选择搭建在Linux服务器上，当我们发现<br>服务器漏洞并对其进行漏洞利用的时候，比较理想的情况就是拿到网站的shell，这就需<br>要用到Linux shell反弹，因为请求是从内部主动发起，所以防火墙过滤策略一般并不会<br>十分严格（参考特洛伊木马，从内部攻击）。本文收集了一些Linux的反弹shell方法，并<br>加上了一些自己的理解。</p>
-        
-          <a class="article-more-a" href="/2018/09/16/Linux_shell/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/16/Linux_shell/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Python_selenium" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/11/Python_selenium/">Python+Selenium进行动态加载网页爬取</a>
-    </h1>
-  
-
-        <a href="/2018/02/11/Python_selenium/" class="archive-article-date">
-  	<time datetime="2018-02-11T01:10:57.796Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>今天想要爬取PTA的题目信息，但是发现scrapy爬取返回的response中没有题目信息，检查元素查看<br>了一下PTA题目网页的源代码，发现这个网页是使用js动态加载的，也就是说是需要浏览器加载好js<br>代码，返回题目信息。那怎么进行爬虫呢，这就需要使用前几章提到的Selenium，本文使用python+<br>Selenium进行动态加载网页爬取的演示和讲解。</p>
-        
-          <a class="article-more-a" href="/2018/02/11/Python_selenium/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/11/Python_selenium/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Ubuntu-Windows-DoubleOS" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/10/Ubuntu-Windows-DoubleOS/">Ubuntu-Windows双系统安装教程</a>
-    </h1>
-  
-
-        <a href="/2018/02/10/Ubuntu-Windows-DoubleOS/" class="archive-article-date">
-  	<time datetime="2018-02-10T04:11:55.647Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-10</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近，在为一个项目做可行性分析时，发现使用linux开发有一些优势，可以方便的调用<br>一些已有的工具。原来一直在虚拟机中使用linux，想到最近也在不断完善linux的知识，<br>所以干脆就装个linux，想到了安装linux-windows双系统，本文的操作环境是ubuntu 16.04<br>和windows 8.1，背景为已安装windows的基础上安装ubuntu。</p>
-        
-          <a class="article-more-a" href="/2018/02/10/Ubuntu-Windows-DoubleOS/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/10/Ubuntu-Windows-DoubleOS/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
-    </nav>
-  
-
 
           </div>
         </div>
@@ -486,8 +563,8 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
