@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Tag: ubuntu | Blog for You</title>
+  <title>Ubuntu HBase安装配置Snappy压缩模式 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://www.lovebear.top/tags/ubuntu/index.html">
+  <meta name="description" content="一、前言HBase存储大量数据时，压缩可以充分利用存储空间，本文使用Snappy，在Ubuntu环境下对HBase进行配置。">
+<meta name="keywords" content="ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu HBase安装配置Snappy压缩模式">
+<meta property="og:url" content="http://www.lovebear.top/2020/03/17/Ubuntu_HBase_SNAPPY/index.html">
 <meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言HBase存储大量数据时，压缩可以充分利用存储空间，本文使用Snappy，在Ubuntu环境下对HBase进行配置。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-03-17T09:34:25.577Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
+<meta name="twitter:title" content="Ubuntu HBase安装配置Snappy压缩模式">
+<meta name="twitter:description" content="一、前言HBase存储大量数据时，压缩可以充分利用存储空间，本文使用Snappy，在Ubuntu环境下对HBase进行配置。">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -174,139 +179,270 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Ubuntu_HBase_SNAPPY" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Ubuntu HBase安装配置Snappy压缩模式
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/17/Ubuntu_HBase_SNAPPY/" class="archive-article-date">
+
+        <a href="/2020/03/17/Ubuntu_HBase_SNAPPY/" class="archive-article-date">
   	<time datetime="2020-03-17T08:54:24.150Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-17</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/17/Ubuntu_HBase_SNAPPY/">Ubuntu HBase安装配置Snappy压缩模式</a>
-    </h1>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>HBase存储大量数据时，压缩可以充分利用存储空间，本文使用Snappy，在Ubuntu环境下<br>对HBase进行配置。</p>
+<a id="more"></a>
+<h2 id="二、环境"><a href="#二、环境" class="headerlink" title="二、环境"></a>二、环境</h2><ul>
+<li>Ubuntu 16.04</li>
+<li>Hadoop-2.7.7</li>
+<li>ZooKeeper-3.5.6</li>
+<li>HBase-1.4.12</li>
+<li>Snappy-1.1.8</li>
+</ul>
+<h2 id="三、安装snappy"><a href="#三、安装snappy" class="headerlink" title="三、安装snappy"></a>三、安装snappy</h2><ul>
+<li>下载源码</li>
+</ul>
+<pre><code>https://src.fedoraproject.org/repo/pkgs/snappy/
+</code></pre><ul>
+<li>解压</li>
+</ul>
+<pre><code>tar zxvf snappy-1.1.8.tar.gz -C /root/
+</code></pre><ul>
+<li>编译</li>
+</ul>
+<pre><code>cd /root/snappy-1.1.8/
+mkdir build &amp;&amp; cd build/
+cmake ../ &amp;&amp; make &amp;&amp; make install
+</code></pre><p>此时在 /usr/lib/x86_64-linux-gnu/ 中会生成libsnappy开头的几个文件，将他们复制</p>
+<pre><code>cp /usr/lib/x86_64-linux-gnu/libsnappy* /usr/local/lib/
+</code></pre><h2 id="四、安装hadoop-snappy"><a href="#四、安装hadoop-snappy" class="headerlink" title="四、安装hadoop-snappy"></a>四、安装hadoop-snappy</h2><ul>
+<li>下载源码</li>
+</ul>
+<pre><code>cd ~
+git clone https://github.com/electrum/hadoop-snappy --depth=1
+</code></pre><ul>
+<li>安装依赖</li>
+</ul>
+<pre><code>apt install autoconf automake libtool maven
+</code></pre><ul>
+<li>编译</li>
+</ul>
+<pre><code>cd hadoop-snappy
+mvn package
+</code></pre><p>成功后，会生成一个target文件夹</p>
+<ul>
+<li>验证</li>
+</ul>
+<pre><code>hadoop checknative
+</code></pre><p>可以看到snappy为true</p>
+<h2 id="五、配置HBase"><a href="#五、配置HBase" class="headerlink" title="五、配置HBase"></a>五、配置HBase</h2><ul>
+<li>获得编译好的lib</li>
+</ul>
+<pre><code>cd /root/src/hadoop-snappy/target
+tar zxvf hadoop-snappy-0.0.1-SNAPSHOT.tar.gz
+cd hadoop-snappy-0.0.1-SNAPSHOT/lib
+</code></pre><p>这里面的lib就是编译好的snappy的lib</p>
+<ul>
+<li>拷贝lib</li>
+</ul>
+<p>1) 拷贝snappy native lib</p>
+<pre><code>cp hadoop-snappy-0.0.1-SNAPSHOT.jar /root/hbase/lib/
+mkdir /root/hbase/lib/native
+cp -r native/Linux-amd64-64/ /root/hbase/lib/native/
+</code></pre><p>2) 拷贝hadoop native lib</p>
+<pre><code>cp /root/hadoop/lib/native/* /root/hbase/lib/native/Linux-amd64-64/
+</code></pre><ul>
+<li>修改环境变量</li>
+</ul>
+<p>1) vim /etc/profile，添加</p>
+<pre><code>export LD_LIBRARY_PATH=/root/hadoop/lib/native
+export PATH=$PATH:$LD_LIBRARY_PATH
+export HBASE_LIBRARY_PATH=/root/hbase/lib/native/Linux-amd64-64
+export PATH=$PATH:$HBASE_LIBRARY_PATH
+</code></pre><p>2) source /etc/profile</p>
+<ul>
+<li>修改 HBase 配置文件</li>
+</ul>
+<p>vim /root/hbase/conf/hbase-site.xml，添加</p>
+<pre><code>&lt;property&gt;
+    &lt;name&gt;io.compression.codecs&lt;/name&gt;
+    &lt;value&gt;snappy&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><h2 id="六、分发给slave"><a href="#六、分发给slave" class="headerlink" title="六、分发给slave"></a>六、分发给slave</h2><ul>
+<li>分发native lib</li>
+</ul>
+<pre><code>scp /usr/local/lib/libsnappy* root@slave*:/usr/local/lib/
+scp /root/hbase/lib/hadoop-snappy-0.0.1-SNAPSHOT.jar  root@slave*:/root/hbase/lib/
+scp -r /root/hbase/lib/native/  root@slave*:/root/hbase/lib/
+</code></pre><ul>
+<li>配置环境变量</li>
+</ul>
+<p>同master</p>
+<ul>
+<li>HBase 配置文件</li>
+</ul>
+<pre><code>scp /root/hbase/conf/hbase-site.xml root@slave*:/root/hbase/conf/
+</code></pre><h2 id="七、重启HBase"><a href="#七、重启HBase" class="headerlink" title="七、重启HBase"></a>七、重启HBase</h2><pre><code>/root/hbase/bin/stop-hbase.sh
+/root/hbase/bin/start-hbase.sh
+</code></pre><h2 id="八、验证"><a href="#八、验证" class="headerlink" title="八、验证"></a>八、验证</h2><ul>
+<li>snappy压缩HDFS上的文件</li>
+</ul>
+<pre><code>/root/hbase/bin/hbase org.apache.hadoop.hbase.util.CompressionTest hdfs://master:9000/tmp_rib/rrc10.txt snappy
+</code></pre><p>末尾出现 SUCCESS，即为snappy安装成功</p>
+<ul>
+<li>HBase中创建带压缩属性的表</li>
+</ul>
+<pre><code>create &#39;bgp:history&#39;, { NAME =&gt; &#39;record&#39;, COMPRESSION =&gt; &#39;SNAPPY&#39; }
+</code></pre><p>创建成功，HBase部署snappy成功</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://lovebear.top/img/url_zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/03/17/Ubuntu_HBase_SNAPPY/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/10/Ubuntu-Windows-DoubleOS/" class="archive-article-date">
-  	<time datetime="2018-02-10T04:11:55.647Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/10/Ubuntu-Windows-DoubleOS/">Ubuntu-Windows双系统安装教程</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/11/Ubuntu-Python_Version/" class="archive-article-date">
-  	<time datetime="2016-12-11T01:29:35.966Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/11/Ubuntu-Python_Version/">Ubuntu Python 默认使用版本改变</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/03/16/Mycat_Mysql_Horizontal_Split/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mycat基于Mysql的垂直切分</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
+</nav>
 
-    
 
+
+
+
+
+  
+    <section id="comments" class="comments">
+      <style>
+        .comments{margin:30px;padding:10px;background:rgb(255, 255, 255)}
+        @media screen and (max-width:400px){.comments{margin:auto;padding:10px;background:rgb(214, 252, 203)}}
+      </style>
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'false' == true ? true : false;
+    var verify = 'false' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "J3JcKBL0IxtN9XJWzPrnegcB-gzGzoHsz",
+        app_key: "ewqKho2b8ByxHacJAjmvq5ur",
+        placeholder: "请留下宝贵的评论",
+        avatar:"retro",
+    });
+</script>
+
+    </section>
+  
 
           </div>
         </div>
@@ -347,9 +483,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
