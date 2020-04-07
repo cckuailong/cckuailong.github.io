@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Archives | Blog for You</title>
+  <title>Ubuntu 安装 Kubernetes, Docker | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://www.lovebear.top/archives/page/2/index.html">
+  <meta name="description" content="前言本文介绍 Ubuntu 安装 Kubernetes 和 Docker的方法，以及过程中遇到的问题及解决办法。">
+<meta name="keywords" content="大数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 安装 Kubernetes, Docker">
+<meta property="og:url" content="http://www.lovebear.top/2020/04/07/Kubernetes_And_Docker_Install/index.html">
 <meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="前言本文介绍 Ubuntu 安装 Kubernetes 和 Docker的方法，以及过程中遇到的问题及解决办法。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
+<meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
+<meta property="og:updated_time" content="2020-04-07T12:47:48.245Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
+<meta name="twitter:title" content="Ubuntu 安装 Kubernetes, Docker">
+<meta name="twitter:description" content="前言本文介绍 Ubuntu 安装 Kubernetes 和 Docker的方法，以及过程中遇到的问题及解决办法。">
+<meta name="twitter:image" content="http://www.lovebear.top/img/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -174,187 +182,232 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Kubernetes_And_Docker_Install" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu 安装 Kubernetes, Docker
+    </h1>
+  
+
+        <a href="/2020/04/07/Kubernetes_And_Docker_Install/" class="archive-article-date">
+  	<time datetime="2020-04-07T11:34:14.084Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-07</time>
+</a>
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文介绍 Ubuntu 安装 Kubernetes 和 Docker的方法，以及过程中遇到的问题及解决办法。</p>
+<a id="more"></a>
+<h2 id="安装Kubernetes"><a href="#安装Kubernetes" class="headerlink" title="安装Kubernetes"></a>安装Kubernetes</h2><ul>
+<li>关闭swap并重新加载配置</li>
+</ul>
+<p>因为k8s调度需要计算机器容量，因此关闭交换内存，减少计算误差，另外，启动kubelet时如果未关闭，也会报错。</p>
+<pre><code>sudo swapoff -a
+sudo sysctl -p
+sudo sysctl --system
+</code></pre><p>修改fstab，防止机器重启又自动打开swap，导致无法重新加入集群</p>
+<pre><code>vim /etc/fstab
+注释掉swap盘挂载的一行，保存退出。
+</code></pre><ul>
+<li>安装kubeadm、kubectl、kubelet</li>
+</ul>
+<pre><code>apt update
+</code></pre><p>添加gpg key</p>
+<pre><code>curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg| apt-key add -
+</code></pre><p>此处可能报错：&lt;gpg:no valid OpenPGP data found&gt;，因为curl没有支持https，解决方法参考 <a href="http://lovebear.top/2017/06/20/Ubuntu%E9%85%8D%E7%BD%AEcurl%E6%94%AF%E6%8C%81https/" target="_blank" rel="noopener">Ubuntu配置curl支持https</a></p>
+<pre><code>cat &lt;&lt;EOF &gt;/etc/apt/sources.list.d/kubernetes.list
+deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main 
+EOF
+</code></pre><p>此处可能报错：<no such="" file="" or="" directory="">，这是第三方apt目录，没有的话可以手动创建 &lt;/etc/apt/sources.list.d&gt; 目录</no></p>
+<pre><code>mkdir /etc/apt/sources.list.d
+</code></pre><pre><code>apt update
+</code></pre><p>安装 Kubernetes 1.18.0</p>
+<pre><code>apt install -y kubelet=1.18.0-00 kubeadm=1.18.0-00 kubectl=1.18.0-00
+</code></pre><h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><ul>
+<li>卸载旧版本</li>
+</ul>
+<pre><code>sudo apt remove docker docker-engine docker.io containerd runc
+</code></pre><ul>
+<li>设置仓库</li>
+</ul>
+<p>更新 apt 包索引</p>
+<pre><code>sudo apt update
+</code></pre><p>安装 apt 依赖包，用于通过HTTPS来获取仓库</p>
+<pre><code>sudo apt install \
+  apt-transport-https \
+  ca-certificates \
+  curl \
+  gnupg-agent \
+  software-properties-common
+</code></pre><p>添加 Docker 的官方 GPG 密钥</p>
+<pre><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+</code></pre><p>使用以下指令设置稳定版仓库</p>
+<pre><code>sudo add-apt-repository \
+ &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) \
+stable&quot;
+</code></pre><ul>
+<li>安装 Docker Engine-Community</li>
+</ul>
+<p>更新 apt 包索引</p>
+<pre><code>sudo apt update
+</code></pre><p>安装最新版本的 Docker Engine-Community 和 containerd ，或者转到下一步安装特定版本：</p>
+<pre><code>sudo apt install docker-ce docker-ce-cli containerd.io
+</code></pre><p>要安装特定版本的 Docker Engine-Community，请在仓库中列出可用版本，然后选择一种安装。列出仓库中可用的版本：</p>
+<pre><code>apt-cache madison docker-ce
+</code></pre><p>使用第二列中的版本字符串安装特定版本，例如 5:19.03.8~3-0~ubuntu-xenial</p>
+<pre><code>apt install docker-ce=5:19.03.8~3-0~ubuntu-xenial docker-ce-cli=5:19.03.8~3-0~ubuntu-xenial containerd.io
+</code></pre><ul>
+<li>检测是否安装成功</li>
+</ul>
+<pre><code>docker version
+</code></pre><p>出现 Docker Engine 的 Client Server 信息</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://lovebear.top/img/url_zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/20/Mysql_Error_Inject/" class="archive-article-date">
-  	<time datetime="2020-02-20T05:45:52.918Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/20/Mysql_Error_Inject/">Mysql 报错注入总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vulnerability/">Vulnerability</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/04/07/Kubernetes_And_Docker_Install/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/16/PowerShell_15_Ways_Bypass_ExecutionPolicy/" class="archive-article-date">
-  	<time datetime="2020-02-16T08:00:24.697Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/16/PowerShell_15_Ways_Bypass_ExecutionPolicy/">绕过PowerShell 执行策略的15种方法</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/15/PHP_CutOff_Bypass/" class="archive-article-date">
-  	<time datetime="2020-02-15T11:47:00.804Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/15/PHP_CutOff_Bypass/">PHP截断绕过总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vulnerability/">Vulnerability</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/08/Mycat_Mysql_Vertical_Split/" class="archive-article-date">
-  	<time datetime="2020-02-08T11:18:24.235Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/08/Mycat_Mysql_Vertical_Split/">Mycat基于Mysql的垂直切分</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/08/PyBgpStream_Install/" class="archive-article-date">
-  	<time datetime="2020-01-08T08:39:55.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/08/PyBgpStream_Install/">PyBGPStream安装</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BGP/">BGP</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/03/17/Ubuntu_HBase_SNAPPY/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu HBase安装配置Snappy压缩模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
+</nav>
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/13/">13</a><a class="extend next" rel="next" href="/archives/page/3/">Next &raquo;</a>
-    </nav>
+
+
+
+
+
   
+    <section id="comments" class="comments">
+      <style>
+        .comments{margin:30px;padding:10px;background:rgb(255, 255, 255)}
+        @media screen and (max-width:400px){.comments{margin:auto;padding:10px;background:rgb(214, 252, 203)}}
+      </style>
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'false' == true ? true : false;
+    var verify = 'false' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "J3JcKBL0IxtN9XJWzPrnegcB-gzGzoHsz",
+        app_key: "ewqKho2b8ByxHacJAjmvq5ur",
+        placeholder: "请留下宝贵的评论",
+        avatar:"retro",
+    });
+</script>
 
+    </section>
+  
 
           </div>
         </div>
@@ -395,8 +448,8 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

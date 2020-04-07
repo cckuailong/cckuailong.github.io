@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言：curl是一个开源的文件传输工具，但是ubuntu默认安装的curl不支持https，需要重新将curl进行编译，这里查找了网上的一些资料，综合起来实现了curl对https的支持。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2017-06-22T08:24:21.266Z">
+<meta property="og:updated_time" content="2020-04-07T11:33:30.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu配置curl支持https">
 <meta name="twitter:description" content="一、前言：curl是一个开源的文件传输工具，但是ubuntu默认安装的curl不支持https，需要重新将curl进行编译，这里查找了网上的一些资料，综合起来实现了curl对https的支持。">
@@ -200,7 +200,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>curl是一个开源的文件传输工具，但是ubuntu默认安装的curl不支持https，需要重新将curl<br>进行编译，这里查找了网上的一些资料，综合起来实现了curl对https的支持。</p>
 <a id="more"></a>
 <h2 id="二、curl简单介绍："><a href="#二、curl简单介绍：" class="headerlink" title="二、curl简单介绍："></a>二、curl简单介绍：</h2><p>curl是利用URL语法在命令行方式下工作的开源文件传输工具。它被广泛应用在Unix、多种<br>Linux发行版中，并且有DOS和Win32、Win64下的移植版本。 【摘自百度百科】</p>
-<h2 id="三、curl配置https："><a href="#三、curl配置https：" class="headerlink" title="三、curl配置https："></a>三、curl配置https：</h2><h3 id="1-安装openssl"><a href="#1-安装openssl" class="headerlink" title="1. 安装openssl"></a>1. 安装openssl</h3><pre><code>sudo apt-get install openssl
+<h2 id="三、curl配置https："><a href="#三、curl配置https：" class="headerlink" title="三、curl配置https："></a>三、curl配置https：</h2><h3 id="1-安装openssl"><a href="#1-安装openssl" class="headerlink" title="1. 安装openssl"></a>1. 安装openssl</h3><pre><code>sudo apt install -y openssl libssl-dev
 </code></pre><h3 id="2-下载curl源码-下载版本自选"><a href="#2-下载curl源码-下载版本自选" class="headerlink" title="2. 下载curl源码(下载版本自选)"></a>2. 下载curl源码(下载版本自选)</h3><pre><code>wget http://curl.haxx.se/download/curl-7.52.1.tar.gz
 </code></pre><h3 id="3-解压源码，并进入目录"><a href="#3-解压源码，并进入目录" class="headerlink" title="3. 解压源码，并进入目录"></a>3. 解压源码，并进入目录</h3><pre><code>tar -zxvf curl-7.52.1.tar.gz
 cd curl-7.52.1

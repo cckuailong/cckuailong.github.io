@@ -4,6 +4,40 @@
 
     
   <url>
+    <loc>http://www.lovebear.top/2020/04/07/Kubernetes_And_Docker_Install/</loc>
+    <lastmod>2020-04-07T12:47:48.245Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu 安装 Kubernetes, Docker</title>
+        <pubTime>2020-04-07T11:34:14.084Z</pubTime>
+        
+        <tag>大数据</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.lovebear.top/2017/06/20/Ubuntu%E9%85%8D%E7%BD%AEcurl%E6%94%AF%E6%8C%81https/</loc>
+    <lastmod>2020-04-07T11:33:30.633Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu配置curl支持https</title>
+        <pubTime>2017-06-20T03:14:12.989Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.lovebear.top/2020/03/16/Mycat_Mysql_Horizontal_Split/</loc>
     <lastmod>2020-03-19T02:47:41.393Z</lastmod>
     <data>
@@ -944,23 +978,6 @@
         <tag>Ubuntu</tag>
          
         <tag>Apache</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.lovebear.top/2017/06/20/Ubuntu%E9%85%8D%E7%BD%AEcurl%E6%94%AF%E6%8C%81https/</loc>
-    <lastmod>2017-06-22T08:24:21.266Z</lastmod>
-    <data>
-        <display>
-        <title>Ubuntu配置curl支持https</title>
-        <pubTime>2017-06-20T03:14:12.989Z</pubTime>
-        
-        <tag>Linux</tag>
          
          
            
