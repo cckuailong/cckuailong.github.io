@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2020-04-07T12:47:48.245Z">
+<meta property="og:updated_time" content="2020-04-08T13:46:31.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 安装 Kubernetes, Docker">
 <meta name="twitter:description" content="前言本文介绍 Ubuntu 安装 Kubernetes 和 Docker的方法，以及过程中遇到的问题及解决办法。">
@@ -202,7 +202,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文介绍 Ubuntu 安装 Kubernetes 和 Docker的方法，以及过程中遇到的问题及解决办法。</p>
 <a id="more"></a>
-<h2 id="安装Kubernetes"><a href="#安装Kubernetes" class="headerlink" title="安装Kubernetes"></a>安装Kubernetes</h2><ul>
+<h2 id="安装Kubernetes-Master-amp-Nodes"><a href="#安装Kubernetes-Master-amp-Nodes" class="headerlink" title="安装Kubernetes (Master &amp; Nodes)"></a>安装Kubernetes (Master &amp; Nodes)</h2><ul>
 <li>关闭swap并重新加载配置</li>
 </ul>
 <p>因为k8s调度需要计算机器容量，因此关闭交换内存，减少计算误差，另外，启动kubelet时如果未关闭，也会报错。</p>
@@ -227,7 +227,11 @@ EOF
 </code></pre><pre><code>apt update
 </code></pre><p>安装 Kubernetes 1.18.0</p>
 <pre><code>apt install -y kubelet=1.18.0-00 kubeadm=1.18.0-00 kubectl=1.18.0-00
-</code></pre><h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><ul>
+</code></pre><ul>
+<li>将kubelet加到系统服务</li>
+</ul>
+<pre><code>systemctl enable kubelet
+</code></pre><h2 id="安装docker-Master-amp-Nodes"><a href="#安装docker-Master-amp-Nodes" class="headerlink" title="安装docker (Master &amp; Nodes)"></a>安装docker (Master &amp; Nodes)</h2><ul>
 <li>卸载旧版本</li>
 </ul>
 <pre><code>sudo apt remove docker docker-engine docker.io containerd runc
@@ -266,6 +270,58 @@ stable&quot;
 </ul>
 <pre><code>docker version
 </code></pre><p>出现 Docker Engine 的 Client Server 信息</p>
+<h2 id="拉取-k8s-镜像-Master-amp-Nodes"><a href="#拉取-k8s-镜像-Master-amp-Nodes" class="headerlink" title="拉取 k8s 镜像 (Master &amp; Nodes)"></a>拉取 k8s 镜像 (Master &amp; Nodes)</h2><p>将如下内容保存为 download.sh</p>
+<pre><code>#!/bin/bash
+images=(kube-proxy:v1.18.0 kube-scheduler:v1.18.0 kube-controller-manager:v1.18.0 kube-apiserver:v1.18.0 etcd:3.4.3-0 coredns:1.6.7 pause:3.2 )
+for imageName in ${images[@]} ; do
+docker pull registry.aliyuncs.com/google_containers/$imageName
+docker tag  registry.aliyuncs.com/google_containers/$imageName k8s.gcr.io/$imageName
+docker rmi  registry.aliyuncs.com/google_containers/$imageName
+done
+</code></pre><p>赋予执行权限后，运行</p>
+<pre><code>chmod +x download.sh
+./download.sh
+</code></pre><h2 id="Master其他工作"><a href="#Master其他工作" class="headerlink" title="Master其他工作"></a>Master其他工作</h2><ul>
+<li>初始化</li>
+</ul>
+<pre><code>kubeadm init --kubernetes-version=v1.18.0 --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=10.10.11.120 --apiserver-bind-port=6443
+</code></pre><pre><code>mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+</code></pre><p>为了使用更健康，启用kubectl命令的自动补全功能</p>
+<pre><code>echo &quot;source &lt;(kubectl completion bash)&quot; &gt;&gt; ~/.bashrc
+</code></pre><p>此时 获取node状态，会是NotReady，describe node会发现，是因为网络配置未完成</p>
+<pre><code>kubectl get nodes
+</code></pre><ul>
+<li>配置 flannel 网络</li>
+</ul>
+<pre><code>kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+</code></pre><p>P.S. 下载失败就多运行几次</p>
+<h2 id="Node其他工作"><a href="#Node其他工作" class="headerlink" title="Node其他工作"></a>Node其他工作</h2><ul>
+<li>node部分创建并加入集群</li>
+</ul>
+<pre><code>kubeadm join 10.10.11.120:6443 --token {token} --discovery-token-ca-cert-hash sha256:{hash}
+</code></pre><p>其中，{token}获取，运行</p>
+<pre><code>kubeadm token list
+</code></pre><p>{hash}获取，运行</p>
+<pre><code>openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed &#39;s/^.* //&#39;
+</code></pre><p>P.S. 如果token已经失效（默认24小时就消失了），则在master上创建一个新的</p>
+<pre><code>kubeadm token create
+</code></pre><h2 id="Master查看管理Node"><a href="#Master查看管理Node" class="headerlink" title="Master查看管理Node"></a>Master查看管理Node</h2><ul>
+<li>设置节点角色为node</li>
+</ul>
+<pre><code>kubectl label nodes slave1 node-role.kubernetes.io/node=
+kubectl label nodes slave2 node-role.kubernetes.io/node=
+</code></pre><ul>
+<li>在master节点查看nodes</li>
+</ul>
+<pre><code>kubectl get nodes
+</code></pre><p>若Master， node 状态都是 Ready，则部署成功</p>
+<h2 id="排查-NotReady-状态原因"><a href="#排查-NotReady-状态原因" class="headerlink" title="排查 NotReady 状态原因"></a>排查 NotReady 状态原因</h2><p>通过kubectl get nodes查看节点的状态，均显示NotReady<br>目前所有的节点都是NotReady，这是因为每个节点都需要启动若干组件，这些组件都是在pod中运行。我们可以通过如下命令查看Pod的状态</p>
+<pre><code>kubectl get pod --all-namespaces
+</code></pre><p>Pending、ContainerCreating、ImagePullBackOff都表明Pod没有就绪，Running才是就绪状态。我们可以通过kubectl describe pod Pod Name 查看pod的具体情况，比如：</p>
+<pre><code>kubectl describe pod kube-flannel-ds-v0p3x --namespace=kube-system
+</code></pre><p>可以根据出现的错误进行排查</p>
 
       
 
