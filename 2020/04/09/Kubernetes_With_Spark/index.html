@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Archives | Blog for You</title>
+  <title>Kubernetes配置Spark | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://www.lovebear.top/archives/page/3/index.html">
+  <meta name="description" content="前言Spark 2.3以上的版本可以支持Kubernetes，本文介绍如何使用 k8s 部署管理Spark 2.4.4">
+<meta name="keywords" content="大数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kubernetes配置Spark">
+<meta property="og:url" content="http://www.lovebear.top/2020/04/09/Kubernetes_With_Spark/index.html">
 <meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="前言Spark 2.3以上的版本可以支持Kubernetes，本文介绍如何使用 k8s 部署管理Spark 2.4.4">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
+<meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
+<meta property="og:updated_time" content="2020-04-09T03:22:06.747Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
+<meta name="twitter:title" content="Kubernetes配置Spark">
+<meta name="twitter:description" content="前言Spark 2.3以上的版本可以支持Kubernetes，本文介绍如何使用 k8s 部署管理Spark 2.4.4">
+<meta name="twitter:image" content="http://www.lovebear.top/img/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -174,187 +182,203 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Kubernetes_With_Spark" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kubernetes配置Spark
+    </h1>
+  
+
+        <a href="/2020/04/09/Kubernetes_With_Spark/" class="archive-article-date">
+  	<time datetime="2020-04-09T02:45:42.331Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-09</time>
+</a>
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Spark 2.3以上的版本可以支持Kubernetes，本文介绍如何使用 k8s 部署管理Spark 2.4.4</p>
+<a id="more"></a>
+<h2 id="编译-Spark-镜像"><a href="#编译-Spark-镜像" class="headerlink" title="编译 Spark 镜像"></a>编译 Spark 镜像</h2><ul>
+<li><p>绑定docker hub账号</p>
+</li>
+<li><p>编译</p>
+</li>
+</ul>
+<pre><code>~/spark/bin/docker-image-tool.sh -r cckuailong -t spark2.4.4 build
+</code></pre><ul>
+<li>提交到docker hub</li>
+</ul>
+<pre><code>~/spark/bin/docker-image-tool.sh -r cckuailong -t spark2.4.4 push
+</code></pre><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ul>
+<li>运行</li>
+</ul>
+<p>上传test.py到容器中的/code/目录中</p>
+<pre><code>bin/spark-submit \
+    --master k8s://https://10.10.11.120:6443 \
+    --deploy-mode cluster\
+    --name test \
+    --conf spark.executor.instances=5 \
+    --conf spark.kubernetes.container.image=cckuailong/spark:spark2.4.4 \
+    local:///code/test.py
+</code></pre><h2 id="注意及排错"><a href="#注意及排错" class="headerlink" title="注意及排错"></a>注意及排错</h2><ul>
+<li>spark 自带的exemples是用jdk1.8编译的，如果启动过程中提示Unsupported major.minor version 52.0请更换jdk版本</li>
+<li>spark-submit默认会去~/.kube/config去加载集群配置，故请将k8s集群config放在该目录下</li>
+<li>spark 启动参数的local://后面应该跟你自己的spark application在容器里的路径</li>
+<li>spark driver 启动抛异常Caused by: java.net.UnknownHostException: kubernetes.default.svc: Try again</li>
+</ul>
+<p>请保证 k8d let节点间网络互通；</p>
+<ul>
+<li>spark driver 启动抛异常system: serviceaccount: default: default” cannot get pods in the namespace “default</li>
+</ul>
+<p>权限问题，执行一下两条命令:</p>
+<pre><code>kubectl create rolebinding default-view --clusterrole=view --serviceaccount=default:default --namespace=defalut 和
+kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=default:default --namespace=default 后就可以了
+</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://lovebear.top/img/url_zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/08/PyBgpStream_Install/" class="archive-article-date">
-  	<time datetime="2020-01-08T08:39:55.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/08/PyBgpStream_Install/">PyBGPStream安装</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BGP/">BGP</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/06/Grafana_Install_And_Config/" class="archive-article-date">
-  	<time datetime="2020-01-06T09:00:42.589Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/06/Grafana_Install_And_Config/">Grafana安装配置--连接OpenTSDB</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/04/09/Kubernetes_With_Spark/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/06/ZooKeeper-Hbase-OpenTSDB_TSDB/" class="archive-article-date">
-  	<time datetime="2020-01-06T08:54:11.064Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/06/ZooKeeper-Hbase-OpenTSDB_TSDB/">ZooKeeper-Hbase-OpenTSDB集群搭建--OpenTSDB</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/06/ZooKeeper-Hbase-OpenTSDB_HB/" class="archive-article-date">
-  	<time datetime="2020-01-06T08:49:44.267Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/06/ZooKeeper-Hbase-OpenTSDB_HB/">ZooKeeper-Hbase-OpenTSDB集群搭建--HBase</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/01/06/ZooKeeper-Hbase-OpenTSDB_ZK/" class="archive-article-date">
-  	<time datetime="2020-01-06T07:59:38.825Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/06/ZooKeeper-Hbase-OpenTSDB_ZK/">ZooKeeper-Hbase-OpenTSDB集群搭建--ZooKeeper</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/04/07/Kubernetes_And_Docker_Install/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu 安装 Kubernetes, Docker</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
+</nav>
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/13/">13</a><a class="extend next" rel="next" href="/archives/page/4/">Next &raquo;</a>
-    </nav>
+
+
+
+
+
   
+    <section id="comments" class="comments">
+      <style>
+        .comments{margin:30px;padding:10px;background:rgb(255, 255, 255)}
+        @media screen and (max-width:400px){.comments{margin:auto;padding:10px;background:rgb(214, 252, 203)}}
+      </style>
+      <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'false' == true ? true : false;
+    var verify = 'false' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "J3JcKBL0IxtN9XJWzPrnegcB-gzGzoHsz",
+        app_key: "ewqKho2b8ByxHacJAjmvq5ur",
+        placeholder: "请留下宝贵的评论",
+        avatar:"retro",
+    });
+</script>
 
+    </section>
+  
 
           </div>
         </div>
@@ -395,8 +419,8 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
