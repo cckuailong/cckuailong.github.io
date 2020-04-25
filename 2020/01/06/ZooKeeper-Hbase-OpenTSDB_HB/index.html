@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2020-02-14T03:35:04.992Z">
+<meta property="og:updated_time" content="2020-04-21T03:48:59.058Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZooKeeper-Hbase-OpenTSDB集群搭建--HBase">
 <meta name="twitter:description" content="前言然后，是HBase的搭建，包括，安装，配置，启动停止，和检查是否安装成功。HBase是一个分布式的、面向列的开源数据库，是OpenTSDB承载的基础。">
@@ -267,6 +267,19 @@ slave2
 </code></pre><h3 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h3><p>master运行</p>
 <pre><code>jps
 </code></pre><p>有HMaster，运行成功，QuorumPeerMain是zookeeper的</p>
+<h4 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h4><ul>
+<li>若启动成功后，hbase shell仍提示Server未运行，可能是hadoop的安全模式打开了，关闭即可</li>
+</ul>
+<pre><code>hdfs dfsadmin -safemode leave
+</code></pre><ul>
+<li>下策</li>
+</ul>
+<p>重新初始化namenode</p>
+<ol>
+<li>先把集群的各个进程都关掉。</li>
+<li>删除各个节点Hadoop安装目录下的data和logs文件夹{防止格式化后id不一致问题}</li>
+<li>在NameNode节点执行，hadoop namenode -format</li>
+</ol>
 
       
 
