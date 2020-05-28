@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-CTF_FactorSum" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-CTF_FactorSum" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -203,10 +203,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>在实验吧遇到一道看起来很简单的题，其实有很多内容在其中，这道题包括大数的全部因子<br>求和，并且穿插了大数模运算的技巧。</p>
 <p><a href="http://www.shiyanbar.com/ctf/1906" target="_blank" rel="noopener">原题目链接</a></p>
 <a id="more"></a>
+
 <h2 id="二、原题："><a href="#二、原题：" class="headerlink" title="二、原题："></a>二、原题：</h2><p>求12345^12345的所有约数（即因子）之和，并对其取模9901再输出。</p>
 <h2 id="三、分析："><a href="#三、分析：" class="headerlink" title="三、分析："></a>三、分析：</h2><p>注意： 首先明确一点初中的知识，一个数的因子包括1和这个数本身</p>
 <ol>
-<li>质因数分解12345，可以自己写脚本，也可以直接在线分解，提供一个在线质因数分解网站：<br><a href="http://www.atool.org/quality_factor.php" target="_blank" rel="noopener">http://www.atool.org/quality_factor.php</a><br>得到12345 = 3 <em> 5 </em> 823</li>
+<li>质因数分解12345，可以自己写脚本，也可以直接在线分解，提供一个在线质因数分解网站：<br><a href="http://www.atool.org/quality_factor.php" target="_blank" rel="noopener">http://www.atool.org/quality_factor.php</a><br>得到12345 = 3 * 5 * 823</li>
 <li>12345^12345 = 3^12345 + 5^12345 + 823^12345</li>
 <li>12345^12345的因子和可以化为<br>（3^0+3^1+3^2….+3^12345）<em>（5^0+5^1+5^2….+5^12345）</em>（823^0+823^1+823^2….+823^12345）</li>
 <li>根据大数模运算的方法可知<br>(a<em>b</em>c)%p==(a%p)<em>(b%p)</em>(c%p)%p<br>可得<br>（3^0%9901+….+3^12345%9901）<em>（5^0%9901+….+5^12345%9901）</em>（823^0%9901+….+823^12345%9901）%9901</li>
@@ -221,8 +222,7 @@ for i in range(0,12346):
    key1+=3**i%9901
    key2+=5**i%9901
    key3+=823**i%9901
-print (key1*key2*key3)%9901
-</code></pre>
+print (key1*key2*key3)%9901</code></pre>
       
 
       
@@ -355,7 +355,7 @@ print (key1*key2*key3)%9901
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -452,6 +452,10 @@ print (key1*key2*key3)%9901
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -464,23 +468,11 @@ print (key1*key2*key3)%9901
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -496,6 +488,10 @@ print (key1*key2*key3)%9901
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -504,11 +500,15 @@ print (key1*key2*key3)%9901
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +532,7 @@ print (key1*key2*key3)%9901
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

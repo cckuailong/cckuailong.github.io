@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ZooKeeper-Hbase-OpenTSDB_TSDB" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-ZooKeeper-Hbase-OpenTSDB_TSDB" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,33 +202,28 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>接下来，是OpenTSDB的搭建，包括，安装，配置，启动停止，和基本的使用方法。<br>OpenTSDB是基于Hbase的时间序列数据库，部署前，要保证HBase正确部署并成功运行。</p>
 <a id="more"></a>
+
 <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>安装部署Hadoop，ZooKeeper，Hbase，并依次运行</p>
 <h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
 <li>解压</li>
 </ul>
 <pre><code>tar zxvf opentsdb-2.4.0.tar.gz -C ~/
-mv opentsdb-2.4.0 opentsdb &amp;&amp; cd opentsdb
-</code></pre><ul>
+mv opentsdb-2.4.0 opentsdb &amp;&amp; cd opentsdb</code></pre><ul>
 <li>编译</li>
 </ul>
 <pre><code>mkdir build
 cp -r third_party ./build
-./build.sh
-</code></pre><p>编译成功的标志是在openTSDB目录下生成build文件夹，并且会生成一个jar包：tsdb-2.4.0.jar</p>
+./build.sh</code></pre><p>编译成功的标志是在openTSDB目录下生成build文件夹，并且会生成一个jar包：tsdb-2.4.0.jar</p>
 <ul>
 <li>修改create_table.sh中的bug</li>
 </ul>
-<pre><code>vim ~/opentsdb/src/create_table.sh
-</code></pre><pre><code>TSDB_TTL=${TSDB_TTL-&#39;FOREVER&#39;} 改成 TSDB_TTL=${TSDB_TTL-&#39;2147483647&#39;}
-</code></pre><ul>
+<pre><code>vim ~/opentsdb/src/create_table.sh</code></pre><pre><code>TSDB_TTL=${TSDB_TTL-&#39;FOREVER&#39;} 改成 TSDB_TTL=${TSDB_TTL-&#39;2147483647&#39;}</code></pre><ul>
 <li>创建openTSDB所需要的表</li>
 </ul>
-<pre><code>env COMPRESSION=NONE HBASE_HOME=/root/hbase ./src/create_table.sh
-</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
+<pre><code>env COMPRESSION=NONE HBASE_HOME=/root/hbase ./src/create_table.sh</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
 <li>获取配置文件</li>
 </ul>
-<pre><code>cp src/opentsdb.conf build/opentsdb.conf
-</code></pre><ul>
+<pre><code>cp src/opentsdb.conf build/opentsdb.conf</code></pre><ul>
 <li>vim build/opentsdb.conf</li>
 </ul>
 <pre><code># --------- NETWORK ----------
@@ -264,61 +259,47 @@ tsd.storage.hbase.zk_basedir = /hbase
 
 # A comma separated list of Zookeeper hosts to connect to, with or without
 # port specifiers, default is &quot;localhost&quot;
-tsd.storage.hbase.zk_quorum = master:2189,slave1:2189,slave2:2189
-</code></pre><p>P.S.</p>
+tsd.storage.hbase.zk_quorum = master:2189,slave1:2189,slave2:2189</code></pre><p>P.S.</p>
 <p>tsd.core.auto_create_metrics = false时，opentsdb在写入数据时不会新建metric，若需要则改为true</p>
 <p>否则，需要使用这种方式创建metric</p>
-<pre><code>tsdb mkmetric bgp.messsage
-</code></pre><h2 id="集群启动"><a href="#集群启动" class="headerlink" title="集群启动"></a>集群启动</h2><h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><ul>
+<pre><code>tsdb mkmetric bgp.messsage</code></pre><h2 id="集群启动"><a href="#集群启动" class="headerlink" title="集群启动"></a>集群启动</h2><h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><ul>
 <li>保证hadoop，zookeeper，hbase正确运行</li>
 <li>运行openTSDB</li>
 </ul>
 <pre><code>cd ~/opentsdb/build
-./tsdb tsd
-</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ul>
+./tsdb tsd</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ul>
 <li>访问 <a href="http://master:4399" target="_blank" rel="noopener">http://master:4399</a>，看到opentsdb页面</li>
 </ul>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
 <li>写入整形数据</li>
 </ul>
-<pre><code>curl -i -X POST -d &#39;{&quot;metric&quot;:&quot;bgp.message&quot;, &quot;timestamp&quot;:1531486607,&quot;value&quot;:7, &quot;tags&quot;:{&quot;tag&quot;:&quot;test&quot;}}&#39; http://master:4399/api/put?details
-</code></pre><ul>
+<pre><code>curl -i -X POST -d &#39;{&quot;metric&quot;:&quot;bgp.message&quot;, &quot;timestamp&quot;:1531486607,&quot;value&quot;:7, &quot;tags&quot;:{&quot;tag&quot;:&quot;test&quot;}}&#39; http://master:4399/api/put?details</code></pre><ul>
 <li>写入文本数据（注解）</li>
 </ul>
-<pre><code>curl -i -X POST -d &#39;{&quot;startTime&quot;:1578276065, &quot;tsuid&quot;:&quot;000001000001000001&quot;, &quot;custom&quot;:{&quot;type&quot;:4}}&#39; http://master:4399/api/annotation/put?details
-</code></pre><ul>
+<pre><code>curl -i -X POST -d &#39;{&quot;startTime&quot;:1578276065, &quot;tsuid&quot;:&quot;000001000001000001&quot;, &quot;custom&quot;:{&quot;type&quot;:4}}&#39; http://master:4399/api/annotation/put?details</code></pre><ul>
 <li>批量写入注解</li>
 </ul>
-<pre><code>/api/annotation/bulk
-</code></pre><pre><code>curl -i -X POST -d &#39;[{&quot;startTime&quot;:1578276069,&quot;endTime&quot;:1578276069, &quot;tsuid&quot;:&quot;000001000001000001&quot;, &quot;custom&quot;:{&quot;type&quot;:4}},{&quot;startTime&quot;:1578276569,&quot;tsuid&quot;:&quot;000001000001000001&quot;,&quot;custom&quot;:{&quot;type&quot;:6}}]&#39; http://master:4399/api/annotation/bulk/put
-</code></pre><ul>
+<pre><code>/api/annotation/bulk</code></pre><pre><code>curl -i -X POST -d &#39;[{&quot;startTime&quot;:1578276069,&quot;endTime&quot;:1578276069, &quot;tsuid&quot;:&quot;000001000001000001&quot;, &quot;custom&quot;:{&quot;type&quot;:4}},{&quot;startTime&quot;:1578276569,&quot;tsuid&quot;:&quot;000001000001000001&quot;,&quot;custom&quot;:{&quot;type&quot;:6}}]&#39; http://master:4399/api/annotation/bulk/put</code></pre><ul>
 <li>读取单条文本数据（注解）</li>
 </ul>
-<pre><code>curl http://master:4399/api/annotation?start_time=1578276065
-</code></pre><ul>
+<pre><code>curl http://master:4399/api/annotation?start_time=1578276065</code></pre><ul>
 <li>批量读取数据（返回包含注解）</li>
 </ul>
-<pre><code>curl -i -X POST -d &#39;{&quot;start&quot;:1578276060,&quot;end&quot;: 1578276070,&quot;showTSUIDs&quot;:true,&quot;queries&quot;:[{&quot;metric&quot;:&quot;bgp.message&quot;,&quot;aggregator&quot;: &quot;min&quot;}]}&#39; http://master:4399/api/query
-</code></pre><h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><ul>
+<pre><code>curl -i -X POST -d &#39;{&quot;start&quot;:1578276060,&quot;end&quot;: 1578276070,&quot;showTSUIDs&quot;:true,&quot;queries&quot;:[{&quot;metric&quot;:&quot;bgp.message&quot;,&quot;aggregator&quot;: &quot;min&quot;}]}&#39; http://master:4399/api/query</code></pre><h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><ul>
 <li>成功执行 create_table.sh 后，启动时报错，找不到 tsdb 表或tsdb-uid表</li>
 </ul>
 <ol>
 <li>查看hbase中是否成功生成tsdb相关表</li>
 </ol>
 <p>进入hbase shell</p>
-<pre><code>~/hbase/bin/hbase shell
-</code></pre><p>列出Hbase表，查看有没有 tsdb tsdb-meta tsdb-tree tsdb-uid</p>
-<pre><code>hbase(main):001:0&gt; list
-</code></pre><ol start="2">
+<pre><code>~/hbase/bin/hbase shell</code></pre><p>列出Hbase表，查看有没有 tsdb tsdb-meta tsdb-tree tsdb-uid</p>
+<pre><code>hbase(main):001:0&gt; list</code></pre><ol start="2">
 <li>查看zookeeper有没有表记录</li>
 </ol>
 <p>进入Hbase Zookeeper Shell</p>
-<pre><code>~/hbase/bin/hbase zkcli
-</code></pre><p>列出Hbase的zookeeper记录表</p>
-<pre><code>[zk: master:2189,slave1:2189,slave2:2189(CONNECTED) 0] ls /hbase/table
-</code></pre><p>删除tsdb相关记录表</p>
-<pre><code>[zk: master:2189,slave1:2189,slave2:2189(CONNECTED) 0] rmr /hbase/table/tsdb.....
-</code></pre><ol start="3">
+<pre><code>~/hbase/bin/hbase zkcli</code></pre><p>列出Hbase的zookeeper记录表</p>
+<pre><code>[zk: master:2189,slave1:2189,slave2:2189(CONNECTED) 0] ls /hbase/table</code></pre><p>删除tsdb相关记录表</p>
+<pre><code>[zk: master:2189,slave1:2189,slave2:2189(CONNECTED) 0] rmr /hbase/table/tsdb.....</code></pre><ol start="3">
 <li>重新运行create_table.sh</li>
 </ol>
 
@@ -454,7 +435,7 @@ tsd.storage.hbase.zk_quorum = master:2189,slave1:2189,slave2:2189
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -551,6 +532,10 @@ tsd.storage.hbase.zk_quorum = master:2189,slave1:2189,slave2:2189
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -563,23 +548,11 @@ tsd.storage.hbase.zk_quorum = master:2189,slave1:2189,slave2:2189
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,6 +568,10 @@ tsd.storage.hbase.zk_quorum = master:2189,slave1:2189,slave2:2189
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -603,11 +580,15 @@ tsd.storage.hbase.zk_quorum = master:2189,slave1:2189,slave2:2189
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -631,7 +612,7 @@ tsd.storage.hbase.zk_quorum = master:2189,slave1:2189,slave2:2189
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

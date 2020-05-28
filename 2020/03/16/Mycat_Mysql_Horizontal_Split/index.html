@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Mycat_Mysql_Horizontal_Split" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Mycat_Mysql_Horizontal_Split" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,14 +202,18 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>Mycat可以对数据库进行分库分表管理，本文针对Mycat的水平切分功能进行实验，<br>实现同一张表的数据，根据配置的rule，分布在不同的机器的数据库中。本文使用Mycat对Mysql进行操作。</p>
 <a id="more"></a>
+
 <h2 id="二、环境"><a href="#二、环境" class="headerlink" title="二、环境"></a>二、环境</h2><ul>
-<li>Mycat 1.6.7.5</li>
-<li>Mysql 5.7</li>
+<li><p>Mycat 1.6.7.5</p>
+</li>
+<li><p>Mysql 5.7</p>
+</li>
 <li><p>openjdk-8</p>
 </li>
 <li><p>mycat master: 192.168.118.128(domain: server)</p>
 </li>
-<li>mycat slave1: 192.168.118.129(domain: slave1)</li>
+<li><p>mycat slave1: 192.168.118.129(domain: slave1)</p>
+</li>
 </ul>
 <p>数据库名</p>
 <ul>
@@ -223,8 +227,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <h2 id="三、安装配置"><a href="#三、安装配置" class="headerlink" title="三、安装配置"></a>三、安装配置</h2><h3 id="安装-mysql"><a href="#安装-mysql" class="headerlink" title="安装 mysql"></a>安装 mysql</h3><p>设置为允许远程连接</p>
 <h3 id="下载mycat"><a href="#下载mycat" class="headerlink" title="下载mycat"></a>下载mycat</h3><p>master上下载并解压Mycat</p>
 <pre><code>wget http://dl.mycat.io/1.6.7.5/Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
-tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
-</code></pre><h3 id="配置Mycat"><a href="#配置Mycat" class="headerlink" title="配置Mycat"></a>配置Mycat</h3><p>配置文件在 ~/mycat/conf</p>
+tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz</code></pre><h3 id="配置Mycat"><a href="#配置Mycat" class="headerlink" title="配置Mycat"></a>配置Mycat</h3><p>配置文件在 ~/mycat/conf</p>
 <ul>
 <li>rule.xml</li>
 </ul>
@@ -249,8 +252,7 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
         &lt;!--指定分片数量，不可以被更改--&gt;
                 &lt;property name=&quot;count&quot;&gt;2&lt;/property&gt;
         &lt;/function&gt;
-&lt;/mycat:rule&gt;
-</code></pre><ul>
+&lt;/mycat:rule&gt;</code></pre><ul>
 <li>schema.xml</li>
 </ul>
 <pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
@@ -278,8 +280,7 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
     &lt;/dataHost&gt;
 
 
-&lt;/mycat:schema&gt;
-</code></pre><ul>
+&lt;/mycat:schema&gt;</code></pre><ul>
 <li>server.xml</li>
 </ul>
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -358,28 +359,22 @@ tar zxvf Mycat-server-1.6.7.5-test-20200109231555-linux.tar.gz
         &lt;property name=&quot;defaultSchema&quot;&gt;BGP&lt;/property&gt;
     &lt;/user&gt;
 
-&lt;/mycat:server&gt;
-</code></pre><h2 id="四、实验"><a href="#四、实验" class="headerlink" title="四、实验"></a>四、实验</h2><h3 id="启动Mycat"><a href="#启动Mycat" class="headerlink" title="启动Mycat"></a>启动Mycat</h3><p>master上运行</p>
-<pre><code>~/mycat/bin/mycat start
-</code></pre><p>检查是否启动成功</p>
-<pre><code>cat ~/mycat/logs/wrapper.log
-</code></pre><p>若显示successful，则启动成功，否则，查看其中的报错，可能是配置错误，可能是环境错误（例：java环境未安装）</p>
+&lt;/mycat:server&gt;</code></pre><h2 id="四、实验"><a href="#四、实验" class="headerlink" title="四、实验"></a>四、实验</h2><h3 id="启动Mycat"><a href="#启动Mycat" class="headerlink" title="启动Mycat"></a>启动Mycat</h3><p>master上运行</p>
+<pre><code>~/mycat/bin/mycat start</code></pre><p>检查是否启动成功</p>
+<pre><code>cat ~/mycat/logs/wrapper.log</code></pre><p>若显示successful，则启动成功，否则，查看其中的报错，可能是配置错误，可能是环境错误（例：java环境未安装）</p>
 <h3 id="操作Mycat"><a href="#操作Mycat" class="headerlink" title="操作Mycat"></a>操作Mycat</h3><ul>
 <li>登陆mycat</li>
 </ul>
 <p>登录到Mycat的逻辑数据库BGP（server.xml中可修改）</p>
-<pre><code>mysql -uroot -p1q2w3e4r -hmaster -P8066 -DBGP
-</code></pre><ul>
+<pre><code>mysql -uroot -p1q2w3e4r -hmaster -P8066 -DBGP</code></pre><ul>
 <li>写数据</li>
 </ul>
 <pre><code>insert into message (timestamp,pref,orig,mon,msg) values(0,&quot;a0&quot;,&quot;b0&quot;,&quot;c0&quot;,&quot;d0&quot;);
 insert into message (timestamp,pref,orig,mon,msg) values(1,&quot;a1&quot;,&quot;b1&quot;,&quot;c1&quot;,&quot;d1&quot;);
-insert into message (timestamp,pref,orig,mon,msg) values(2,&quot;a2&quot;,&quot;b2&quot;,&quot;c2&quot;,&quot;d2&quot;);
-</code></pre><ul>
+insert into message (timestamp,pref,orig,mon,msg) values(2,&quot;a2&quot;,&quot;b2&quot;,&quot;c2&quot;,&quot;d2&quot;);</code></pre><ul>
 <li>读数据</li>
 </ul>
-<pre><code>select * from message;
-</code></pre><p>结果</p>
+<pre><code>select * from message;</code></pre><p>结果</p>
 <p>三条数据被按照一定策略（此处配置的rule为，对timestamp进行取模），写入到不同机器的数据库中</p>
 <h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>以上就是Mycat的水平切分示例。数据分配的策略可以改动rule中的配置来进行自定义。</p>
 
@@ -515,7 +510,7 @@ insert into message (timestamp,pref,orig,mon,msg) values(2,&quot;a2&quot;,&quot;
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -612,6 +607,10 @@ insert into message (timestamp,pref,orig,mon,msg) values(2,&quot;a2&quot;,&quot;
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -624,23 +623,11 @@ insert into message (timestamp,pref,orig,mon,msg) values(2,&quot;a2&quot;,&quot;
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -656,6 +643,10 @@ insert into message (timestamp,pref,orig,mon,msg) values(2,&quot;a2&quot;,&quot;
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -664,11 +655,15 @@ insert into message (timestamp,pref,orig,mon,msg) values(2,&quot;a2&quot;,&quot;
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -692,7 +687,7 @@ insert into message (timestamp,pref,orig,mon,msg) values(2,&quot;a2&quot;,&quot;
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

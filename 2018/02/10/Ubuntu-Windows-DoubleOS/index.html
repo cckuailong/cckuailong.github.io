@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Ubuntu-Windows-DoubleOS" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Ubuntu-Windows-DoubleOS" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,6 +202,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近，在为一个项目做可行性分析时，发现使用linux开发有一些优势，可以方便的调用<br>一些已有的工具。原来一直在虚拟机中使用linux，想到最近也在不断完善linux的知识，<br>所以干脆就装个linux，想到了安装linux-windows双系统，本文的操作环境是ubuntu 16.04<br>和windows 8.1，背景为已安装windows的基础上安装ubuntu。</p>
 <a id="more"></a>
+
 <h2 id="二、安装过程："><a href="#二、安装过程：" class="headerlink" title="二、安装过程："></a>二、安装过程：</h2><ol>
 <li>修改BOIS启动项</li>
 </ol>
@@ -221,8 +222,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <ol start="5">
 <li>修改启动顺序（可选）</li>
 </ol>
-<pre><code>sudo vim /etc/default/grub
-</code></pre><p>找到GRUB_DEFAULT=0所在行，将0修改为windows所在行号</p>
+<pre><code>sudo vim /etc/default/grub</code></pre><p>找到GRUB_DEFAULT=0所在行，将0修改为windows所在行号</p>
 <h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>windows+ubuntu的双系统安装就是这么简单，不要害怕，多动手试一试就会掌握了，但是在<br>实验之前一定要将自己原来的系统进行备份。</p>
 
       
@@ -357,7 +357,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -454,6 +454,10 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -466,23 +470,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,6 +490,10 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -506,11 +502,15 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,7 +534,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

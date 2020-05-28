@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://www.lovebear.top">
   <title>解决python 2的UnicodeDecodeError错误 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、前言：最近使用scrapy爬取中文网页并向文件中写入的时候，出现了下面的错误：  UnicodeDecodeError： &amp;#39;ascii&amp;#39; codec can&amp;#39;t decode byte ...... : ordinal not in range(128) 这是因为python的默认编码是ascii，当出现Unicode编码时，python编译器的编码处理部分会产生错误这">
+  <meta name="description" content="一、前言：最近使用scrapy爬取中文网页并向文件中写入的时候，出现了下面的错误：  UnicodeDecodeError： &amp;#39;ascii&amp;#39; codec can&amp;#39;t decode byte ...... : ordinal not in range(128)这是因为python的默认编码是ascii，当出现Unicode编码时，python编译器的编码处理部分会产生错误这时">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决python 2的UnicodeDecodeError错误">
 <meta property="og:url" content="http://www.lovebear.top/2018/02/06/Python_UnicodeDecodeError/index.html">
 <meta property="og:site_name" content="Blog for You">
-<meta property="og:description" content="一、前言：最近使用scrapy爬取中文网页并向文件中写入的时候，出现了下面的错误：  UnicodeDecodeError： &amp;#39;ascii&amp;#39; codec can&amp;#39;t decode byte ...... : ordinal not in range(128) 这是因为python的默认编码是ascii，当出现Unicode编码时，python编译器的编码处理部分会产生错误这">
+<meta property="og:description" content="一、前言：最近使用scrapy爬取中文网页并向文件中写入的时候，出现了下面的错误：  UnicodeDecodeError： &amp;#39;ascii&amp;#39; codec can&amp;#39;t decode byte ...... : ordinal not in range(128)这是因为python的默认编码是ascii，当出现Unicode编码时，python编译器的编码处理部分会产生错误这时">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-02-06T10:18:27.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决python 2的UnicodeDecodeError错误">
-<meta name="twitter:description" content="一、前言：最近使用scrapy爬取中文网页并向文件中写入的时候，出现了下面的错误：  UnicodeDecodeError： &amp;#39;ascii&amp;#39; codec can&amp;#39;t decode byte ...... : ordinal not in range(128) 这是因为python的默认编码是ascii，当出现Unicode编码时，python编译器的编码处理部分会产生错误这">
+<meta name="twitter:description" content="一、前言：最近使用scrapy爬取中文网页并向文件中写入的时候，出现了下面的错误：  UnicodeDecodeError： &amp;#39;ascii&amp;#39; codec can&amp;#39;t decode byte ...... : ordinal not in range(128)这是因为python的默认编码是ascii，当出现Unicode编码时，python编译器的编码处理部分会产生错误这时">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -117,9 +117,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -161,9 +161,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python_UnicodeDecodeError" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Python_UnicodeDecodeError" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -198,8 +198,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近使用scrapy爬取中文网页并向文件中写入的时候，出现了下面的错误： </p>
-<pre><code>UnicodeDecodeError： &#39;ascii&#39; codec can&#39;t decode byte ...... : ordinal not in range(128)
-</code></pre><p>这是因为python的默认编码是ascii，当出现Unicode编码时，python编译器的编码处理部分会<br>产生错误这时我们有三种解决办法:</p>
+<pre><code>UnicodeDecodeError： &#39;ascii&#39; codec can&#39;t decode byte ...... : ordinal not in range(128)</code></pre><p>这是因为python的默认编码是ascii，当出现Unicode编码时，python编译器的编码处理部分会<br>产生错误这时我们有三种解决办法:</p>
 <ol>
 <li>升级为Python3</li>
 <li>将python编码设置为 GBK 或者 UTF-8 ，这里介绍UTF-8。</li>
@@ -207,6 +206,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 </ol>
 <p>博主对上述三种解决方案的推荐优先级为： 3 &gt; 2 &gt; 1</p>
 <a id="more"></a>
+
 <h2 id="二、具体解决过程："><a href="#二、具体解决过程：" class="headerlink" title="二、具体解决过程："></a>二、具体解决过程：</h2><ol>
 <li>升级为python3</li>
 </ol>
@@ -218,25 +218,21 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <p>（1） 代码头部添加</p>
 <pre><code>import sys
 reload(sys)
-sys.setdefaultencoding(&#39;utf8&#39;)
-</code></pre><p>这里注意，需要添加reload（sys），否则会提示找不到setdefaultencoding()，这是因为python<br>启动时会调用setdefaultencoding一次, 直接import sys不会对已经调用的函数载入, 只有<br>reload一次才能重新载入这个函数。</p>
+sys.setdefaultencoding(&#39;utf8&#39;)</code></pre><p>这里注意，需要添加reload（sys），否则会提示找不到setdefaultencoding()，这是因为python<br>启动时会调用setdefaultencoding一次, 直接import sys不会对已经调用的函数载入, 只有<br>reload一次才能重新载入这个函数。</p>
 <p>这种方案只是在本脚本代码将编码改变，不影响全局，也就是说，你再开一个脚本，编译器<br>依然以ascii对其进行编译。</p>
 <p>注： 查看当前编译器编码，可使用</p>
-<pre><code>sys.getdefaultencoding()
-</code></pre><p>（2）在Python的Lib/site-packages文件夹下新建一个sitecustomize.py文件</p>
+<pre><code>sys.getdefaultencoding()</code></pre><p>（2）在Python的Lib/site-packages文件夹下新建一个sitecustomize.py文件</p>
 <pre><code># -*- coding=utf8 -*-
 import sys
 reload(sys)
-sys.setdefaultencoding(&#39;utf8&#39;)
-</code></pre><p>重启python解释器。</p>
+sys.setdefaultencoding(&#39;utf8&#39;)</code></pre><p>重启python解释器。</p>
 <p>这种方法将全局性的需改默认编码，python启动时会自动调用这个文件。</p>
 <ol start="3">
 <li>使用codecs代替open来打开写入的文件</li>
 </ol>
 <pre><code>fp = codecs.open(&#39;*.txt&#39;,&#39;w&#39;,&#39;utf-8&#39;)
 fp.write(&#39;test&#39;)
-fp.close()
-</code></pre><p>UnicodeDecodeError错误的根本原因是输出的编码问题，那么在输出时，使用codecs，对输出流<br>改变编码形式即可，不用修改python默认的编码形式。</p>
+fp.close()</code></pre><p>UnicodeDecodeError错误的根本原因是输出的编码问题，那么在输出时，使用codecs，对输出流<br>改变编码形式即可，不用修改python默认的编码形式。</p>
 <p>这种方法是解决这个问题的最好方法，抓住了矛盾的主要方面，强烈推荐。</p>
 <h2 id="三、总结："><a href="#三、总结：" class="headerlink" title="三、总结："></a>三、总结：</h2><p>python的编码有时会令我们十分的头痛，如果觉得太麻烦还是使用方法2，全局的改变python<br>默认编码。通过这篇Blog，相信这个错误可以被完美的解决，但是映射出的问题有不少，在此<br>记录并向遇到同样问题的小伙伴伸出援手。</p>
 
@@ -372,7 +368,7 @@ fp.close()
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -469,6 +465,10 @@ fp.close()
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -481,23 +481,11 @@ fp.close()
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,6 +501,10 @@ fp.close()
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -521,11 +513,15 @@ fp.close()
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,7 +545,7 @@ fp.close()
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

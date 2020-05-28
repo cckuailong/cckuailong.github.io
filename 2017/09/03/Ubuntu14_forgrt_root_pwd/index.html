@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Ubuntu14_forgrt_root_pwd" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Ubuntu14_forgrt_root_pwd" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,15 +202,14 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>一个学长不小心把自己Ubuntu的root密码忘记了，这也唤起了我的好奇心，于是上网查了<br>一波，在此做一个记录，以后遇到这类尴尬（逗比）的情况，就能及时弥补了。</p>
 <a id="more"></a>
+
 <h2 id="二、方法一："><a href="#二、方法一：" class="headerlink" title="二、方法一："></a>二、方法一：</h2><p>如果用户具有sudo权限，那么直接可以运行如下命令：</p>
 <pre><code>sudo su root
 
 passwd
 
-更改密码
-</code></pre><p>或者直接运行</p>
-<pre><code>sudo passwd root
-</code></pre><p>命令就可以直接更改root密码。</p>
+更改密码</code></pre><p>或者直接运行</p>
+<pre><code>sudo passwd root</code></pre><p>命令就可以直接更改root密码。</p>
 <p>有关sudo su的区别：</p>
 <p>1.共同点：都是root用户的权限；</p>
 <p>2.不同点：su仅仅取得root权限，工作环境不变，还是在切换之前用户的工作环境；sudo是<br>完全取得root的权限和root的工作环境。</p>
@@ -218,8 +217,7 @@ passwd
 <p>1、重启电脑长按shift键直到进入下图进入GRUB引导模式，选择第二行Ubuntu 高级选项, 选中<br>直接回车</p>
 <p>2、进入如下画面，看到里面有一些选项，这时千万不要按回车键，按e进入（recovery mode）<br>编译kernel进行启动参数</p>
 <p>3、关键的时候到了， 倒数第四行，会看到一行</p>
-<pre><code>Linux /boot/vmlnuz-4.2.0-27-generic .......ro recovery nomodeset，
-</code></pre><p>删除recovery nomodeset</p>
+<pre><code>Linux /boot/vmlnuz-4.2.0-27-generic .......ro recovery nomodeset，</code></pre><p>删除recovery nomodeset</p>
 <p>4、然后再刚才删除的后面添加 quiet splash rw init=/bin/bash。然后按F10, 启动。</p>
 <p>5、如果一切争取，运行后系统直接进入root mode，输入：passwd，系统会提示你输入新的密码，结束。</p>
 <h2 id="四、总结："><a href="#四、总结：" class="headerlink" title="四、总结："></a>四、总结：</h2><p>修改也比较的简单，但是尽量还是记住自己的root密码吧。</p>
@@ -357,7 +355,7 @@ passwd
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -454,6 +452,10 @@ passwd
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -466,23 +468,11 @@ passwd
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,6 +488,10 @@ passwd
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -506,11 +500,15 @@ passwd
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,7 +532,7 @@ passwd
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

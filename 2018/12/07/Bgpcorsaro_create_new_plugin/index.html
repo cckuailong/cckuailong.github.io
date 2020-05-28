@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -117,9 +117,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -161,9 +161,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Bgpcorsaro_create_new_plugin" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Bgpcorsaro_create_new_plugin" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,10 +199,10 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近需要做有关BGP数据处理分析的工作，CAIDA提供了开源的BGPStream帮助大家<br>更加系统对BGP数据进行分析和处理。其中的Bgpcorsaro模块更是提供了插件功能，<br>提供了一个系统的数据分析框架。但是由于BGPStream还不是很完善，提供的release<br>和github上的版本不一致，而且教程混乱，甚至有很多错误。。。基于种种问题，<br>我通过摸索，找到了创建新的Bgpcorsaro插件的正确配置方法，并写出了一个一键<br>进行新插件配置的脚本，在此做记录。</p>
 <a id="more"></a>
+
 <h2 id="二、环境配置："><a href="#二、环境配置：" class="headerlink" title="二、环境配置："></a>二、环境配置：</h2><p>BGPStream安装方法参见 <a href="http://bgpstream.caida.org/docs/install/bgpstream" target="_blank" rel="noopener">BGPStream安装</a><br>此处不再赘述，这里没什么问题，由于我使用的是ubuntu，所以下面给出的配置针对<br>ubuntu进行说明，其他系统原理一致，配置方法类似。<br>运行以下命令进行环境配置：</p>
 <pre><code>sudo apt-get install automake autoconf aptitude
-sudo aptitude install libtool
-</code></pre><h2 id="三、创建新的插件："><a href="#三、创建新的插件：" class="headerlink" title="三、创建新的插件："></a>三、创建新的插件：</h2><p>这里还是以官网上的elemcounter作为新插件的名字。</p>
+sudo aptitude install libtool</code></pre><h2 id="三、创建新的插件："><a href="#三、创建新的插件：" class="headerlink" title="三、创建新的插件："></a>三、创建新的插件：</h2><p>这里还是以官网上的elemcounter作为新插件的名字。</p>
 <ol>
 <li>编辑 configure.ac<br>添加ED_WITH_PLUGIN()</li>
 </ol>
@@ -213,8 +213,7 @@ sudo aptitude install libtool
 
     # this MUST go after all the ED_WITH_PLUGIN macro calls
     AC_DEFINE_UNQUOTED([ED_PLUGIN_INIT_ALL_ENABLED], $ED_PLUGIN_INIT_ALL_ENABLED,
-               [plugins to call the init macro for in bgpcorsaro_plugin.c])
-</code></pre><ol start="2">
+               [plugins to call the init macro for in bgpcorsaro_plugin.c])</code></pre><ol start="2">
 <li>编辑 bgpcorsaro/lib/bgpcorsaro_plugin.h<br>按上面的格式添加，并修改最大插件ID</li>
 </ol>
 <pre><code>    typedef enum bgpcorsaro_plugin_id
@@ -230,20 +229,17 @@ sudo aptitude install libtool
 
       /** Maximum plugin ID assigned */
       BGPCORSARO_PLUGIN_ID_MAX              = BGPCORSARO_PLUGIN_ID_ELEMCOUNTER
-    } bgpcorsaro_plugin_id_t;
-</code></pre><ol start="3">
+    } bgpcorsaro_plugin_id_t;</code></pre><ol start="3">
 <li>编辑 bgpcorsaro/lib/bgpcorsaro_plugin</li>
 </ol>
 <pre><code>    #ifdef WITH_PLUGIN_ELEMCOUNTER
     #include &quot;bgpcorsaro_elemcounter.h&quot;
-    #endif
-</code></pre><ol start="4">
+    #endif</code></pre><ol start="4">
 <li>编辑 bgpcorsaro/lib/plugins/Makefile.am  （注意这里官网写错了，缺少了plugins）</li>
 </ol>
 <pre><code>    if WITH_PLUGIN_ELEMCOUNTER
     PLUGIN_SRC+=bgpcorsaro_elemcounter.c bgpcorsaro_elemcounter.h
-    endif
-</code></pre><ol start="5">
+    endif</code></pre><ol start="5">
 <li>创建 bgpcorsaro/lib/plugins/bgpcorsaro_elemcounter.h</li>
 </ol>
 <pre><code>    #ifndef __BGPCORSARO_ELEMCOUNTER_H
@@ -259,8 +255,7 @@ sudo aptitude install libtool
 
     BGPCORSARO_PLUGIN_GENERATE_PROTOS(bgpcorsaro_elemcounter)
 
-    #endif /* __BGPCORSARO_ELEMCOUNTER_H */
-</code></pre><ol start="6">
+    #endif /* __BGPCORSARO_ELEMCOUNTER_H */</code></pre><ol start="6">
 <li><p>创建 bgpcorsaro/lib/plugins/bgpcorsaro_elemcounter.c<br><a href="http://www.lovebear.top/resource/bgpcorsaro_elemcounter.c">查看bgpcorsaro_elemcounter.c代码</a></p>
 </li>
 <li><p>编译运行<br>回到BGPStream根目录，执行</p>
@@ -269,13 +264,10 @@ sudo aptitude install libtool
 <pre><code>    autoreconf -vfi
     ./configure
     make
-    sudo make install
-</code></pre><p>若没有修改configure.ac和Makefile.am文件，则只需要执行</p>
+    sudo make install</code></pre><p>若没有修改configure.ac和Makefile.am文件，则只需要执行</p>
 <pre><code>    make
-    sudo make install
-</code></pre><p>运行，检查-x中插件是否被添加成功。</p>
-<pre><code>bgpcorsaro -h
-</code></pre><h2 id="四-使用脚本，一键配置创建新插件："><a href="#四-使用脚本，一键配置创建新插件：" class="headerlink" title="四 使用脚本，一键配置创建新插件："></a>四 使用脚本，一键配置创建新插件：</h2><p>脚本下载及使用方法我已传到GitHub上</p>
+    sudo make install</code></pre><p>运行，检查-x中插件是否被添加成功。</p>
+<pre><code>bgpcorsaro -h</code></pre><h2 id="四-使用脚本，一键配置创建新插件："><a href="#四-使用脚本，一键配置创建新插件：" class="headerlink" title="四 使用脚本，一键配置创建新插件："></a>四 使用脚本，一键配置创建新插件：</h2><p>脚本下载及使用方法我已传到GitHub上</p>
 <p><a href="https://www.github.com/cckuailong/BGPStream_Operate_Plugin" target="_blank" rel="noopener">BGPCorsaro插件自动创建，删除脚本</a></p>
 
       
@@ -410,7 +402,7 @@ sudo aptitude install libtool
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -507,6 +499,10 @@ sudo aptitude install libtool
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -519,23 +515,11 @@ sudo aptitude install libtool
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,6 +535,10 @@ sudo aptitude install libtool
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -559,11 +547,15 @@ sudo aptitude install libtool
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,7 +579,7 @@ sudo aptitude install libtool
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

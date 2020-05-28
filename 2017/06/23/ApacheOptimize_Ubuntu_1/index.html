@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -117,9 +117,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -161,9 +161,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ApacheOptimize_Ubuntu_1" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-ApacheOptimize_Ubuntu_1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,57 +199,40 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Apache是一个开源的web服务器，在世界上拥有70%的份额。我们可以通过增加额外的硬件，如<br>RAM，CPU等来提高服务器的性能，同样我们也可以通过定制一些Apache配置来提高我们服务器<br>的性能。</p>
 <a id="more"></a>
+
 <h2 id="二、优化配置策略："><a href="#二、优化配置策略：" class="headerlink" title="二、优化配置策略："></a>二、优化配置策略：</h2><h3 id="1、MaxKeepAliveRequests"><a href="#1、MaxKeepAliveRequests" class="headerlink" title="1、MaxKeepAliveRequests"></a>1、MaxKeepAliveRequests</h3><p>MaxKeepAliveRequests限制了一次连接所允许的请求数量，它被用来控制持久的连接。在Ubuntu<br>中，默认值为100。你可以根据需要修改这个值，推荐修改为50~75。</p>
 <p>优化配置策略：<br>（1） 修改Apache主配置文件</p>
-<pre><code>sudo vim /etc/apache2/apache2.conf
-</code></pre><p>（2） 增添或修改</p>
-<pre><code>MaxKeepAliveRequests 60
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><h3 id="2、KeepAliveTimeout"><a href="#2、KeepAliveTimeout" class="headerlink" title="2、KeepAliveTimeout"></a>2、KeepAliveTimeout</h3><p>KeepAliveTimeout定义了服务器等待从连接的客户端发出的请求的时间。KeepAliveTimeout的值<br>太大可能会导致性能的降低。Ubuntu中默认值为15，推荐之在1~5之间。</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf</code></pre><p>（2） 增添或修改</p>
+<pre><code>MaxKeepAliveRequests 60</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="2、KeepAliveTimeout"><a href="#2、KeepAliveTimeout" class="headerlink" title="2、KeepAliveTimeout"></a>2、KeepAliveTimeout</h3><p>KeepAliveTimeout定义了服务器等待从连接的客户端发出的请求的时间。KeepAliveTimeout的值<br>太大可能会导致性能的降低。Ubuntu中默认值为15，推荐之在1~5之间。</p>
 <p>优化配置策略：<br>（1）修改apache2.conf</p>
-<pre><code>sudo vim /etc/apache2/apache2.conf
-</code></pre><p>（2）增添或修改</p>
-<pre><code>KeepAliveTimeout 3
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><h3 id="3、MaxClients"><a href="#3、MaxClients" class="headerlink" title="3、MaxClients"></a>3、MaxClients</h3><p>MaxClients限制web服务器同时提供服务的客户端数量，超过这个数量的客户端连接请求将被<br>放置在排队队列中，一旦有客户端结束链接，便从排队队列中加入到服务队列。在Ubuntu中，<br>默认的MaxClient值为250.推荐值为150</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf</code></pre><p>（2）增添或修改</p>
+<pre><code>KeepAliveTimeout 3</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="3、MaxClients"><a href="#3、MaxClients" class="headerlink" title="3、MaxClients"></a>3、MaxClients</h3><p>MaxClients限制web服务器同时提供服务的客户端数量，超过这个数量的客户端连接请求将被<br>放置在排队队列中，一旦有客户端结束链接，便从排队队列中加入到服务队列。在Ubuntu中，<br>默认的MaxClient值为250.推荐值为150</p>
 <p>优化配置策略：</p>
 <p>（1）修改mpm_prefork.conf文件</p>
-<pre><code>sudo vim /etc/apache2/mods-available/mpm_prefork.conf
-</code></pre><p>（2）增添或修改</p>
-<pre><code>MaxClients 150
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><h3 id="4、MaxConnectionsPerChild"><a href="#4、MaxConnectionsPerChild" class="headerlink" title="4、MaxConnectionsPerChild"></a>4、MaxConnectionsPerChild</h3><p>MaxConnectionsPerChild用来回收进程。当限制被设置为0时，每个进程允许无限制的请求。<br>MaxConnectionsPerChild限制一个子进程能处理的请求的数量，在请求达到指定限制时，子<br>进程就会消亡。在Ubuntu中，默认值为100。</p>
+<pre><code>sudo vim /etc/apache2/mods-available/mpm_prefork.conf</code></pre><p>（2）增添或修改</p>
+<pre><code>MaxClients 150</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="4、MaxConnectionsPerChild"><a href="#4、MaxConnectionsPerChild" class="headerlink" title="4、MaxConnectionsPerChild"></a>4、MaxConnectionsPerChild</h3><p>MaxConnectionsPerChild用来回收进程。当限制被设置为0时，每个进程允许无限制的请求。<br>MaxConnectionsPerChild限制一个子进程能处理的请求的数量，在请求达到指定限制时，子<br>进程就会消亡。在Ubuntu中，默认值为100。</p>
 <p>推荐的设置：<br>● 虚拟服务器 300<br>● 1-4GB RAM的服务器 500<br>● 4+GB RAM的服务器 1000</p>
 <p>优化配置策略：</p>
 <p>（1）修改mpm_prefork.conf</p>
-<pre><code>sudo vim /etc/apache2/mods-available/mpm_prefork.conf
-</code></pre><p>（2）添加或修改</p>
-<pre><code>MaxConnectionsPerChild 300
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><h3 id="KeepAlive"><a href="#KeepAlive" class="headerlink" title="KeepAlive"></a>KeepAlive</h3><p>Ubuntu默认将KeepAlive设置为On。当Apache服务器短时间内收到成百上千的IP请求，KeepAlive值<br>应该被设置为Off。推荐将此值设置为Off来提高连接吞吐量。</p>
+<pre><code>sudo vim /etc/apache2/mods-available/mpm_prefork.conf</code></pre><p>（2）添加或修改</p>
+<pre><code>MaxConnectionsPerChild 300</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="KeepAlive"><a href="#KeepAlive" class="headerlink" title="KeepAlive"></a>KeepAlive</h3><p>Ubuntu默认将KeepAlive设置为On。当Apache服务器短时间内收到成百上千的IP请求，KeepAlive值<br>应该被设置为Off。推荐将此值设置为Off来提高连接吞吐量。</p>
 <p>优化配置策略：</p>
 <p>（1）修改apache2配置文件</p>
-<pre><code>sudo vim /etc/apache2/apache2.conf
-</code></pre><p>（2）增添或修改：</p>
-<pre><code>KeepAlive Off
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><h3 id="6、MinSpareServers-and-MaxSpareServers"><a href="#6、MinSpareServers-and-MaxSpareServers" class="headerlink" title="6、MinSpareServers and MaxSpareServers"></a>6、MinSpareServers and MaxSpareServers</h3><p>这两个参数设置了空闲服务器子进程的最大和最小数量。他控制Apache保持空闲状态的进程<br>的数量，直到活得更多的请求来重新激活他们。每一个子进程都消耗一定的资源，所以如果<br>你把MaxSpareServer设置的太大，将会导致资源紧张问题。</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf</code></pre><p>（2）增添或修改：</p>
+<pre><code>KeepAlive Off</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="6、MinSpareServers-and-MaxSpareServers"><a href="#6、MinSpareServers-and-MaxSpareServers" class="headerlink" title="6、MinSpareServers and MaxSpareServers"></a>6、MinSpareServers and MaxSpareServers</h3><p>这两个参数设置了空闲服务器子进程的最大和最小数量。他控制Apache保持空闲状态的进程<br>的数量，直到活得更多的请求来重新激活他们。每一个子进程都消耗一定的资源，所以如果<br>你把MaxSpareServer设置的太大，将会导致资源紧张问题。</p>
 <p>MinSpareServers的推荐设置为<br>● 虚拟服务器 5<br>● 1-2GB RAM的服务器 10<br>● 2-4GB RAM的服务器 20<br>● 4+GB RAM的服务器 25</p>
 <p>MaxSpareServers推荐设置为MinSpareServer的两倍</p>
 <p>优化配置策略：</p>
 <p>（1）修改mpm_prefork.conf配置文件</p>
-<pre><code>sudo vim /etc/apache2/mods-available/mpm_prefork.conf
-</code></pre><p>（2）增添或修改：</p>
+<pre><code>sudo vim /etc/apache2/mods-available/mpm_prefork.conf</code></pre><p>（2）增添或修改：</p>
 <pre><code>MinSpareServers 5
-MaxSpareServers 10
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre>
+MaxSpareServers 10</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre>
       
 
       
@@ -382,7 +365,7 @@ MaxSpareServers 10
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -479,6 +462,10 @@ MaxSpareServers 10
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -491,23 +478,11 @@ MaxSpareServers 10
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,6 +498,10 @@ MaxSpareServers 10
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -531,11 +510,15 @@ MaxSpareServers 10
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,7 +542,7 @@ MaxSpareServers 10
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

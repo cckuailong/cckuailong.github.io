@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ApacheSec_Ubuntu_2" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-ApacheSec_Ubuntu_2" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,69 +202,49 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>上一章，我们列举了一系列Ubuntu端Apache配置的安全防御措施，这一章我们将继续来关注<br>Apache安全配置策略。这一章主要介绍一些先进的小技术来使你的服务器变得更加安全。</p>
 <a id="more"></a>
+
 <h2 id="二、安全问题及配置策略："><a href="#二、安全问题及配置策略：" class="headerlink" title="二、安全问题及配置策略："></a>二、安全问题及配置策略：</h2><h3 id="1、防御点击劫持攻击"><a href="#1、防御点击劫持攻击" class="headerlink" title="1、防御点击劫持攻击"></a>1、防御点击劫持攻击</h3><p>点击劫持是著名的web服务器攻击，也被称作UI-覆盖攻击，他通过覆盖不可见的框架（iframe）<br>误导受害者点击，虽然点击的是看到的网页，但其实点击的是hacker精心构造的另一个透明的<br>网页，主要利用了HTML中iframe的透明属性。</p>
 <p>这里配置需要用到X-Frame-Options,有三个选项：<br>DENY：浏览器拒绝当前页面加载任何frame页面<br>SAMEORIGIN：frame页面的地址只能为同源域名下的页面（协议，ip，端口号相同）<br>ALLOW-FROM：origin为允许的frame加载的页面地址</p>
 <p>安全配置策略：<br>（1） 修改Apache配置文件</p>
-<pre><code>sudo vim /etc/apache2/apache2.conf
-</code></pre><p>（2） 在/var/www/html中增添或修改</p>
-<pre><code>Header always append X-Frame-Options SAMEORIGIN
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><p>（4）注意，重启时可能会出现下面的错误</p>
-<pre><code>Invalid command ‘Header’, perhaps misspelled or defined by a module not included in the server configuration
-</code></pre><p>由于没有安装headers模块，需要先行安装</p>
-<pre><code>sudo a2enmod headers
-</code></pre><p>安装完毕后，重启成功</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf</code></pre><p>（2） 在/var/www/html中增添或修改</p>
+<pre><code>Header always append X-Frame-Options SAMEORIGIN</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><p>（4）注意，重启时可能会出现下面的错误</p>
+<pre><code>Invalid command ‘Header’, perhaps misspelled or defined by a module not included in the server configuration</code></pre><p>由于没有安装headers模块，需要先行安装</p>
+<pre><code>sudo a2enmod headers</code></pre><p>安装完毕后，重启成功</p>
 <p>配置完成效果，访问应答包中出现了X-Frame-Options：SAMEORIGIN</p>
 <p><img src="http://www.lovebear.top/img/ApacheSec_2_1.png" alt="demo1"></p>
 <h3 id="2、禁用Etag"><a href="#2、禁用Etag" class="headerlink" title="2、禁用Etag"></a>2、禁用Etag</h3><p>Etag是服务器和浏览器的一个功能，用来判断浏览器缓存里的元素是否和原来服务器上的<br>一致。Apache默认的Etag格式为inode-size-timestamp，暴露了一些敏感信息，可以修改Etag的<br>格式来保护敏感信息，但最好的方法是将Etag关闭，因为Etag还会引发一些其他的问题。</p>
 <p>安全配置策略：</p>
 <p>（1）修改apache2.conf</p>
-<pre><code>sudo vim /etc/apache2/apache2.conf
-</code></pre><p>（2）对Directory /var/www/html 增添或修改<br>关闭</p>
-<pre><code>FileETag None
-</code></pre><p>修改Etag格式</p>
-<pre><code>FileETag MTime Size  //格式可以自己根据需要修改
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><p>配置完成后，应答包中将不再有Etag标签</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf</code></pre><p>（2）对Directory /var/www/html 增添或修改<br>关闭</p>
+<pre><code>FileETag None</code></pre><p>修改Etag格式</p>
+<pre><code>FileETag MTime Size  //格式可以自己根据需要修改</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><p>配置完成后，应答包中将不再有Etag标签</p>
 <h3 id="3、禁止过时的协议"><a href="#3、禁止过时的协议" class="headerlink" title="3、禁止过时的协议"></a>3、禁止过时的协议</h3><p>过时的HTTP协议（HTTP 1.0）在session劫持和点击劫持等方面存在脆弱性，推荐将其禁用，你可<br>以使用只允许HTTP 1.1协议的方式来禁用HTTP 1.0</p>
 <p>安全配置策略：</p>
 <p>（1）修改 apache2.conf</p>
-<pre><code>sudo vim /etc/apache2/apache2.conf
-</code></pre><p>（2）对Directory /var/www/html 增添或修改：</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf</code></pre><p>（2）对Directory /var/www/html 增添或修改：</p>
 <pre><code>RewriteEngine On
 ReWriteCond %{THE_REQUEST} !HTTP/1\.1$
-RewriteRule .* - [F]
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><h3 id="4、禁用不常用的HTTP请求方法"><a href="#4、禁用不常用的HTTP请求方法" class="headerlink" title="4、禁用不常用的HTTP请求方法"></a>4、禁用不常用的HTTP请求方法</h3><p>HTTP 1.1支持很多的请求方法，如”OPTIONS,GET,POST,HEAD,PUT,DELETE,TRACE,CONNECT”,有些方法<br>会使服务器收到安全威胁，如PUT方法会在服务器中写入文件，所以推荐不使用的方法就禁<br>用掉。</p>
+RewriteRule .* - [F]</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="4、禁用不常用的HTTP请求方法"><a href="#4、禁用不常用的HTTP请求方法" class="headerlink" title="4、禁用不常用的HTTP请求方法"></a>4、禁用不常用的HTTP请求方法</h3><p>HTTP 1.1支持很多的请求方法，如”OPTIONS,GET,POST,HEAD,PUT,DELETE,TRACE,CONNECT”,有些方法<br>会使服务器收到安全威胁，如PUT方法会在服务器中写入文件，所以推荐不使用的方法就禁<br>用掉。</p>
 <p>安全配置策略：</p>
 <p>（1）修改 apache2.conf</p>
-<pre><code>sudo vim /etc/apache2/apache2.conf
-</code></pre><p>（2）对Directory /var/www/html 增添或修改</p>
-<pre><code>deny from all
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><h3 id="5、防御XSS攻击"><a href="#5、防御XSS攻击" class="headerlink" title="5、防御XSS攻击"></a>5、防御XSS攻击</h3><p>XSS攻击是最常见的应用层脆弱性攻击之一，攻击者通过用户的web浏览器在目标web服务器上<br>执行恶意代码，推荐在web服务器上进行XSS防护。</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf</code></pre><p>（2）对Directory /var/www/html 增添或修改</p>
+<pre><code>deny from all</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="5、防御XSS攻击"><a href="#5、防御XSS攻击" class="headerlink" title="5、防御XSS攻击"></a>5、防御XSS攻击</h3><p>XSS攻击是最常见的应用层脆弱性攻击之一，攻击者通过用户的web浏览器在目标web服务器上<br>执行恶意代码，推荐在web服务器上进行XSS防护。</p>
 <p>安全配置策略：</p>
 <p>（1）修改apache2配置文件</p>
-<pre><code>sudo vim /etc/apache2/apache2.conf
-</code></pre><p>（2）对Directory /var/www/html 增添或修改</p>
-<pre><code>Header set X-XSS-Protection &quot;1; mode=block&quot;
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><p>配置完成效果，访问应答包中出现了X-X-XSS-Protection</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf</code></pre><p>（2）对Directory /var/www/html 增添或修改</p>
+<pre><code>Header set X-XSS-Protection &quot;1; mode=block&quot;</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><p>配置完成效果，访问应答包中出现了X-X-XSS-Protection</p>
 <p><img src="http://www.lovebear.top/img/ApacheSec_2_2.png" alt="demo1"></p>
 <h3 id="6、使用HTTPOnly标志保护Cookies"><a href="#6、使用HTTPOnly标志保护Cookies" class="headerlink" title="6、使用HTTPOnly标志保护Cookies"></a>6、使用HTTPOnly标志保护Cookies</h3><p>网站的XSS漏洞会使用户被攻击者进行cookie的盗取，利用的是脚本获取cookie后发送到攻击<br>者的网站，而HTTPOnly标志会禁止脚本获取cookie，从而防止了盗取用户cookie。</p>
 <p>安全配置策略：</p>
 <p>（1）修改apache2配置文件</p>
-<pre><code>sudo vim /etc/apache2/apache2.conf
-</code></pre><p>（2）对Directory /var/www/html 增添或修改</p>
-<pre><code>Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre>
+<pre><code>sudo vim /etc/apache2/apache2.conf</code></pre><p>（2）对Directory /var/www/html 增添或修改</p>
+<pre><code>Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre>
       
 
       
@@ -397,7 +377,7 @@ RewriteRule .* - [F]
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -494,6 +474,10 @@ RewriteRule .* - [F]
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -506,23 +490,11 @@ RewriteRule .* - [F]
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,6 +510,10 @@ RewriteRule .* - [F]
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -546,11 +522,15 @@ RewriteRule .* - [F]
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,7 +554,7 @@ RewriteRule .* - [F]
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spark-HadoopYarn-Kafka_Kafka" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Spark-HadoopYarn-Kafka_Kafka" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,13 +202,12 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最后，是Kafka集群的搭建，包括，配置zookeeper，配置Kafka，启动Kafka集群，<br>查看是否启动成功和关闭集群，还有关于提高性能的一些建议。</p>
 <a id="more"></a>
+
 <h2 id="配置zookeeper"><a href="#配置zookeeper" class="headerlink" title="配置zookeeper"></a>配置zookeeper</h2><h3 id="解压kafka"><a href="#解压kafka" class="headerlink" title="解压kafka"></a>解压kafka</h3><pre><code>tar zxvf kafka_2.12-2.3.1.tgz -C /root/
 cd /root
-mv kafka_2.12-2.3.1/ kafka
-</code></pre><h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><pre><code>cd kafka
+mv kafka_2.12-2.3.1/ kafka</code></pre><h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><pre><code>cd kafka
 mkdir zookeeper &amp;&amp; cd zookeeper
-mkdir data &amp;&amp; mkdir logs
-</code></pre><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
+mkdir data &amp;&amp; mkdir logs</code></pre><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
 <li>vim ~/kafka/config/zookeeper.properties</li>
 </ul>
 <pre><code>dataDir=/root/kafka/zookeeper/data
@@ -222,33 +221,27 @@ initLimit=10
 syncLimit=5
 
 server.1=master:4001:4002
-server.2=slave1:4001:4002
-</code></pre><ul>
+server.2=slave1:4001:4002</code></pre><ul>
 <li>master 创建 myid文件</li>
 </ul>
 <pre><code>cd ~/kafka/zookeeper/data
-echo 1 &gt; myid
-</code></pre><h3 id="zk-slave部署"><a href="#zk-slave部署" class="headerlink" title="zk slave部署"></a>zk slave部署</h3><ul>
+echo 1 &gt; myid</code></pre><h3 id="zk-slave部署"><a href="#zk-slave部署" class="headerlink" title="zk slave部署"></a>zk slave部署</h3><ul>
 <li>master的kafka文件夹拷贝到slave*</li>
 </ul>
 <pre><code>cd
-scp -r kafka/ root@slave1:/root 
-</code></pre><ul>
+scp -r kafka/ root@slave1:/root </code></pre><ul>
 <li>修改slave*的myid</li>
 </ul>
 <pre><code>cd ~/kafka/zookeeper/data
-echo 2 &gt; myid
-</code></pre><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
+echo 2 &gt; myid</code></pre><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><ul>
 <li>master和slave*运行</li>
 </ul>
-<pre><code>~/kafka/bin/zookeeper-server-start.sh ~/kafka/config/zookeeper.properties
-</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ul>
+<pre><code>~/kafka/bin/zookeeper-server-start.sh ~/kafka/config/zookeeper.properties</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ul>
 <li>未全部启动时，会出现connect refused，全部启动后，不报错，说明zk部署成功</li>
 </ul>
 <h2 id="配置kafka"><a href="#配置kafka" class="headerlink" title="配置kafka"></a>配置kafka</h2><h3 id="创建目录-1"><a href="#创建目录-1" class="headerlink" title="创建目录"></a>创建目录</h3><pre><code>cd ~/kafka
 mkdir kafka &amp;&amp; cd kafka
-mkdir logs
-</code></pre><h3 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
+mkdir logs</code></pre><h3 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
 <li>vim ~/kafka/config/server.properties</li>
 </ul>
 <style>
@@ -304,8 +297,7 @@ mkdir logs
 <th>备注</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>broker.id</td>
 <td>0</td>
 <td>broker.id的值三个节点要配置不同的值，分别配置为0，1，2</td>
@@ -340,44 +332,35 @@ mkdir logs
 <td>master:2181,slave1:2181,slave2:2181</td>
 <td>zookeeper连接地址，多个以逗号隔开</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h3 id="配置slave"><a href="#配置slave" class="headerlink" title="配置slave*"></a>配置slave*</h3><ul>
 <li>复制server.properties到slave*</li>
 </ul>
-<pre><code>scp ~/kafka/config/server.properties root@slave1:/root/kafka/config
-</code></pre><ul>
+<pre><code>scp ~/kafka/config/server.properties root@slave1:/root/kafka/config</code></pre><ul>
 <li>修改 server.properties的参数</li>
 </ul>
 <pre><code>根据上述表格
-修改 broker.id, advertised.host.name
-</code></pre><h3 id="启动kafka"><a href="#启动kafka" class="headerlink" title="启动kafka"></a>启动kafka</h3><ul>
+修改 broker.id, advertised.host.name</code></pre><h3 id="启动kafka"><a href="#启动kafka" class="headerlink" title="启动kafka"></a>启动kafka</h3><ul>
 <li>master, slave*启动（前提 zookeeper已成功启动）</li>
 </ul>
-<pre><code>~/kafka/bin/kafka-server-start.sh ~/kafka/config/server.properties
-</code></pre><h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><ul>
+<pre><code>~/kafka/bin/kafka-server-start.sh ~/kafka/config/server.properties</code></pre><h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><ul>
 <li>创建test topic</li>
 </ul>
-<pre><code>~/kafka/bin/kafka-topics.sh --create --zookeeper master:2181,slave1:2181 --replication-factor 1 --partitions 1 --topic test
-</code></pre><ul>
+<pre><code>~/kafka/bin/kafka-topics.sh --create --zookeeper master:2181,slave1:2181 --replication-factor 1 --partitions 1 --topic test</code></pre><ul>
 <li>查看当前已创建的topic列表</li>
 </ul>
 <pre><code>~/kafka/bin/kafka-topics.sh --list --zookeeper master:2181
-~/kafka/bin/kafka-topics.sh --list --zookeeper slave1:2181
-</code></pre><ul>
+~/kafka/bin/kafka-topics.sh --list --zookeeper slave1:2181</code></pre><ul>
 <li>模拟客户端去发送消息</li>
 </ul>
-<pre><code>~/kafka/bin/kafka-console-producer.sh --broker-list slave1:9092 --topic test
-</code></pre><ul>
+<pre><code>~/kafka/bin/kafka-console-producer.sh --broker-list slave1:9092 --topic test</code></pre><ul>
 <li>模拟客户端去接受消息</li>
 </ul>
-<pre><code>~/kafka/bin/kafka-console-consumer.sh --bootstrap-server master:9092 --from-beginning --topic test
-</code></pre><ul>
+<pre><code>~/kafka/bin/kafka-console-consumer.sh --bootstrap-server master:9092 --from-beginning --topic test</code></pre><ul>
 <li>接收端接收到发送端的消息即为搭建成功</li>
 </ul>
 <h3 id="最优方案"><a href="#最优方案" class="headerlink" title="最优方案"></a>最优方案</h3><pre><code>partition数量 &gt;= broker数量
-parition数量=consumer数量
-</code></pre>
+parition数量=consumer数量</code></pre>
       
 
       
@@ -510,7 +493,7 @@ parition数量=consumer数量
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -607,6 +590,10 @@ parition数量=consumer数量
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -619,23 +606,11 @@ parition数量=consumer数量
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -651,6 +626,10 @@ parition数量=consumer数量
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -659,11 +638,15 @@ parition数量=consumer数量
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -687,7 +670,7 @@ parition数量=consumer数量
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ZooKeeper-Hbase-OpenTSDB_HB" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-ZooKeeper-Hbase-OpenTSDB_HB" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,17 +202,15 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>然后，是HBase的搭建，包括，安装，配置，启动停止，和检查是否安装成功。<br>HBase是一个分布式的、面向列的开源数据库，是OpenTSDB承载的基础。</p>
 <a id="more"></a>
+
 <h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><pre><code>tar zxvf hbase-1.4.12-bin.tar.gz -C ~/
 cd ~
-mv hbase-1.4.12-bin hbase
-</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><pre><code>cd ~/hbase/conf
-</code></pre><ul>
+mv hbase-1.4.12-bin hbase</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><pre><code>cd ~/hbase/conf</code></pre><ul>
 <li>vim hbase-env.sh</li>
 </ul>
 <pre><code>export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export HBASE_CLASSPATH=/root/hadoop/etc/hadoop/
-export HBASE_MANAGES_ZK=false
-</code></pre><ul>
+export HBASE_MANAGES_ZK=false</code></pre><ul>
 <li>vim hbase-site.xml</li>
 </ul>
 <pre><code>&lt;configuration&gt;
@@ -251,27 +249,21 @@ export HBASE_MANAGES_ZK=false
         &lt;value&gt;true&lt;/value&gt;
     &lt;/property&gt;
 
-&lt;/configuration&gt;
-</code></pre><ul>
+&lt;/configuration&gt;</code></pre><ul>
 <li>vim regionservers</li>
 </ul>
 <pre><code>slave1
-slave2
-</code></pre><ul>
+slave2</code></pre><ul>
 <li>将master的zookeeper文件夹拷贝到slave*</li>
 </ul>
-<pre><code>scp -r ~/hbase/ root@slave*:/root
-</code></pre><h2 id="集群部署"><a href="#集群部署" class="headerlink" title="集群部署"></a>集群部署</h2><h3 id="启动hadoop集群-Zookeeper集群-hbase集群-按顺序启动）"><a href="#启动hadoop集群-Zookeeper集群-hbase集群-按顺序启动）" class="headerlink" title="启动hadoop集群+Zookeeper集群+hbase集群(按顺序启动）"></a>启动hadoop集群+Zookeeper集群+hbase集群(按顺序启动）</h3><pre><code>~/hadoop/sbin/start-all.sh
+<pre><code>scp -r ~/hbase/ root@slave*:/root</code></pre><h2 id="集群部署"><a href="#集群部署" class="headerlink" title="集群部署"></a>集群部署</h2><h3 id="启动hadoop集群-Zookeeper集群-hbase集群-按顺序启动）"><a href="#启动hadoop集群-Zookeeper集群-hbase集群-按顺序启动）" class="headerlink" title="启动hadoop集群+Zookeeper集群+hbase集群(按顺序启动）"></a>启动hadoop集群+Zookeeper集群+hbase集群(按顺序启动）</h3><pre><code>~/hadoop/sbin/start-all.sh
 ~/zookeeper/bin/controll-all.sh start
-~/hbase/bin/start-hbase.sh
-</code></pre><h3 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h3><p>master运行</p>
-<pre><code>jps
-</code></pre><p>有HMaster，运行成功，QuorumPeerMain是zookeeper的</p>
+~/hbase/bin/start-hbase.sh</code></pre><h3 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h3><p>master运行</p>
+<pre><code>jps</code></pre><p>有HMaster，运行成功，QuorumPeerMain是zookeeper的</p>
 <h4 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h4><ul>
 <li>若启动成功后，hbase shell仍提示Server未运行，可能是hadoop的安全模式打开了，关闭即可</li>
 </ul>
-<pre><code>hdfs dfsadmin -safemode leave
-</code></pre><ul>
+<pre><code>hdfs dfsadmin -safemode leave</code></pre><ul>
 <li>下策</li>
 </ul>
 <p>重新初始化namenode</p>
@@ -413,7 +405,7 @@ slave2
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -510,6 +502,10 @@ slave2
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -522,23 +518,11 @@ slave2
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,6 +538,10 @@ slave2
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -562,11 +550,15 @@ slave2
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,7 +582,7 @@ slave2
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

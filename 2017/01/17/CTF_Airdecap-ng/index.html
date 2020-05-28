@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-CTF_Airdecap-ng" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-CTF_Airdecap-ng" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -203,13 +203,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Airdecap-ng十分的强大，他被用作无线网络的分析与破解中，有linux版本和windows版本，<br>大家可以根据自己的系统进行下载安装，下面通过一道简单的ctf实战题来接触了解一下<br>Airdecap的强大之处。</p>
 <p><a href="http://www.shiyanbar.com/ctf/1853" target="_blank" rel="noopener">原题目链接</a></p>
 <a id="more"></a>
-<h2 id="二、开始使用airdecap-ng："><a href="#二、开始使用airdecap-ng：" class="headerlink" title="二、开始使用airdecap-ng："></a>二、开始使用airdecap-ng：</h2><h3 id="1-用aircrack-ng检查cap包"><a href="#1-用aircrack-ng检查cap包" class="headerlink" title="1. 用aircrack-ng检查cap包:"></a>1. 用aircrack-ng检查cap包:</h3><pre><code>aircrack-ng-1.1-win\bin&gt;aircrack-ng.exe shipin.cap
-</code></pre><p><img src="http://www.lovebear.top/img/airdecap_1.png" alt="demo1"></p>
-<h3 id="2-使用弱口令字典破解wpa加密"><a href="#2-使用弱口令字典破解wpa加密" class="headerlink" title="2. 使用弱口令字典破解wpa加密:"></a>2. 使用弱口令字典破解wpa加密:</h3><pre><code>aircrack-ng.exe shipin.cap -w wordlist.txt
-</code></pre><p>这里wordlist.txt是弱口令字典，包含了常见的路由器密码，可以网上下载到</p>
+
+<h2 id="二、开始使用airdecap-ng："><a href="#二、开始使用airdecap-ng：" class="headerlink" title="二、开始使用airdecap-ng："></a>二、开始使用airdecap-ng：</h2><h3 id="1-用aircrack-ng检查cap包"><a href="#1-用aircrack-ng检查cap包" class="headerlink" title="1. 用aircrack-ng检查cap包:"></a>1. 用aircrack-ng检查cap包:</h3><pre><code>aircrack-ng-1.1-win\bin&gt;aircrack-ng.exe shipin.cap</code></pre><p><img src="http://www.lovebear.top/img/airdecap_1.png" alt="demo1"></p>
+<h3 id="2-使用弱口令字典破解wpa加密"><a href="#2-使用弱口令字典破解wpa加密" class="headerlink" title="2. 使用弱口令字典破解wpa加密:"></a>2. 使用弱口令字典破解wpa加密:</h3><pre><code>aircrack-ng.exe shipin.cap -w wordlist.txt</code></pre><p>这里wordlist.txt是弱口令字典，包含了常见的路由器密码，可以网上下载到</p>
 <p>这一步骤可以使用EWSA软件进行破解，得到密码88888888</p>
-<h3 id="3-用密码解密cap"><a href="#3-用密码解密cap" class="headerlink" title="3. 用密码解密cap:"></a>3. 用密码解密cap:</h3><pre><code>airdecap-ng.exe shipin.cap -e 0719 -p 88888888
-</code></pre><p>使用到了刚才的essid和破解的密码</p>
+<h3 id="3-用密码解密cap"><a href="#3-用密码解密cap" class="headerlink" title="3. 用密码解密cap:"></a>3. 用密码解密cap:</h3><pre><code>airdecap-ng.exe shipin.cap -e 0719 -p 88888888</code></pre><p>使用到了刚才的essid和破解的密码</p>
 <p><img src="http://www.lovebear.top/img/airdecap_2.png" alt="demo2"></p>
 <p>于是在目录下生成一个shipin-dec.cap，使用wireshark打开,找到A记录的第一个，即为flag</p>
 <p><img src="http://www.lovebear.top/img/airdecap_3.png" alt="demo3"></p>
@@ -346,7 +344,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -443,6 +441,10 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -455,23 +457,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,6 +477,10 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -495,11 +489,15 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,7 +521,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

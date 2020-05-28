@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ZooKeeper-Hbase-OpenTSDB_ZK" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-ZooKeeper-Hbase-OpenTSDB_ZK" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,24 +202,21 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先，是ZooKeeper的搭建，包括，安装，配置，启动停止，还有我自己写的集群控制脚本。<br>ZooKeeper是HBase运行的前提，是分布式应用程序协调服务，很多开源分布式软件都依赖ZooKeeper，如Kafka，HBase等。</p>
 <a id="more"></a>
+
 <h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><pre><code>tar zxvf apache-zookeeper-3.5.6-bin.tar.gz -C ~/
 cd ~/
-mv apache-zookeeper-3.5.6-bin/ zookeeper
-</code></pre><h3 id="设置环境变量（master-slave-）"><a href="#设置环境变量（master-slave-）" class="headerlink" title="设置环境变量（master, slave*）"></a>设置环境变量（master, slave*）</h3><ul>
+mv apache-zookeeper-3.5.6-bin/ zookeeper</code></pre><h3 id="设置环境变量（master-slave-）"><a href="#设置环境变量（master-slave-）" class="headerlink" title="设置环境变量（master, slave*）"></a>设置环境变量（master, slave*）</h3><ul>
 <li>编辑 /etc/profile</li>
 </ul>
 <pre><code>export ZOOKEEPER_HOME=/root/zookeeper
-export PATH=$PATH:$ZOOKEEPER_HOME/bin
-</code></pre><ul>
+export PATH=$PATH:$ZOOKEEPER_HOME/bin</code></pre><ul>
 <li>使之生效</li>
 </ul>
-<pre><code>source /etc/profile
-</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
+<pre><code>source /etc/profile</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
 <li>创建zoo.cfg</li>
 </ul>
 <pre><code>cd ~/zookeeper/conf
-cp zoo_sample.cfg zoo.cfg
-</code></pre><ul>
+cp zoo_sample.cfg zoo.cfg</code></pre><ul>
 <li>编辑zoo.cfg (vim zoo.cfg)</li>
 </ul>
 <pre><code>dataDir=/root/zookeeper/data
@@ -228,37 +225,30 @@ clientPort=2189
 
 server.1=master:2888:3888
 server.2=slave1:2888:3888
-server.3=slave2:2888:3888
-</code></pre><p>其他配置不动即可</p>
+server.3=slave2:2888:3888</code></pre><p>其他配置不动即可</p>
 <ul>
 <li>创建数据目录</li>
 </ul>
 <pre><code>cd ~/zookeeper/
-mkdir data
-</code></pre><ul>
+mkdir data</code></pre><ul>
 <li>创建myid文件</li>
 </ul>
 <p>在dataDir目录下新建myid文件，输入一个数字 (master为1，slave1为2，slave2为3)</p>
 <pre><code>cd ~/zookeeper/data
-echo 1 &gt; myid
-</code></pre><ul>
+echo 1 &gt; myid</code></pre><ul>
 <li>将master的zookeeper文件夹拷贝到slave*</li>
 </ul>
-<pre><code>scp -r ~/zookeeper/ root@slave*:/root
-</code></pre><p>P.S. 注意记得修改myid文件</p>
+<pre><code>scp -r ~/zookeeper/ root@slave*:/root</code></pre><p>P.S. 注意记得修改myid文件</p>
 <h2 id="集群控制"><a href="#集群控制" class="headerlink" title="集群控制"></a>集群控制</h2><h3 id="启动-amp-amp-停止"><a href="#启动-amp-amp-停止" class="headerlink" title="启动 &amp;&amp; 停止"></a>启动 &amp;&amp; 停止</h3><ul>
 <li>启动</li>
 </ul>
 <p>在ZooKeeper集群的每个结点上，执行</p>
-<pre><code>~/zookeeper/bin/zkServer.sh start
-</code></pre><ul>
+<pre><code>~/zookeeper/bin/zkServer.sh start</code></pre><ul>
 <li>停止</li>
 </ul>
 <p>在ZooKeeper集群的每个结点上，执行</p>
-<pre><code>~/zookeeper/bin/zkServer.sh stop
-</code></pre><h3 id="简便的集群控制"><a href="#简便的集群控制" class="headerlink" title="简便的集群控制"></a>简便的集群控制</h3><p>master上运行</p>
-<pre><code>./controll-all.sh start/stop/status
-</code></pre><p><a href="https://github.com/cckuailong/Small_Functions/tree/master/Control_ZK" target="_blank" rel="noopener">脚本下载</a></p>
+<pre><code>~/zookeeper/bin/zkServer.sh stop</code></pre><h3 id="简便的集群控制"><a href="#简便的集群控制" class="headerlink" title="简便的集群控制"></a>简便的集群控制</h3><p>master上运行</p>
+<pre><code>./controll-all.sh start/stop/status</code></pre><p><a href="https://github.com/cckuailong/Small_Functions/tree/master/Control_ZK" target="_blank" rel="noopener">脚本下载</a></p>
 
       
 
@@ -392,7 +382,7 @@ echo 1 &gt; myid
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -489,6 +479,10 @@ echo 1 &gt; myid
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -501,23 +495,11 @@ echo 1 &gt; myid
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -533,6 +515,10 @@ echo 1 &gt; myid
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -541,11 +527,15 @@ echo 1 &gt; myid
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,7 +559,7 @@ echo 1 &gt; myid
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

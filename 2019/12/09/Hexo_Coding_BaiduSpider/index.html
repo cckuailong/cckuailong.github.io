@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hexo_Coding_BaiduSpider" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Hexo_Coding_BaiduSpider" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,6 +202,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>Hexo + GitPage服务搭建个人博客已经非常流行，搭建方法详见 <a href="http://lovebear.top/2016/10/08/Hexo-Your-Blog/" target="_blank" rel="noopener">Hexo Your Blog</a>,<br>但是由于github限制了百度的爬虫抓取，所以git page搭建的博客不会被百度爬取收录，<br>为了使百度收录我们的blog，分享更多的知识给大家，特查询总结了Coding Page进行分流<br>的方法来实现百度爬虫收录。</p>
 <a id="more"></a>
+
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>全文 以我的项目为例</p>
 <ul>
 <li>Github仓库(<a href="https://github.com/cckuailong.github.io)，" target="_blank" rel="noopener">https://github.com/cckuailong.github.io)，</a></li>
@@ -221,13 +222,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <h2 id="三、将Git-Page的代码转移到Coding-Page"><a href="#三、将Git-Page的代码转移到Coding-Page" class="headerlink" title="三、将Git Page的代码转移到Coding Page"></a>三、将Git Page的代码转移到Coding Page</h2><ul>
 <li>将GitPage仓库clone到本地</li>
 </ul>
-<pre><code>git clone https://github.com/cckuailong/cckuailong.github.io
-</code></pre><ul>
+<pre><code>git clone https://github.com/cckuailong/cckuailong.github.io</code></pre><ul>
 <li>将clone下来的仓库代码上传到coding</li>
 </ul>
 <pre><code>cd cckuailong.github.io
-git push https://git.dev.tencent.com/cckuailong/cckuailong.coding.me.git --all
-</code></pre><p>若 ssh公钥 上传成功，则不需要输入密码，否则根据提示输入coding注册的用户名和密码</p>
+git push https://git.dev.tencent.com/cckuailong/cckuailong.coding.me.git --all</code></pre><p>若 ssh公钥 上传成功，则不需要输入密码，否则根据提示输入coding注册的用户名和密码</p>
 <h2 id="四、开启Page服务"><a href="#四、开启Page服务" class="headerlink" title="四、开启Page服务"></a>四、开启Page服务</h2><ul>
 <li><p>进入新创建的项目，点击 代码–Page服务</p>
 </li>
@@ -239,8 +238,7 @@ git push https://git.dev.tencent.com/cckuailong/cckuailong.coding.me.git --all
 </li>
 </ul>
 <pre><code>www.lovebear.top
-lovebear.top
-</code></pre><h2 id="五、设置DNSpod"><a href="#五、设置DNSpod" class="headerlink" title="五、设置DNSpod"></a>五、设置DNSpod</h2><p>思想是国内解析域名到Coding Page, 国外解析到Git Page</p>
+lovebear.top</code></pre><h2 id="五、设置DNSpod"><a href="#五、设置DNSpod" class="headerlink" title="五、设置DNSpod"></a>五、设置DNSpod</h2><p>思想是国内解析域名到Coding Page, 国外解析到Git Page</p>
 <p>直接给出我的配置，供参考</p>
 <table>
 <thead>
@@ -251,8 +249,7 @@ lovebear.top
 <th>记录值</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>@</td>
 <td>CNAME</td>
 <td>境外</td>
@@ -282,8 +279,7 @@ lovebear.top
 <td>默认</td>
 <td>f1g1ns2.dnspod.net.</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h2 id="六、设置hexo提交新内容时，同时提交到GitPage和CodingPage"><a href="#六、设置hexo提交新内容时，同时提交到GitPage和CodingPage" class="headerlink" title="六、设置hexo提交新内容时，同时提交到GitPage和CodingPage"></a>六、设置hexo提交新内容时，同时提交到GitPage和CodingPage</h2><ul>
 <li>Hexo中的 _config.yml文件的deploy，修改为</li>
 </ul>
@@ -292,8 +288,7 @@ lovebear.top
   repo:
         github: git@github.com:cckuailong/cckuailong.github.io.git
         coding: git@git.coding.net:cckuailong/cckuailong.coding.me.git
-  branch: master
-</code></pre><ul>
+  branch: master</code></pre><ul>
 <li>这时，就实现了博客分流，并且因为国内ip会解析到 coding.me, 所以，也实现了百度抓取。<br>试一试给百度提交链接，我们的博客就能被百度收录了。</li>
 </ul>
 
@@ -429,7 +424,7 @@ lovebear.top
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -526,6 +521,10 @@ lovebear.top
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -538,23 +537,11 @@ lovebear.top
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,6 +557,10 @@ lovebear.top
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -578,11 +569,15 @@ lovebear.top
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,7 +601,7 @@ lovebear.top
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

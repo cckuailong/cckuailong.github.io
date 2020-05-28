@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Kubernetes_With_Spark" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Kubernetes_With_Spark" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,18 +202,17 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Spark 2.3以上的版本可以支持Kubernetes，本文介绍如何使用 k8s 部署管理Spark 2.4.4</p>
 <a id="more"></a>
+
 <h2 id="编译-Spark-镜像"><a href="#编译-Spark-镜像" class="headerlink" title="编译 Spark 镜像"></a>编译 Spark 镜像</h2><ul>
 <li><p>绑定docker hub账号</p>
 </li>
 <li><p>编译</p>
 </li>
 </ul>
-<pre><code>~/spark/bin/docker-image-tool.sh -r cckuailong -t spark2.4.4 build
-</code></pre><ul>
+<pre><code>~/spark/bin/docker-image-tool.sh -r cckuailong -t spark2.4.4 build</code></pre><ul>
 <li>提交到docker hub</li>
 </ul>
-<pre><code>~/spark/bin/docker-image-tool.sh -r cckuailong -t spark2.4.4 push
-</code></pre><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ul>
+<pre><code>~/spark/bin/docker-image-tool.sh -r cckuailong -t spark2.4.4 push</code></pre><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ul>
 <li>运行</li>
 </ul>
 <p>上传test.py到容器中的/code/目录中</p>
@@ -223,8 +222,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
     --name test \
     --conf spark.executor.instances=5 \
     --conf spark.kubernetes.container.image=cckuailong/spark:spark2.4.4 \
-    local:///code/test.py
-</code></pre><h2 id="注意及排错"><a href="#注意及排错" class="headerlink" title="注意及排错"></a>注意及排错</h2><ul>
+    local:///code/test.py</code></pre><h2 id="注意及排错"><a href="#注意及排错" class="headerlink" title="注意及排错"></a>注意及排错</h2><ul>
 <li>spark 自带的exemples是用jdk1.8编译的，如果启动过程中提示Unsupported major.minor version 52.0请更换jdk版本</li>
 <li>spark-submit默认会去~/.kube/config去加载集群配置，故请将k8s集群config放在该目录下</li>
 <li>spark 启动参数的local://后面应该跟你自己的spark application在容器里的路径</li>
@@ -236,8 +234,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 </ul>
 <p>权限问题，执行一下两条命令:</p>
 <pre><code>kubectl create rolebinding default-view --clusterrole=view --serviceaccount=default:default --namespace=defalut 和
-kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=default:default --namespace=default 后就可以了
-</code></pre>
+kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=default:default --namespace=default 后就可以了</code></pre>
       
 
       
@@ -361,7 +358,7 @@ kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=de
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -458,6 +455,10 @@ kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=de
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -470,23 +471,11 @@ kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=de
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,6 +491,10 @@ kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=de
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -510,11 +503,15 @@ kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=de
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,7 +535,7 @@ kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=de
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

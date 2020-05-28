@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-CTF_OCR_Training" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-CTF_OCR_Training" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -203,6 +203,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近做了一道关于OCR的题，看到图片中的文字（数字）都非常清晰，第一时间想到了使用<br>pytesser，但是在写完代码后，发现并不能识别出来，本来pytesser的识别率就不是很高。<br>后来发现这些数字还有一个规律，相同的数字基本都是一个样式的，于是，想到了字符训练<br>的方法，即，分离出每个字符，再将其他图片中的文字与之匹配的方法。</p>
 <p>原题目是计算图片中的数乘以图片名字并相加，得出最终结果。<br><a href="http://pan.baidu.com/s/1qYjgVBu" target="_blank" rel="noopener">图片文件链接</a>     提取码： o9tn<br><a href="http://www.shiyanbar.com/ctf/27" target="_blank" rel="noopener">原题目链接</a></p>
 <a id="more"></a>
+
 <h2 id="二、字符训练："><a href="#二、字符训练：" class="headerlink" title="二、字符训练："></a>二、字符训练：</h2><p>寻找0-9的特征，截出10个特征</p>
 <pre><code>#-*- encoding: utf-8 -*-
 from PIL import Image
@@ -253,8 +254,7 @@ i8.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\8.bmp&#39;)
 
 img9 = openim(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\7.bmp&#39;)
 i9 = img9.crop(box3)
-i9.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\9.bmp&#39;)
-</code></pre><h2 id="三、根据训练结果匹配："><a href="#三、根据训练结果匹配：" class="headerlink" title="三、根据训练结果匹配："></a>三、根据训练结果匹配：</h2><pre><code>#-*- encoding: utf-8 -*-
+i9.save(&#39;C:\\Users\\lovebear96\\Desktop\\bmp\\font\\9.bmp&#39;)</code></pre><h2 id="三、根据训练结果匹配："><a href="#三、根据训练结果匹配：" class="headerlink" title="三、根据训练结果匹配："></a>三、根据训练结果匹配：</h2><pre><code>#-*- encoding: utf-8 -*-
 from PIL import Image
 
 def openim(path):       #打开图片
@@ -325,8 +325,7 @@ sum = 0
 for i in range(1,10000):             #根据训练结果匹配得数字
     img = openim(path+str(i)+&#39;.bmp&#39;)
     sum+=i*int(OCR(img))
-print &#39;sum =&#39;+str(sum)
-</code></pre>
+print &#39;sum =&#39;+str(sum)</code></pre>
       
 
       
@@ -459,7 +458,7 @@ print &#39;sum =&#39;+str(sum)
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -556,6 +555,10 @@ print &#39;sum =&#39;+str(sum)
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -568,23 +571,11 @@ print &#39;sum =&#39;+str(sum)
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,6 +591,10 @@ print &#39;sum =&#39;+str(sum)
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -608,11 +603,15 @@ print &#39;sum =&#39;+str(sum)
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,7 +635,7 @@ print &#39;sum =&#39;+str(sum)
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

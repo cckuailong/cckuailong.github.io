@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Pacman_project1_code" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Pacman_project1_code" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,6 +202,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>初学人工智能，感到非常好玩，老师留了一个Pacman Project，经查阅，伯克利大学的人工智能<br>课程也用这个Project作为实验教材。为了方便同学们，我写了Project 1——search的代码，并对每行<br>代码进行详细的注释解析。（网上有别人写好的代码，但是很乱，而且没有注释。。。）</p>
 <a id="more"></a>
+
 <h2 id="二、进入正题："><a href="#二、进入正题：" class="headerlink" title="二、进入正题："></a>二、进入正题：</h2><h3 id="1-问题1：应用深度优先算法找到一个特定的位置的豆"><a href="#1-问题1：应用深度优先算法找到一个特定的位置的豆" class="headerlink" title="1.问题1：应用深度优先算法找到一个特定的位置的豆"></a>1.问题1：应用深度优先算法找到一个特定的位置的豆</h3><p>你的code应该能顺利解决以下问题：<br>python pacman.py -l tinyMaze -p SearchAgent<br>python pacman.py -l mediumMaze -p SearchAgent<br>python pacman.py -l bigMaze -z .5 -p SearchAgent</p>
 <p>废话不多说，直接上代码加注释</p>
 <pre><code>def graphSearch(problem, fringe):
@@ -248,22 +249,19 @@ def depthFirstSearch(problem):
     &quot;&quot;&quot;
     &quot;*** YOUR CODE HERE ***&quot;
     fringe = util.Stack()    #fringe数据结构为栈，进行dfs
-    return graphSearch(problem, fringe)
-</code></pre><h3 id="2-问题2：宽度优先算法"><a href="#2-问题2：宽度优先算法" class="headerlink" title="2.问题2：宽度优先算法"></a>2.问题2：宽度优先算法</h3><p>python pacman.py -l mediumMaze -p SearchAgent -a fn=bfs<br>python pacman.py -l bigMaze -p SearchAgent -a fn=bfs -z .5</p>
+    return graphSearch(problem, fringe)</code></pre><h3 id="2-问题2：宽度优先算法"><a href="#2-问题2：宽度优先算法" class="headerlink" title="2.问题2：宽度优先算法"></a>2.问题2：宽度优先算法</h3><p>python pacman.py -l mediumMaze -p SearchAgent -a fn=bfs<br>python pacman.py -l bigMaze -p SearchAgent -a fn=bfs -z .5</p>
 <pre><code>def breadthFirstSearch(problem):
     &quot;&quot;&quot;Search the shallowest nodes in the search tree first.&quot;&quot;&quot;
     &quot;*** YOUR CODE HERE ***&quot;
     fringe = util.Queue()    #fringe数据结构为队列，进行bfs
-    return graphSearch(problem, fringe)
-</code></pre><h3 id="3-问题3：宽度优先算法（代价一致算法）"><a href="#3-问题3：宽度优先算法（代价一致算法）" class="headerlink" title="3.问题3：宽度优先算法（代价一致算法）"></a>3.问题3：宽度优先算法（代价一致算法）</h3><p>python pacman.py -l mediumMaze -p SearchAgent -a fn=ucs<br>python pacman.py -l mediumDottedMaze -p StayEastSearchAgent<br>python pacman.py -l mediumScaryMaze -p StayWestSearchAgent</p>
+    return graphSearch(problem, fringe)</code></pre><h3 id="3-问题3：宽度优先算法（代价一致算法）"><a href="#3-问题3：宽度优先算法（代价一致算法）" class="headerlink" title="3.问题3：宽度优先算法（代价一致算法）"></a>3.问题3：宽度优先算法（代价一致算法）</h3><p>python pacman.py -l mediumMaze -p SearchAgent -a fn=ucs<br>python pacman.py -l mediumDottedMaze -p StayEastSearchAgent<br>python pacman.py -l mediumScaryMaze -p StayWestSearchAgent</p>
 <pre><code>def uniformCostSearch(problem):
     &quot;&quot;&quot;Search the node of least total cost first.&quot;&quot;&quot;
     &quot;*** YOUR CODE HERE ***&quot;
     cost = lambda aPath: problem.getCostOfActions([x[1] for x in aPath])    #计算出每条路径的总代价，通过总代价
                                                                           #作为优先级进行搜索
     fringe = util.PriorityQueueWithFunction(cost)        #fringe数据结构为优先队列
-    return graphSearch(problem, fringe)
-</code></pre><h3 id="4-问题4：A-算法"><a href="#4-问题4：A-算法" class="headerlink" title="4.问题4：A* 算法"></a>4.问题4：A* 算法</h3><p>python pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic</p>
+    return graphSearch(problem, fringe)</code></pre><h3 id="4-问题4：A-算法"><a href="#4-问题4：A-算法" class="headerlink" title="4.问题4：A* 算法"></a>4.问题4：A* 算法</h3><p>python pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic</p>
 <pre><code>def nullHeuristic(state, problem=None):
     &quot;&quot;&quot;
     A heuristic function estimates the cost from the current state to the nearest
@@ -276,8 +274,7 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     &quot;*** YOUR CODE HERE ***&quot;
     cost = lambda aPath: problem.getCostOfActions([x[1] for x in aPath]) + heuristic(aPath[len(aPath)-1][0], problem)
     fringe = util.PriorityQueueWithFunction(cost)  #A*是对代价一致搜索算法的改进，加入了一个估计代价h
-    return graphSearch(problem, fringe)
-</code></pre><h3 id="5-问题5：找到所有的角落"><a href="#5-问题5：找到所有的角落" class="headerlink" title="5.问题5：找到所有的角落"></a>5.问题5：找到所有的角落</h3><p>python pacman.py -l tinyCorners -p SearchAgent -a fn=bfs,prob=CornersProblem<br>python pacman.py -l mediumCorners -p SearchAgent -a fn=bfs,prob=CornersProblem</p>
+    return graphSearch(problem, fringe)</code></pre><h3 id="5-问题5：找到所有的角落"><a href="#5-问题5：找到所有的角落" class="headerlink" title="5.问题5：找到所有的角落"></a>5.问题5：找到所有的角落</h3><p>python pacman.py -l tinyCorners -p SearchAgent -a fn=bfs,prob=CornersProblem<br>python pacman.py -l mediumCorners -p SearchAgent -a fn=bfs,prob=CornersProblem</p>
 <pre><code>def getStartState(self):
         &quot;&quot;&quot;
         Returns the start state (in your state space, not the full Pacman state
@@ -332,8 +329,7 @@ def aStarSearch(problem, heuristic=nullHeuristic):
                 successors.append( ( nextState, action, cost) )     #属于可达的子状态，加入到子状态列表
 
         self._expanded += 1 # DO NOT CHANGE
-        return successors
-</code></pre><h3 id="6-问题6：角落问题（启发式）"><a href="#6-问题6：角落问题（启发式）" class="headerlink" title="6.问题6：角落问题（启发式）"></a>6.问题6：角落问题（启发式）</h3><p>python pacman.py -l mediumCorners -p AStarCornersAgent -z 0.5</p>
+        return successors</code></pre><h3 id="6-问题6：角落问题（启发式）"><a href="#6-问题6：角落问题（启发式）" class="headerlink" title="6.问题6：角落问题（启发式）"></a>6.问题6：角落问题（启发式）</h3><p>python pacman.py -l mediumCorners -p AStarCornersAgent -z 0.5</p>
 <pre><code>def cornersHeuristic(state, problem):
     &quot;&quot;&quot;
     A heuristic for the CornersProblem that you defined.
@@ -378,8 +374,7 @@ def closestPoint (fromPoint, candidatesList):
   return closestCorner
 
 def euclidieanDistance (pointA, pointB):  
-    return abs(pointA[0] - pointB[0]) + abs(pointA[1] - pointB[1])#因为坐标为表格化，不能斜着走，所以最短距离为|x|+|y|
-</code></pre><h3 id="7-问题7：吃掉所有的豆子（这个程序有点卡，稍等一会）"><a href="#7-问题7：吃掉所有的豆子（这个程序有点卡，稍等一会）" class="headerlink" title="7.问题7：吃掉所有的豆子（这个程序有点卡，稍等一会）"></a>7.问题7：吃掉所有的豆子（这个程序有点卡，稍等一会）</h3><p>python pacman.py -l testSearch -p AStarFoodSearchAgent<br>python pacman.py -l trickySearch -p AStarFoodSearchAgent</p>
+    return abs(pointA[0] - pointB[0]) + abs(pointA[1] - pointB[1])#因为坐标为表格化，不能斜着走，所以最短距离为|x|+|y|</code></pre><h3 id="7-问题7：吃掉所有的豆子（这个程序有点卡，稍等一会）"><a href="#7-问题7：吃掉所有的豆子（这个程序有点卡，稍等一会）" class="headerlink" title="7.问题7：吃掉所有的豆子（这个程序有点卡，稍等一会）"></a>7.问题7：吃掉所有的豆子（这个程序有点卡，稍等一会）</h3><p>python pacman.py -l testSearch -p AStarFoodSearchAgent<br>python pacman.py -l trickySearch -p AStarFoodSearchAgent</p>
 <pre><code>def foodHeuristic(state, problem):
     &quot;&quot;&quot;
     Your heuristic for the FoodSearchProblem goes here.
@@ -415,8 +410,7 @@ def euclidieanDistance (pointA, pointB):
          return 0
 
     closestFood = closestPoint(position, foodList)     #得到离当前点最近的未吃食物
-    return euclidieanDistance(position, closestFood) + len(foodList) 
-</code></pre><h3 id="8-问题8：次最优搜索"><a href="#8-问题8：次最优搜索" class="headerlink" title="8.问题8：次最优搜索"></a>8.问题8：次最优搜索</h3><p>python pacman.py -l bigSearch -p ClosestDotSearchAgent -z .5</p>
+    return euclidieanDistance(position, closestFood) + len(foodList) </code></pre><h3 id="8-问题8：次最优搜索"><a href="#8-问题8：次最优搜索" class="headerlink" title="8.问题8：次最优搜索"></a>8.问题8：次最优搜索</h3><p>python pacman.py -l bigSearch -p ClosestDotSearchAgent -z .5</p>
 <pre><code>class ClosestDotSearchAgent(SearchAgent):
     &quot;Search for all food using a sequence of searches&quot;
     def registerInitialState(self, state):
@@ -482,8 +476,7 @@ class AnyFoodSearchProblem(PositionSearchProblem):
         x,y = state
 
         &quot;*** YOUR CODE HERE ***&quot;
-        return self.food[x][y]            #state为终点坐标
-</code></pre><h2 id="三、总结："><a href="#三、总结：" class="headerlink" title="三、总结："></a>三、总结：</h2><p>这东西还是挺好玩的，希望本文对大家有用</p>
+        return self.food[x][y]            #state为终点坐标</code></pre><h2 id="三、总结："><a href="#三、总结：" class="headerlink" title="三、总结："></a>三、总结：</h2><p>这东西还是挺好玩的，希望本文对大家有用</p>
 
       
 
@@ -617,7 +610,7 @@ class AnyFoodSearchProblem(PositionSearchProblem):
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -714,6 +707,10 @@ class AnyFoodSearchProblem(PositionSearchProblem):
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -726,23 +723,11 @@ class AnyFoodSearchProblem(PositionSearchProblem):
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -758,6 +743,10 @@ class AnyFoodSearchProblem(PositionSearchProblem):
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -766,11 +755,15 @@ class AnyFoodSearchProblem(PositionSearchProblem):
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -794,7 +787,7 @@ class AnyFoodSearchProblem(PositionSearchProblem):
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

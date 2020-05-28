@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
 <meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
-<meta property="og:updated_time" content="2020-02-19T03:39:06.338Z">
+<meta property="og:updated_time" content="2020-04-21T07:12:14.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark-HadoopYarn-Kafka集群搭建--搭建Spark集群">
 <meta name="twitter:description" content="前言然后，是Spark集群的搭建，包括，添加环境变量，修改相应的配置文件，启动Spark集群，查看是否启动成功和关闭集群。">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spark-HadoopYarn-Kafka_Spark" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Spark-HadoopYarn-Kafka_Spark" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,14 +202,13 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>然后，是Spark集群的搭建，包括，添加环境变量，修改相应的配置文件，启动Spark集群，<br>查看是否启动成功和关闭集群。</p>
 <a id="more"></a>
-<h2 id="安装Spark-2-4-4-bin-hadoop2-7"><a href="#安装Spark-2-4-4-bin-hadoop2-7" class="headerlink" title="安装Spark-2.4.4-bin-hadoop2.7"></a>安装Spark-2.4.4-bin-hadoop2.7</h2><h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><pre><code>tar zxvf spark-2.4.4-bin-hadoop2.7.tgz -C /root &amp;&amp; mv spark-2.4.4-bin-hadoop2.7 spark
-</code></pre><h3 id="修改spark配置文件"><a href="#修改spark配置文件" class="headerlink" title="修改spark配置文件"></a>修改spark配置文件</h3><ul>
+
+<h2 id="安装Spark-2-4-4-bin-hadoop2-7"><a href="#安装Spark-2-4-4-bin-hadoop2-7" class="headerlink" title="安装Spark-2.4.4-bin-hadoop2.7"></a>安装Spark-2.4.4-bin-hadoop2.7</h2><h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><pre><code>tar zxvf spark-2.4.4-bin-hadoop2.7.tgz -C /root &amp;&amp; mv spark-2.4.4-bin-hadoop2.7 spark</code></pre><h3 id="修改spark配置文件"><a href="#修改spark配置文件" class="headerlink" title="修改spark配置文件"></a>修改spark配置文件</h3><ul>
 <li>根据模板创建并打开spark-env.sh</li>
 </ul>
 <pre><code>cd ~/spark/conf
 cp spark-env.sh.template spark-env.sh
-vim spark-env.sh
-</code></pre><ul>
+vim spark-env.sh</code></pre><ul>
 <li>末尾添加</li>
 </ul>
 <pre><code>export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
@@ -220,24 +219,19 @@ export PYSPARK_DRIVER_PYTHON=/usr/bin/python
 export LD_LIBRARY_PATH=/root/hadoop/lib/native
 SPARK_MASTER_IP=master
 SPARK_LOCAL_DIRS=/root/spark
-SPARK_DRIVER_MEMORY=1G
-</code></pre><ul>
+SPARK_DRIVER_MEMORY=1G</code></pre><ul>
 <li>根据模板创建并打开slaves</li>
 </ul>
-<pre><code>cp slaves.template slaves
-</code></pre><ul>
+<pre><code>cp slaves.template slaves</code></pre><ul>
 <li>配置内容</li>
 </ul>
-<pre><code>slave1
-</code></pre><ul>
+<pre><code>slave1</code></pre><ul>
 <li>复制master中的spark到slave*</li>
 </ul>
-<pre><code>scp -r /root/spark root@slave1:/root
-</code></pre><h3 id="启动Spark"><a href="#启动Spark" class="headerlink" title="启动Spark"></a>启动Spark</h3><ul>
+<pre><code>scp -r /root/spark root@slave1:/root</code></pre><h3 id="启动Spark"><a href="#启动Spark" class="headerlink" title="启动Spark"></a>启动Spark</h3><ul>
 <li>master启动</li>
 </ul>
-<pre><code>/root/spark/sbin/start-all.sh
-</code></pre><ul>
+<pre><code>/root/spark/sbin/start-all.sh</code></pre><ul>
 <li>验证</li>
 </ul>
 <pre><code>master运行jps包含
@@ -245,21 +239,17 @@ Jps
 SecondaryNameNode
 Master
 NameNode
-ResourceManager
-</code></pre><pre><code>slave*运行jps包含
+ResourceManager</code></pre><pre><code>slave*运行jps包含
 Jps
 DataNode
 Worker
-NodeManager
-</code></pre><ul>
+NodeManager</code></pre><ul>
 <li>进入spark Web管理界面</li>
 </ul>
-<pre><code>http://{master}:8080
-</code></pre><ul>
+<pre><code>http://{master}:8080</code></pre><ul>
 <li>停止spark</li>
 </ul>
-<pre><code>/root/spark/sbin/stop-all.sh
-</code></pre><h2 id="示例代码（yarn）"><a href="#示例代码（yarn）" class="headerlink" title="示例代码（yarn）"></a>示例代码（yarn）</h2><pre><code>from pyspark import SparkConf, SparkContext
+<pre><code>/root/spark/sbin/stop-all.sh</code></pre><h2 id="示例代码（yarn）"><a href="#示例代码（yarn）" class="headerlink" title="示例代码（yarn）"></a>示例代码（yarn）</h2><pre><code>from pyspark import SparkConf, SparkContext
 
 conf = SparkConf()
 conf.set(&#39;spark.yarn.dist.files&#39;,&#39;file:/root/spark/python/lib/pyspark.zip,file:/root/spark/python/lib/py4j-0.10.7-src.zip&#39;)
@@ -277,10 +267,8 @@ resultColl = resultRdd.collect()
 for line in resultColl:
     print(line)
 
-sc.stop()
-</code></pre><p>启动</p>
-<pre><code>spark-submit --driver-memory 4G --executor-memory 2G test.py
-</code></pre>
+sc.stop()</code></pre><p>启动</p>
+<pre><code>spark-submit --driver-memory 4G --executor-memory 2G test.py</code></pre>
       
 
       
@@ -413,7 +401,7 @@ sc.stop()
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -510,6 +498,10 @@ sc.stop()
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -522,23 +514,11 @@ sc.stop()
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,6 +534,10 @@ sc.stop()
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -562,11 +546,15 @@ sc.stop()
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,7 +578,7 @@ sc.stop()
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

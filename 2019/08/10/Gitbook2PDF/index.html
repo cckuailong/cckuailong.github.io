@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -117,9 +117,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -161,9 +161,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Gitbook2PDF" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Gitbook2PDF" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,36 +199,26 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Gitbook上有很多开源图书，但是都是mardown格式的，更多时候需要转为PDF，在此记录方法，<br>方法在ubuntu上实现</p>
 <a id="more"></a>
+
 <h2 id="二、环境配置："><a href="#二、环境配置：" class="headerlink" title="二、环境配置："></a>二、环境配置：</h2><h3 id="安装nvm"><a href="#安装nvm" class="headerlink" title="安装nvm"></a>安装nvm</h3><p>下载 nvm</p>
 <pre><code>cd ~
 mkdir .nvm
 cd .nvm
-git clone https://github.com/creationix/nvm
-</code></pre><p>将 source ~/.nvm/nvm/nvm.sh 添加到 ~/.profile 文件中</p>
+git clone https://github.com/creationix/nvm</code></pre><p>将 source ~/.nvm/nvm/nvm.sh 添加到 ~/.profile 文件中</p>
 <pre><code>vim ~/.profile 并在文件末尾添加source ~/.nvm/nvm/nvm.sh
-source 一下.profile
-</code></pre><p>检查安装是否正确</p>
-<pre><code>nvm --version
-</code></pre><h3 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h3><pre><code>nvm install node
-node --version
-</code></pre><h3 id="安装npm"><a href="#安装npm" class="headerlink" title="安装npm"></a>安装npm</h3><pre><code>apt-get install npm
-</code></pre><h3 id="安装gitbook"><a href="#安装gitbook" class="headerlink" title="安装gitbook"></a>安装gitbook</h3><pre><code>npm install gitbook-cli -g
-</code></pre><h3 id="安装calibre"><a href="#安装calibre" class="headerlink" title="安装calibre"></a>安装calibre</h3><pre><code>sudo -v &amp;&amp; wget -nv -O- https://download.calibre-ebook.com/linux-installer.py | sudo python -c &quot;import sys; main=lambda:sys.stderr.write(&#39;Download failed\n&#39;); exec(sys.stdin.read()); main()&quot;
-</code></pre><h2 id="三、PDF转换"><a href="#三、PDF转换" class="headerlink" title="三、PDF转换"></a>三、PDF转换</h2><h3 id="配置支持中文"><a href="#配置支持中文" class="headerlink" title="配置支持中文"></a>配置支持中文</h3><p>在book.json文件plugins属性上添加yahei插件</p>
-<pre><code>&quot;plugins&quot;: [&quot;yahei&quot;]
-</code></pre><p>配置pluginsConfig下fontSettings属性，使用msyh &gt; 微软雅黑字体</p>
+source 一下.profile</code></pre><p>检查安装是否正确</p>
+<pre><code>nvm --version</code></pre><h3 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h3><pre><code>nvm install node
+node --version</code></pre><h3 id="安装npm"><a href="#安装npm" class="headerlink" title="安装npm"></a>安装npm</h3><pre><code>apt-get install npm</code></pre><h3 id="安装gitbook"><a href="#安装gitbook" class="headerlink" title="安装gitbook"></a>安装gitbook</h3><pre><code>npm install gitbook-cli -g</code></pre><h3 id="安装calibre"><a href="#安装calibre" class="headerlink" title="安装calibre"></a>安装calibre</h3><pre><code>sudo -v &amp;&amp; wget -nv -O- https://download.calibre-ebook.com/linux-installer.py | sudo python -c &quot;import sys; main=lambda:sys.stderr.write(&#39;Download failed\n&#39;); exec(sys.stdin.read()); main()&quot;</code></pre><h2 id="三、PDF转换"><a href="#三、PDF转换" class="headerlink" title="三、PDF转换"></a>三、PDF转换</h2><h3 id="配置支持中文"><a href="#配置支持中文" class="headerlink" title="配置支持中文"></a>配置支持中文</h3><p>在book.json文件plugins属性上添加yahei插件</p>
+<pre><code>&quot;plugins&quot;: [&quot;yahei&quot;]</code></pre><p>配置pluginsConfig下fontSettings属性，使用msyh &gt; 微软雅黑字体</p>
 <pre><code>&quot;pluginsConfig&quot;: {
         &quot;fontSettings&quot;: {
                 &quot;family&quot;: &quot;msyh&quot;,
                 &quot;size&quot;: 2
         }
-}
-</code></pre><p>将<a href="https://github.com/cckuailong/cckuailong.github.io/tree/master/resource/msyh.ttc" target="_blank" rel="noopener">msyh</a>复制到/usr/share/fonts/truetype目录下</p>
+}</code></pre><p>将<a href="https://github.com/cckuailong/cckuailong.github.io/tree/master/resource/msyh.ttc" target="_blank" rel="noopener">msyh</a>复制到/usr/share/fonts/truetype目录下</p>
 <p>安装gitbook需要的插件</p>
-<pre><code>gitbook install
-</code></pre><p>生成pdf</p>
-<pre><code>gitbook pdf
-</code></pre>
+<pre><code>gitbook install</code></pre><p>生成pdf</p>
+<pre><code>gitbook pdf</code></pre>
       
 
       
@@ -361,7 +351,7 @@ node --version
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -458,6 +448,10 @@ node --version
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -470,23 +464,11 @@ node --version
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,6 +484,10 @@ node --version
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -510,11 +496,15 @@ node --version
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,7 +528,7 @@ node --version
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

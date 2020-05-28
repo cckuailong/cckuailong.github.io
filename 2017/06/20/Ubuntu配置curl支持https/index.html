@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -117,9 +117,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -161,9 +161,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Ubuntu配置curl支持https" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Ubuntu配置curl支持https" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,17 +199,12 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>curl是一个开源的文件传输工具，但是ubuntu默认安装的curl不支持https，需要重新将curl<br>进行编译，这里查找了网上的一些资料，综合起来实现了curl对https的支持。</p>
 <a id="more"></a>
+
 <h2 id="二、curl简单介绍："><a href="#二、curl简单介绍：" class="headerlink" title="二、curl简单介绍："></a>二、curl简单介绍：</h2><p>curl是利用URL语法在命令行方式下工作的开源文件传输工具。它被广泛应用在Unix、多种<br>Linux发行版中，并且有DOS和Win32、Win64下的移植版本。 【摘自百度百科】</p>
-<h2 id="三、curl配置https："><a href="#三、curl配置https：" class="headerlink" title="三、curl配置https："></a>三、curl配置https：</h2><h3 id="1-安装openssl"><a href="#1-安装openssl" class="headerlink" title="1. 安装openssl"></a>1. 安装openssl</h3><pre><code>sudo apt install -y openssl libssl-dev
-</code></pre><h3 id="2-下载curl源码-下载版本自选"><a href="#2-下载curl源码-下载版本自选" class="headerlink" title="2. 下载curl源码(下载版本自选)"></a>2. 下载curl源码(下载版本自选)</h3><pre><code>wget http://curl.haxx.se/download/curl-7.52.1.tar.gz
-</code></pre><h3 id="3-解压源码，并进入目录"><a href="#3-解压源码，并进入目录" class="headerlink" title="3. 解压源码，并进入目录"></a>3. 解压源码，并进入目录</h3><pre><code>tar -zxvf curl-7.52.1.tar.gz
-cd curl-7.52.1
-</code></pre><h3 id="4-配置"><a href="#4-配置" class="headerlink" title="4. 配置"></a>4. 配置</h3><pre><code>./configure --disable-shared
-</code></pre><p>这里的–disable-shared是关键，不加会导致curl和libcurl的版本不一致</p>
+<h2 id="三、curl配置https："><a href="#三、curl配置https：" class="headerlink" title="三、curl配置https："></a>三、curl配置https：</h2><h3 id="1-安装openssl"><a href="#1-安装openssl" class="headerlink" title="1. 安装openssl"></a>1. 安装openssl</h3><pre><code>sudo apt install -y openssl libssl-dev</code></pre><h3 id="2-下载curl源码-下载版本自选"><a href="#2-下载curl源码-下载版本自选" class="headerlink" title="2. 下载curl源码(下载版本自选)"></a>2. 下载curl源码(下载版本自选)</h3><pre><code>wget http://curl.haxx.se/download/curl-7.52.1.tar.gz</code></pre><h3 id="3-解压源码，并进入目录"><a href="#3-解压源码，并进入目录" class="headerlink" title="3. 解压源码，并进入目录"></a>3. 解压源码，并进入目录</h3><pre><code>tar -zxvf curl-7.52.1.tar.gz
+cd curl-7.52.1</code></pre><h3 id="4-配置"><a href="#4-配置" class="headerlink" title="4. 配置"></a>4. 配置</h3><pre><code>./configure --disable-shared</code></pre><p>这里的–disable-shared是关键，不加会导致curl和libcurl的版本不一致</p>
 <h3 id="5-安装curl"><a href="#5-安装curl" class="headerlink" title="5. 安装curl"></a>5. 安装curl</h3><pre><code>make
-sudo make install
-</code></pre><h3 id="6-查看curl支持的协议"><a href="#6-查看curl支持的协议" class="headerlink" title="6. 查看curl支持的协议"></a>6. 查看curl支持的协议</h3><pre><code>curl -V
-</code></pre><p>可以看到已经支持了https协议</p>
+sudo make install</code></pre><h3 id="6-查看curl支持的协议"><a href="#6-查看curl支持的协议" class="headerlink" title="6. 查看curl支持的协议"></a>6. 查看curl支持的协议</h3><pre><code>curl -V</code></pre><p>可以看到已经支持了https协议</p>
 
       
 
@@ -343,7 +338,7 @@ sudo make install
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -440,6 +435,10 @@ sudo make install
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -452,23 +451,11 @@ sudo make install
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,6 +471,10 @@ sudo make install
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -492,11 +483,15 @@ sudo make install
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,7 +515,7 @@ sudo make install
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -117,9 +117,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -161,9 +161,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python_scrapy" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Python_scrapy" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,6 +199,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>之前简单的接触过scrapy，但是并没有进一步了解以及使用。最近写完一套PAT题库，想要<br>对题目和解答代码进行整理放到github上，但是苦于题目过多，于是我就想到了使用爬虫<br>来解决这个问题，也一下子想起了scrapy。网络上对这款基于python的爬虫框架普遍给予了<br>很高的评价。scrapy经过不断地完善，功能也日益强大，这里只摘取平时用到比较多的功能<br>进行详细说明。</p>
 <a id="more"></a>
+
 <h2 id="二、scrapy简介："><a href="#二、scrapy简介：" class="headerlink" title="二、scrapy简介："></a>二、scrapy简介：</h2><p>Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架。 可以应用在包括<br>数据挖掘，信息处理或存储历史数据等一系列的程序中。</p>
 <p>其最初是为了 页面抓取 (更确切来说, 网络抓取 )所设计的， 也可以应用在获取API所返<br>回的数据(例如 Amazon Associates Web Services ) 或者通用的网络爬虫。</p>
 <p>介绍一下创建项目之后，生成的文件及其作用</p>
@@ -207,12 +208,10 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 ● tutorial/items.py: 项目中的item文件.
 ● tutorial/pipelines.py: 项目中的pipelines文件.
 ● tutorial/settings.py: 项目的设置文件.
-● tutorial/spiders/: 放置spider代码的目录
-</code></pre><h2 id="三、开始scrapy的第一行代码："><a href="#三、开始scrapy的第一行代码：" class="headerlink" title="三、开始scrapy的第一行代码："></a>三、开始scrapy的第一行代码：</h2><ol>
+● tutorial/spiders/: 放置spider代码的目录</code></pre><h2 id="三、开始scrapy的第一行代码："><a href="#三、开始scrapy的第一行代码：" class="headerlink" title="三、开始scrapy的第一行代码："></a>三、开始scrapy的第一行代码：</h2><ol>
 <li>创建scrapy项目</li>
 </ol>
-<pre><code>scrapy startproject projectname
-</code></pre><ol start="2">
+<pre><code>scrapy startproject projectname</code></pre><ol start="2">
 <li>projectname/spiders目录下创建你的爬虫代码文件（创建一个python文件），内容例如：</li>
 </ol>
 <pre><code>import scrapy
@@ -241,15 +240,13 @@ class PatYiSpider(scrapy.spiders.Spider):
             f.write(res1)
             f.write(res2)
 
-        f.close()
-</code></pre><p>关键变量解释：</p>
+        f.close()</code></pre><p>关键变量解释：</p>
 <pre><code>● name: 用于区别Spider。 该名字必须是唯一的，您不可以为不同的Spider设定相同的名字。
 ● start_urls: 包含了Spider在启动时进行爬取的url列表。 因此，第一个被获取到的页面
 将是其中之一。 后续的URL则从初始的URL获取到的数据中提取。
 ● parse(): 是spider的一个方法。 被调用时，每个初始URL完成下载后生成的 Response 对象
 将会作为唯一的参数传递给该函数。 该方法负责解析返回的数据(response data)，提取数据
-(生成item)以及生成需要进一步处理的URL的 Request 对象。
-</code></pre><ol start="3">
+(生成item)以及生成需要进一步处理的URL的 Request 对象。</code></pre><ol start="3">
 <li>使用selector对特定数据进行爬取</li>
 </ol>
 <p>有xpath，css，re三种方式，使用最多的还是xpath，这里只讲xpath选择器。</p>
@@ -257,13 +254,11 @@ class PatYiSpider(scrapy.spiders.Spider):
 /html/head/title/text(): 选择上面提到的 &lt;title&gt; 元素的文字
 //td:                    选择所有的 &lt;td&gt; 元素
 //div[@class=&quot;mine&quot;]:    选择所有具有 class=&quot;mine&quot; 属性的 div 元素
-//div[@id=&quot;mine&quot;]:       选择id为&quot;mine&quot;的div元素
-</code></pre><ol start="4">
+//div[@id=&quot;mine&quot;]:       选择id为&quot;mine&quot;的div元素</code></pre><ol start="4">
 <li>进行爬取</li>
 </ol>
 <pre><code>cd projectname
-scrapy crawl name
-</code></pre><p>注： 这里的name是2中介绍的你自己给项目定义的name，而不是你创建时用的projectname</p>
+scrapy crawl name</code></pre><p>注： 这里的name是2中介绍的你自己给项目定义的name，而不是你创建时用的projectname</p>
 <ol start="5">
 <li>爬取结束，这样就可以实现批量爬取我想要的网站了。</li>
 </ol>
@@ -337,8 +332,7 @@ class UserAgent(UserAgentMiddleware):
         &quot;(KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24&quot;,  
         &quot;Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 &quot;  
         &quot;(KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24&quot;  
-       ]  
-</code></pre><p>（2） 在settings.py同级目录新建文件proxymiddlewares.py</p>
+       ]  </code></pre><p>（2） 在settings.py同级目录新建文件proxymiddlewares.py</p>
 <pre><code>import random, base64  
 
 class ProxyMiddleware(object):  
@@ -352,8 +346,7 @@ class ProxyMiddleware(object):
         # Set the location of the proxy  
         pro_adr = random.choice(self.proxyList)  
         print(&quot;USE PROXY -&gt; &quot; + pro_adr)  
-        request.meta[&#39;proxy&#39;] = &quot;http://&quot; + pro_adr  
-</code></pre><p>（3） 修改settings.py</p>
+        request.meta[&#39;proxy&#39;] = &quot;http://&quot; + pro_adr  </code></pre><p>（3） 修改settings.py</p>
 <pre><code>BOT_NAME = &#39;ip_proxy_pool&#39;  
 
 SPIDER_MODULES = [&#39;ip_proxy_pool.spiders&#39;]  
@@ -387,12 +380,10 @@ DOWNLOADER_MIDDLEWARES = {
    &#39;ip_proxy_pool.useragent.UserAgent&#39;: 1,  
    &#39;ip_proxy_pool.proxymiddlewares.ProxyMiddleware&#39;:100,  
    &#39;scrapy.downloadermiddleware.useragent.UserAgentMiddleware&#39; : None,  
-}  
-</code></pre><p>（4） 针对动态页面反爬虫的爬取策略<br>使用Selenium + PhantomJS<br>Selenium：自动化web测试解决方案，完全模拟真实的浏览器环境，完全模拟基本上所有的<br>用户操作<br>PhantomJS ：一个没有图形界面的浏览器</p>
+}  </code></pre><p>（4） 针对动态页面反爬虫的爬取策略<br>使用Selenium + PhantomJS<br>Selenium：自动化web测试解决方案，完全模拟真实的浏览器环境，完全模拟基本上所有的<br>用户操作<br>PhantomJS ：一个没有图形界面的浏览器</p>
 <p>五、总结</p>
 <p>这里简单介绍了一下基本的scrapy使用方法，以及常见反爬虫策略及其解决方法，动态页<br>面的处理将会在后面的Blog中进行演示和讲解。scrapy详细使用方法请参考官方手册：</p>
-<pre><code>http://scrapy-chs.readthedocs.io/zh_CN/latest/intro/overview.html
-</code></pre>
+<pre><code>http://scrapy-chs.readthedocs.io/zh_CN/latest/intro/overview.html</code></pre>
       
 
       
@@ -525,7 +516,7 @@ DOWNLOADER_MIDDLEWARES = {
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -622,6 +613,10 @@ DOWNLOADER_MIDDLEWARES = {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -634,23 +629,11 @@ DOWNLOADER_MIDDLEWARES = {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -666,6 +649,10 @@ DOWNLOADER_MIDDLEWARES = {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -674,11 +661,15 @@ DOWNLOADER_MIDDLEWARES = {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -702,7 +693,7 @@ DOWNLOADER_MIDDLEWARES = {
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

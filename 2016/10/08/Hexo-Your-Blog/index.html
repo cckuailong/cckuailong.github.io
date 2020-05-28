@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hexo-Your-Blog" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Hexo-Your-Blog" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,6 +202,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>之前逛一位ctf大神的博客，偶然发现这个Hexo，了解一下，还真是好东西，既能提高技能，<br>又能装逼（qwq这是重点），网上的大多数教程都是大同小异，完全按照那个来搭建会失败，<br>本文图文教程，让小白也能成功搭建起属于自己的专属Blog。</p>
 <a id="more"></a>
+
 <h2 id="二、前期准备："><a href="#二、前期准备：" class="headerlink" title="二、前期准备："></a>二、前期准备：</h2><h3 id="1-Git："><a href="#1-Git：" class="headerlink" title="1.Git："></a>1.Git：</h3><p>一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</p>
 <ol>
 <li><a href="https://git-scm.com/" target="_blank" rel="noopener">下载传送门</a>【需要翻墙】</li>
@@ -218,19 +219,15 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <li>Sublime: <a href="http://www.sublimetext.com/" target="_blank" rel="noopener">下载传送门</a><br>PS. 此处给出的下载版本都是官网版本，sublime Text 3正版会收费，大家可以自行在网<br> 上找破解版。</li>
 </ol>
 <h2 id="三、配置GitHub："><a href="#三、配置GitHub：" class="headerlink" title="三、配置GitHub："></a>三、配置GitHub：</h2><h3 id="1-注册GitHub账号"><a href="#1-注册GitHub账号" class="headerlink" title="1. 注册GitHub账号"></a>1. 注册<a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>账号</h3><h3 id="2-配置SSH-keys"><a href="#2-配置SSH-keys" class="headerlink" title="2. 配置SSH keys"></a>2. 配置SSH keys</h3><p>PS. 命令行指令win+R打开运行窗口，输入cmd，回车，打开shell</p>
-<h4 id="1-检查SSH-keys设置"><a href="#1-检查SSH-keys设置" class="headerlink" title="1)检查SSH keys设置"></a>1)检查SSH keys设置</h4><pre><code class="bash">$ cd ~/. ssh 检查本机的ssh密钥
-</code></pre>
+<h4 id="1-检查SSH-keys设置"><a href="#1-检查SSH-keys设置" class="headerlink" title="1)检查SSH keys设置"></a>1)检查SSH keys设置</h4><pre><code class="bash">$ cd ~/. ssh 检查本机的ssh密钥</code></pre>
 <p>如果提示：No such file or directory 说明你是第一次使用git。</p>
-<h4 id="2-生成新的SSH-keys"><a href="#2-生成新的SSH-keys" class="headerlink" title="2)生成新的SSH keys"></a>2)生成新的SSH keys</h4><pre><code class="bash">$ ssh-keygen -t rsa -C &quot;youremail&quot;
-</code></pre>
+<h4 id="2-生成新的SSH-keys"><a href="#2-生成新的SSH-keys" class="headerlink" title="2)生成新的SSH keys"></a>2)生成新的SSH keys</h4><pre><code class="bash">$ ssh-keygen -t rsa -C &quot;youremail&quot;</code></pre>
 <pre><code class="bash">Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):&lt;回车就好&gt;
-</code></pre>
+Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):&lt;回车就好&gt;</code></pre>
 <p>PS. Youremail处填写你自己的邮箱，例如 <a href="mailto:lovebear@gmail.com" target="_blank" rel="noopener">lovebear@gmail.com</a></p>
 <p>然后系统会要你输入密码：</p>
 <pre><code class="bash">Enter passphrase (empty for no passphrase):&lt;输入加密串&gt;
-Enter same passphrase again:&lt;再次输入加密串&gt;
-</code></pre>
+Enter same passphrase again:&lt;再次输入加密串&gt;</code></pre>
 <p>在回车中会提示你输入一个密码，这个密码会在你提交项目时使用，如果为空的话提交项<br>目时则不用输入。</p>
 <p>PS. 输入密码的时候没有*字样的，你直接输入就可以了。</p>
 <p>成功生成SSH keys会在C:/User/登录用户名/.ssh产生两个文件id_rsa和id_rsa.pub</p>
@@ -245,21 +242,17 @@ Enter same passphrase again:&lt;再次输入加密串&gt;
 <li>把你id_rsa.pub中的内容（密钥）复制到key文本框中，点击 add SSH key </li>
 </ul>
 <h4 id="4-测试是否配置成功"><a href="#4-测试是否配置成功" class="headerlink" title="4)测试是否配置成功"></a>4)测试是否配置成功</h4><p>输入下面的命令，看看设置是否成功：</p>
-<pre><code class="bash">$ ssh -T git@github.com
-</code></pre>
+<pre><code class="bash">$ ssh -T git@github.com</code></pre>
 <p>出现下图：</p>
 <pre><code class="bash">The authenticity of host &#39;github.com (207.97.227.239)&#39; can&#39;t be established.
 RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
-Are you sure you want to continue connecting (yes/no)?
-</code></pre>
+Are you sure you want to continue connecting (yes/no)?</code></pre>
 <p>输入yes</p>
-<pre><code class="bash">Hi cnfeat! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
-</code></pre>
+<pre><code class="bash">Hi cnfeat! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></pre>
 <p>配置成功</p>
 <h4 id="5-设置基本用户信息"><a href="#5-设置基本用户信息" class="headerlink" title="5)设置基本用户信息"></a>5)设置基本用户信息</h4><p>Git会根据用户的名字和邮箱来记录提交。GitHub也是用这些信息来做权限的处理，输入下面<br>的代码进行个人信息的设置，把名称和邮箱替换成你自己的，名字必须是你的真名，而不是GitHub的昵称。</p>
 <pre><code class="bash">$ git config --global user.name &quot;cnfeat&quot;//用户名
-$ git config --global user.email  &quot;cnfeat@gmail.com&quot;//填写自己的邮箱
-</code></pre>
+$ git config --global user.email  &quot;cnfeat@gmail.com&quot;//填写自己的邮箱</code></pre>
 <h3 id="至此，SSH-keys配置成功。"><a href="#至此，SSH-keys配置成功。" class="headerlink" title="至此，SSH keys配置成功。"></a>至此，SSH keys配置成功。</h3><h2 id="四、GitHub上建立仓库（GitHub-Pages）："><a href="#四、GitHub上建立仓库（GitHub-Pages）：" class="headerlink" title="四、GitHub上建立仓库（GitHub Pages）："></a>四、GitHub上建立仓库（GitHub Pages）：</h2><p>与GitHub建立好链接之后，就可以方便的使用它提供的Pages服务，GitHub Pages分两种，一种是你的GitHub<br>用户名建立的username.github.io这样的用户&amp;组织页（站），另一种是依附项目的pages。</p>
 <p>想建立个人博客是用的第一种，形如beiyuu.github.io这样的可访问的站</p>
 <p>PS. 每个用户名下面只能建立一个。</p>
@@ -272,39 +265,32 @@ $ git config --global user.email  &quot;cnfeat@gmail.com&quot;//填写自己的�
 <h2 id="六、Hexo-Your-Blog："><a href="#六、Hexo-Your-Blog：" class="headerlink" title="六、Hexo Your Blog："></a>六、Hexo Your Blog：</h2><h3 id="1-Hexo简介"><a href="#1-Hexo简介" class="headerlink" title="1.Hexo简介"></a>1.Hexo简介</h3><p>Hexo是一个简单、快速、强大的博客发布工具，支持<a href="http://ibruce.info/2013/11/26/markdown/" target="_blank" rel="noopener">Markdown</a>格式。</p>
 <h3 id="2-打开Git"><a href="#2-打开Git" class="headerlink" title="2.打开Git"></a>2.打开Git</h3><p>找到你安装Git的目录，双击git-bash，或者 右键，在选项中点击git-bash，打开Git命令行。</p>
 <h3 id="3-安装Hexo"><a href="#3-安装Hexo" class="headerlink" title="3.安装Hexo"></a>3.安装Hexo</h3><p>在Git命令行执行下列命令：</p>
-<pre><code class="bash">npm install -g hexo
-</code></pre>
+<pre><code class="bash">npm install -g hexo</code></pre>
 <h3 id="4-初始化Hexo"><a href="#4-初始化Hexo" class="headerlink" title="4.初始化Hexo"></a>4.初始化Hexo</h3><p>在你想要部署的位置建立一个新的文件夹（快捷键ctr+shift+n），命名为Hexo。<br>在这个文件夹下，右键，选择git-bash，输入下述命令后，回车：</p>
-<pre><code class="bash">$ hexo init
-</code></pre>
+<pre><code class="bash">$ hexo init</code></pre>
 <p>Hexo随后会自动在目标文件夹下载网站所需要的所有文件。</p>
 <h3 id="5-生成静态界面"><a href="#5-生成静态界面" class="headerlink" title="5.生成静态界面"></a>5.生成静态界面</h3><p>执行</p>
-<pre><code class="bash">$ hexo g
-</code></pre>
+<pre><code class="bash">$ hexo g</code></pre>
 <p>生成静态页面至hexo\public\目录。</p>
 <h3 id="6-本地启动"><a href="#6-本地启动" class="headerlink" title="6.本地启动"></a>6.本地启动</h3><p>执行</p>
-<pre><code class="bash">$ hexo s
-</code></pre>
+<pre><code class="bash">$ hexo s</code></pre>
 <p>进行本地启动。</p>
 <p>启动完成后，打开浏览器，输入<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 就可以看到效果，我们的Hexo博客已经搭建起来了。</p>
 <p>PS. Ctrl+c停止启动，相当于断开本地启动，<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 将不能被访问，一般本地启动的作用是<br>本地调试，根据博客展示效果，可以及时修改，都修改完毕后，再部署到GitHub上。<br>（下一小节讲解如何将博客部署到GitHub）</p>
 <h2 id="七、将博客部署到GitHub："><a href="#七、将博客部署到GitHub：" class="headerlink" title="七、将博客部署到GitHub："></a>七、将博客部署到GitHub：</h2><h3 id="1-部署到GitHub前需要配置-config-yml文件，首先找到下面的内容"><a href="#1-部署到GitHub前需要配置-config-yml文件，首先找到下面的内容" class="headerlink" title="1.部署到GitHub前需要配置_config.yml文件，首先找到下面的内容"></a>1.部署到GitHub前需要配置_config.yml文件，首先找到下面的内容</h3><pre><code class="bash"># Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type:
-</code></pre>
+  type:</code></pre>
 <p>修改为：</p>
 <pre><code class="bash"># Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: github
   repository: git@github.com:username/username.github.io.git
-  branch: master
-</code></pre>
+  branch: master</code></pre>
 <p>PS. 两个Username处替换为自己的GitHub登陆用户名，即上面创建的仓库名。</p>
 <p><strong>这里注意，如果你的Hexo是3.0版本，type处的github应该更改为git，才可以部署成功。</strong></p>
-<h3 id="2-执行："><a href="#2-执行：" class="headerlink" title="2.执行："></a>2.执行：</h3><pre><code class="bash">$ hexo g -d
-</code></pre>
+<h3 id="2-执行："><a href="#2-执行：" class="headerlink" title="2.执行："></a>2.执行：</h3><pre><code class="bash">$ hexo g -d</code></pre>
 <p>完成部署。</p>
 <h3 id="3-登陆GitHub，打开刚才创建的仓库（Repositary），发现里面多了很多部署好的文件。"><a href="#3-登陆GitHub，打开刚才创建的仓库（Repositary），发现里面多了很多部署好的文件。" class="headerlink" title="3.登陆GitHub，打开刚才创建的仓库（Repositary），发现里面多了很多部署好的文件。"></a>3.登陆GitHub，打开刚才创建的仓库（Repositary），发现里面多了很多部署好的文件。</h3><p><img src="http://lovebear.top/img/Hexo-Your-Blog/Hexo-Your-Blog_4.png" alt="demo" title="demo"></p>
 <p>PS. 你的文件可能没有404.html和CNAME两个文件，不要急，下面会讲到。</p>
@@ -313,8 +299,7 @@ deploy:
 <h2 id="3-DNS设置"><a href="#3-DNS设置" class="headerlink" title="3.DNS设置"></a>3.DNS设置</h2><h3 id="1-注册DNSpod（速度快，稳定，还免费！！！）"><a href="#1-注册DNSpod（速度快，稳定，还免费！！！）" class="headerlink" title="1)注册DNSpod（速度快，稳定，还免费！！！）"></a>1)注册DNSpod（速度快，稳定，还免费！！！）</h3><h3 id="2-在左侧选中域名解析，点击，添加域名，输入你刚才购买的域名"><a href="#2-在左侧选中域名解析，点击，添加域名，输入你刚才购买的域名" class="headerlink" title="2)在左侧选中域名解析，点击，添加域名，输入你刚才购买的域名"></a>2)在左侧选中域名解析，点击，添加域名，输入你刚才购买的域名</h3><p><img src="http://lovebear.top/img/Hexo-Your-Blog/Hexo-Your-Blog_5.png" alt="demo" title="demo"></p>
 <h3 id="3-点击添加成功的域名（这里是lovebear-top），进入到管理你的域名后，点击记录，添加两条记录（一个是-，另一个是www）"><a href="#3-点击添加成功的域名（这里是lovebear-top），进入到管理你的域名后，点击记录，添加两条记录（一个是-，另一个是www）" class="headerlink" title="3)点击添加成功的域名（这里是lovebear.top），进入到管理你的域名后，点击记录，添加两条记录（一个是@，另一个是www）"></a>3)点击添加成功的域名（这里是lovebear.top），进入到管理你的域名后，点击记录，添加两条记录（一个是@，另一个是www）</h3><p><strong>注意：</strong>在添加记录时，会填写记录值，获得你的记录值的方式如下：</p>
 <p>Win+R打开运行，输入cmd，回车，打开shell，输入</p>
-<pre><code class="bash">Ping username.github.io
-</code></pre>
+<pre><code class="bash">Ping username.github.io</code></pre>
 <p><img src="http://lovebear.top/img/Hexo-Your-Blog/Hexo-Your-Blog_6.png" alt="demo" title="demo"></p>
 <p>方括号中的ip即为你的记录值，把它填到两个记录中就可以啦。</p>
 <h3 id="4-登陆百度开放云，点击域名管理，点击右方的更多操作，选择域名信息"><a href="#4-登陆百度开放云，点击域名管理，点击右方的更多操作，选择域名信息" class="headerlink" title="4)登陆百度开放云，点击域名管理，点击右方的更多操作，选择域名信息"></a>4)登陆百度开放云，点击域名管理，点击右方的更多操作，选择域名信息</h3><p><img src="http://lovebear.top/img/Hexo-Your-Blog/Hexo-Your-Blog_7.png" alt="demo" title="demo"></p>
@@ -454,7 +439,7 @@ deploy:
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -551,6 +536,10 @@ deploy:
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -563,23 +552,11 @@ deploy:
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,6 +572,10 @@ deploy:
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -603,11 +584,15 @@ deploy:
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -631,7 +616,7 @@ deploy:
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

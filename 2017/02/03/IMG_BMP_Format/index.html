@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-IMG_BMP_Format" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-IMG_BMP_Format" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,39 +202,38 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>这两天遇到了许多关于bmp隐藏信息（最低位隐藏）的问题，在解决问题的过程中，我发现BMP<br>格式的图片可以细分为很多种，就决定将BMP文件详细的研究一下，查阅了一些资料进行整理，<br>在这里进行记录。</p>
 <a id="more"></a>
+
 <h2 id="二、简单介绍："><a href="#二、简单介绍：" class="headerlink" title="二、简单介绍："></a>二、简单介绍：</h2><p>BMP文件格式，又称为Bitmap（位图）或是DIB(Device-Independent Device，设备无关位图)，是Windows<br>系统中广泛使用的图像文件格式。由于它可以不作任何变换地保存图像像素域的数据，因<br>此成为我们取得RAW数据的重要来源。Windows的图形用户界面（graphical user interfaces）也<br>在它的内建图像子系统GDI中对BMP格式提供了支持。</p>
 <p>注意： BMP文件采用小尾顺序进行记录（即低地址村存放低位数据，高地址存放高位数据）</p>
 <h2 id="三、BMP格式结构："><a href="#三、BMP格式结构：" class="headerlink" title="三、BMP格式结构："></a>三、BMP格式结构：</h2><table>
 <thead>
 <tr>
-<th style="text-align:center">数据段名称</th>
-<th style="text-align:center">对应的Windows结构体</th>
-<th style="text-align:center">大小(byte)</th>
+<th align="center">数据段名称</th>
+<th align="center">对应的Windows结构体</th>
+<th align="center">大小(byte)</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">BMP文件头</td>
-<td style="text-align:center">BITMAPFILEHEADER</td>
-<td style="text-align:center">14</td>
+<tbody><tr>
+<td align="center">BMP文件头</td>
+<td align="center">BITMAPFILEHEADER</td>
+<td align="center">14</td>
 </tr>
 <tr>
-<td style="text-align:center">位图信息头</td>
-<td style="text-align:center">BITMAPINFOHEADER</td>
-<td style="text-align:center">40</td>
+<td align="center">位图信息头</td>
+<td align="center">BITMAPINFOHEADER</td>
+<td align="center">40</td>
 </tr>
 <tr>
-<td style="text-align:center">调色板</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">颜色索引数决定</td>
+<td align="center">调色板</td>
+<td align="center"></td>
+<td align="center">颜色索引数决定</td>
 </tr>
 <tr>
-<td style="text-align:center">位图数据</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">图像尺寸决定</td>
+<td align="center">位图数据</td>
+<td align="center"></td>
+<td align="center">图像尺寸决定</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <ul>
 <li>bmp文件头(bmp file header)： 文件的格式、大小等信息</li>
 <li>位图信息头(bitmap information)： 图像数据的尺寸、位平面数、压缩方式、颜色索引等信息</li>
@@ -249,49 +248,46 @@ DWORD bfSize;
 UINT16 bfReserved1; 
 UINT16 bfReserved2; 
 DWORD bfOffBits;
-} BITMAPFILEHEADER;
-</code></pre><table>
+} BITMAPFILEHEADER;</code></pre><table>
 <thead>
 <tr>
-<th style="text-align:center">变量名</th>
-<th style="text-align:center">地址偏移</th>
-<th style="text-align:center">大小(byte)</th>
-<th style="text-align:left">作用</th>
+<th align="center">变量名</th>
+<th align="center">地址偏移</th>
+<th align="center">大小(byte)</th>
+<th align="left">作用</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">bfType</td>
-<td style="text-align:center">0000H</td>
-<td style="text-align:center">2</td>
-<td style="text-align:left">文件类型，取值：<br>● BM – Windows<br>● BA – OS/2 Bitmap Array<br>● CI – OS/2 Color Icon<br>● CP – OS/2 Color Pointer<br>● IC – OS/2 Icon<br>● PT – OS/2 Pointer</td>
+<tbody><tr>
+<td align="center">bfType</td>
+<td align="center">0000H</td>
+<td align="center">2</td>
+<td align="left">文件类型，取值：<br>● BM – Windows<br>● BA – OS/2 Bitmap Array<br>● CI – OS/2 Color Icon<br>● CP – OS/2 Color Pointer<br>● IC – OS/2 Icon<br>● PT – OS/2 Pointer</td>
 </tr>
 <tr>
-<td style="text-align:center">bfSize</td>
-<td style="text-align:center">0002H</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">说明该位图文件的大小，以字节为单位</td>
+<td align="center">bfSize</td>
+<td align="center">0002H</td>
+<td align="center">4</td>
+<td align="left">说明该位图文件的大小，以字节为单位</td>
 </tr>
 <tr>
-<td style="text-align:center">bfReserved1</td>
-<td style="text-align:center">0006H</td>
-<td style="text-align:center">2</td>
-<td style="text-align:left">保留</td>
+<td align="center">bfReserved1</td>
+<td align="center">0006H</td>
+<td align="center">2</td>
+<td align="left">保留</td>
 </tr>
 <tr>
-<td style="text-align:center">bfreserved2</td>
-<td style="text-align:center">0008H</td>
-<td style="text-align:center">2</td>
-<td style="text-align:left">保留</td>
+<td align="center">bfreserved2</td>
+<td align="center">0008H</td>
+<td align="center">2</td>
+<td align="left">保留</td>
 </tr>
 <tr>
-<td style="text-align:center">bfOffBits</td>
-<td style="text-align:center">000AH</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">说明从文件头开始到实际图像数据间字节的偏移（一般通过这种方式找到位图数据）</td>
+<td align="center">bfOffBits</td>
+<td align="center">000AH</td>
+<td align="center">4</td>
+<td align="left">说明从文件头开始到实际图像数据间字节的偏移（一般通过这种方式找到位图数据）</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h3 id="位图信息头"><a href="#位图信息头" class="headerlink" title="位图信息头"></a>位图信息头</h3><pre><code>typedef struct tagBITMAPINFOHEADER 
 {  
 DWORD biSize;
@@ -305,85 +301,82 @@ DWORD biXPelsPerMeter;
 DWORD biYPelsPerMeter;
 DWORD biClrUsed;
 DWORD biClrImportant;
-} BITMAPINFOHEADER;
-</code></pre><table>
+} BITMAPINFOHEADER;</code></pre><table>
 <thead>
 <tr>
-<th style="text-align:center">变量名</th>
-<th style="text-align:center">地址偏移</th>
-<th style="text-align:center">大小(byte)</th>
-<th style="text-align:left">作用</th>
+<th align="center">变量名</th>
+<th align="center">地址偏移</th>
+<th align="center">大小(byte)</th>
+<th align="left">作用</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">biSize</td>
-<td style="text-align:center">000EH</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">BITMAPINFOHEADER结构所需要的字节数</td>
+<tbody><tr>
+<td align="center">biSize</td>
+<td align="center">000EH</td>
+<td align="center">4</td>
+<td align="left">BITMAPINFOHEADER结构所需要的字节数</td>
 </tr>
 <tr>
-<td style="text-align:center">biWidth</td>
-<td style="text-align:center">0012H</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">说明图像的宽度，像素为单位</td>
+<td align="center">biWidth</td>
+<td align="center">0012H</td>
+<td align="center">4</td>
+<td align="left">说明图像的宽度，像素为单位</td>
 </tr>
 <tr>
-<td style="text-align:center">biHeight</td>
-<td style="text-align:center">0016H</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">说明图像的高度，像素为单位<br>注：biHeight还用来指明该图像是倒向位图（正数）还是正向（负数）位图</td>
+<td align="center">biHeight</td>
+<td align="center">0016H</td>
+<td align="center">4</td>
+<td align="left">说明图像的高度，像素为单位<br>注：biHeight还用来指明该图像是倒向位图（正数）还是正向（负数）位图</td>
 </tr>
 <tr>
-<td style="text-align:center">biPlanes</td>
-<td style="text-align:center">001AH</td>
-<td style="text-align:center">2</td>
-<td style="text-align:left">说明颜色平面数，总为1</td>
+<td align="center">biPlanes</td>
+<td align="center">001AH</td>
+<td align="center">2</td>
+<td align="left">说明颜色平面数，总为1</td>
 </tr>
 <tr>
-<td style="text-align:center">biBitCount</td>
-<td style="text-align:center">001CH</td>
-<td style="text-align:center">2</td>
-<td style="text-align:left">说明比特数/像素，值为1、4、8、16、24、32</td>
+<td align="center">biBitCount</td>
+<td align="center">001CH</td>
+<td align="center">2</td>
+<td align="left">说明比特数/像素，值为1、4、8、16、24、32</td>
 </tr>
 <tr>
-<td style="text-align:center">biCompression</td>
-<td style="text-align:center">001EH</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">说明图像数据压缩的类型：<br>● 0 – BI_RGB 不压缩（最常用）<br>● 1 – BI_RLE8 8比特游程编码(RLE)，只用于8位位图<br>● 2 – BI_RLE4 4比特游程编码(RLE)，只用于4位位图<br>● 3 – BI_BITFIELDS 比特域，用于16/32位位图<br>● 4 – BI_JPEG JPEG 位图含JPEG图像(仅用于打印机)<br>● 5 – BI_PNG PNG 位图含PNG图像(仅用于打印机)</td>
+<td align="center">biCompression</td>
+<td align="center">001EH</td>
+<td align="center">4</td>
+<td align="left">说明图像数据压缩的类型：<br>● 0 – BI_RGB 不压缩（最常用）<br>● 1 – BI_RLE8 8比特游程编码(RLE)，只用于8位位图<br>● 2 – BI_RLE4 4比特游程编码(RLE)，只用于4位位图<br>● 3 – BI_BITFIELDS 比特域，用于16/32位位图<br>● 4 – BI_JPEG JPEG 位图含JPEG图像(仅用于打印机)<br>● 5 – BI_PNG PNG 位图含PNG图像(仅用于打印机)</td>
 </tr>
 <tr>
-<td style="text-align:center">biSizeImage</td>
-<td style="text-align:center">0022H</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">图像大小，字节为单位（BI_RGB时，可设置为0）</td>
+<td align="center">biSizeImage</td>
+<td align="center">0022H</td>
+<td align="center">4</td>
+<td align="left">图像大小，字节为单位（BI_RGB时，可设置为0）</td>
 </tr>
 <tr>
-<td style="text-align:center">biXPelsPerMeter</td>
-<td style="text-align:center">0026H</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">水平分辨率，用像素/米表示，有符号整数，0为默认设置</td>
+<td align="center">biXPelsPerMeter</td>
+<td align="center">0026H</td>
+<td align="center">4</td>
+<td align="left">水平分辨率，用像素/米表示，有符号整数，0为默认设置</td>
 </tr>
 <tr>
-<td style="text-align:center">biYPelsPerMeter</td>
-<td style="text-align:center">002AH</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">垂直分辨率，用像素/米表示，有符号整数，0为默认设置</td>
+<td align="center">biYPelsPerMeter</td>
+<td align="center">002AH</td>
+<td align="center">4</td>
+<td align="left">垂直分辨率，用像素/米表示，有符号整数，0为默认设置</td>
 </tr>
 <tr>
-<td style="text-align:center">biClrUsed</td>
-<td style="text-align:center">002EH</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">位图实际使用彩色表中颜色索引（0值表示适用所有调色板项）</td>
+<td align="center">biClrUsed</td>
+<td align="center">002EH</td>
+<td align="center">4</td>
+<td align="left">位图实际使用彩色表中颜色索引（0值表示适用所有调色板项）</td>
 </tr>
 <tr>
-<td style="text-align:center">biClrImportant</td>
-<td style="text-align:center">0032H</td>
-<td style="text-align:center">4</td>
-<td style="text-align:left">对图像显示有重要影响的颜色索引的数目（0值表示都重要）</td>
+<td align="center">biClrImportant</td>
+<td align="center">0032H</td>
+<td align="center">4</td>
+<td align="left">对图像显示有重要影响的颜色索引的数目（0值表示都重要）</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h3 id="调色板"><a href="#调色板" class="headerlink" title="调色板"></a>调色板</h3><p>下面的数据就是调色板了。前面也已经提过，调色板其实是一张映射表，标识颜色索引号与其<br>代表的颜色的对应关系。它在文件中的布局就像一个二维数组palette[N][4],其中N表示总的<br>颜色索引数，每行的四个元素分别表示该索引对应的B、G、R和Alpha的值，每个分量占一个字节。<br>如不设透明通道时，Alpha为0。因为前面知道，本图有256个颜色索引，因此N = 256。索引号就是<br>所在行的行号，对应的颜色就是所在行的四个元素。</p>
 <h3 id="位图数据"><a href="#位图数据" class="headerlink" title="位图数据"></a>位图数据</h3><p>每个像素占的字节数取决于biBitCount的值，如果biBitCount=8，像素值代表颜色索引值，如果<br>biBitCount=24、32，则位图数据区就不是索引，而是实际的像素值。<br>24位RGB按照BGR的顺序来存储每个像素的各颜色通道的值，一个像素的所有颜色分量值都存<br>完后才存下一个下一个像素，不进行交织存储。<br>32位数据按照BGRA的顺序存储，其余与24位位图的方式一样。</p>
 <p>如果位图信息中图像高度是正数，位图数据排列为，从图像的左下角到图像的右上角，并且以<br>行为主序。</p>
@@ -396,18 +389,15 @@ DWORD biClrImportant;
 <li>第四个部分是Alpha分量的掩模（缺省为0）</li>
 </ul>
 <p>典型的调色板规范在文件中的顺序为为：</p>
-<pre><code>00F8 0000 E007 0000 1F00 0000 0000 0000
-</code></pre><p>其中</p>
+<pre><code>00F8 0000 E007 0000 1F00 0000 0000 0000</code></pre><p>其中</p>
 <pre><code>00F8 0000 为 FB00h=1111100000000000（二进制），是蓝红分量的掩码。 
 E007 0000 为 07E0h=0000011111100000（二进制），是绿色分量的掩码。 
 1F00 0000 为 001Fh=0000000000011111（二进制），是蓝色分量的掩码。 
-0000 0000 设置为0。
-</code></pre><p>将掩码跟像素值进行“与”运算再进行移位操作就可以得到各色分量值。看看掩码，就可以明白<br>事实上在每个像素值的两个字节16位中，按从高到低取5、6、5位分别就是r、g、b分量值。取出分<br>量值后把r、g、b值分别乘以8、4、8就可以补齐每个分量为一个字节，再把这三个字节按BGR组合，<br>放入存储器，就可以转换为24位标准BMP格式了。</p>
+0000 0000 设置为0。</code></pre><p>将掩码跟像素值进行“与”运算再进行移位操作就可以得到各色分量值。看看掩码，就可以明白<br>事实上在每个像素值的两个字节16位中，按从高到低取5、6、5位分别就是r、g、b分量值。取出分<br>量值后把r、g、b值分别乘以8、4、8就可以补齐每个分量为一个字节，再把这三个字节按BGR组合，<br>放入存储器，就可以转换为24位标准BMP格式了。</p>
 <p>这样我们假设在位图数据区有一个像素的数据在文件中表示为02 F1。这个数据实际上应为F102：</p>
 <pre><code>r = (F102 AND F800) &gt;&gt; 8 = F0h = 240
 g = (F102 AND 07E0) &gt;&gt; 3 = 20h = 32 
-b = (F102 AND 001F) &lt;&lt; 3 = 10h =16
-</code></pre><p>至此我们就可以显示了。</p>
+b = (F102 AND 001F) &lt;&lt; 3 = 10h =16</code></pre><p>至此我们就可以显示了。</p>
 
       
 
@@ -541,7 +531,7 @@ b = (F102 AND 001F) &lt;&lt; 3 = 10h =16
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -638,6 +628,10 @@ b = (F102 AND 001F) &lt;&lt; 3 = 10h =16
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -650,23 +644,11 @@ b = (F102 AND 001F) &lt;&lt; 3 = 10h =16
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -682,6 +664,10 @@ b = (F102 AND 001F) &lt;&lt; 3 = 10h =16
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -690,11 +676,15 @@ b = (F102 AND 001F) &lt;&lt; 3 = 10h =16
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -718,7 +708,7 @@ b = (F102 AND 001F) &lt;&lt; 3 = 10h =16
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

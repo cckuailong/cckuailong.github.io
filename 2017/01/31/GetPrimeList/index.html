@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-GetPrimeList" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-GetPrimeList" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -203,6 +203,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>进入大学第一学期的第一个实验就是，在一定的时间限制内，找出0~2000000的素数，也就是<br>创建一个2000000以内的素数表。普通的素数遍历方式肯定行不通，简单优化（如sqrt(2000000),<br>循环时剔除偶数，等方法）也不见得能通过测试，这里介绍两种进一步优化的算法。</p>
 <p>我们知道，要想减少算法的时间复杂度，除了优化算法，另一种必不可少的思想就是“空间换<br>时间”。本文第一种算法是对算法的优化，第二种算法是利用“空间换时间”的思想，使时间复杂<br>度达到最小化。</p>
 <a id="more"></a>
+
 <h2 id="二、素数表优化算法："><a href="#二、素数表优化算法：" class="headerlink" title="二、素数表优化算法："></a>二、素数表优化算法：</h2><h3 id="1-算法思想："><a href="#1-算法思想：" class="headerlink" title="1. 算法思想："></a>1. 算法思想：</h3><p>判断一个数是不是素数的时候，我们经常的做法就是从2遍历到这个数的平方根大小（即2&lt;=i&lt;=sqrt(n)），<br>用 n%i 判断是否等于0，来进行素数判断。<br>对这个算法进行优化，就是需要减少i的个数，来减少循环的次数。那么思考，如果一个合数h<br>作为n（判断n是否为素数）的因子，则n一定不是素数。所以，这里只需要令i为素数（即遍历素表），<br>来计算n%i即可。</p>
 <h3 id="2-python代码"><a href="#2-python代码" class="headerlink" title="2. python代码"></a>2. python代码</h3><pre><code>def isPrime(n,pList):  
     i=0
@@ -218,8 +219,7 @@ def getPrimeList(num):
     for i in xrange(3,num,2):
         if(isPrime(i,pList)):
             pList.append(i)
-    return pList
-</code></pre><h2 id="三、空间换时间法："><a href="#三、空间换时间法：" class="headerlink" title="三、空间换时间法："></a>三、空间换时间法：</h2><h3 id="1-算法思想：-1"><a href="#1-算法思想：-1" class="headerlink" title="1. 算法思想："></a>1. 算法思想：</h3><p>首先为1到2000000创建一个列表，记录是否被访问过（初始化为0，访问过为1）。一个数为素数，<br>那么它的所有整数倍的数都是合数，将其整数倍的数标记为已访问，这样访问遍历的次数<br>将会大大减少。</p>
+    return pList</code></pre><h2 id="三、空间换时间法："><a href="#三、空间换时间法：" class="headerlink" title="三、空间换时间法："></a>三、空间换时间法：</h2><h3 id="1-算法思想：-1"><a href="#1-算法思想：-1" class="headerlink" title="1. 算法思想："></a>1. 算法思想：</h3><p>首先为1到2000000创建一个列表，记录是否被访问过（初始化为0，访问过为1）。一个数为素数，<br>那么它的所有整数倍的数都是合数，将其整数倍的数标记为已访问，这样访问遍历的次数<br>将会大大减少。</p>
 <h3 id="2-python代码："><a href="#2-python代码：" class="headerlink" title="2. python代码："></a>2. python代码：</h3><pre><code>def isPrime_f(n):
     for i in xrange(2,int(math.sqrt(n)),2):
         if(n%i==0):
@@ -247,20 +247,17 @@ def getPrimeList_fast(num):
                     visited[tmp]=1
             else:
                 continue
-    return pList
-</code></pre><h2 id="四、两算法时间复杂度对比："><a href="#四、两算法时间复杂度对比：" class="headerlink" title="四、两算法时间复杂度对比："></a>四、两算法时间复杂度对比：</h2><ol>
+    return pList</code></pre><h2 id="四、两算法时间复杂度对比："><a href="#四、两算法时间复杂度对比：" class="headerlink" title="四、两算法时间复杂度对比："></a>四、两算法时间复杂度对比：</h2><ol>
 <li>python自带记录代码运行时间的模块timeit，编写如下代码：</li>
 </ol>
 <pre><code>t1=Timer(&quot;getPrimeList(100000)&quot;,&quot;from __main__ import getPrimeList&quot;)
 t2=Timer(&quot;getPrimeList_fast(100000)&quot;,&quot;from __main__ import getPrimeList_fast&quot;)
 print t1.timeit(1)
-print t2.timeit(1)
-</code></pre><ol start="2">
+print t2.timeit(1)</code></pre><ol start="2">
 <li>运行结果：</li>
 </ol>
 <pre><code>0.164174172965     #优化算法
-0.0783876242201    #空间换时间法
-</code></pre><h2 id="五、总结："><a href="#五、总结：" class="headerlink" title="五、总结："></a>五、总结：</h2><p>两种算法的优化效果都非常的好，第二种方法虽然非常快，但是十分耗费空间，这时，算法<br>的选择就需要大家根据需求进行必要选择了。</p>
+0.0783876242201    #空间换时间法</code></pre><h2 id="五、总结："><a href="#五、总结：" class="headerlink" title="五、总结："></a>五、总结：</h2><p>两种算法的优化效果都非常的好，第二种方法虽然非常快，但是十分耗费空间，这时，算法<br>的选择就需要大家根据需求进行必要选择了。</p>
 
       
 
@@ -394,7 +391,7 @@ print t2.timeit(1)
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -491,6 +488,10 @@ print t2.timeit(1)
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -503,23 +504,11 @@ print t2.timeit(1)
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,6 +524,10 @@ print t2.timeit(1)
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -543,11 +536,15 @@ print t2.timeit(1)
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,7 +568,7 @@ print t2.timeit(1)
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -117,9 +117,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -161,9 +161,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hexo-Yilia-Valine" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Hexo-Yilia-Valine" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,6 +199,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p><a href="http://lovebear.top/2016/10/08/Hexo-Your-Blog/" target="_blank" rel="noopener">Hexo Your Blog</a>教我们搭建自己的Hexo博客，使用的主题是Yilia。<br>由于多说等Yilia自兼容的评论系统已经跑路，所以选择为其配置Valine来满足需求。</p>
 <a id="more"></a>
+
 <h2 id="二、配置LeanCloud"><a href="#二、配置LeanCloud" class="headerlink" title="二、配置LeanCloud"></a>二、配置LeanCloud</h2><p>Valine是配合<a href="https://www.leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a>使用的，所以首先</p>
 <ul>
 <li><p>注册LeanCloud账号并登录控制台</p>
@@ -230,8 +231,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
         placeholder: &quot;&lt;%= theme.valine.placeholder %&gt;&quot;,
         avatar:&quot;&lt;%= theme.valine.avatar %&gt;&quot;,
     });
-&lt;/script&gt;
-</code></pre><ul>
+&lt;/script&gt;</code></pre><ul>
 <li>修改 article.ejs</li>
 </ul>
 <p>在任意处加上</p>
@@ -248,8 +248,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       }) %&gt;
     &lt;/section&gt;
   &lt;% } %&gt;
-&lt;% } %&gt;
-</code></pre><ul>
+&lt;% } %&gt;</code></pre><ul>
 <li>修改 Yilia配置文件(themes/yilia/_config.yml)</li>
 </ul>
 <p>添加</p>
@@ -260,13 +259,11 @@ valine:
   verify: false #验证码
   notify: false #评论回复提醒
   avatar: retro #评论列表头像样式：&#39;&#39;/mm/identicon/monsterid/wavatar/retro/hide
-  placeholder: 请留下宝贵的评论 #评论框占位符
-</code></pre><ul>
+  placeholder: 请留下宝贵的评论 #评论框占位符</code></pre><ul>
 <li>提交即可</li>
 </ul>
 <pre><code>hexo g
-hexo d
-</code></pre><h2 id="四、管理评论"><a href="#四、管理评论" class="headerlink" title="四、管理评论"></a>四、管理评论</h2><p>登陆LeanCloud控制台，存储–结构化数据–Comment，即可对评论进行操作</p>
+hexo d</code></pre><h2 id="四、管理评论"><a href="#四、管理评论" class="headerlink" title="四、管理评论"></a>四、管理评论</h2><p>登陆LeanCloud控制台，存储–结构化数据–Comment，即可对评论进行操作</p>
 
       
 
@@ -400,7 +397,7 @@ hexo d
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -497,6 +494,10 @@ hexo d
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -509,23 +510,11 @@ hexo d
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,6 +530,10 @@ hexo d
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -549,11 +542,15 @@ hexo d
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,7 +574,7 @@ hexo d
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

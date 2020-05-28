@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Mysql_Data_Migrate_And_Resume" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Mysql_Data_Migrate_And_Resume" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,58 +202,45 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Mysql数据所在的磁盘满了，需要将数据库迁移到其他挂载磁盘，在此记录。<br>系统：Ubuntu 16.04<br>恢复过程中，同时遇到了数据表损坏的情况，使用 myisamchk 进行恢复。</p>
 <a id="more"></a>
+
 <h2 id="二、数据库迁移："><a href="#二、数据库迁移：" class="headerlink" title="二、数据库迁移："></a>二、数据库迁移：</h2><ol>
 <li>Ubuntu 16.04 mysql 默认数据存储路径为</li>
 </ol>
-<pre><code>/var/lib/mysql
-</code></pre><p>或者可以在mysql控制台中输入下述命令来查看当前数据存储路径</p>
-<pre><code>show global variables like &quot;%datadir%&quot;
-</code></pre><ol start="2">
+<pre><code>/var/lib/mysql</code></pre><p>或者可以在mysql控制台中输入下述命令来查看当前数据存储路径</p>
+<pre><code>show global variables like &quot;%datadir%&quot;</code></pre><ol start="2">
 <li>新建需要迁移的目录</li>
 </ol>
-<pre><code>mkdir /home/mysql
-</code></pre><ol start="3">
+<pre><code>mkdir /home/mysql</code></pre><ol start="3">
 <li>转移数据</li>
 </ol>
-<pre><code>mv /var/lib/mysql/* /home/mysql
-</code></pre><ol start="4">
+<pre><code>mv /var/lib/mysql/* /home/mysql</code></pre><ol start="4">
 <li>修改用户和权限</li>
 </ol>
 <pre><code>chown mysql:mysql /home/mysql
-chmod -R 755 /home/mysql
-</code></pre><ol start="5">
+chmod -R 755 /home/mysql</code></pre><ol start="5">
 <li>修改 apparmor 相关配置</li>
 </ol>
-<pre><code>vim /etc/apparmor.d/usr.sbin.mysqld
-</code></pre><p>修改  </p>
-<pre><code># Allow data dir access 
-</code></pre><p>目录替换为要转移的目录</p>
-<pre><code>vim /etc/apparmor.d/abstractions/mysql
-</code></pre><p>目录替换为要转移的目录</p>
+<pre><code>vim /etc/apparmor.d/usr.sbin.mysqld</code></pre><p>修改  </p>
+<pre><code># Allow data dir access </code></pre><p>目录替换为要转移的目录</p>
+<pre><code>vim /etc/apparmor.d/abstractions/mysql</code></pre><p>目录替换为要转移的目录</p>
 <ol start="6">
 <li>修改mysql默认数据存储目录</li>
 </ol>
-<pre><code>vim /etc/mysql/mysql.conf.d/mysqld.cnf
-</code></pre><p>修改datadir=为要转移的目录</p>
+<pre><code>vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></pre><p>修改datadir=为要转移的目录</p>
 <ol start="7">
 <li>重启 apparmor 和 mysql</li>
 </ol>
 <pre><code>/etc/init.d/apparmor restart  
-/etc/init.d/mysql restart 
-</code></pre><ol start="8">
+/etc/init.d/mysql restart </code></pre><ol start="8">
 <li>查看修改是否成功</li>
 </ol>
-<pre><code>show global variables like &quot;%datadir%&quot;
-</code></pre><p>查看是否已经修改成功</p>
+<pre><code>show global variables like &quot;%datadir%&quot;</code></pre><p>查看是否已经修改成功</p>
 <h2 id="三、数据恢复："><a href="#三、数据恢复：" class="headerlink" title="三、数据恢复："></a>三、数据恢复：</h2><ol>
 <li>进入到 mysql 数据存储目录</li>
 </ol>
-<pre><code>cd /home/mysql (默认 cd /var/lib/mysql)
-</code></pre><p>恢复</p>
-<pre><code>myisamchk -r -f messages --sort_buffer_size=2G --tmpdir=/home/tmp
-</code></pre><pre><code>--sort_buffer_size  指定大一点的sort_buffer
---tmpdir            指定tmp目录，默认使用/tmp，数据表数据量大/tmp空间不够
-</code></pre>
+<pre><code>cd /home/mysql (默认 cd /var/lib/mysql)</code></pre><p>恢复</p>
+<pre><code>myisamchk -r -f messages --sort_buffer_size=2G --tmpdir=/home/tmp</code></pre><pre><code>--sort_buffer_size  指定大一点的sort_buffer
+--tmpdir            指定tmp目录，默认使用/tmp，数据表数据量大/tmp空间不够</code></pre>
       
 
       
@@ -386,7 +373,7 @@ chmod -R 755 /home/mysql
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -483,6 +470,10 @@ chmod -R 755 /home/mysql
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -495,23 +486,11 @@ chmod -R 755 /home/mysql
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,6 +506,10 @@ chmod -R 755 /home/mysql
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -535,11 +518,15 @@ chmod -R 755 /home/mysql
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,7 +550,7 @@ chmod -R 755 /home/mysql
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

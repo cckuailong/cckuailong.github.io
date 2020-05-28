@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -117,9 +117,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -161,9 +161,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ubuntu配置pppoe" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-ubuntu配置pppoe" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,18 +199,16 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>ubuntu安装配置pppoe协议踩了一些坑，在此记录一下，包括安装，配置，启动，停止。</p>
 <a id="more"></a>
+
 <h2 id="二、安装rp-pppoe"><a href="#二、安装rp-pppoe" class="headerlink" title="二、安装rp-pppoe"></a>二、安装rp-pppoe</h2><ul>
 <li>下载</li>
 </ul>
-<pre><code>wget https://dianne.skoll.ca/projects/rp-pppoe/download/rp-pppoe-3.13.tar.gz
-</code></pre><ul>
+<pre><code>wget https://dianne.skoll.ca/projects/rp-pppoe/download/rp-pppoe-3.13.tar.gz</code></pre><ul>
 <li>编译安装</li>
 </ul>
 <pre><code>tar zxvf rp-pppoe-3.13.tar.gz &amp;&amp; cd rp-pppoe-3.13/src
 ./configure
-make &amp;&amp; make install
-</code></pre><h2 id="三、安装pppoe组件"><a href="#三、安装pppoe组件" class="headerlink" title="三、安装pppoe组件"></a>三、安装pppoe组件</h2><pre><code>apt install ppp pppoe pppoeconf
-</code></pre><p>P.S. 不行换源，或者离线安装</p>
+make &amp;&amp; make install</code></pre><h2 id="三、安装pppoe组件"><a href="#三、安装pppoe组件" class="headerlink" title="三、安装pppoe组件"></a>三、安装pppoe组件</h2><pre><code>apt install ppp pppoe pppoeconf</code></pre><p>P.S. 不行换源，或者离线安装</p>
 <h2 id="四、配置pppoe"><a href="#四、配置pppoe" class="headerlink" title="四、配置pppoe"></a>四、配置pppoe</h2><ul>
 <li>pppoe-setup</li>
 </ul>
@@ -219,36 +217,26 @@ interface：通过ifconfig查看你用的网卡名
 Activate-on-demand：no
 dns：server
 password：分配的密码
-firewall：0
-</code></pre><h2 id="五、启动pppoe"><a href="#五、启动pppoe" class="headerlink" title="五、启动pppoe"></a>五、启动pppoe</h2><pre><code>pppoe-start
-</code></pre><h2 id="六、停止pppoe"><a href="#六、停止pppoe" class="headerlink" title="六、停止pppoe"></a>六、停止pppoe</h2><pre><code>pppoe-stop
-</code></pre><h2 id="解决频繁掉线问题"><a href="#解决频繁掉线问题" class="headerlink" title="解决频繁掉线问题"></a>解决频繁掉线问题</h2><ul>
+firewall：0</code></pre><h2 id="五、启动pppoe"><a href="#五、启动pppoe" class="headerlink" title="五、启动pppoe"></a>五、启动pppoe</h2><pre><code>pppoe-start</code></pre><h2 id="六、停止pppoe"><a href="#六、停止pppoe" class="headerlink" title="六、停止pppoe"></a>六、停止pppoe</h2><pre><code>pppoe-stop</code></pre><h2 id="解决频繁掉线问题"><a href="#解决频繁掉线问题" class="headerlink" title="解决频繁掉线问题"></a>解决频繁掉线问题</h2><ul>
 <li>如果是Network-Manager配置的拨号</li>
 </ul>
-<pre><code>vim /etc/ppp/options
-</code></pre><pre><code>lcp-echo-interval 值改成 3153600000
-</code></pre><ul>
+<pre><code>vim /etc/ppp/options</code></pre><pre><code>lcp-echo-interval 值改成 3153600000</code></pre><ul>
 <li>如果是pppoeconf配置的拨号（本文使用的配置方法）</li>
 </ul>
-<pre><code>vim /etc/ppp/peers/dsl-provider
-</code></pre><pre><code>lcp-echo-failure 4
-lcp-echo-interval 30
-</code></pre><p>注释掉</p>
+<pre><code>vim /etc/ppp/peers/dsl-provider</code></pre><pre><code>lcp-echo-failure 4
+lcp-echo-interval 30</code></pre><p>注释掉</p>
 <ul>
 <li>另外：archlinux如果用rp-pppoe拨号</li>
 </ul>
-<pre><code>vim /etc/ppp/pppoe.conf
-</code></pre><pre><code>LCP_INTERVAL=20
-LCP_FAILURE=3
-</code></pre><p>加大数值</p>
+<pre><code>vim /etc/ppp/pppoe.conf</code></pre><pre><code>LCP_INTERVAL=20
+LCP_FAILURE=3</code></pre><p>加大数值</p>
 <ul>
 <li>重启网络</li>
 </ul>
 <p>三种重启方式，选择一个</p>
 <pre><code>/etc/init.d/networking restart
 service network-manager restart
-/etc/init.d/network-manager restart
-</code></pre>
+/etc/init.d/network-manager restart</code></pre>
       
 
       
@@ -381,7 +369,7 @@ service network-manager restart
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -478,6 +466,10 @@ service network-manager restart
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -490,23 +482,11 @@ service network-manager restart
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,6 +502,10 @@ service network-manager restart
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -530,11 +514,15 @@ service network-manager restart
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,7 +546,7 @@ service network-manager restart
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

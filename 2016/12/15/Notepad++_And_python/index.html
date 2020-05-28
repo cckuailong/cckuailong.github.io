@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Notepad++_And_python" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Notepad++_And_python" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,6 +202,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>python是比较轻量级的，但是一些IDE为python集成了许多插件，造成其很大（如python xy），<br>今天我们可以在文本编辑器中（本文使用notepad++）连接python,还原轻巧的python。</p>
 <a id="more"></a>
+
 <h2 id="二、前期准备："><a href="#二、前期准备：" class="headerlink" title="二、前期准备："></a>二、前期准备：</h2><h3 id="1-python下载（最好是python-2-7版本）："><a href="#1-python下载（最好是python-2-7版本）：" class="headerlink" title="1.python下载（最好是python 2.7版本）："></a>1.python下载（最好是python 2.7版本）：</h3><p>python的msi也就十几M，下载很快，下载完双击安装即可（注意，记住自己的python安装目录）<br>    <a href="https://www.python.org/getit/" target="_blank" rel="noopener">下载传送门</a></p>
 <h3 id="2-环境变量配置"><a href="#2-环境变量配置" class="headerlink" title="2.环境变量配置:"></a>2.环境变量配置:</h3><p>环境变量的配置是为了让大家在任何位置输入python时，操作系统都会自动寻找到python的<br>位置，并运行它。<br>把刚才安装的python目录加入到系统环境变量中。</p>
 <h3 id="3-任意一款文本编辑器"><a href="#3-任意一款文本编辑器" class="headerlink" title="3.任意一款文本编辑器"></a>3.任意一款文本编辑器</h3><p>这里推荐两款：</p>
@@ -213,10 +214,8 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <li>点击notepad++上部菜单栏的run–&gt;run，出现弹窗（或直接按F5）</li>
 <li>输入 </li>
 </ol>
-<pre><code>cmd /k 你的python安装目录\python &quot;$(FULL_CURRENT_PATH)&quot; &amp; PAUSE &amp; EXIT
-</code></pre><p>比如我的安装目录为</p>
-<pre><code>E:\python27
-</code></pre><ol start="3">
+<pre><code>cmd /k 你的python安装目录\python &quot;$(FULL_CURRENT_PATH)&quot; &amp; PAUSE &amp; EXIT</code></pre><p>比如我的安装目录为</p>
+<pre><code>E:\python27</code></pre><ol start="3">
 <li>点击save，为python运行设置快捷键（注意，不能与notepad++内部热键冲突，我的是ctrl+F5）</li>
 </ol>
 <h2 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h2><p>notepad++中新建一个文档，输入print 1，保存，ctrl+F5运行，是不是就运行出结果了呢！</p>
@@ -353,7 +352,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -450,6 +449,10 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -462,23 +465,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,6 +485,10 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -502,11 +497,15 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,7 +529,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

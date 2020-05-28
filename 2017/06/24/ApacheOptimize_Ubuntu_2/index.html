@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ApacheOptimize_Ubuntu_2" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-ApacheOptimize_Ubuntu_2" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,76 +202,55 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>上一章，我们讲了一些Apache配置小技巧来优化web服务器，这一章，我们将涉及到更多的<br>配置技巧，这些会使我们的服务器性能有一个整体的提升。</p>
 <a id="more"></a>
+
 <h2 id="二、优化配置策略："><a href="#二、优化配置策略：" class="headerlink" title="二、优化配置策略："></a>二、优化配置策略：</h2><h3 id="1、启用mod-deflate压缩"><a href="#1、启用mod-deflate压缩" class="headerlink" title="1、启用mod_deflate压缩"></a>1、启用mod_deflate压缩</h3><p>Mod_deflate是Apache的一个模块，它使你的Apache服务器的输出被压缩后传输到浏览器。这样会<br>减少传输文件的体积，并且提高传输文件的速率。Mod_deflate模块使用gzip压缩方式来压缩<br>data,txt,HTML或者XML文件，压缩率达到70%。<br>Ubuntu安装的Apache中默认包含并启用Mod_delate模块。<br>为了验证这个，可以输入下列命令</p>
-<pre><code>sudo apachectl -t -D DUMP_MODULES | grep deflate
-</code></pre><p>如果mod_deflate启用，你可以看到如下图的deflate_module(shared)<br><img src="http://www.lovebear.top/img/ApacheOptimize_2_1.png" alt="demo1"></p>
+<pre><code>sudo apachectl -t -D DUMP_MODULES | grep deflate</code></pre><p>如果mod_deflate启用，你可以看到如下图的deflate_module(shared)<br><img src="http://www.lovebear.top/img/ApacheOptimize_2_1.png" alt="demo1"></p>
 <p>默认的gzip压缩等级是9，但是你可以根据自己的需要更改压缩等级</p>
 <p>优化配置策略：<br>（1） 修改deflate.conf配置文件</p>
-<pre><code>sudo vim /etc/apache2/mod-enables/deflate.conf
-</code></pre><p>（2） 增添或修改</p>
-<pre><code>DeflateCompressionLevel 8
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><h3 id="2、安装Varnish-Cache"><a href="#2、安装Varnish-Cache" class="headerlink" title="2、安装Varnish Cache"></a>2、安装Varnish Cache</h3><p>Varnish cache是一个HTTP加速器和反向代理来加速Apache服务器。它存储Apache web服务器的<br>服务的复制来加速网站。因为它在RAM中存储了文件内容，所以网站加载更快。</p>
+<pre><code>sudo vim /etc/apache2/mod-enables/deflate.conf</code></pre><p>（2） 增添或修改</p>
+<pre><code>DeflateCompressionLevel 8</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="2、安装Varnish-Cache"><a href="#2、安装Varnish-Cache" class="headerlink" title="2、安装Varnish Cache"></a>2、安装Varnish Cache</h3><p>Varnish cache是一个HTTP加速器和反向代理来加速Apache服务器。它存储Apache web服务器的<br>服务的复制来加速网站。因为它在RAM中存储了文件内容，所以网站加载更快。</p>
 <p>优化配置策略：<br>（1）安装Varnish：</p>
 <pre><code>sudo curl http://repo.varnish-cache.org/debian/GPG-key.txt | sudo apt-key add -
 sudo echo &quot;deb http://repo.varnish-cache.org/ubuntu/ trust varnish-4.0&quot; &gt;&gt; /etc/apt/sources.list
 sudo apt-get update
-sudo apt-get install varnish
-</code></pre><p>（2）配置Varnish cache<br>Varnish在8080端口上监听80端口的来自Apache的网站信息<br>● 修改varnish文件</p>
-<pre><code>sudo vim /etc/default/varnish
-</code></pre><pre><code>DAEMON_OPTS=&quot;-a :6081 \
+sudo apt-get install varnish</code></pre><p>（2）配置Varnish cache<br>Varnish在8080端口上监听80端口的来自Apache的网站信息<br>● 修改varnish文件</p>
+<pre><code>sudo vim /etc/default/varnish</code></pre><pre><code>DAEMON_OPTS=&quot;-a :6081 \
 -T localhost:6082 \
 -f /etc/varnish/default.vcl \
 -S /etc/varnish/secret \
--s malloc,256m&quot;
-</code></pre><p>● 修改default.vcl文件，这个文件告诉varnish寻找服务信息</p>
-<pre><code>sudo vim /etc/varnish/default.vcl
-</code></pre><pre><code>backend default {
+-s malloc,256m&quot;</code></pre><p>● 修改default.vcl文件，这个文件告诉varnish寻找服务信息</p>
+<pre><code>sudo vim /etc/varnish/default.vcl</code></pre><pre><code>backend default {
     .host = &quot;127.0.0.1&quot;;
     .port = &quot;8080&quot;;
-}
-</code></pre><p>（3）重启Apache和varnish</p>
+}</code></pre><p>（3）重启Apache和varnish</p>
 <pre><code>sudo /etc/init.d/apache2 restart
-sudo /etc/init.d/varnish restart
-</code></pre><p>（4）检查varnish状态</p>
-<pre><code>sudo varnishstat
-</code></pre><h3 id="3、安装APC"><a href="#3、安装APC" class="headerlink" title="3、安装APC"></a>3、安装APC</h3><p>APC(Alternative PHP Cache)是一款开源的PHP操作码缓存插件，用来加速网站。他把PHP字节码<br>编译器的输出缓存在共享内存中，减少了后续请求的解析和磁盘I/O的开销。</p>
+sudo /etc/init.d/varnish restart</code></pre><p>（4）检查varnish状态</p>
+<pre><code>sudo varnishstat</code></pre><h3 id="3、安装APC"><a href="#3、安装APC" class="headerlink" title="3、安装APC"></a>3、安装APC</h3><p>APC(Alternative PHP Cache)是一款开源的PHP操作码缓存插件，用来加速网站。他把PHP字节码<br>编译器的输出缓存在共享内存中，减少了后续请求的解析和磁盘I/O的开销。</p>
 <p>优化配置策略：</p>
 <p>（1）安装APC</p>
-<pre><code>sudo apt-get install php-apc
-</code></pre><p>（2）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><p>（3）检查是否成功<br>如下图，则APC安装成功<br><img src="http://www.lovebear.top/img/ApacheOptimize_2_2.png" alt="demo1"></p>
+<pre><code>sudo apt-get install php-apc</code></pre><p>（2）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><p>（3）检查是否成功<br>如下图，则APC安装成功<br><img src="http://www.lovebear.top/img/ApacheOptimize_2_2.png" alt="demo1"></p>
 <h3 id="4、MaxConnectionsPerChild"><a href="#4、MaxConnectionsPerChild" class="headerlink" title="4、MaxConnectionsPerChild"></a>4、MaxConnectionsPerChild</h3><p>MaxConnectionsPerChild用来回收进程。当限制被设置为0时，每个进程允许无限制的请求。<br>MaxConnectionsPerChild限制一个子进程能处理的请求的数量，在请求达到指定限制时，子<br>进程就会消亡。在Ubuntu中，默认值为100。</p>
 <p>推荐的设置：<br>● 虚拟服务器 300<br>● 1-4GB RAM的服务器 500<br>● 4+GB RAM的服务器 1000</p>
 <p>优化配置策略：</p>
 <p>（1）修改mpm_prefork.conf</p>
-<pre><code>sudo vim /etc/apache2/mods-available/mpm_prefork.conf
-</code></pre><p>（2）添加或修改</p>
-<pre><code>MaxConnectionsPerChild 300
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><h3 id="KeepAlive"><a href="#KeepAlive" class="headerlink" title="KeepAlive"></a>KeepAlive</h3><p>Ubuntu默认将KeepAlive设置为On。当Apache服务器短时间内收到成百上千的IP请求，KeepAlive值<br>应该被设置为Off。推荐将此值设置为Off来提高连接吞吐量。</p>
+<pre><code>sudo vim /etc/apache2/mods-available/mpm_prefork.conf</code></pre><p>（2）添加或修改</p>
+<pre><code>MaxConnectionsPerChild 300</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="KeepAlive"><a href="#KeepAlive" class="headerlink" title="KeepAlive"></a>KeepAlive</h3><p>Ubuntu默认将KeepAlive设置为On。当Apache服务器短时间内收到成百上千的IP请求，KeepAlive值<br>应该被设置为Off。推荐将此值设置为Off来提高连接吞吐量。</p>
 <p>优化配置策略：</p>
 <p>（1）修改apache2配置文件</p>
-<pre><code>sudo vim /etc/apache2/apache2.conf
-</code></pre><p>（2）增添或修改：</p>
-<pre><code>KeepAlive Off
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre><h3 id="6、MinSpareServers-and-MaxSpareServers"><a href="#6、MinSpareServers-and-MaxSpareServers" class="headerlink" title="6、MinSpareServers and MaxSpareServers"></a>6、MinSpareServers and MaxSpareServers</h3><p>这两个参数设置了空闲服务器子进程的最大和最小数量。他控制Apache保持空闲状态的进程<br>的数量，直到活得更多的请求来重新激活他们。每一个子进程都消耗一定的资源，所以如果<br>你把MaxSpareServer设置的太大，将会导致资源紧张问题。</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf</code></pre><p>（2）增添或修改：</p>
+<pre><code>KeepAlive Off</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="6、MinSpareServers-and-MaxSpareServers"><a href="#6、MinSpareServers-and-MaxSpareServers" class="headerlink" title="6、MinSpareServers and MaxSpareServers"></a>6、MinSpareServers and MaxSpareServers</h3><p>这两个参数设置了空闲服务器子进程的最大和最小数量。他控制Apache保持空闲状态的进程<br>的数量，直到活得更多的请求来重新激活他们。每一个子进程都消耗一定的资源，所以如果<br>你把MaxSpareServer设置的太大，将会导致资源紧张问题。</p>
 <p>MinSpareServers的推荐设置为<br>● 虚拟服务器 5<br>● 1-2GB RAM的服务器 10<br>● 2-4GB RAM的服务器 20<br>● 4+GB RAM的服务器 25</p>
 <p>MaxSpareServers推荐设置为MinSpareServer的两倍</p>
 <p>优化配置策略：</p>
 <p>（1）修改mpm_prefork.conf配置文件</p>
-<pre><code>sudo vim /etc/apache2/mods-available/mpm_prefork.conf
-</code></pre><p>（2）增添或修改：</p>
+<pre><code>sudo vim /etc/apache2/mods-available/mpm_prefork.conf</code></pre><p>（2）增添或修改：</p>
 <pre><code>MinSpareServers 5
-MaxSpareServers 10
-</code></pre><p>（3）重启Apache</p>
-<pre><code>sudo /etc/init.d/apache2 restart
-</code></pre>
+MaxSpareServers 10</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre>
       
 
       
@@ -404,7 +383,7 @@ MaxSpareServers 10
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -501,6 +480,10 @@ MaxSpareServers 10
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -513,23 +496,11 @@ MaxSpareServers 10
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,6 +516,10 @@ MaxSpareServers 10
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -553,11 +528,15 @@ MaxSpareServers 10
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,7 +560,7 @@ MaxSpareServers 10
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

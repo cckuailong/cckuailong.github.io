@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spark-HadoopYarn-Kafka_Env" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Spark-HadoopYarn-Kafka_Env" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,81 +202,67 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先，是基础环境的搭建，包括，root账户设置，修改默认python版本为py3，配置域名，<br>配置ssh免密登陆，安装jdk8等。</p>
 <a id="more"></a>
+
 <h2 id="配置-ubuntu-18-04-3"><a href="#配置-ubuntu-18-04-3" class="headerlink" title="配置 ubuntu 18.04.3"></a>配置 ubuntu 18.04.3</h2><h3 id="设置root账户-master-slave"><a href="#设置root账户-master-slave" class="headerlink" title="设置root账户 (master, slave*)"></a>设置root账户 (master, slave*)</h3><ul>
 <li>激活root账户</li>
 </ul>
 <pre><code>sudo passwd -u root
-sudo passwd root
-</code></pre><ul>
+sudo passwd root</code></pre><ul>
 <li><p>输入root密码</p>
 </li>
 <li><p>现在可以root登陆了，但是要ssh开通root账号登陆</p>
 </li>
 </ul>
-<pre><code>sudo vim /etc/ssh/sshd_config
-</code></pre><ul>
+<pre><code>sudo vim /etc/ssh/sshd_config</code></pre><ul>
 <li>修改2处配置为 yes（记得取消注释）</li>
 </ul>
 <pre><code>PermitRootLogin yes
-StrictModes yes
-</code></pre><ul>
+StrictModes yes</code></pre><ul>
 <li>重启ssh服务</li>
 </ul>
-<pre><code>service sshd restart
-</code></pre><h3 id="修改-apt-为国内软件源"><a href="#修改-apt-为国内软件源" class="headerlink" title="修改 apt 为国内软件源"></a>修改 apt 为国内软件源</h3><ul>
+<pre><code>service sshd restart</code></pre><h3 id="修改-apt-为国内软件源"><a href="#修改-apt-为国内软件源" class="headerlink" title="修改 apt 为国内软件源"></a>修改 apt 为国内软件源</h3><ul>
 <li>更换国内源</li>
 </ul>
 <p><a href="https://blog.csdn.net/weixin_43619065/article/details/97571615" target="_blank" rel="noopener">ubuntu 更换apt国内源 （阿里云镜像）</a></p>
 <ul>
 <li>更新软件</li>
 </ul>
-<pre><code>apt upgrade
-</code></pre><h3 id="修改python默认为python3"><a href="#修改python默认为python3" class="headerlink" title="修改python默认为python3"></a>修改python默认为python3</h3><pre><code>update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
-</code></pre><h3 id="配置域名-master-slave"><a href="#配置域名-master-slave" class="headerlink" title="配置域名 (master, slave*)"></a>配置域名 (master, slave*)</h3><ul>
+<pre><code>apt upgrade</code></pre><h3 id="修改python默认为python3"><a href="#修改python默认为python3" class="headerlink" title="修改python默认为python3"></a>修改python默认为python3</h3><pre><code>update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1</code></pre><h3 id="配置域名-master-slave"><a href="#配置域名-master-slave" class="headerlink" title="配置域名 (master, slave*)"></a>配置域名 (master, slave*)</h3><ul>
 <li>修改hosts文件</li>
 </ul>
-<pre><code>vim /etc/hosts
-</code></pre><ul>
+<pre><code>vim /etc/hosts</code></pre><ul>
 <li>增加 master, slave* 的域名，例</li>
 </ul>
 <pre><code>192.168.139.138 master
 192.168.139.139 slave1
 192.168.139.140 slave2
-... ...
-</code></pre><h3 id="ssh免密登陆"><a href="#ssh免密登陆" class="headerlink" title="ssh免密登陆"></a>ssh免密登陆</h3><ul>
+... ...</code></pre><h3 id="ssh免密登陆"><a href="#ssh免密登陆" class="headerlink" title="ssh免密登陆"></a>ssh免密登陆</h3><ul>
 <li>安装ssh</li>
 </ul>
-<pre><code>apt install ssh
-</code></pre><ul>
+<pre><code>apt install ssh</code></pre><ul>
 <li>master，各slave，生成ssh rsa公私钥</li>
 </ul>
 <pre><code>ssh-keygen -t rsa
 
-一路回车
-</code></pre><ul>
+一路回车</code></pre><ul>
 <li>slave* 生成的id_rsa.pub 发送给master</li>
 </ul>
-<pre><code class="slave1">scp ~/.ssh/id_rsa.pub root@master:~/.ssh/id_rsa.pub.slave1
-</code></pre>
+<pre><code class="slave1">scp ~/.ssh/id_rsa.pub root@master:~/.ssh/id_rsa.pub.slave1</code></pre>
 <ul>
 <li>master上将所有公钥加到authorized_keys中</li>
 </ul>
-<pre><code class="master">cat ~/.ssh/id_rsa.pub* &gt;&gt; ~/.ssh/authorized_keys
-</code></pre>
+<pre><code class="master">cat ~/.ssh/id_rsa.pub* &gt;&gt; ~/.ssh/authorized_keys</code></pre>
 <ul>
 <li>master上生成的authorized_keys分发给每个slave</li>
 </ul>
-<pre><code class="master">scp ~/.ssh/authorized_keys root@slave1:~/.ssh/
-</code></pre>
+<pre><code class="master">scp ~/.ssh/authorized_keys root@slave1:~/.ssh/</code></pre>
 <h3 id="安装jdk-8"><a href="#安装jdk-8" class="headerlink" title="安装jdk 8"></a>安装jdk 8</h3><ol>
 <li>安装openjdk-8</li>
 </ol>
-<pre><code>apt -y install openjdk-8-jdk
-</code></pre><ol start="2">
+<pre><code>apt -y install openjdk-8-jdk</code></pre><ol start="2">
 <li>切换jdk版本</li>
 </ol>
-<pre><code>update-alternatives --config java
-</code></pre><p>选择openjdk-8</p>
+<pre><code>update-alternatives --config java</code></pre><p>选择openjdk-8</p>
 <ol start="3">
 <li>设置环境变量</li>
 </ol>
@@ -293,8 +279,7 @@ export PYTHONPATH=${SPARK_HOME}/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH
 export PYSPARK_PYTHON=/usr/bin/python
 export PYSPARK_DRIVER_PYTHON=/usr/bin/python
 
-export PATH=$PATH:$SPARK_HOME/bin
-</code></pre><p>source /etc/profile</p>
+export PATH=$PATH:$SPARK_HOME/bin</code></pre><p>source /etc/profile</p>
 
       
 
@@ -428,7 +413,7 @@ export PATH=$PATH:$SPARK_HOME/bin
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -525,6 +510,10 @@ export PATH=$PATH:$SPARK_HOME/bin
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -537,23 +526,11 @@ export PATH=$PATH:$SPARK_HOME/bin
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,6 +546,10 @@ export PATH=$PATH:$SPARK_HOME/bin
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -577,11 +558,15 @@ export PATH=$PATH:$SPARK_HOME/bin
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -605,7 +590,7 @@ export PATH=$PATH:$SPARK_HOME/bin
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Pem_format" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Pem_format" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -204,6 +204,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <p>OpenSSL 使用 PEM 文件格式存储证书和密钥。</p>
 <p>这篇文章的 pem 格式讲解大部分文章整理自一篇讲解的不错的博客。<br><a href="http://blog.sina.com.cn/s/blog_4fcd1ea30100yh4s.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_4fcd1ea30100yh4s.html</a></p>
 <a id="more"></a>
+
 <h2 id="二、openssl介绍："><a href="#二、openssl介绍：" class="headerlink" title="二、openssl介绍："></a>二、openssl介绍：</h2><p>OpenSSL 是一个安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功<br>能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。（摘自百度百科）</p>
 <p>小插曲： openssl由于缓冲区边界检查问题，产生严重的漏洞–Heartbleed（中文译为“心脏出血”）<br>         使用openssl的网站，服务器都会遭受重创，详情请见<a href="http://baike.baidu.com/view/12769298.htm" target="_blank" rel="noopener">http://baike.baidu.com/view/12769298.htm</a></p>
 <h2 id="三、openssl-windows安装："><a href="#三、openssl-windows安装：" class="headerlink" title="三、openssl windows安装："></a>三、openssl windows安装：</h2><p>原来，在64位系统上安装openssl很麻烦，但是现在只需要到这个网站<br><a href="http://gnuwin32.sourceforge.net/packages/openssl.htm" target="_blank" rel="noopener">http://gnuwin32.sourceforge.net/packages/openssl.htm</a><br>下载安装程序，“无脑”安装即可（双击安装，一直下一步）</p>
@@ -215,8 +216,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 <h2 id="五、在OpenSSL中生成RSA私钥，公钥文件并解析："><a href="#五、在OpenSSL中生成RSA私钥，公钥文件并解析：" class="headerlink" title="五、在OpenSSL中生成RSA私钥，公钥文件并解析："></a>五、在OpenSSL中生成RSA私钥，公钥文件并解析：</h2><h3 id="RSA私钥文件"><a href="#RSA私钥文件" class="headerlink" title="RSA私钥文件"></a>RSA私钥文件</h3><ol>
 <li>生成命令：</li>
 </ol>
-<pre><code>openssl genrsa -out private_rsa.pem  1024
-</code></pre><ol start="2">
+<pre><code>openssl genrsa -out private_rsa.pem  1024</code></pre><ol start="2">
 <li>生成的私钥pem文件内容如下：</li>
 </ol>
 <pre><code>-----BEGIN RSA PRIVATE KEY-----
@@ -233,10 +233,8 @@ eYbjA7c19UmpBw4aOrwfHhMdrZt7p6aHFgIMps+2n9Fxbhv8194YBj1z4QJAPONW
 XFg4iuGvVeoi9sSwvEs5sTP1xt/BlgSXxlRdTpztgQgdMX6hlKfQkM1FTCOSAYoD
 rj8O+5ooR+hHEoulLQJBAOtaMvMWIOG7mARngpwqfJ07L41/T0ITHteiiYJfCurz
 kLVCx1XA3MlN+u5gn7osUHMbah0Ze3uakSZ6za3mL5Y=
------END RSA PRIVATE KEY-----
-</code></pre><p>此时文件为BASE64编码，在openssl中执行以下命令，将BASE64编码的文件装换成二进制编码：</p>
-<pre><code>openssl   base64  -d  -in private_rsa.pem -out private.pem
-</code></pre><p>生成的private.pem 文件为BASE64解码后的文件，此文件是将RSA密钥语法中的结构进行DER<br>编码后的二进制表现形式。</p>
+-----END RSA PRIVATE KEY-----</code></pre><p>此时文件为BASE64编码，在openssl中执行以下命令，将BASE64编码的文件装换成二进制编码：</p>
+<pre><code>openssl   base64  -d  -in private_rsa.pem -out private.pem</code></pre><p>生成的private.pem 文件为BASE64解码后的文件，此文件是将RSA密钥语法中的结构进行DER<br>编码后的二进制表现形式。</p>
 <ol start="3">
 <li>对其进行解析，解析结果:</li>
 </ol>
@@ -268,18 +266,15 @@ a1641b0b5ac21bd5e0bbcbd0d932165f050fec3da3bcd2dbea24c505
 7ea194a7d090cd454c2392018a03ae3f0efb9a2847e847128ba52d
 0241      INTEGER          长度为65 bytes               内容为：   q -1 mod p  coefficient
 00eb5a32f31620e1bb980467829c2a7c9d3b2f8d7f4f42131ed7a289825f0aeaf390b542c7
-55c0dcc94dfaee609fba2c50731b6a1d197b7b9a91267acdade62f96
-</code></pre><p>也可以直接使用OpenSSL命令以明文形式输出密钥的各个参数值，例如：</p>
-<pre><code>openssl rsa -in private_rsa.pem -text -out private.txt
-</code></pre><p>然后就可以在private.txt文件中查看RSA密钥中各个参数的值</p>
+55c0dcc94dfaee609fba2c50731b6a1d197b7b9a91267acdade62f96</code></pre><p>也可以直接使用OpenSSL命令以明文形式输出密钥的各个参数值，例如：</p>
+<pre><code>openssl rsa -in private_rsa.pem -text -out private.txt</code></pre><p>然后就可以在private.txt文件中查看RSA密钥中各个参数的值</p>
 <h2 id="六、一种python解析pem文件的方法："><a href="#六、一种python解析pem文件的方法：" class="headerlink" title="六、一种python解析pem文件的方法："></a>六、一种python解析pem文件的方法：</h2><p>这里只列出解析 pem 公钥文件的方法，直接上代码：</p>
 <pre><code>from Crypto.PublicKey import RSA
 pub = RSA.importKey(open(&#39;xxx\public.pem&#39;).read())
 n = long(pub.n)
 e = long(pub.e)
 print n
-print e
-</code></pre><p>这样就得到公钥n，e了，pem 私钥获取方式类似。</p>
+print e</code></pre><p>这样就得到公钥n，e了，pem 私钥获取方式类似。</p>
 
       
 
@@ -413,7 +408,7 @@ print e
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -510,6 +505,10 @@ print e
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -522,23 +521,11 @@ print e
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,6 +541,10 @@ print e
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -562,11 +553,15 @@ print e
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -590,7 +585,7 @@ print e
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

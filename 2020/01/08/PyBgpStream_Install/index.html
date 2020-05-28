@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -117,9 +117,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -161,9 +161,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-PyBgpStream_Install" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-PyBgpStream_Install" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,12 +199,12 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>bgpstream官网中的操作代码不翻墙加载十分缓慢（甚至加载不出来），这里做一个中文版的翻译记录，记录Ubuntu安装BGPStream（包括 libBGPStream和pybgpstream）<br><a href="https://bgpstream.caida.org/docs/install/bgpstream#ubuntu" target="_blank" rel="noopener">原英文链接</a></p>
 <a id="more"></a>
+
 <h2 id="二、安装libBGPStream"><a href="#二、安装libBGPStream" class="headerlink" title="二、安装libBGPStream"></a>二、安装libBGPStream</h2><ul>
 <li>安装依赖</li>
 </ul>
 <pre><code>$ sudo apt -y install curl
-$ sudo apt -y install zlib1g-dev libbz2-dev libcurl4-openssl-dev
-</code></pre><ul>
+$ sudo apt -y install zlib1g-dev libbz2-dev libcurl4-openssl-dev</code></pre><ul>
 <li>下载安装wandio</li>
 </ul>
 <pre><code>$ mkdir ~/src
@@ -215,12 +215,10 @@ $ cd wandio-4.2.0/
 $ ./configure
 $ make
 $ sudo make install
-$ sudo ldconfig
-</code></pre><ul>
+$ sudo ldconfig</code></pre><ul>
 <li>安装librdkafka-dev</li>
 </ul>
-<pre><code>apt install librdkafka-dev
-</code></pre><ul>
+<pre><code>apt install librdkafka-dev</code></pre><ul>
 <li>下载安装libBGPStream</li>
 </ul>
 <pre><code>$ cd ~/src/
@@ -231,13 +229,10 @@ $ ./configure --without-kafka
 $ make
 $ make check
 $ sudo make install
-$ sudo ldconfig
-</code></pre><h2 id="三、安装PyBgpstream"><a href="#三、安装PyBgpstream" class="headerlink" title="三、安装PyBgpstream"></a>三、安装PyBgpstream</h2><h3 id="从PyPI安装"><a href="#从PyPI安装" class="headerlink" title="从PyPI安装"></a>从PyPI安装</h3><pre><code>pip install python-dateutil pybgpstream
-</code></pre><h3 id="源码安装"><a href="#源码安装" class="headerlink" title="源码安装"></a>源码安装</h3><ul>
+$ sudo ldconfig</code></pre><h2 id="三、安装PyBgpstream"><a href="#三、安装PyBgpstream" class="headerlink" title="三、安装PyBgpstream"></a>三、安装PyBgpstream</h2><h3 id="从PyPI安装"><a href="#从PyPI安装" class="headerlink" title="从PyPI安装"></a>从PyPI安装</h3><pre><code>pip install python-dateutil pybgpstream</code></pre><h3 id="源码安装"><a href="#源码安装" class="headerlink" title="源码安装"></a>源码安装</h3><ul>
 <li>安装 python-dateutil</li>
 </ul>
-<pre><code>pip install python-dateutil
-</code></pre><ul>
+<pre><code>pip install python-dateutil</code></pre><ul>
 <li>安装 pybgpstream</li>
 </ul>
 <pre><code>$ mkdir ~/src
@@ -246,16 +241,13 @@ $ curl -LO https://github.com/CAIDA/pybgpstream/releases/download/v2.0/pybgpstre
 $ tar zxf pybgpstream-2.0.0.tar.gz
 $ cd pybgpstream-2.0.0
 $ python setup.py build_ext
-$ sudo python setup.py install
-</code></pre><p>P.S. 若最后一步失败，执行</p>
-<pre><code>python setup.py install --user
-</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre><code>$ curl https://raw.githubusercontent.com/CAIDA/pybgpstream/master/examples/tutorial_print.py | python
+$ sudo python setup.py install</code></pre><p>P.S. 若最后一步失败，执行</p>
+<pre><code>python setup.py install --user</code></pre><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><pre><code>$ curl https://raw.githubusercontent.com/CAIDA/pybgpstream/master/examples/tutorial_print.py | python
 valid ris.rrc06 1427846570
     W 202.249.2.185 25152 W {&#39;prefix&#39;: &#39;144.104.37.0/24&#39;}
 valid ris.rrc06 1427846573
     A 2001:200:0:fe00::6249:0 25152 A {&#39;next-hop&#39;: &#39;2001:200:0:fe00::9c1:0&#39;, &#39;prefix&#39;: &#39;2a00:bdc0:e004::/48&#39;, &#39;as-path&#39;: &#39;25152 2497 6939 47541 28709&#39;}
-...
-</code></pre><h2 id="四、示例"><a href="#四、示例" class="headerlink" title="四、示例"></a>四、示例</h2><pre><code>from pybgpstream import BGPStream
+...</code></pre><h2 id="四、示例"><a href="#四、示例" class="headerlink" title="四、示例"></a>四、示例</h2><pre><code>from pybgpstream import BGPStream
 
 stream = BGPStream(
     data_interface=&quot;singlefile&quot;
@@ -266,18 +258,15 @@ for rec in stream.records():
     if rec.status != &quot;valid&quot;:
         continue
     for elem in rec:
-        print(elem)
-</code></pre><h2 id="注"><a href="#注" class="headerlink" title="注"></a>注</h2><p>运行的时候不断报WARN，可以修改libbgpstream的源码</p>
-<pre><code>vim libbgpstream-2.0.0/lib/formats/libparsebgp/lib/bgp/parsebgp_bgp_update.c
-</code></pre><p>注释掉 559行的PARSEBGP_SKIP_INVALID_MSG()，570行的PARSEBGP_SKIP_NOT_IMPLEMENTED()</p>
+        print(elem)</code></pre><h2 id="注"><a href="#注" class="headerlink" title="注"></a>注</h2><p>运行的时候不断报WARN，可以修改libbgpstream的源码</p>
+<pre><code>vim libbgpstream-2.0.0/lib/formats/libparsebgp/lib/bgp/parsebgp_bgp_update.c</code></pre><p>注释掉 559行的PARSEBGP_SKIP_INVALID_MSG()，570行的PARSEBGP_SKIP_NOT_IMPLEMENTED()</p>
 <p>重新编译</p>
 <pre><code>$ cd libbgpstream-2.0.0/
 $ ./configure --without-kafka
 $ make
 $ make check
 $ sudo make install
-$ sudo ldconfig
-</code></pre><h2 id="附"><a href="#附" class="headerlink" title="附"></a>附</h2><p>自动安装pybgpstream脚本</p>
+$ sudo ldconfig</code></pre><h2 id="附"><a href="#附" class="headerlink" title="附"></a>附</h2><p>自动安装pybgpstream脚本</p>
 <p><a href="http://lovebear.top/files/bgpstream_install.sh" target="_blank" rel="noopener">此处下载</a></p>
 
       
@@ -412,7 +401,7 @@ $ sudo ldconfig
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -509,6 +498,10 @@ $ sudo ldconfig
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -521,23 +514,11 @@ $ sudo ldconfig
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,6 +534,10 @@ $ sudo ldconfig
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -561,11 +546,15 @@ $ sudo ldconfig
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,7 +578,7 @@ $ sudo ldconfig
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python_selenium" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Python_selenium" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,19 +202,18 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>今天想要爬取PTA的题目信息，但是发现scrapy爬取返回的response中没有题目信息，检查元素查看<br>了一下PTA题目网页的源代码，发现这个网页是使用js动态加载的，也就是说是需要浏览器加载好js<br>代码，返回题目信息。那怎么进行爬虫呢，这就需要使用前几章提到的Selenium，本文使用python+<br>Selenium进行动态加载网页爬取的演示和讲解。</p>
 <a id="more"></a>
+
 <h2 id="二、Selenium简介："><a href="#二、Selenium简介：" class="headerlink" title="二、Selenium简介："></a>二、Selenium简介：</h2><p>selenium 是一套完整的web应用程序测试系统，包含了测试的录制（selenium IDE）,编写及运行<br>（Selenium Remote Control）和测试的并行处理（Selenium Grid）。Selenium的核心Selenium Core基<br>于JsUnit，完全由JavaScript编写，因此可以用于任何支持JavaScript的浏览器上。</p>
 <p>selenium可以模拟真实浏览器，自动化测试工具，支持多种浏览器，爬虫中主要用来解决<br>JavaScript渲染问题。</p>
 <h2 id="三、Selenium进行爬取："><a href="#三、Selenium进行爬取：" class="headerlink" title="三、Selenium进行爬取："></a>三、Selenium进行爬取：</h2><ol>
 <li>声明浏览器对象（你使用的浏览器）</li>
 </ol>
-<pre><code>browser = webdriver.Chrome()
-</code></pre><p>Selenium可以声明很多种浏览器对象，可以模拟各种浏览器，需要对应浏览器类型及其版本下载<br>相应的webdriver，并将webdriver的目录加入到系统的环境变量中。</p>
+<pre><code>browser = webdriver.Chrome()</code></pre><p>Selenium可以声明很多种浏览器对象，可以模拟各种浏览器，需要对应浏览器类型及其版本下载<br>相应的webdriver，并将webdriver的目录加入到系统的环境变量中。</p>
 <p>Selenium 支持的伪浏览器： Chrome, Firefox, IE, Opera, HtmlUnit, PhantomJS, Appium等</p>
 <ol start="2">
 <li>访问抓取页面</li>
 </ol>
-<pre><code>browser.get(&quot;http://www.baidu.com&quot;)
-</code></pre><ol start="3">
+<pre><code>browser.get(&quot;http://www.baidu.com&quot;)</code></pre><ol start="3">
 <li>查找元素</li>
 </ol>
 <p>查找元素的方式有很多种，可以进行单个元素或多个元素的查询，多个元素查询返回查询列表</p>
@@ -226,8 +225,7 @@ find_element_by_link_text
 find_element_by_partial_link_text
 find_element_by_tag_name
 find_element_by_class_name
-find_element_by_css_selector
-</code></pre><p>（2） 多个元素查询的不同方式：</p>
+find_element_by_css_selector</code></pre><p>（2） 多个元素查询的不同方式：</p>
 <pre><code>find_elements_by_name
 find_elements_by_id
 find_elements_by_xpath
@@ -235,8 +233,7 @@ find_elements_by_link_text
 find_elements_by_partial_link_text
 find_elements_by_tag_name
 find_elements_by_class_name
-find_elements_by_css_selector
-</code></pre><p>发现了什么，多个元素查询只是将单个元素中的”element”修改为了”elements”，是不是很简单。</p>
+find_elements_by_css_selector</code></pre><p>发现了什么，多个元素查询只是将单个元素中的”element”修改为了”elements”，是不是很简单。</p>
 <p>xpath语法什么的大家都使用过，网上资料也很多，这里贴个爬取PTA的例子，作为参考。</p>
 <pre><code>#-*- coding: utf-8 -*-
 from selenium import webdriver
@@ -273,15 +270,12 @@ f=codecs.open(r&#39;C:\Users\lovebear96\Desktop\1.txt&#39;,&#39;w&#39;,&#39;utf-
 f.write(res)
 f.close()
 
-browser.close() 
-</code></pre><ol start="4">
+browser.close() </code></pre><ol start="4">
 <li>多说一句</li>
 </ol>
 <p>代码中出现了–headless，这个是chrome的无浏览器模式，可以不用打开浏览器进行爬取，可以节<br>省资源和加快爬取速度。这个功能只有在高版本的chrome中才支持:</p>
-<pre><code>linux： Chrome 59+，Windows： Chrome 60+
-</code></pre><h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>Selenium的功能很强大，他是模拟浏览器对网站进行解析，除了上面介绍的以外，还可以对网站进<br>行自动填充信息，自动提交等功能，有兴趣的同学可以查阅Selenium文档：</p>
-<pre><code>http://selenium-python.readthedocs.io/
-</code></pre>
+<pre><code>linux： Chrome 59+，Windows： Chrome 60+</code></pre><h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>Selenium的功能很强大，他是模拟浏览器对网站进行解析，除了上面介绍的以外，还可以对网站进<br>行自动填充信息，自动提交等功能，有兴趣的同学可以查阅Selenium文档：</p>
+<pre><code>http://selenium-python.readthedocs.io/</code></pre>
       
 
       
@@ -414,7 +408,7 @@ browser.close()
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -511,6 +505,10 @@ browser.close()
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -523,23 +521,11 @@ browser.close()
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,6 +541,10 @@ browser.close()
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -563,11 +553,15 @@ browser.close()
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -591,7 +585,7 @@ browser.close()
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spark-HadoopYarn-Kafka_Hadoop" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Spark-HadoopYarn-Kafka_Hadoop" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,31 +202,26 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>接下来，是Hadoop集群的搭建，包括，添加环境变量，修改相应的配置文件，启动Hadoop集群，<br>查看是否启动成功和关闭集群。</p>
 <a id="more"></a>
+
 <h2 id="安装Hadoop-2-7-7"><a href="#安装Hadoop-2-7-7" class="headerlink" title="安装Hadoop 2.7.7"></a>安装Hadoop 2.7.7</h2><h3 id="添加变量-master-slave"><a href="#添加变量-master-slave" class="headerlink" title="添加变量(master, slave)"></a>添加变量(master, slave)</h3><ul>
 <li>vim /etc/profile, 增加</li>
 </ul>
 <pre><code>export HADOOP_HOME=/root/hadoop/
-export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
-</code></pre><ul>
+export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH</code></pre><ul>
 <li>使之生效</li>
 </ul>
-<pre><code>source /etc/profile
-</code></pre><h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><pre><code>cd /root
-tar zxvf hadoop-2.7.7.tar.gz -C ./ &amp;&amp; mv hadoop-2.7.7 hadoop
-</code></pre><h3 id="修改hadoop配置文件"><a href="#修改hadoop配置文件" class="headerlink" title="修改hadoop配置文件"></a>修改hadoop配置文件</h3><ul>
+<pre><code>source /etc/profile</code></pre><h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><pre><code>cd /root
+tar zxvf hadoop-2.7.7.tar.gz -C ./ &amp;&amp; mv hadoop-2.7.7 hadoop</code></pre><h3 id="修改hadoop配置文件"><a href="#修改hadoop配置文件" class="headerlink" title="修改hadoop配置文件"></a>修改hadoop配置文件</h3><ul>
 <li>进入配置文件目录</li>
 </ul>
-<pre><code>cd /root/hadoop/etc/hadoop/
-</code></pre><ul>
+<pre><code>cd /root/hadoop/etc/hadoop/</code></pre><ul>
 <li>vim hadoop-env.sh</li>
 </ul>
 <pre><code>#将export JAVA_HOME=${JAVA_HOME}修改为：
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-</code></pre><ul>
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64</code></pre><ul>
 <li>vim slaves</li>
 </ul>
-<pre><code>slave1
-</code></pre><ul>
+<pre><code>slave1</code></pre><ul>
 <li>vim core-site.xml</li>
 </ul>
 <pre><code>&lt;configuration&gt;
@@ -242,8 +237,7 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
     &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
     &lt;value&gt;/root/hadoop/tmp&lt;/value&gt;
     &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre><ul>
+&lt;/configuration&gt;</code></pre><ul>
 <li>vim hdfs-site.xml</li>
 </ul>
 <pre><code>&lt;configuration&gt;
@@ -263,8 +257,7 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
         &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
         &lt;value&gt;file:/root/hadoop/hdfs/data&lt;/value&gt;
     &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre><ul>
+&lt;/configuration&gt;</code></pre><ul>
 <li>vim yarn-site.xml</li>
 </ul>
 <pre><code>&lt;configuration&gt;
@@ -304,8 +297,7 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
         &lt;name&gt;yarn.nodemanager.vmem-pmem-ratio&lt;/name&gt;
         &lt;value&gt;4.1&lt;/value&gt;
     &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre><ul>
+&lt;/configuration&gt;</code></pre><ul>
 <li>cp mapred-site.xml.template mapred-site.xml &amp;&amp; vim mapred-site.xml</li>
 </ul>
 <pre><code>&lt;configuration&gt;
@@ -321,39 +313,31 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
         &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;
         &lt;value&gt;master:19888&lt;/value&gt;
     &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre><ul>
+&lt;/configuration&gt;</code></pre><ul>
 <li>复制master中的hadoop到slave*</li>
 </ul>
-<pre><code>scp -r /root/hadoop root@slave1:/root
-</code></pre><h3 id="master启动Hadoop集群"><a href="#master启动Hadoop集群" class="headerlink" title="master启动Hadoop集群"></a>master启动Hadoop集群</h3><ul>
+<pre><code>scp -r /root/hadoop root@slave1:/root</code></pre><h3 id="master启动Hadoop集群"><a href="#master启动Hadoop集群" class="headerlink" title="master启动Hadoop集群"></a>master启动Hadoop集群</h3><ul>
 <li>格式化namenode</li>
 </ul>
-<pre><code>hadoop namenode -format
-</code></pre><ul>
+<pre><code>hadoop namenode -format</code></pre><ul>
 <li>启动hadoop</li>
 </ul>
-<pre><code>/root/hadoop/sbin/start-all.sh
-</code></pre><h3 id="查看集群是否启动成功"><a href="#查看集群是否启动成功" class="headerlink" title="查看集群是否启动成功"></a>查看集群是否启动成功</h3><ul>
+<pre><code>/root/hadoop/sbin/start-all.sh</code></pre><h3 id="查看集群是否启动成功"><a href="#查看集群是否启动成功" class="headerlink" title="查看集群是否启动成功"></a>查看集群是否启动成功</h3><ul>
 <li>master 中执行jps，显示</li>
 </ul>
 <pre><code>SecondaryNameNode 
 ResourceManager 
 NameNode
-Jps
-</code></pre><ul>
+Jps</code></pre><ul>
 <li>slave* 中执行jps，显示</li>
 </ul>
 <pre><code>NodeManager
 DataNode
-Jps
-</code></pre><ul>
+Jps</code></pre><ul>
 <li>浏览器验证相应web页面是否可访问</li>
 </ul>
 <pre><code>master:50070
-master:8088
-</code></pre><h3 id="关闭集群"><a href="#关闭集群" class="headerlink" title="关闭集群"></a>关闭集群</h3><pre><code>/root/hadoop/sbin/stop-all.sh
-</code></pre>
+master:8088</code></pre><h3 id="关闭集群"><a href="#关闭集群" class="headerlink" title="关闭集群"></a>关闭集群</h3><pre><code>/root/hadoop/sbin/stop-all.sh</code></pre>
       
 
       
@@ -486,7 +470,7 @@ master:8088
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -583,6 +567,10 @@ master:8088
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -595,23 +583,11 @@ master:8088
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,6 +603,10 @@ master:8088
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -635,11 +615,15 @@ master:8088
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -663,7 +647,7 @@ master:8088
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -120,9 +120,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -164,9 +164,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -182,7 +182,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-AutoRunPython_Linux" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-AutoRunPython_Linux" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -202,12 +202,12 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近无聊写了一个监控键盘按键的简单恶意软件，因为我的电脑不可能24小时开机监控，费时<br>费力，于是想到我还有个云服务器，可以在云服务器上持续运行我的服务接收端来进行24小时<br>监控。<br>由于我的恶意软件用python编写的（开发挺快的），所以需要在服务器中设置开机自动运行我的<br>python服务器脚本，服务器环境为linux。<br>windows服务器比较简单，把要启动的快捷方式放到<br>C:\Users\用户\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup<br>即可实现。(AppData文件夹在windows中是默认隐藏的)</p>
 <a id="more"></a>
+
 <h2 id="二、解决方案："><a href="#二、解决方案：" class="headerlink" title="二、解决方案："></a>二、解决方案：</h2><p>Linux在启动时，会自动执行/etc/rc.d目录下的初始化程序，因此我们可以把启动任务放到该<br>目录下。</p>
 <p>测试环境：CentOS，管理员:root，普通用户：test1，脚本文件放在/home/test1中， 脚本名：test.py</p>
 <p>1.因为其中的rc.local是在完成所有初始化之后执行，因此我们可以把启动脚本写到里面<br>2.用root账号登陆Linux，vim /etc/rc.d/rc.local编辑文件，在最后加入两行需要执行的脚本程序： </p>
 <pre><code>cd /home/test1   (该步不可少，否则会提示没有权限打开&#39;test.log&#39;文件) 
-su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为一个参数传递级su)
-</code></pre><h2 id="三、测试："><a href="#三、测试：" class="headerlink" title="三、测试："></a>三、测试：</h2><p>重新启动机器，测试一下，是不是python脚本已经自动运行起来了呢！</p>
+su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为一个参数传递级su)</code></pre><h2 id="三、测试："><a href="#三、测试：" class="headerlink" title="三、测试："></a>三、测试：</h2><p>重新启动机器，测试一下，是不是python脚本已经自动运行起来了呢！</p>
 
       
 
@@ -341,7 +341,7 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -438,6 +438,10 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -450,23 +454,11 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,6 +474,10 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -490,11 +486,15 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,7 +518,7 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:

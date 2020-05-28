@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -117,9 +117,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 				
 					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 		        
@@ -161,9 +161,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 					
 						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
 			        
@@ -179,7 +179,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Linux_Mount_Disk" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Linux_Mount_Disk" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,37 +199,31 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>最近，服务器磁盘空间满了，需要挂在一块额外的磁盘，在此记录。</p>
 <a id="more"></a>
+
 <h2 id="二、检查"><a href="#二、检查" class="headerlink" title="二、检查"></a>二、检查</h2><ul>
 <li>查看已挂载磁盘及其使用情况</li>
 </ul>
-<pre><code>df -h
-</code></pre><p>示例结果</p>
+<pre><code>df -h</code></pre><p>示例结果</p>
 <pre><code>Filesystem                    Size  Used Avail Use% Mounted on
 udev                           16G     0   16G   0% /dev
-/dev/sda1                     1.8T  1.2T  506G  71% /
-</code></pre><ul>
+/dev/sda1                     1.8T  1.2T  506G  71% /</code></pre><ul>
 <li>查看未挂载磁盘</li>
 </ul>
-<pre><code>lsblk
-</code></pre><p>示例结果</p>
+<pre><code>lsblk</code></pre><p>示例结果</p>
 <pre><code>sda      8:0    0  1.8T  0 disk 
 ├─sda1   8:1    0  1.8T  0 part /
 ├─sda2   8:2    0    1K  0 part 
 └─sda5   8:5    0 31.9G  0 part [SWAP]
-sdb      8:16   0  1.8T  0 disk 
-</code></pre><p>本文对sdb进行挂载</p>
+sdb      8:16   0  1.8T  0 disk </code></pre><p>本文对sdb进行挂载</p>
 <h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ul>
 <li>分区</li>
 </ul>
-<pre><code>fdisk /dev/sdb
-</code></pre><p>注：若出现</p>
-<pre><code>/dev/sdb: device contains a valid &#39;ext4&#39; signature; it is strongly recommended to wipe the device with wipefs(8) if this is unexpected, in order to avoid possible collisions
-</code></pre><p>说明，磁盘不是空盘，需要进行备份后，将其清洗，否则，直接看下一步骤 分区2</p>
+<pre><code>fdisk /dev/sdb</code></pre><p>注：若出现</p>
+<pre><code>/dev/sdb: device contains a valid &#39;ext4&#39; signature; it is strongly recommended to wipe the device with wipefs(8) if this is unexpected, in order to avoid possible collisions</code></pre><p>说明，磁盘不是空盘，需要进行备份后，将其清洗，否则，直接看下一步骤 分区2</p>
 <ul>
 <li>清洗sdb</li>
 </ul>
-<pre><code>wipefs -a /dev/sdb
-</code></pre><p>wipefs后 再进行fdisk操作</p>
+<pre><code>wipefs -a /dev/sdb</code></pre><p>wipefs后 再进行fdisk操作</p>
 <ul>
 <li>分区2</li>
 </ul>
@@ -249,22 +243,17 @@ Created a new partition 1 of type &#39;Linux&#39; and of size 1.8 TiB.
 Command (m for help): wq
 The partition table has been altered.
 Calling ioctl() to re-read partition table.
-Syncing disks.
-</code></pre><p>直接回车会使用默认值，保存配置后，分区完毕</p>
+Syncing disks.</code></pre><p>直接回车会使用默认值，保存配置后，分区完毕</p>
 <p>注：</p>
 <p>删除分区操作：</p>
 <pre><code>1 按d
-2 选择相应的分区号，回车即可
-</code></pre><ul>
+2 选择相应的分区号，回车即可</code></pre><ul>
 <li>格式化</li>
 </ul>
-<pre><code>mkfs -t ext4 /dev/sdb1
-</code></pre><ul>
+<pre><code>mkfs -t ext4 /dev/sdb1</code></pre><ul>
 <li>挂载</li>
 </ul>
-<pre><code>mount /dev/sdb1 /mysql
-</code></pre><h2 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h2><pre><code>df -h
-</code></pre><p>查看是否挂载成功</p>
+<pre><code>mount /dev/sdb1 /mysql</code></pre><h2 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h2><pre><code>df -h</code></pre><p>查看是否挂载成功</p>
 
       
 
@@ -398,7 +387,7 @@ Syncing disks.
       </style>
       <div id="vcomment" class="comment"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     var notify = 'false' == true ? true : false;
@@ -495,6 +484,10 @@ Syncing disks.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Linux</a>
               </li>
              
@@ -507,23 +500,11 @@ Syncing disks.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,6 +520,10 @@ Syncing disks.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
@@ -547,11 +532,15 @@ Syncing disks.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,7 +564,7 @@ Syncing disks.
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             2、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
