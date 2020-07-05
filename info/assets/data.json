@@ -87,7 +87,7 @@ getData([
                         "url": "https://www.whois.net/",
                         "logo": "assets/images/logos/whois_net.png",
                         "title": "Whois.Net",
-                        "desc": "始于1999年的Whois查询服务"
+                        "desc": "始于1999年的Whois查询服务（翻墙）"
                     },
                     {
                         "url": "https://lookup.icann.org/",
@@ -707,7 +707,12 @@ getData([
                         "title": "WayBack Machine",
                         "desc": "网站的历史归档信息"
                     },
-                    
+                    {
+                        "url": "http://tool.chinaz.com/history",
+                        "logo": "assets/images/logos/chinaz.jfif",
+                        "title": "站长工具--网站历史",
+                        "desc": "提供网站的历史SEO信息"
+                    },
                 ]
             },
             {
