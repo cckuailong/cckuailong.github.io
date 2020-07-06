@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://www.lovebear.top">
-  <title>Tag: ssl | Blog for You</title>
+  <title>Python+Selenium进行动态加载网页爬取 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog for You">
-<meta property="og:url" content="http://www.lovebear.top/tags/ssl/index.html">
+  <meta name="description" content="一、前言：今天想要爬取PTA的题目信息，但是发现scrapy爬取返回的response中没有题目信息，检查元素查看了一下PTA题目网页的源代码，发现这个网页是使用js动态加载的，也就是说是需要浏览器加载好js代码，返回题目信息。那怎么进行爬虫呢，这就需要使用前几章提到的Selenium，本文使用python+Selenium进行动态加载网页爬取的演示和讲解。">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python+Selenium进行动态加载网页爬取">
+<meta property="og:url" content="http://www.lovebear.top/2018/02/11/python_selenium/index.html">
 <meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言：今天想要爬取PTA的题目信息，但是发现scrapy爬取返回的response中没有题目信息，检查元素查看了一下PTA题目网页的源代码，发现这个网页是使用js动态加载的，也就是说是需要浏览器加载好js代码，返回题目信息。那怎么进行爬虫呢，这就需要使用前几章提到的Selenium，本文使用python+Selenium进行动态加载网页爬取的演示和讲解。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
+<meta property="og:image" content="http://oeqaghyw9.bkt.clouddn.com/flag.jpg">
+<meta property="og:updated_time" content="2018-09-17T02:26:20.377Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog for You">
+<meta name="twitter:title" content="Python+Selenium进行动态加载网页爬取">
+<meta name="twitter:description" content="一、前言：今天想要爬取PTA的题目信息，但是发现scrapy爬取返回的response中没有题目信息，检查元素查看了一下PTA题目网页的源代码，发现这个网页是使用js动态加载的，也就是说是需要浏览器加载好js代码，返回题目信息。那怎么进行爬虫呢，这就需要使用前几章提到的Selenium，本文使用python+Selenium进行动态加载网页爬取的演示和讲解。">
+<meta name="twitter:image" content="http://oeqaghyw9.bkt.clouddn.com/54494-106.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
   
@@ -174,55 +182,248 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-python_selenium" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/31/pem_format/" class="archive-article-date">
-  	<time datetime="2017-01-31T10:29:11.905Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/31/pem_format/">openssl生成pem文件格式详解</a>
+    <h1 class="article-title" itemprop="name">
+      Python+Selenium进行动态加载网页爬取
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        <a href="/2018/02/11/python_selenium/" class="archive-article-date">
+  	<time datetime="2018-02-11T01:10:57.796Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-11</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>今天想要爬取PTA的题目信息，但是发现scrapy爬取返回的response中没有题目信息，检查元素查看<br>了一下PTA题目网页的源代码，发现这个网页是使用js动态加载的，也就是说是需要浏览器加载好js<br>代码，返回题目信息。那怎么进行爬虫呢，这就需要使用前几章提到的Selenium，本文使用python+<br>Selenium进行动态加载网页爬取的演示和讲解。</p>
+<a id="more"></a>
+
+<h2 id="二、Selenium简介："><a href="#二、Selenium简介：" class="headerlink" title="二、Selenium简介："></a>二、Selenium简介：</h2><p>selenium 是一套完整的web应用程序测试系统，包含了测试的录制（selenium IDE）,编写及运行<br>（Selenium Remote Control）和测试的并行处理（Selenium Grid）。Selenium的核心Selenium Core基<br>于JsUnit，完全由JavaScript编写，因此可以用于任何支持JavaScript的浏览器上。</p>
+<p>selenium可以模拟真实浏览器，自动化测试工具，支持多种浏览器，爬虫中主要用来解决<br>JavaScript渲染问题。</p>
+<h2 id="三、Selenium进行爬取："><a href="#三、Selenium进行爬取：" class="headerlink" title="三、Selenium进行爬取："></a>三、Selenium进行爬取：</h2><ol>
+<li>声明浏览器对象（你使用的浏览器）</li>
+</ol>
+<pre><code>browser = webdriver.Chrome()</code></pre><p>Selenium可以声明很多种浏览器对象，可以模拟各种浏览器，需要对应浏览器类型及其版本下载<br>相应的webdriver，并将webdriver的目录加入到系统的环境变量中。</p>
+<p>Selenium 支持的伪浏览器： Chrome, Firefox, IE, Opera, HtmlUnit, PhantomJS, Appium等</p>
+<ol start="2">
+<li>访问抓取页面</li>
+</ol>
+<pre><code>browser.get(&quot;http://www.baidu.com&quot;)</code></pre><ol start="3">
+<li>查找元素</li>
+</ol>
+<p>查找元素的方式有很多种，可以进行单个元素或多个元素的查询，多个元素查询返回查询列表</p>
+<p>（1） 单个元素查询的不同方式：</p>
+<pre><code>find_element_by_name
+find_element_by_id
+find_element_by_xpath
+find_element_by_link_text
+find_element_by_partial_link_text
+find_element_by_tag_name
+find_element_by_class_name
+find_element_by_css_selector</code></pre><p>（2） 多个元素查询的不同方式：</p>
+<pre><code>find_elements_by_name
+find_elements_by_id
+find_elements_by_xpath
+find_elements_by_link_text
+find_elements_by_partial_link_text
+find_elements_by_tag_name
+find_elements_by_class_name
+find_elements_by_css_selector</code></pre><p>发现了什么，多个元素查询只是将单个元素中的”element”修改为了”elements”，是不是很简单。</p>
+<p>xpath语法什么的大家都使用过，网上资料也很多，这里贴个爬取PTA的例子，作为参考。</p>
+<pre><code>#-*- coding: utf-8 -*-
+from selenium import webdriver
+import codecs
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument(&#39;--headless&#39;)
+chrome_options.add_argument(&#39;--disable-gpu&#39;)
+
+browser = webdriver.Chrome(chrome_options=chrome_options)
+
+browser.get(&quot;https://pintia.cn/problem-sets/14/problems/735&quot;)
+
+title = browser.find_element_by_xpath(&#39;//div[@class=&quot;row&quot;]/div/div/h4&#39;)
+ques = browser.find_element_by_xpath(&#39;//div[@class=&quot;ques-view&quot;]/p[1]&#39;)
+func_title = browser.find_element_by_xpath(&#39;//div[@class=&quot;ques-view&quot;]/h3[1]&#39;)
+func_code = browser.find_element_by_xpath(&#39;//code[@class=&quot;lang-c++&quot;][1]&#39;)
+func_text = browser.find_element_by_xpath(&#39;//div[@class=&quot;ques-view&quot;]/p[2]&#39;)
+test_title = browser.find_element_by_xpath(&#39;//div[@class=&quot;ques-view&quot;]/h3[2]&#39;)
+test_code = browser.find_element_by_xpath(&#39;//div[@class=&quot;ques-view&quot;]/pre[2]/code[@class=&quot;lang-c++&quot;]&#39;)
+input_title = browser.find_element_by_xpath(&#39;//div[@class=&quot;ques-view&quot;]/h3[3]&#39;)
+input_code = browser.find_element_by_xpath(&#39;//code[@class=&quot;lang-in&quot;]&#39;)
+output_title = browser.find_element_by_xpath(&#39;//div[@class=&quot;ques-view&quot;]/h3[4]&#39;)
+output_code = browser.find_element_by_xpath(&#39;//code[@class=&quot;lang-out&quot;]&#39;)
+
+res1 = title.text+&#39;\n&#39;+ques.text
+res2 = func_title.text+&#39;\n&#39;+func_code.text+&#39;\n&#39;+func_text.text
+res3 = test_title.text+&#39;\n&#39;+test_code.text
+res4 = input_title.text+&#39;\n&#39;+input_code.text+&#39;\n&#39;+output_title.text+&#39;\n&#39;+output_code.text
+
+res = res1+&#39;\n&#39;+res2+&#39;\n&#39;+res3+&#39;\n&#39;+res4
+
+f=codecs.open(r&#39;C:\Users\lovebear96\Desktop\1.txt&#39;,&#39;w&#39;,&#39;utf-8&#39;)
+f.write(res)
+f.close()
+
+browser.close() </code></pre><ol start="4">
+<li>多说一句</li>
+</ol>
+<p>代码中出现了–headless，这个是chrome的无浏览器模式，可以不用打开浏览器进行爬取，可以节<br>省资源和加快爬取速度。这个功能只有在高版本的chrome中才支持:</p>
+<pre><code>linux： Chrome 59+，Windows： Chrome 60+</code></pre><h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>Selenium的功能很强大，他是模拟浏览器对网站进行解析，除了上面介绍的以外，还可以对网站进<br>行自动填充信息，自动提交等功能，有兴趣的同学可以查阅Selenium文档：</p>
+<pre><code>http://selenium-python.readthedocs.io/</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://lovebear.top/img/url_zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssl/">ssl</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2018/02/11/python_selenium/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+      <br>
+      <br>
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2018/09/16/Linux_shell/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Linux反弹shell的N种方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/10/Ubuntu-Windows-DoubleOS/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu-Windows双系统安装教程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+      
+      
+
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+          <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+      
+        <div id="gitalk-container"></div>
+      
+        <script src="http://lovebear.top/js/md5.js"></script>
+        <script>
+        // 生成 gitalk 插件
+        var gitalk = new Gitalk({
+          clientID: 'a42d56f7d170f0bcdd07', //Client ID
+      
+          clientSecret: 'd358ba8a877131b58631f901848da6c96973b56b', //Client Secret
+      
+          repo: 'cckuailongTalk',//仓库名称
+          owner: 'cckuailong',//仓库拥有者
+          admin: ['cckuailong'],
+          id: hexMD5(location.href),      // Ensure uniqueness and length less than 50
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+      
+        gitalk.render('gitalk-container')
+        </script>
+      
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
-
-    
-
 
           </div>
         </div>
@@ -263,9 +464,9 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
