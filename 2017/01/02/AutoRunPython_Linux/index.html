@@ -9,7 +9,7 @@
   <title>Linux开机自动运行普通用户python脚本 | Blog for You</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、前言：最近无聊写了一个监控键盘按键的简单恶意软件，因为我的电脑不可能24小时开机监控，费时费力，于是想到我还有个云服务器，可以在云服务器上持续运行我的服务接收端来进行24小时监控。由于我的恶意软件用python编写的（开发挺快的），所以需要在服务器中设置开机自动运行我的python服务器脚本，服务器环境为linux。windows服务器比较简单，把要启动的快捷方式放到C:\Users\用户\A">
-<meta name="keywords" content="Linux,python">
+<meta name="keywords" content="python,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux开机自动运行普通用户python脚本">
 <meta property="og:url" content="http://www.lovebear.top/2017/01/02/AutoRunPython_Linux/index.html">
@@ -304,11 +304,10 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
 <div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-  
+      <br>
+      <br>
+      
+        
 <nav id="article-nav">
   
     <a href="/2017/01/08/CTF_Fastpost/" id="article-nav-newer" class="article-nav-link-wrap">
@@ -328,37 +327,37 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
   
 </nav>
 
+      
+      
+
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+          <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+      
+        <div id="gitalk-container"></div>
+      
+        <script>
+        // 生成 gitalk 插件
+        var gitalk = new Gitalk({
+          clientID: 'a42d56f7d170f0bcdd07', //Client ID
+      
+          clientSecret: 'd358ba8a877131b58631f901848da6c96973b56b', //Client Secret
+      
+          repo: 'cckuailongTalk',//仓库名称
+          owner: 'cckuailong',//仓库拥有者
+          admin: ['cckuailong'],
+          id: location.href,      // Ensure uniqueness and length less than 50
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+      
+        gitalk.render('gitalk-container')
+        </script>
+      
+    </div>
+  </div>
+</article>
 
 
-
-
-
-  
-    <section id="comments" class="comments">
-      <style>
-        .comments{margin:30px;padding:10px;background:rgb(255, 255, 255)}
-        @media screen and (max-width:400px){.comments{margin:auto;padding:10px;background:rgb(214, 252, 203)}}
-      </style>
-      <div id="vcomment" class="comment"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-    var notify = 'false' == true ? true : false;
-    var verify = 'false' == true ? true : false;
-    new Valine({
-        av: AV,
-        el: '#vcomment',
-        notify: notify,
-        app_id: "J3JcKBL0IxtN9XJWzPrnegcB-gzGzoHsz",
-        app_key: "ewqKho2b8ByxHacJAjmvq5ur",
-        placeholder: "请留下宝贵的评论",
-        avatar:"retro",
-    });
-</script>
-
-    </section>
-  
 
           </div>
         </div>
@@ -438,14 +437,6 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">BGP</a>
               </li>
              
@@ -454,15 +445,15 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,19 +465,23 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Julia</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">linux</a>
+                <a href="javascript:void(0)">Vulnerability</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">mysql</a>
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,6 +490,10 @@ su test1 -c &quot;python /home/test1/test.py&quot; (把要执行的命令作为�
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
