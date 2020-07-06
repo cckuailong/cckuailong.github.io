@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.lovebear.top/2020/07/06/GitTalk_Deploy/</loc>
+    <lastmod>2020-07-06</lastmod>
+  </url>  <url>
+    <loc>http://www.lovebear.top/2020/02/23/Spark_Yarn_Warning_Sparkjars/</loc>
+    <lastmod>2020-07-06</lastmod>
+  </url>  <url>
     <loc>http://www.lovebear.top/2020/05/31/Drozer_Install/</loc>
     <lastmod>2020-05-31</lastmod>
   </url>  <url>
@@ -33,9 +39,6 @@
   </url>  <url>
     <loc>http://www.lovebear.top/2020/01/08/PyBgpStream_Install/</loc>
     <lastmod>2020-03-05</lastmod>
-  </url>  <url>
-    <loc>http://www.lovebear.top/2020/02/23/Spark_Yarn_Warning_Sparkjars/</loc>
-    <lastmod>2020-02-23</lastmod>
   </url>  <url>
     <loc>http://www.lovebear.top/2020/02/20/Mysql_Error_Inject/</loc>
     <lastmod>2020-02-20</lastmod>
@@ -169,7 +172,7 @@
     <loc>http://www.lovebear.top/2018/09/16/Linux_shell/</loc>
     <lastmod>2018-09-17</lastmod>
   </url>  <url>
-    <loc>http://www.lovebear.top/2018/02/11/Python_selenium/</loc>
+    <loc>http://www.lovebear.top/2018/02/11/python_selenium/</loc>
     <lastmod>2018-09-17</lastmod>
   </url>  <url>
     <loc>http://www.lovebear.top/2018/02/06/Python_UnicodeDecodeError/</loc>
