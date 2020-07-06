@@ -231,7 +231,3 @@ function b64MD5w(str) {
 function calcMD5(str) {
   return binl2hex(coreMD5(str2binl(str)));
 }
-
-module.exports = {
-  hexMD5: hexMD5
-};
