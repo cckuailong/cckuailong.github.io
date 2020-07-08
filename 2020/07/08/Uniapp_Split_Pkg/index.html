@@ -17,7 +17,7 @@
 <meta property="og:description" content="一、前言微信小程序对主包的大小有限制（目前是2MB），当小程序功能较多时，需要按功能进行分包操作，而Uniapp编写分包程序后，需要进行相应配置，才能有效地对项目进行分包，本文将进行详细讲解。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://lovebear.cloud/resource/standard.png">
-<meta property="og:updated_time" content="2020-07-08T15:14:40.165Z">
+<meta property="og:updated_time" content="2020-07-08T15:17:40.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Uniapp 配置分包选项">
 <meta name="twitter:description" content="一、前言微信小程序对主包的大小有限制（目前是2MB），当小程序功能较多时，需要按功能进行分包操作，而Uniapp编写分包程序后，需要进行相应配置，才能有效地对项目进行分包，本文将进行详细讲解。">
@@ -199,7 +199,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>微信小程序对主包的大小有限制（目前是2MB），当小程序功能较多时，需要按功能进行分包操作，而Uniapp编写分包程序后，<br>需要进行相应配置，才能有效地对项目进行分包，本文将进行详细讲解。</p>
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>微信小程序对主包的大小有限制（目前是2MB），当小程序功能较多时，需要按功能进行分包操作，而Uniapp编写分包程序后，需要进行相应配置，才能有效地对项目进行分包，本文将进行详细讲解。</p>
 <a id="more"></a>
 
 <h2 id="二、Uniapp-介绍"><a href="#二、Uniapp-介绍" class="headerlink" title="二、Uniapp 介绍"></a>二、Uniapp 介绍</h2><p>uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、H5、以及各种小程序（微信/支付宝/百度/头条/QQ/钉钉/淘宝）、快应用等多个平台。</p>
@@ -223,7 +223,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 </ol>
 <h3 id="代码分包"><a href="#代码分包" class="headerlink" title="代码分包"></a>代码分包</h3><p>根据设计配置的 pages.json 对代码进行分包，参考上一小节中的链接</p>
 <h2 id="四、编译运行"><a href="#四、编译运行" class="headerlink" title="四、编译运行"></a>四、编译运行</h2><p>使用 HBuilder 进行编译，可以发现编译后的微信小程序，分包中的 export 会单独生成分包中的 vendor.js文件，<br>不影响其他包（尤其是主包），我们的分包编译成功。</p>
-<p>后记：当时因为没有配置 manifest.json 导致分包中的好多 export 都打包到主包的 vendor.js，导致主包体积过大，<br>需要在此记录一下</p>
+<p>后记：当时因为没有配置 manifest.json 导致分包中的好多 export 都打包到主包的 vendor.js，导致主包体积过大，需要在此记录一下</p>
 <h2 id="五、小程序示例"><a href="#五、小程序示例" class="headerlink" title="五、小程序示例"></a>五、小程序示例</h2><p>身为数码宝贝迷，我使用 Uniapp 制作了一款微信小程序–数码兽图鉴，欢迎大家前来体验（也算是学习一波前端知识，哈哈）</p>
 <p><img src="http://lovebear.cloud/resource/standard.png" alt="dh"></p>
 
@@ -445,6 +445,14 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">BGP</a>
               </li>
              
@@ -453,15 +461,19 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,19 +485,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Julia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Julia</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,19 +497,23 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">DataBase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">DataBase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,14 +526,6 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">前端</a>
               </li>
             
             <div class="clearfix"></div>
