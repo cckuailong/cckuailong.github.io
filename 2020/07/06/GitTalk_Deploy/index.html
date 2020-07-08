@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Blog for You">
 <meta property="og:description" content="一、前言之前的博客使用Valine插件进行评论功能的实现，实现过程参考Hexo的Yilia主题配置Valine评论功能。但是Valine的界面不够简洁美观，并且不带登陆评论功能，导致很多恶意灌水评论。本文使用GitTalk插件进行评论功能的替换。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-07-06T14:27:50.476Z">
+<meta property="og:updated_time" content="2020-07-08T15:02:12.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客配置GitTalk评论插件">
 <meta name="twitter:description" content="一、前言之前的博客使用Valine插件进行评论功能的实现，实现过程参考Hexo的Yilia主题配置Valine评论功能。但是Valine的界面不够简洁美观，并且不带登陆评论功能，导致很多恶意灌水评论。本文使用GitTalk插件进行评论功能的替换。">
@@ -241,7 +241,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
     &lt;/script&gt;
 &lt;% } %&gt;</code></pre><p>注：id: hexMD5(location.href)，为了解决GitTalk中，文章的 URL 过长，生成 issue 时超过了 label 的长度限制的问题</p>
 <p>具体原因参考，<a href="https://github.com/gitalk/gitalk/issues/102" target="_blank" rel="noopener">报错出现 Error: Validation Failed.</a></p>
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><pre><code>hexo g -d</code></pre><p>第一次进入时评论模块加载不出来，需要注册Github Application的账号登录评论模块后刷新页面，就可以正常使用了。</p>
+<h2 id="四、部署"><a href="#四、部署" class="headerlink" title="四、部署"></a>四、部署</h2><pre><code>hexo g -d</code></pre><p>第一次进入时评论模块加载不出来，需要注册Github Application的账号登录评论模块后刷新页面，就可以正常使用了。</p>
 <p>注：Network Error因为网络问题或API请求频繁，可以挂VPN，并且过一会刷新</p>
 
       
@@ -344,6 +344,15 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
         
 <nav id="article-nav">
+  
+    <a href="/2020/07/08/Uniapp_Split_Pkg/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Uniapp 配置分包选项
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/31/Drozer_Install/" id="article-nav-older" class="article-nav-link-wrap">
@@ -539,6 +548,10 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">前端</a>
               </li>
             
             <div class="clearfix"></div>
