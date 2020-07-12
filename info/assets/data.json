@@ -472,6 +472,12 @@ getData([
                         "desc": "公益项目，搜索数据完全免费"
                     },
                     {
+                        "url": "https://nmap.org/nsedoc/scripts/",
+                        "logo": "assets/images/logos/nmap.jpg",
+                        "title": "Nmap官方探测脚本",
+                        "desc": "官方列出的所有探测脚本"
+                    },
+                    {
                         "url": "https://github.com/nmap/nmap",
                         "logo": "assets/images/logos/github.jpg",
                         "title": "Nmap",
