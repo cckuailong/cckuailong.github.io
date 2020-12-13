@@ -21,9 +21,10 @@
 <meta property="og:image" content="http://lovebear.top/img/DNSLog/3.png">
 <meta property="og:image" content="http://lovebear.top/img/DNSLog/4.png">
 <meta property="og:image" content="http://lovebear.top/img/DNSLog/5.png">
+<meta property="og:image" content="http://lovebear.top/img/DNSLog/6.png">
 <meta property="og:image" content="http://lovebear.top/img/DNSLog/7.png">
 <meta property="og:image" content="http://lovebear.top/img/DNSLog/8.png">
-<meta property="og:updated_time" content="2020-12-13T01:31:43.148Z">
+<meta property="og:updated_time" content="2020-12-13T01:41:33.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNSLog搭建">
 <meta name="twitter:description" content="一、前言：DNSLog的出现为渗透测试中的回显提供了很大的方便，一些无回显的漏洞，也可以通过DNSLog进行信息回显。本文将对DNSLog的搭建进行介绍，让你快速搭建起属于自己的DNSLog">
@@ -217,11 +218,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 </ol>
 <h2 id="三、搭建DNSLog"><a href="#三、搭建DNSLog" class="headerlink" title="三、搭建DNSLog"></a>三、搭建DNSLog</h2><h3 id="配置域名解析"><a href="#配置域名解析" class="headerlink" title="配置域名解析"></a>配置域名解析</h3><p><strong>P.S.</strong> 这里不推荐腾讯云（DNSPod），不能改自定义DNS服务器，也不支持NS记录泛解析，推荐阿里云</p>
 <ol>
-<li>准备两个域名，一台服务器<pre><code>aaa.ink:    做web服务访问
-aaa.cloud:    做DNS服务器域名
-&lt;server_ip&gt;:运行DNSLog</code></pre></li>
+<li>准备两个域名，一台服务器</li>
 </ol>
-<p><strong>P.S.</strong> 域名随便找，我这里申请了ink，cloud（便宜qwq）</p>
+<pre><code>aaa.ink:    做web服务访问
+aaa.cloud:    做DNS服务器域名
+&lt;server_ip&gt;:运行DNSLog</code></pre><p><strong>P.S.</strong> 域名随便找，我这里申请了ink，cloud（便宜qwq）</p>
 <ol start="2">
 <li>aaa.cloud解析设置<br><img src="http://lovebear.top/img/DNSLog/2.png" alt="3ab351de66776f066705b4b3b1cbcccd.png"><br>记录值为 <server_ip></server_ip></li>
 <li>aaa.ink解析设置<br><img src="http://lovebear.top/img/DNSLog/3.png" alt="213ac4c894045259be9b4bac28bb193b.png"></li>
@@ -236,44 +237,81 @@ aaa.cloud:    做DNS服务器域名
 <h3 id="DNSLog部署"><a href="#DNSLog部署" class="headerlink" title="DNSLog部署"></a>DNSLog部署</h3><p>本文使用 <a href="https://github.com/Buzz2d0/Hyuga" target="_blank" rel="noopener"><strong>Hyuga</strong></a> 搭建</p>
 <h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><ol>
 <li>OS：Ubuntu，其他系统相似，只不过安装软件命令有区别</li>
-<li>安装Redis<pre><code>apt install redis-server
-service redis start</code></pre></li>
-<li>安装nginx<pre><code>apt install nginx
-service nginx start</code></pre></li>
-<li>安装 yarn<pre><code>curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+<li>安装Redis</li>
+</ol>
+<pre><code>apt install redis-server
+service redis start</code></pre><ol start="3">
+<li>安装nginx</li>
+</ol>
+<pre><code>apt install nginx
+service nginx start</code></pre><ol start="4">
+<li>安装 yarn</li>
+</ol>
+<pre><code>curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; | sudo tee /etc/apt/sources.list.d/yarn.list
 apt update
-apt install yarn</code></pre></li>
-<li>安装 node<pre><code>curl -sL https://deb.nodesource.com/setup_lts.x | bash -
-apt install -y nodejs</code></pre></li>
-<li>安装cnpm (国内npm慢)<pre><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></pre></li>
-<li>安装vue<pre><code>cnpm install -g @vue/cli</code></pre></li>
-<li>安装vue-cli-service<pre><code>cnpm install @vue/cli-service -g</code></pre></li>
+apt install yarn</code></pre><ol start="5">
+<li>安装 node</li>
 </ol>
-<h4 id="修改环境变量以及配置"><a href="#修改环境变量以及配置" class="headerlink" title="修改环境变量以及配置"></a>修改环境变量以及配置</h4><ol>
-<li>环境变量写入项目根目录下的 .env 文件：<pre><code>APP_ENV=production
-</code></pre></li>
+<pre><code>curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+apt install -y nodejs</code></pre><ol start="6">
+<li>安装cnpm (国内npm慢)</li>
 </ol>
-<p>REDIS_SERVER=<redis_ip> # 本地就localhost<br>REDIS_PORT=6379</redis_ip></p>
-<p>DOMAIN=&lt;aaa.ink&gt; # 记录域名<br>NS1_DOMAIN=ns1.&lt;aaa.cloud&gt; # NS域名<br>NS2_DOMAIN=ns2.&lt;aaa.cloud&gt; # NS域名<br>SERVER_IP=<server_ip> # 公网IP</server_ip></p>
-<pre><code>2. 修改 deploy/nginx/nginx-hyuga.conf 中的 server_name, proxy_pass</code></pre><p>server {<br>    listen 80;<br>    server_name &lt;aaa.ink&gt;;<br>…<br>}<br>…<br>server {<br>    listen 80;<br>    server_name *.&lt;aaa.ink&gt;;<br>….<br>    location / {<br>        proxy_set_header Host $http_host;<br>        proxy_set_header X-Real-IP $remote_addr;<br>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>        proxy_set_header X-Forwarded-Proto $scheme;<br>        proxy_pass http://&lt;aaa.ink&gt;:5000;<br>    }</p>
-<pre><code>
-#### 前端
-1. 修改 ui/src/utils/conf.js API 接口
-修改 api.&lt;aaa.ink&gt;:5000 为记录域名
-2. 构建前端文件</code></pre><p>$ cd Hyuga/ui<br>$ yarn build<br>$ rm -r ../frontend<br>$ mv dist/ ../frontend</p>
-<pre><code>
-#### 部署
-1. 前端
-a. 配置Nginx</code></pre><p>cp deploy/nginx/nginx-hyuga.conf  /etc/nginx/conf.d/<br>vim /etc/nginx/conf.d/nginx.conf</p>
-<pre><code>![3bb2139c759b6dd937ab17d90e60ab42.png](http://lovebear.top/img/DNSLog/6.png)
-b. 配置前端项目</code></pre><p>rm -r /var/www/*<br>cp /root/Hyuga-master/frontend/* /var/www/ -R</p>
-<pre><code>c. 重启nginx</code></pre><p>service nginx restart</p>
-<pre><code>2. 后端
-a. 编译go代码</code></pre><p>go build hyuga.go</p>
-<pre><code>b. 运行</code></pre><p>nohup ./hyuga &amp;</p>
-<p>```</p>
-<p>P.S. 云服务器记得配置安全策略，打开80，53，5000端口</p>
+<pre><code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></pre><ol start="7">
+<li>安装vue</li>
+</ol>
+<pre><code>cnpm install -g @vue/cli</code></pre><ol start="8">
+<li>安装vue-cli-service</li>
+</ol>
+<pre><code>cnpm install @vue/cli-service -g</code></pre><h4 id="修改环境变量以及配置"><a href="#修改环境变量以及配置" class="headerlink" title="修改环境变量以及配置"></a>修改环境变量以及配置</h4><ol>
+<li>环境变量写入项目根目录下的 .env 文件：</li>
+</ol>
+<pre><code>APP_ENV=production
+
+REDIS_SERVER=&lt;redis_ip&gt; # 本地就localhost
+REDIS_PORT=6379
+
+DOMAIN=&lt;aaa.ink&gt; # 记录域名
+NS1_DOMAIN=ns1.&lt;aaa.cloud&gt; # NS域名
+NS2_DOMAIN=ns2.&lt;aaa.cloud&gt; # NS域名
+SERVER_IP=&lt;server_ip&gt; # 公网IP</code></pre><ol start="2">
+<li>修改 deploy/nginx/nginx-hyuga.conf 中的 server_name, proxy_pass</li>
+</ol>
+<pre><code>server {
+    listen 80;
+    server_name &lt;aaa.ink&gt;;
+...
+}
+...
+server {
+    listen 80;
+    server_name *.&lt;aaa.ink&gt;;
+....
+    location / {
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass http://&lt;aaa.ink&gt;:5000;
+    }</code></pre><h4 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h4><ol>
+<li>修改 ui/src/utils/conf.js API 接口<br>修改 api.&lt;aaa.ink&gt;:5000 为记录域名</li>
+<li>构建前端文件</li>
+</ol>
+<pre><code>$ cd Hyuga/ui
+$ yarn build
+$ rm -r ../frontend
+$ mv dist/ ../frontend</code></pre><h4 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h4><ol>
+<li>前端<br>a. 配置Nginx</li>
+</ol>
+<pre><code>cp deploy/nginx/nginx-hyuga.conf  /etc/nginx/conf.d/
+vim /etc/nginx/conf.d/nginx.conf</code></pre><p><img src="http://lovebear.top/img/DNSLog/6.png" alt="3bb2139c759b6dd937ab17d90e60ab42.png"><br>b. 配置前端项目</p>
+<pre><code>rm -r /var/www/*
+cp /root/Hyuga-master/frontend/* /var/www/ -R</code></pre><p>c. 重启nginx</p>
+<pre><code>service nginx restart</code></pre><ol start="2">
+<li>后端<br>a. 编译go代码</li>
+</ol>
+<pre><code>go build hyuga.go</code></pre><p>b. 运行</p>
+<pre><code>nohup ./hyuga &amp;</code></pre><p>P.S. 云服务器记得配置安全策略，打开80，53，5000端口</p>
 <h2 id="四、运行展示"><a href="#四、运行展示" class="headerlink" title="四、运行展示"></a>四、运行展示</h2><p><img src="http://lovebear.top/img/DNSLog/7.png" alt="13c661dbadac5980d4cbc48423a817ad.png"><br>已经收到访问记录<br><img src="http://lovebear.top/img/DNSLog/8.png" alt="4971b643d6f90d12e40ca5c890a70548.png"></p>
 
       
@@ -506,19 +544,11 @@ a. 编译go代码</code></pre><p>go build hyuga.go</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">blog</a>
+                <a href="javascript:void(0)">渗透</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">BGP</a>
+                <a href="javascript:void(0)">Vulnerability</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,11 +556,27 @@ a. 编译go代码</code></pre><p>go build hyuga.go</p>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Vulnerability</a>
+                <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,15 +588,11 @@ a. 编译go代码</code></pre><p>go build hyuga.go</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
+                <a href="javascript:void(0)">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">DataBase</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -575,10 +617,6 @@ a. 编译go代码</code></pre><p>go build hyuga.go</p>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">渗透</a>
               </li>
             
             <div class="clearfix"></div>
