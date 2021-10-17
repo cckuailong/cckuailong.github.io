@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="dns-prefetch" href="http://www.lovebear.top">
+  <title>Apache服务器安全--Ubuntu上的Apache性能优化（二） | Blog for You</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、前言：上一章，我们讲了一些Apache配置小技巧来优化web服务器，这一章，我们将涉及到更多的配置技巧，这些会使我们的服务器性能有一个整体的提升。">
+<meta name="keywords" content="Ubuntu,Apache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache服务器安全--Ubuntu上的Apache性能优化（二）">
+<meta property="og:url" content="http://www.lovebear.top/2018/12/05/ApacheOptimize_Ubuntu_2/index.html">
+<meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言：上一章，我们讲了一些Apache配置小技巧来优化web服务器，这一章，我们将涉及到更多的配置技巧，这些会使我们的服务器性能有一个整体的提升。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.lovebear.top/img/ApacheOptimize_2_1.png">
+<meta property="og:image" content="http://www.lovebear.top/img/ApacheOptimize_2_2.png">
+<meta property="og:updated_time" content="2018-12-05T08:43:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache服务器安全--Ubuntu上的Apache性能优化（二）">
+<meta name="twitter:description" content="一、前言：上一章，我们讲了一些Apache配置小技巧来优化web服务器，这一章，我们将涉及到更多的配置技巧，这些会使我们的服务器性能有一个整体的提升。">
+<meta name="twitter:image" content="http://www.lovebear.top/img/ApacheOptimize_2_1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
+  
+
+  
+
+  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc">
+  <script>(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?1bc693950a04b443481f93da0209d936":"https://jspassport.ssl.qhimg.com/11.0.1.js?1bc693950a04b443481f93da0209d936";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <script src="/js/jquery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-134162688-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-134162688-1');
+</script>
+
+</head>
+<script src="/js/instant.js" type="module"></script>
+
+</html>
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="http://lovebear.top/img/head.jfif" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">lovebear</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">someone there for you</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+		        
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+		        
+					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">lovebear</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://lovebear.top/img/head.jfif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">lovebear</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">someone there for you</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+			        
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-ApacheOptimize_Ubuntu_2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Apache服务器安全--Ubuntu上的Apache性能优化（二）
+    </h1>
+  
+
+        <a href="/2018/12/05/ApacheOptimize_Ubuntu_2/" class="archive-article-date">
+  	<time datetime="2018-12-05T08:43:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-05</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>上一章，我们讲了一些Apache配置小技巧来优化web服务器，这一章，我们将涉及到更多的<br>配置技巧，这些会使我们的服务器性能有一个整体的提升。</p>
+<a id="more"></a>
+
+<h2 id="二、优化配置策略："><a href="#二、优化配置策略：" class="headerlink" title="二、优化配置策略："></a>二、优化配置策略：</h2><h3 id="1、启用mod-deflate压缩"><a href="#1、启用mod-deflate压缩" class="headerlink" title="1、启用mod_deflate压缩"></a>1、启用mod_deflate压缩</h3><p>Mod_deflate是Apache的一个模块，它使你的Apache服务器的输出被压缩后传输到浏览器。这样会<br>减少传输文件的体积，并且提高传输文件的速率。Mod_deflate模块使用gzip压缩方式来压缩<br>data,txt,HTML或者XML文件，压缩率达到70%。<br>Ubuntu安装的Apache中默认包含并启用Mod_delate模块。<br>为了验证这个，可以输入下列命令</p>
+<pre><code>sudo apachectl -t -D DUMP_MODULES | grep deflate</code></pre><p>如果mod_deflate启用，你可以看到如下图的deflate_module(shared)<br><img src="http://www.lovebear.top/img/ApacheOptimize_2_1.png" alt="demo1"></p>
+<p>默认的gzip压缩等级是9，但是你可以根据自己的需要更改压缩等级</p>
+<p>优化配置策略：<br>（1） 修改deflate.conf配置文件</p>
+<pre><code>sudo vim /etc/apache2/mod-enables/deflate.conf</code></pre><p>（2） 增添或修改</p>
+<pre><code>DeflateCompressionLevel 8</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="2、安装Varnish-Cache"><a href="#2、安装Varnish-Cache" class="headerlink" title="2、安装Varnish Cache"></a>2、安装Varnish Cache</h3><p>Varnish cache是一个HTTP加速器和反向代理来加速Apache服务器。它存储Apache web服务器的<br>服务的复制来加速网站。因为它在RAM中存储了文件内容，所以网站加载更快。</p>
+<p>优化配置策略：<br>（1）安装Varnish：</p>
+<pre><code>sudo curl http://repo.varnish-cache.org/debian/GPG-key.txt | sudo apt-key add -
+sudo echo &quot;deb http://repo.varnish-cache.org/ubuntu/ trust varnish-4.0&quot; &gt;&gt; /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get install varnish</code></pre><p>（2）配置Varnish cache<br>Varnish在8080端口上监听80端口的来自Apache的网站信息<br>● 修改varnish文件</p>
+<pre><code>sudo vim /etc/default/varnish</code></pre><pre><code>DAEMON_OPTS=&quot;-a :6081 \
+-T localhost:6082 \
+-f /etc/varnish/default.vcl \
+-S /etc/varnish/secret \
+-s malloc,256m&quot;</code></pre><p>● 修改default.vcl文件，这个文件告诉varnish寻找服务信息</p>
+<pre><code>sudo vim /etc/varnish/default.vcl</code></pre><pre><code>backend default {
+    .host = &quot;127.0.0.1&quot;;
+    .port = &quot;8080&quot;;
+}</code></pre><p>（3）重启Apache和varnish</p>
+<pre><code>sudo /etc/init.d/apache2 restart
+sudo /etc/init.d/varnish restart</code></pre><p>（4）检查varnish状态</p>
+<pre><code>sudo varnishstat</code></pre><h3 id="3、安装APC"><a href="#3、安装APC" class="headerlink" title="3、安装APC"></a>3、安装APC</h3><p>APC(Alternative PHP Cache)是一款开源的PHP操作码缓存插件，用来加速网站。他把PHP字节码<br>编译器的输出缓存在共享内存中，减少了后续请求的解析和磁盘I/O的开销。</p>
+<p>优化配置策略：</p>
+<p>（1）安装APC</p>
+<pre><code>sudo apt-get install php-apc</code></pre><p>（2）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><p>（3）检查是否成功<br>如下图，则APC安装成功<br><img src="http://www.lovebear.top/img/ApacheOptimize_2_2.png" alt="demo1"></p>
+<h3 id="4、MaxConnectionsPerChild"><a href="#4、MaxConnectionsPerChild" class="headerlink" title="4、MaxConnectionsPerChild"></a>4、MaxConnectionsPerChild</h3><p>MaxConnectionsPerChild用来回收进程。当限制被设置为0时，每个进程允许无限制的请求。<br>MaxConnectionsPerChild限制一个子进程能处理的请求的数量，在请求达到指定限制时，子<br>进程就会消亡。在Ubuntu中，默认值为100。</p>
+<p>推荐的设置：<br>● 虚拟服务器 300<br>● 1-4GB RAM的服务器 500<br>● 4+GB RAM的服务器 1000</p>
+<p>优化配置策略：</p>
+<p>（1）修改mpm_prefork.conf</p>
+<pre><code>sudo vim /etc/apache2/mods-available/mpm_prefork.conf</code></pre><p>（2）添加或修改</p>
+<pre><code>MaxConnectionsPerChild 300</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="KeepAlive"><a href="#KeepAlive" class="headerlink" title="KeepAlive"></a>KeepAlive</h3><p>Ubuntu默认将KeepAlive设置为On。当Apache服务器短时间内收到成百上千的IP请求，KeepAlive值<br>应该被设置为Off。推荐将此值设置为Off来提高连接吞吐量。</p>
+<p>优化配置策略：</p>
+<p>（1）修改apache2配置文件</p>
+<pre><code>sudo vim /etc/apache2/apache2.conf</code></pre><p>（2）增添或修改：</p>
+<pre><code>KeepAlive Off</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre><h3 id="6、MinSpareServers-and-MaxSpareServers"><a href="#6、MinSpareServers-and-MaxSpareServers" class="headerlink" title="6、MinSpareServers and MaxSpareServers"></a>6、MinSpareServers and MaxSpareServers</h3><p>这两个参数设置了空闲服务器子进程的最大和最小数量。他控制Apache保持空闲状态的进程<br>的数量，直到活得更多的请求来重新激活他们。每一个子进程都消耗一定的资源，所以如果<br>你把MaxSpareServer设置的太大，将会导致资源紧张问题。</p>
+<p>MinSpareServers的推荐设置为<br>● 虚拟服务器 5<br>● 1-2GB RAM的服务器 10<br>● 2-4GB RAM的服务器 20<br>● 4+GB RAM的服务器 25</p>
+<p>MaxSpareServers推荐设置为MinSpareServer的两倍</p>
+<p>优化配置策略：</p>
+<p>（1）修改mpm_prefork.conf配置文件</p>
+<pre><code>sudo vim /etc/apache2/mods-available/mpm_prefork.conf</code></pre><p>（2）增添或修改：</p>
+<pre><code>MinSpareServers 5
+MaxSpareServers 10</code></pre><p>（3）重启Apache</p>
+<pre><code>sudo /etc/init.d/apache2 restart</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://lovebear.top/img/url_zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2018/12/05/ApacheOptimize_Ubuntu_2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+      <br>
+      <br>
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2018/12/05/ApacheSec_Ubuntu_1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Apache服务器安全--Ubuntu上的Apache安全配置（一）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/18/Safari_Dos/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">针对Sarafi的Dos攻击--导致机器重启</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+      
+      
+
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+          <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+      
+        <div id="gitalk-container"></div>
+      
+        <script src="http://lovebear.top/js/md5.js"></script>
+        <script>
+        // 生成 gitalk 插件
+        var gitalk = new Gitalk({
+          clientID: 'a42d56f7d170f0bcdd07', //Client ID
+      
+          clientSecret: 'd358ba8a877131b58631f901848da6c96973b56b', //Client Secret
+      
+          repo: 'cckuailongTalk',//仓库名称
+          owner: 'cckuailong',//仓库拥有者
+          admin: ['cckuailong'],
+          id: hexMD5(location.href),      // Ensure uniqueness and length less than 50
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+      
+        gitalk.render('gitalk-container')
+        </script>
+      
+    </div>
+  </div>
+</article>
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2021 lovebear
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Lovebear
+      	</div>
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+		</script>
+		<span id="busuanzi_container_site_pv">
+			Total Visit: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> times
+		</span>
+		<script>
+			(function(){
+				var bp = document.createElement('script');
+				var curProtocol = window.location.protocol.split(':')[0];
+				if (curProtocol === 'https'){
+					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+				}
+				else{
+					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+				}
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=4.0.0"></script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Apache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">渗透</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">image</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Julia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">DataBase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">pacman</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: true
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>hexo主题</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>不如</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.cnblogs.com/tengj/p/5353897.html" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>深入hexo</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.dnspod.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>DNSPod</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ibruce.info/2013/11/26/markdown/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>markdown</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">每天进步一点点</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true,"scale":0.5}});</script></body>
+</html>

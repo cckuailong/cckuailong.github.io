@@ -176,28 +176,34 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-python_indent_err" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python_UnicodeDecodeError" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/01/python_indent_err/">Python unexpected indent 解决</a>
+      <a class="article-title" href="/2018/02/06/python_UnicodeDecodeError/">解决python 2的UnicodeDecodeError错误</a>
     </h1>
   
 
-        <a href="/2017/01/01/python_indent_err/" class="archive-article-date">
-  	<time datetime="2017-01-01T06:30:16.427Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-01</time>
+        <a href="/2018/02/06/python_UnicodeDecodeError/" class="archive-article-date">
+  	<time datetime="2018-02-06T10:18:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-06</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>python中最常见的错误就是unexpected indent错误了，经常检查发现代码没什么问题，但是<br>就是不知道哪儿错了，提示错误如下：</p>
-<pre><code>IndentationError: unexpected indent</code></pre><p>其实就是缩进问题，缩进中有的地方用了tab，有的地方用了space，很多时候排查不方便，<br>本文提供一个直观的办法解决</p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近使用scrapy爬取中文网页并向文件中写入的时候，出现了下面的错误： </p>
+<pre><code>UnicodeDecodeError： &#39;ascii&#39; codec can&#39;t decode byte ...... : ordinal not in range(128)</code></pre><p>这是因为python的默认编码是ascii，当出现Unicode编码时，python编译器的编码处理部分会<br>产生错误这时我们有三种解决办法:</p>
+<ol>
+<li>升级为Python3</li>
+<li>将python编码设置为 GBK 或者 UTF-8 ，这里介绍UTF-8。</li>
+<li>使用codecs代替open来打开写入的文件</li>
+</ol>
+<p>博主对上述三种解决方案的推荐优先级为： 3 &gt; 2 &gt; 1</p>
         
-          <a class="article-more-a" href="/2017/01/01/python_indent_err/#more">more >></a>
+          <a class="article-more-a" href="/2018/02/06/python_UnicodeDecodeError/#more">more >></a>
         
       
 
@@ -215,7 +221,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/01/python_indent_err/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/02/06/python_UnicodeDecodeError/">展开全文 >></a>
         </p>
       
 
@@ -232,27 +238,27 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 </article>
 
   
-    <article id="post-Notepad++_And_python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ApacheOptimize_Ubuntu_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/15/Notepad++_And_python/">Notepad++配置python环境</a>
+      <a class="article-title" href="/2017/06/24/ApacheOptimize_Ubuntu_1/">Apache服务器安全--Ubuntu上的Apache性能优化（一）</a>
     </h1>
   
 
-        <a href="/2016/12/15/Notepad++_And_python/" class="archive-article-date">
-  	<time datetime="2016-12-15T00:27:34.351Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
+        <a href="/2017/06/24/ApacheOptimize_Ubuntu_1/" class="archive-article-date">
+  	<time datetime="2017-06-24T00:10:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-24</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>python是比较轻量级的，但是一些IDE为python集成了许多插件，造成其很大（如python xy），<br>今天我们可以在文本编辑器中（本文使用notepad++）连接python,还原轻巧的python。</p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>Apache是一个开源的web服务器，在世界上拥有70%的份额。我们可以通过增加额外的硬件，如<br>RAM，CPU等来提高服务器的性能，同样我们也可以通过定制一些Apache配置来提高我们服务器<br>的性能。</p>
         
-          <a class="article-more-a" href="/2016/12/15/Notepad++_And_python/#more">more >></a>
+          <a class="article-more-a" href="/2017/06/24/ApacheOptimize_Ubuntu_1/#more">more >></a>
         
       
 
@@ -263,14 +269,14 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apache/">Apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
 	</div>
 
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/15/Notepad++_And_python/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/06/24/ApacheOptimize_Ubuntu_1/">展开全文 >></a>
         </p>
       
 
@@ -287,27 +293,28 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 </article>
 
   
-    <article id="post-Pacman_project1_code" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-CTF_FactorSum" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/13/Pacman_project1_code/">Pacman_project1代码及解析</a>
+      <a class="article-title" href="/2017/02/01/CTF_FactorSum/">CTF--大数因子求和与大数模运算</a>
     </h1>
   
 
-        <a href="/2016/12/13/Pacman_project1_code/" class="archive-article-date">
-  	<time datetime="2016-12-13T13:37:20.393Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-13</time>
+        <a href="/2017/02/01/CTF_FactorSum/" class="archive-article-date">
+  	<time datetime="2017-02-01T14:14:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-01</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>初学人工智能，感到非常好玩，老师留了一个Pacman Project，经查阅，伯克利大学的人工智能<br>课程也用这个Project作为实验教材。为了方便同学们，我写了Project 1——search的代码，并对每行<br>代码进行详细的注释解析。（网上有别人写好的代码，但是很乱，而且没有注释。。。）</p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>在实验吧遇到一道看起来很简单的题，其实有很多内容在其中，这道题包括大数的全部因子<br>求和，并且穿插了大数模运算的技巧。</p>
+<p><a href="http://www.shiyanbar.com/ctf/1906" target="_blank" rel="noopener">原题目链接</a></p>
         
-          <a class="article-more-a" href="/2016/12/13/Pacman_project1_code/#more">more >></a>
+          <a class="article-more-a" href="/2017/02/01/CTF_FactorSum/#more">more >></a>
         
       
 
@@ -318,14 +325,14 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pacman/">pacman</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 	</div>
 
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/13/Pacman_project1_code/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/02/01/CTF_FactorSum/">展开全文 >></a>
         </p>
       
 
@@ -342,29 +349,27 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 </article>
 
   
-    <article id="post-Ubuntu-Python_Version" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-CTF_EuclidInversion" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/11/Ubuntu-Python_Version/">Ubuntu Python 默认使用版本改变</a>
+      <a class="article-title" href="/2017/01/17/CTF_EuclidInversion/">CTF--欧几里得求逆</a>
     </h1>
   
 
-        <a href="/2016/12/11/Ubuntu-Python_Version/" class="archive-article-date">
-  	<time datetime="2016-12-11T01:29:35.966Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-11</time>
+        <a href="/2017/01/17/CTF_EuclidInversion/" class="archive-article-date">
+  	<time datetime="2017-01-17T07:35:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-17</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>ubuntu 14系统的初始默认python版本为python 2.7.6，也就是说，当我们输入</p>
-<pre><code>python 运行程序</code></pre><p>ubuntu默认使用python 2.7.6<br>而当我们想用python3运行程序时，必须用</p>
-<pre><code>python3 运行程序</code></pre><p>怎么使python命令自动使用python3以上的版本运行程序呢？</p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>最近做了一道ctf的题目，是关于仿射函数的，本身题目比较简单，这里不过多介绍，其中<br>有一个环节需要进行乘法逆元的求解，这里需要用到欧几里得求逆的方法，是一种很好<br>的求乘法逆元的思想，这里简单介绍，也相当于做一下笔记。</p>
         
-          <a class="article-more-a" href="/2016/12/11/Ubuntu-Python_Version/#more">more >></a>
+          <a class="article-more-a" href="/2017/01/17/CTF_EuclidInversion/#more">more >></a>
         
       
 
@@ -375,14 +380,14 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li></ul>
 	</div>
 
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/11/Ubuntu-Python_Version/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/01/17/CTF_EuclidInversion/">展开全文 >></a>
         </p>
       
 
@@ -399,27 +404,28 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
 </article>
 
   
-    <article id="post-Hexo-Your-Blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-CTF_Fastpost2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/08/Hexo-Your-Blog/">Hexo Your Blog</a>
+      <a class="article-title" href="/2017/01/12/CTF_Fastpost2/">CTF--快速提交2--基于学习的快速提交</a>
     </h1>
   
 
-        <a href="/2016/10/08/Hexo-Your-Blog/" class="archive-article-date">
-  	<time datetime="2016-10-08T12:24:30.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-08</time>
+        <a href="/2017/01/12/CTF_Fastpost2/" class="archive-article-date">
+  	<time datetime="2017-01-12T01:37:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-12</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>之前逛一位ctf大神的博客，偶然发现这个Hexo，了解一下，还真是好东西，既能提高技能，<br>又能装逼（qwq这是重点），网上的大多数教程都是大同小异，完全按照那个来搭建会失败，<br>本文图文教程，让小白也能成功搭建起属于自己的专属Blog。</p>
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>上次介绍了简单的fastpost方法，这次我们来看一个稍微复杂的，基于学习的快速提交</p>
+<p><a href="http://www.shiyanbar.com/ctf/1843" target="_blank" rel="noopener">原题目链接</a></p>
         
-          <a class="article-more-a" href="/2016/10/08/Hexo-Your-Blog/#more">more >></a>
+          <a class="article-more-a" href="/2017/01/12/CTF_Fastpost2/#more">more >></a>
         
       
 
@@ -430,14 +436,14 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 	</div>
 
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/10/08/Hexo-Your-Blog/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/01/12/CTF_Fastpost2/">展开全文 >></a>
         </p>
       
 
@@ -456,7 +462,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/12/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span>
+      <a class="extend prev" rel="prev" href="/page/12/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/14/">Next &raquo;</a>
     </nav>
   
 
@@ -468,7 +474,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 lovebear
+    		&copy; 2021 lovebear
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Lovebear
@@ -547,23 +553,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ctf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ctf</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,11 +565,35 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
+                <a href="javascript:void(0)">渗透</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">image</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,7 +605,7 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
+                <a href="javascript:void(0)">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,7 +613,11 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">mysql</a>
+                <a href="javascript:void(0)">pacman</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">shell</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,18 +630,6 @@ document.write('<script src="' + src + '" id="sozz"><\/script>');
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">image</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">pacman</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">shell</a>
               </li>
             
             <div class="clearfix"></div>

@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="dns-prefetch" href="http://www.lovebear.top">
+  <title>Ubuntu 安装 Kubernetes, Docker | Blog for You</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言本文介绍 Ubuntu 安装 Kubernetes 和 Docker的方法，以及过程中遇到的问题及解决办法。">
+<meta name="keywords" content="大数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 安装 Kubernetes, Docker">
+<meta property="og:url" content="http://www.lovebear.top/2020/04/08/Kubernetes_And_Docker_Install/index.html">
+<meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="前言本文介绍 Ubuntu 安装 Kubernetes 和 Docker的方法，以及过程中遇到的问题及解决办法。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.lovebear.top/img/54494-106.jpg">
+<meta property="og:image" content="http://www.lovebear.top/img/flag.jpg">
+<meta property="og:updated_time" content="2020-04-08T13:46:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu 安装 Kubernetes, Docker">
+<meta name="twitter:description" content="前言本文介绍 Ubuntu 安装 Kubernetes 和 Docker的方法，以及过程中遇到的问题及解决办法。">
+<meta name="twitter:image" content="http://www.lovebear.top/img/54494-106.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
+  
+
+  
+
+  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc">
+  <script>(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?1bc693950a04b443481f93da0209d936":"https://jspassport.ssl.qhimg.com/11.0.1.js?1bc693950a04b443481f93da0209d936";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <script src="/js/jquery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-134162688-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-134162688-1');
+</script>
+
+</head>
+<script src="/js/instant.js" type="module"></script>
+
+</html>
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="http://lovebear.top/img/head.jfif" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">lovebear</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">someone there for you</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+		        
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+		        
+					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">lovebear</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://lovebear.top/img/head.jfif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">lovebear</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">someone there for you</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+			        
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-Kubernetes_And_Docker_Install" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu 安装 Kubernetes, Docker
+    </h1>
+  
+
+        <a href="/2020/04/08/Kubernetes_And_Docker_Install/" class="archive-article-date">
+  	<time datetime="2020-04-08T13:46:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-08</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文介绍 Ubuntu 安装 Kubernetes 和 Docker的方法，以及过程中遇到的问题及解决办法。</p>
+<a id="more"></a>
+
+<h2 id="安装Kubernetes-Master-amp-Nodes"><a href="#安装Kubernetes-Master-amp-Nodes" class="headerlink" title="安装Kubernetes (Master &amp; Nodes)"></a>安装Kubernetes (Master &amp; Nodes)</h2><ul>
+<li>关闭swap并重新加载配置</li>
+</ul>
+<p>因为k8s调度需要计算机器容量，因此关闭交换内存，减少计算误差，另外，启动kubelet时如果未关闭，也会报错。</p>
+<pre><code>sudo swapoff -a
+sudo sysctl -p
+sudo sysctl --system</code></pre><p>修改fstab，防止机器重启又自动打开swap，导致无法重新加入集群</p>
+<pre><code>vim /etc/fstab
+注释掉swap盘挂载的一行，保存退出。</code></pre><ul>
+<li>安装kubeadm、kubectl、kubelet</li>
+</ul>
+<pre><code>apt update</code></pre><p>添加gpg key</p>
+<pre><code>curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg| apt-key add -</code></pre><p>此处可能报错：&lt;gpg:no valid OpenPGP data found&gt;，因为curl没有支持https，解决方法参考 <a href="http://lovebear.top/2017/06/20/Ubuntu%E9%85%8D%E7%BD%AEcurl%E6%94%AF%E6%8C%81https/" target="_blank" rel="noopener">Ubuntu配置curl支持https</a></p>
+<pre><code>cat &lt;&lt;EOF &gt;/etc/apt/sources.list.d/kubernetes.list
+deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main 
+EOF</code></pre><p>此处可能报错：<no such file or directory>，这是第三方apt目录，没有的话可以手动创建 &lt;/etc/apt/sources.list.d&gt; 目录</no></p>
+<pre><code>mkdir /etc/apt/sources.list.d</code></pre><pre><code>apt update</code></pre><p>安装 Kubernetes 1.18.0</p>
+<pre><code>apt install -y kubelet=1.18.0-00 kubeadm=1.18.0-00 kubectl=1.18.0-00</code></pre><ul>
+<li>将kubelet加到系统服务</li>
+</ul>
+<pre><code>systemctl enable kubelet</code></pre><h2 id="安装docker-Master-amp-Nodes"><a href="#安装docker-Master-amp-Nodes" class="headerlink" title="安装docker (Master &amp; Nodes)"></a>安装docker (Master &amp; Nodes)</h2><ul>
+<li>卸载旧版本</li>
+</ul>
+<pre><code>sudo apt remove docker docker-engine docker.io containerd runc</code></pre><ul>
+<li>设置仓库</li>
+</ul>
+<p>更新 apt 包索引</p>
+<pre><code>sudo apt update</code></pre><p>安装 apt 依赖包，用于通过HTTPS来获取仓库</p>
+<pre><code>sudo apt install \
+  apt-transport-https \
+  ca-certificates \
+  curl \
+  gnupg-agent \
+  software-properties-common</code></pre><p>添加 Docker 的官方 GPG 密钥</p>
+<pre><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code></pre><p>使用以下指令设置稳定版仓库</p>
+<pre><code>sudo add-apt-repository \
+ &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) \
+stable&quot;</code></pre><ul>
+<li>安装 Docker Engine-Community</li>
+</ul>
+<p>更新 apt 包索引</p>
+<pre><code>sudo apt update</code></pre><p>安装最新版本的 Docker Engine-Community 和 containerd ，或者转到下一步安装特定版本：</p>
+<pre><code>sudo apt install docker-ce docker-ce-cli containerd.io</code></pre><p>要安装特定版本的 Docker Engine-Community，请在仓库中列出可用版本，然后选择一种安装。列出仓库中可用的版本：</p>
+<pre><code>apt-cache madison docker-ce</code></pre><p>使用第二列中的版本字符串安装特定版本，例如 5:19.03.8<del>3-0</del>ubuntu-xenial</p>
+<pre><code>apt install docker-ce=5:19.03.8~3-0~ubuntu-xenial docker-ce-cli=5:19.03.8~3-0~ubuntu-xenial containerd.io</code></pre><ul>
+<li>检测是否安装成功</li>
+</ul>
+<pre><code>docker version</code></pre><p>出现 Docker Engine 的 Client Server 信息</p>
+<h2 id="拉取-k8s-镜像-Master-amp-Nodes"><a href="#拉取-k8s-镜像-Master-amp-Nodes" class="headerlink" title="拉取 k8s 镜像 (Master &amp; Nodes)"></a>拉取 k8s 镜像 (Master &amp; Nodes)</h2><p>将如下内容保存为 download.sh</p>
+<pre><code>#!/bin/bash
+images=(kube-proxy:v1.18.0 kube-scheduler:v1.18.0 kube-controller-manager:v1.18.0 kube-apiserver:v1.18.0 etcd:3.4.3-0 coredns:1.6.7 pause:3.2 )
+for imageName in ${images[@]} ; do
+docker pull registry.aliyuncs.com/google_containers/$imageName
+docker tag  registry.aliyuncs.com/google_containers/$imageName k8s.gcr.io/$imageName
+docker rmi  registry.aliyuncs.com/google_containers/$imageName
+done</code></pre><p>赋予执行权限后，运行</p>
+<pre><code>chmod +x download.sh
+./download.sh</code></pre><h2 id="Master其他工作"><a href="#Master其他工作" class="headerlink" title="Master其他工作"></a>Master其他工作</h2><ul>
+<li>初始化</li>
+</ul>
+<pre><code>kubeadm init --kubernetes-version=v1.18.0 --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=10.10.11.120 --apiserver-bind-port=6443</code></pre><pre><code>mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config</code></pre><p>为了使用更健康，启用kubectl命令的自动补全功能</p>
+<pre><code>echo &quot;source &lt;(kubectl completion bash)&quot; &gt;&gt; ~/.bashrc</code></pre><p>此时 获取node状态，会是NotReady，describe node会发现，是因为网络配置未完成</p>
+<pre><code>kubectl get nodes</code></pre><ul>
+<li>配置 flannel 网络</li>
+</ul>
+<pre><code>kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml</code></pre><p>P.S. 下载失败就多运行几次</p>
+<h2 id="Node其他工作"><a href="#Node其他工作" class="headerlink" title="Node其他工作"></a>Node其他工作</h2><ul>
+<li>node部分创建并加入集群</li>
+</ul>
+<pre><code>kubeadm join 10.10.11.120:6443 --token {token} --discovery-token-ca-cert-hash sha256:{hash}</code></pre><p>其中，{token}获取，运行</p>
+<pre><code>kubeadm token list</code></pre><p>{hash}获取，运行</p>
+<pre><code>openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2&gt;/dev/null | openssl dgst -sha256 -hex | sed &#39;s/^.* //&#39;</code></pre><p>P.S. 如果token已经失效（默认24小时就消失了），则在master上创建一个新的</p>
+<pre><code>kubeadm token create</code></pre><h2 id="Master查看管理Node"><a href="#Master查看管理Node" class="headerlink" title="Master查看管理Node"></a>Master查看管理Node</h2><ul>
+<li>设置节点角色为node</li>
+</ul>
+<pre><code>kubectl label nodes slave1 node-role.kubernetes.io/node=
+kubectl label nodes slave2 node-role.kubernetes.io/node=</code></pre><ul>
+<li>在master节点查看nodes</li>
+</ul>
+<pre><code>kubectl get nodes</code></pre><p>若Master， node 状态都是 Ready，则部署成功</p>
+<h2 id="排查-NotReady-状态原因"><a href="#排查-NotReady-状态原因" class="headerlink" title="排查 NotReady 状态原因"></a>排查 NotReady 状态原因</h2><p>通过kubectl get nodes查看节点的状态，均显示NotReady<br>目前所有的节点都是NotReady，这是因为每个节点都需要启动若干组件，这些组件都是在pod中运行。我们可以通过如下命令查看Pod的状态</p>
+<pre><code>kubectl get pod --all-namespaces</code></pre><p>Pending、ContainerCreating、ImagePullBackOff都表明Pod没有就绪，Running才是就绪状态。我们可以通过kubectl describe pod Pod Name 查看pod的具体情况，比如：</p>
+<pre><code>kubectl describe pod kube-flannel-ds-v0p3x --namespace=kube-system</code></pre><p>可以根据出现的错误进行排查</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://lovebear.top/img/url_zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/04/08/Kubernetes_And_Docker_Install/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+      <br>
+      <br>
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2020/04/09/Kubernetes_With_Spark/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Kubernetes配置Spark
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/07/Ubuntu配置curl支持https/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu配置curl支持https</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+      
+      
+
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+          <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+      
+        <div id="gitalk-container"></div>
+      
+        <script src="http://lovebear.top/js/md5.js"></script>
+        <script>
+        // 生成 gitalk 插件
+        var gitalk = new Gitalk({
+          clientID: 'a42d56f7d170f0bcdd07', //Client ID
+      
+          clientSecret: 'd358ba8a877131b58631f901848da6c96973b56b', //Client Secret
+      
+          repo: 'cckuailongTalk',//仓库名称
+          owner: 'cckuailong',//仓库拥有者
+          admin: ['cckuailong'],
+          id: hexMD5(location.href),      // Ensure uniqueness and length less than 50
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+      
+        gitalk.render('gitalk-container')
+        </script>
+      
+    </div>
+  </div>
+</article>
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2021 lovebear
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Lovebear
+      	</div>
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+		</script>
+		<span id="busuanzi_container_site_pv">
+			Total Visit: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> times
+		</span>
+		<script>
+			(function(){
+				var bp = document.createElement('script');
+				var curProtocol = window.location.protocol.split(':')[0];
+				if (curProtocol === 'https'){
+					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+				}
+				else{
+					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+				}
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=4.0.0"></script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Apache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">渗透</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">image</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Julia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">DataBase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">pacman</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: true
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>hexo主题</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>不如</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.cnblogs.com/tengj/p/5353897.html" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>深入hexo</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.dnspod.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>DNSPod</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ibruce.info/2013/11/26/markdown/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>markdown</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">每天进步一点点</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true,"scale":0.5}});</script></body>
+</html>

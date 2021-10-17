@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="dns-prefetch" href="http://www.lovebear.top">
+  <title>Ubuntu配置curl支持https | Blog for You</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、前言：curl是一个开源的文件传输工具，但是ubuntu默认安装的curl不支持https，需要重新将curl进行编译，这里查找了网上的一些资料，综合起来实现了curl对https的支持。">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu配置curl支持https">
+<meta property="og:url" content="http://www.lovebear.top/2020/04/07/Ubuntu配置curl支持https/index.html">
+<meta property="og:site_name" content="Blog for You">
+<meta property="og:description" content="一、前言：curl是一个开源的文件传输工具，但是ubuntu默认安装的curl不支持https，需要重新将curl进行编译，这里查找了网上的一些资料，综合起来实现了curl对https的支持。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-04-07T11:33:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu配置curl支持https">
+<meta name="twitter:description" content="一、前言：curl是一个开源的文件传输工具，但是ubuntu默认安装的curl不支持https，需要重新将curl进行编译，这里查找了网上的一些资料，综合起来实现了curl对https的支持。">
+  
+    <link rel="alternative" href="/atom.xml" title="Blog for You" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
+  
+
+  
+
+  <meta name="360-site-verification" content="a567763f2a0832b99ea6d0a57db81fbc">
+  <script>(function(){
+var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?1bc693950a04b443481f93da0209d936":"https://jspassport.ssl.qhimg.com/11.0.1.js?1bc693950a04b443481f93da0209d936";
+document.write('<script src="' + src + '" id="sozz"><\/script>');
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <script src="/js/jquery.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-134162688-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-134162688-1');
+</script>
+
+</head>
+<script src="/js/instant.js" type="module"></script>
+
+</html>
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="http://lovebear.top/img/head.jfif" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">lovebear</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">someone there for you</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+		        
+					<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+		        
+					<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">lovebear</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://lovebear.top/img/head.jfif" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">lovebear</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">someone there for you</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/cckuailong/" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="qq" target="_blank" href="/img/qq.jpg" title="qq"><i class="icon-qq"></i></a>
+			        
+						<a class="weixin" target="_blank" href="/img/wx.png" title="weixin"><i class="icon-weixin"></i></a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/junjie.huo.18" title="facebook"><i class="icon-facebook"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-Ubuntu配置curl支持https" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu配置curl支持https
+    </h1>
+  
+
+        <a href="/2020/04/07/Ubuntu配置curl支持https/" class="archive-article-date">
+  	<time datetime="2020-04-07T11:33:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-07</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言："><a href="#一、前言：" class="headerlink" title="一、前言："></a>一、前言：</h2><p>curl是一个开源的文件传输工具，但是ubuntu默认安装的curl不支持https，需要重新将curl<br>进行编译，这里查找了网上的一些资料，综合起来实现了curl对https的支持。</p>
+<a id="more"></a>
+
+<h2 id="二、curl简单介绍："><a href="#二、curl简单介绍：" class="headerlink" title="二、curl简单介绍："></a>二、curl简单介绍：</h2><p>curl是利用URL语法在命令行方式下工作的开源文件传输工具。它被广泛应用在Unix、多种<br>Linux发行版中，并且有DOS和Win32、Win64下的移植版本。 【摘自百度百科】</p>
+<h2 id="三、curl配置https："><a href="#三、curl配置https：" class="headerlink" title="三、curl配置https："></a>三、curl配置https：</h2><h3 id="1-安装openssl"><a href="#1-安装openssl" class="headerlink" title="1. 安装openssl"></a>1. 安装openssl</h3><pre><code>sudo apt install -y openssl libssl-dev</code></pre><h3 id="2-下载curl源码-下载版本自选"><a href="#2-下载curl源码-下载版本自选" class="headerlink" title="2. 下载curl源码(下载版本自选)"></a>2. 下载curl源码(下载版本自选)</h3><pre><code>wget http://curl.haxx.se/download/curl-7.52.1.tar.gz</code></pre><h3 id="3-解压源码，并进入目录"><a href="#3-解压源码，并进入目录" class="headerlink" title="3. 解压源码，并进入目录"></a>3. 解压源码，并进入目录</h3><pre><code>tar -zxvf curl-7.52.1.tar.gz
+cd curl-7.52.1</code></pre><h3 id="4-配置"><a href="#4-配置" class="headerlink" title="4. 配置"></a>4. 配置</h3><pre><code>./configure --disable-shared</code></pre><p>这里的–disable-shared是关键，不加会导致curl和libcurl的版本不一致</p>
+<h3 id="5-安装curl"><a href="#5-安装curl" class="headerlink" title="5. 安装curl"></a>5. 安装curl</h3><pre><code>make
+sudo make install</code></pre><h3 id="6-查看curl支持的协议"><a href="#6-查看curl支持的协议" class="headerlink" title="6. 查看curl支持的协议"></a>6. 查看curl支持的协议</h3><pre><code>curl -V</code></pre><p>可以看到已经支持了https协议</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://lovebear.top/img/url_zhifubao.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://www.lovebear.top/2020/04/07/Ubuntu配置curl支持https/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+      <br>
+      <br>
+      
+        
+<nav id="article-nav">
+  
+    <a href="/2020/04/08/Kubernetes_And_Docker_Install/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Ubuntu 安装 Kubernetes, Docker
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/19/Mycat_Mysql_Horizontal_Split/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mycat基于Mysql的水平切分</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+      
+      
+
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+          <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+      
+        <div id="gitalk-container"></div>
+      
+        <script src="http://lovebear.top/js/md5.js"></script>
+        <script>
+        // 生成 gitalk 插件
+        var gitalk = new Gitalk({
+          clientID: 'a42d56f7d170f0bcdd07', //Client ID
+      
+          clientSecret: 'd358ba8a877131b58631f901848da6c96973b56b', //Client Secret
+      
+          repo: 'cckuailongTalk',//仓库名称
+          owner: 'cckuailong',//仓库拥有者
+          admin: ['cckuailong'],
+          id: hexMD5(location.href),      // Ensure uniqueness and length less than 50
+          distractionFreeMode: false  // Facebook-like distraction free mode
+        })
+      
+        gitalk.render('gitalk-container')
+        </script>
+      
+    </div>
+  </div>
+</article>
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2021 lovebear
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Lovebear
+      	</div>
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+		</script>
+		<span id="busuanzi_container_site_pv">
+			Total Visit: <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> times
+		</span>
+		<script>
+			(function(){
+				var bp = document.createElement('script');
+				var curProtocol = window.location.protocol.split(':')[0];
+				if (curProtocol === 'https'){
+					bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+				}
+				else{
+					bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+				}
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=4.0.0"></script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Apache</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">BGP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ctf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">md5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">渗透</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">image</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">Julia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">DataBase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">pacman</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssl</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: true
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>hexo主题</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>不如</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.cnblogs.com/tengj/p/5353897.html" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>深入hexo</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.dnspod.cn/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>DNSPod</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://ibruce.info/2013/11/26/markdown/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>markdown</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">每天进步一点点</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true,"scale":0.5}});</script></body>
+</html>
