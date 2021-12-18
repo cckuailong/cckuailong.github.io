@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://lovebear.top/img/DNSLog/5.png">
 <meta property="og:image" content="http://lovebear.top/img/DNSLog/7.png">
 <meta property="og:image" content="http://lovebear.top/img/DNSLog/8.png">
-<meta property="og:updated_time" content="2020-12-13T01:04:20.103Z">
+<meta property="og:updated_time" content="2021-12-18T01:23:25.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNSLog搭建">
 <meta name="twitter:description" content="一、前言：DNSLog的出现为渗透测试中的回显提供了很大的方便，一些无回显的漏洞，也可以通过DNSLog进行信息回显。本文将对DNSLog的搭建进行介绍，让你快速搭建起属于自己的DNSLog">
@@ -233,7 +233,7 @@ aaa.cloud:    做DNS服务器域名
 <ol start="4">
 <li>aaa.ink 设置自定义的DNS服务器<br><img src="http://lovebear.top/img/DNSLog/4.png" alt="148bff018334ce7634f2c5166ba53d55.png"><br>修改DNS服务器为刚刚设置的NS记录值<br><img src="http://lovebear.top/img/DNSLog/5.png" alt="ba0883c24db987ab6443f1c17a20bc0a.png"></li>
 </ol>
-<h3 id="DNSLog部署"><a href="#DNSLog部署" class="headerlink" title="DNSLog部署"></a>DNSLog部署</h3><p>本文使用 <a href="https://github.com/Buzz2d0/Hyuga" target="_blank" rel="noopener"><strong>Hyuga</strong></a> 搭建</p>
+<h3 id="DNSLog部署"><a href="#DNSLog部署" class="headerlink" title="DNSLog部署"></a>DNSLog部署</h3><p>本文使用 <a href="https://github.com/cckuailong/Hyuga" target="_blank" rel="noopener"><strong>Hyuga</strong></a> 搭建</p>
 <h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><ol>
 <li>OS：Ubuntu，其他系统相似，只不过安装软件命令有区别</li>
 <li>安装Redis<pre><code>apt install redis-server
@@ -254,7 +254,7 @@ apt install -y nodejs</code></pre></li>
 <li>环境变量写入项目根目录下的 .env 文件：<pre><code>APP_ENV=production
 </code></pre></li>
 </ol>
-<p>REDIS_SERVER=<redis_ip> # 本地就localhost<br>REDIS_PORT=6379</redis_ip></p>
+<p>REDIS_SERVER=<redis_ip> # 本地就localhost<br>REDIS_PORT=6379<br>RECORDEXPIRATION=30</redis_ip></p>
 <p>DOMAIN=&lt;aaa.ink&gt; # 记录域名<br>NS1_DOMAIN=ns1.&lt;aaa.cloud&gt; # NS域名<br>NS2_DOMAIN=ns2.&lt;aaa.cloud&gt; # NS域名<br>SERVER_IP=<server_ip> # 公网IP</server_ip></p>
 <pre><code>2. 修改 deploy/nginx/nginx-hyuga.conf 中的 server_name, proxy_pass</code></pre><p>server {<br>    listen 80;<br>    server_name &lt;aaa.ink&gt;;<br>…<br>}<br>…<br>server {<br>    listen 80;<br>    server_name *.&lt;aaa.ink&gt;;<br>….<br>    location / {<br>        proxy_set_header Host $http_host;<br>        proxy_set_header X-Real-IP $remote_addr;<br>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>        proxy_set_header X-Forwarded-Proto $scheme;<br>        proxy_pass http://&lt;aaa.ink&gt;:5000;<br>    }</p>
 <pre><code>
@@ -267,7 +267,7 @@ apt install -y nodejs</code></pre></li>
 1. 前端
 a. 配置Nginx</code></pre><p>cp deploy/nginx/nginx-hyuga.conf  /etc/nginx/conf.d/<br>vim /etc/nginx/conf.d/nginx.conf</p>
 <pre><code>![3bb2139c759b6dd937ab17d90e60ab42.png](http://lovebear.top/img/DNSLog/6.png)
-b. 配置前端项目</code></pre><p>rm -r /var/www/*<br>cp /root/Hyuga-master/frontend/* /var/www/ -R</p>
+b. 配置前端项目</code></pre><p>rm -r /var/www/*<br>cp /root/Hyuga/frontend/* /var/www/ -R</p>
 <pre><code>c. 重启nginx</code></pre><p>service nginx restart</p>
 <pre><code>2. 后端
 a. 编译go代码</code></pre><p>go build hyuga.go</p>
@@ -377,18 +377,18 @@ a. 编译go代码</code></pre><p>go build hyuga.go</p>
         
 <nav id="article-nav">
   
-    <a href="/2018/09/17/Redis_getshell/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/09/17/Linux_shell/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          利用Redis通过cron进行Getshell（配合SSRF利用）
+          Linux反弹shell的N种方法
         
       </div>
     </a>
   
   
-    <a href="/2018/09/17/Linux_shell/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Linux反弹shell的N种方法</div>
+    <a href="/2018/09/17/python_selenium/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python+Selenium进行动态加载网页爬取</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -519,10 +519,6 @@ a. 编译go代码</code></pre><p>go build hyuga.go</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">md5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">渗透</a>
               </li>
              
@@ -535,11 +531,11 @@ a. 编译go代码</code></pre><p>go build hyuga.go</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
+                <a href="javascript:void(0)">md5</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">大数据</a>
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -547,11 +543,11 @@ a. 编译go代码</code></pre><p>go build hyuga.go</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">Hexo</a>
+                <a href="javascript:void(0)">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">image</a>
+                <a href="javascript:void(0)">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,14 +567,6 @@ a. 编译go代码</code></pre><p>go build hyuga.go</p>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">pacman</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ubuntu</a>
               </li>
              
@@ -588,6 +576,18 @@ a. 编译go代码</code></pre><p>go build hyuga.go</p>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssl</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">image</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">pacman</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">shell</a>
               </li>
             
             <div class="clearfix"></div>
